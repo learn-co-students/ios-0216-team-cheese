@@ -19,10 +19,7 @@
 @property (nonatomic) NSUInteger question4;
 @property (nonatomic) NSUInteger question5;
 @property (strong, nonatomic) NSString *picture1Address;
-@property (strong, nonatomic) NSString *picture2Address;
-@property (strong, nonatomic) NSString *picture3Address;
-@property (strong, nonatomic) NSString *picture4Address;
-@property (strong, nonatomic) NSString *picture5Address;
+
 
 -(instancetype)init;
 

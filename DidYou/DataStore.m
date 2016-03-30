@@ -113,6 +113,8 @@
 }
 
 
+
+
 -(void)testUsers
 {
     DYUser *testUser1 = [[DYUser alloc] initWithUserUUID:@"11111" signUpDate:[NSDate date] name:@"Brian" city:@"New York" country:@"United States" journals:[[NSMutableArray alloc] init] ];
