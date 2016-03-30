@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
@@ -18,66 +18,46 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NxT-lb-YfZ" userLabel="TopView">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="131" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CdY-4p-LT0" userLabel="PastJournalEntriesTableView">
-                                <rect key="frame" x="0.0" y="180" width="600" height="420"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="131" id="PaQ-J8-mNr">
-                                        <rect key="frame" x="0.0" y="28" width="600" height="131"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PaQ-J8-mNr" id="OHo-DF-nSD">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="131"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="klz-xD-7Jw" userLabel="CustomTableViewCellView">
-                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="131"/>
-                                                    <color key="backgroundColor" red="0.3255296432" green="0.64474971510000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                </view>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="klz-xD-7Jw" firstAttribute="height" secondItem="OHo-DF-nSD" secondAttribute="height" id="0ta-1y-eGR"/>
-                                                <constraint firstItem="klz-xD-7Jw" firstAttribute="centerX" secondItem="OHo-DF-nSD" secondAttribute="centerX" id="244-iH-kN0"/>
-                                                <constraint firstItem="klz-xD-7Jw" firstAttribute="centerY" secondItem="OHo-DF-nSD" secondAttribute="centerY" id="LOs-Zc-2ij"/>
-                                                <constraint firstItem="klz-xD-7Jw" firstAttribute="width" secondItem="OHo-DF-nSD" secondAttribute="width" id="qQ2-MO-Vcn"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a9h-n1-6sK" userLabel="AddJournalFullScreenView" customClass="AddJournalEntryView">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="180"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d2V-tN-8T8" customClass="AddJournalEntryView">
+                                <rect key="frame" x="0.0" y="20" width="600" height="180"/>
                                 <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0bJ-SA-AdB">
+                                <rect key="frame" x="0.0" y="200" width="600" height="400"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gt5-FH-kaC">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="0.5" colorSpace="calibratedRGB"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="a9h-n1-6sK" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="1xn-98-wAY"/>
-                            <constraint firstItem="NxT-lb-YfZ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="1yI-Tv-MWS"/>
-                            <constraint firstItem="a9h-n1-6sK" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="-20" id="BZh-8A-l9Z"/>
-                            <constraint firstItem="NxT-lb-YfZ" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="HA4-Iz-9Rl"/>
-                            <constraint firstItem="CdY-4p-LT0" firstAttribute="top" secondItem="a9h-n1-6sK" secondAttribute="bottom" id="MJi-aA-Y0M"/>
-                            <constraint firstItem="CdY-4p-LT0" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="NYL-cm-kj1"/>
-                            <constraint firstItem="NxT-lb-YfZ" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="V9z-Mz-t8M"/>
-                            <constraint firstItem="a9h-n1-6sK" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.3" id="YVi-OV-iqo"/>
-                            <constraint firstItem="CdY-4p-LT0" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="iGl-ck-a8i"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="CdY-4p-LT0" secondAttribute="bottom" id="wwr-Uu-Sqv"/>
-                            <constraint firstItem="NxT-lb-YfZ" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="yQw-R2-2l7"/>
-                            <constraint firstItem="a9h-n1-6sK" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="zf6-t5-rM5"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="0bJ-SA-AdB" secondAttribute="bottom" id="8aH-Qy-5uW"/>
+                            <constraint firstItem="d2V-tN-8T8" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="9Ia-hB-XT2"/>
+                            <constraint firstItem="0bJ-SA-AdB" firstAttribute="top" secondItem="d2V-tN-8T8" secondAttribute="bottom" id="9gh-qU-8BX"/>
+                            <constraint firstItem="Gt5-FH-kaC" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="C7s-Ih-8GK"/>
+                            <constraint firstItem="Gt5-FH-kaC" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="SfW-yj-Nzk"/>
+                            <constraint firstItem="d2V-tN-8T8" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.3" id="W5l-Km-tQF"/>
+                            <constraint firstItem="0bJ-SA-AdB" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="XtP-MR-kPz"/>
+                            <constraint firstItem="0bJ-SA-AdB" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="hZR-Zl-ECs"/>
+                            <constraint firstItem="d2V-tN-8T8" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="nG9-KY-l1K"/>
+                            <constraint firstItem="d2V-tN-8T8" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="tFA-3f-Jef"/>
+                            <constraint firstItem="Gt5-FH-kaC" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="vrF-Ak-72w"/>
+                            <constraint firstItem="Gt5-FH-kaC" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="xAq-nH-SJD"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="addJournalEntryView" destination="a9h-n1-6sK" id="3hd-jS-I6R"/>
+                        <outlet property="addEntryFullScreenView" destination="Gt5-FH-kaC" id="itu-sB-fma"/>
+                        <outlet property="addEntryTopVIew" destination="d2V-tN-8T8" id="Ro6-mg-T9g"/>
+                        <outlet property="journalEntryTableView" destination="0bJ-SA-AdB" id="60c-0b-KLL"/>
                         <segue destination="jyR-wD-K8y" kind="show" customClass="segueToSettings" id="G4J-H6-Oxr"/>
                         <segue destination="6RC-5d-0Ds" kind="show" customClass="segueToStats" id="VAp-GV-hrt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="519" y="374"/>
+            <point key="canvasLocation" x="260" y="178"/>
         </scene>
         <!--Settings Table View Controller-->
         <scene sceneID="93f-Mn-x1s">
@@ -92,7 +72,7 @@
                                 <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EeG-Qz-3Kq" id="NrF-Q3-BRv">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>

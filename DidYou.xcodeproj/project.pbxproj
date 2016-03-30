@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		31FF28171CAC7963008051C0 /* Secrets.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FF28161CAC7963008051C0 /* Secrets.m */; };
 		AB49939EBAFBADBED3BC9BF4 /* libPods-DidYou.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 563053DD0003F7BE5361FBFA /* libPods-DidYou.a */; };
 		AB92E71A1CAB01F200199034 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AB92E7191CAB01F200199034 /* main.m */; };
 		AB92E71D1CAB01F200199034 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AB92E71C1CAB01F200199034 /* AppDelegate.m */; };
@@ -14,7 +15,6 @@
 		AB92E7231CAB01F200199034 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB92E7211CAB01F200199034 /* Main.storyboard */; };
 		AB92E7251CAB01F200199034 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB92E7241CAB01F200199034 /* Assets.xcassets */; };
 		AB92E7281CAB01F200199034 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB92E7261CAB01F200199034 /* LaunchScreen.storyboard */; };
-		AB92E7311CAB03FF00199034 /* Secrets.m in Sources */ = {isa = PBXBuildFile; fileRef = AB92E7301CAB03FF00199034 /* Secrets.m */; };
 		AB92E7571CAB111100199034 /* DYJournalEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = AB92E7561CAB111100199034 /* DYJournalEntry.m */; };
 		AB92E75A1CAB112B00199034 /* DYUser.m in Sources */ = {isa = PBXBuildFile; fileRef = AB92E7591CAB112B00199034 /* DYUser.m */; };
 		AB92E75D1CAB113700199034 /* DataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = AB92E75C1CAB113700199034 /* DataStore.m */; };
@@ -25,6 +25,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		31FF28151CAC7963008051C0 /* Secrets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Secrets.h; sourceTree = "<group>"; };
+		31FF28161CAC7963008051C0 /* Secrets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Secrets.m; sourceTree = "<group>"; };
 		563053DD0003F7BE5361FBFA /* libPods-DidYou.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DidYou.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6F0F00FFE68D8283CB2E5C1 /* Pods-DidYou.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DidYou.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DidYou/Pods-DidYou.debug.xcconfig"; sourceTree = "<group>"; };
 		AB92E7151CAB01F200199034 /* DidYou.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DidYou.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -37,8 +39,6 @@
 		AB92E7241CAB01F200199034 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AB92E7271CAB01F200199034 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AB92E7291CAB01F200199034 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AB92E72F1CAB03FF00199034 /* Secrets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Secrets.h; sourceTree = "<group>"; };
-		AB92E7301CAB03FF00199034 /* Secrets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Secrets.m; sourceTree = "<group>"; };
 		AB92E7551CAB111100199034 /* DYJournalEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYJournalEntry.h; sourceTree = "<group>"; };
 		AB92E7561CAB111100199034 /* DYJournalEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYJournalEntry.m; sourceTree = "<group>"; };
 		AB92E7581CAB112B00199034 /* DYUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYUser.h; sourceTree = "<group>"; };
@@ -101,10 +101,10 @@
 				AB92E7211CAB01F200199034 /* Main.storyboard */,
 				AB92E7551CAB111100199034 /* DYJournalEntry.h */,
 				AB92E7561CAB111100199034 /* DYJournalEntry.m */,
+				31FF28151CAC7963008051C0 /* Secrets.h */,
+				31FF28161CAC7963008051C0 /* Secrets.m */,
 				AB92E7581CAB112B00199034 /* DYUser.h */,
 				AB92E7591CAB112B00199034 /* DYUser.m */,
-				AB92E7301CAB03FF00199034 /* Secrets.m */,
-				AB92E72F1CAB03FF00199034 /* Secrets.h */,
 				AB92E7651CAC525B00199034 /* View Controllers */,
 				AB92E7631CAC522A00199034 /* Xibs */,
 				AB92E7641CAC524300199034 /* Xib Views */,
@@ -302,9 +302,9 @@
 				AB92E75A1CAB112B00199034 /* DYUser.m in Sources */,
 				AB92E7201CAB01F200199034 /* MainViewController.m in Sources */,
 				AB92E76F1CAC697B00199034 /* StatsViewController.m in Sources */,
-				AB92E7311CAB03FF00199034 /* Secrets.m in Sources */,
 				AB92E71D1CAB01F200199034 /* AppDelegate.m in Sources */,
 				AB92E71A1CAB01F200199034 /* main.m in Sources */,
+				31FF28171CAC7963008051C0 /* Secrets.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

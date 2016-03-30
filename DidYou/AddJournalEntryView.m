@@ -61,6 +61,15 @@
     self.addLabel.text = @"hey there";
      
 }
+- (IBAction)whenAddButtonTapped:(id)sender
+{
+    
+    [self.delegate addButtonTapped:sender];
+    
+
+}
+
+
 
 
 

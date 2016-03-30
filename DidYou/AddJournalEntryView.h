@@ -8,10 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol AddJournalEntryViewDelegate <NSObject>
+
+- (void)addButtonTapped:(UIButton *)sender;
+
+@end
+
+
 @interface AddJournalEntryView : UIView
 
 @property (strong, nonatomic) IBOutlet UIView *contentView;
 @property (weak, nonatomic) IBOutlet UILabel *addLabel;
 @property (weak, nonatomic) IBOutlet UIButton *addButton;
+@property (weak, nonatomic) id <AddJournalEntryViewDelegate> delegate;
 
 @end
