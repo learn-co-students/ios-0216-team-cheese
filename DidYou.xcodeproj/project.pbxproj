@@ -15,6 +15,9 @@
 		AB92E7251CAB01F200199034 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB92E7241CAB01F200199034 /* Assets.xcassets */; };
 		AB92E7281CAB01F200199034 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB92E7261CAB01F200199034 /* LaunchScreen.storyboard */; };
 		AB92E7311CAB03FF00199034 /* Secrets.m in Sources */ = {isa = PBXBuildFile; fileRef = AB92E7301CAB03FF00199034 /* Secrets.m */; };
+		AB92E7571CAB111100199034 /* DYJournalEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = AB92E7561CAB111100199034 /* DYJournalEntry.m */; };
+		AB92E75A1CAB112B00199034 /* DYUser.m in Sources */ = {isa = PBXBuildFile; fileRef = AB92E7591CAB112B00199034 /* DYUser.m */; };
+		AB92E75D1CAB113700199034 /* DataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = AB92E75C1CAB113700199034 /* DataStore.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +35,12 @@
 		AB92E7291CAB01F200199034 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB92E72F1CAB03FF00199034 /* Secrets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Secrets.h; sourceTree = "<group>"; };
 		AB92E7301CAB03FF00199034 /* Secrets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Secrets.m; sourceTree = "<group>"; };
+		AB92E7551CAB111100199034 /* DYJournalEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYJournalEntry.h; sourceTree = "<group>"; };
+		AB92E7561CAB111100199034 /* DYJournalEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYJournalEntry.m; sourceTree = "<group>"; };
+		AB92E7581CAB112B00199034 /* DYUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYUser.h; sourceTree = "<group>"; };
+		AB92E7591CAB112B00199034 /* DYUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYUser.m; sourceTree = "<group>"; };
+		AB92E75B1CAB113700199034 /* DataStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataStore.h; sourceTree = "<group>"; };
+		AB92E75C1CAB113700199034 /* DataStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataStore.m; sourceTree = "<group>"; };
 		DC83E05E9AD37E69EF195C64 /* Pods-DidYou.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DidYou.release.xcconfig"; path = "Pods/Target Support Files/Pods-DidYou/Pods-DidYou.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -80,8 +89,14 @@
 				AB92E71C1CAB01F200199034 /* AppDelegate.m */,
 				AB92E71E1CAB01F200199034 /* ViewController.h */,
 				AB92E71F1CAB01F200199034 /* ViewController.m */,
-				AB92E72F1CAB03FF00199034 /* Secrets.h */,
+				AB92E7551CAB111100199034 /* DYJournalEntry.h */,
+				AB92E7561CAB111100199034 /* DYJournalEntry.m */,
+				AB92E7581CAB112B00199034 /* DYUser.h */,
+				AB92E7591CAB112B00199034 /* DYUser.m */,
+				AB92E75B1CAB113700199034 /* DataStore.h */,
+				AB92E75C1CAB113700199034 /* DataStore.m */,
 				AB92E7301CAB03FF00199034 /* Secrets.m */,
+				AB92E72F1CAB03FF00199034 /* Secrets.h */,
 				AB92E7211CAB01F200199034 /* Main.storyboard */,
 				AB92E7241CAB01F200199034 /* Assets.xcassets */,
 				AB92E7261CAB01F200199034 /* LaunchScreen.storyboard */,
@@ -229,6 +244,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB92E75D1CAB113700199034 /* DataStore.m in Sources */,
+				AB92E7571CAB111100199034 /* DYJournalEntry.m in Sources */,
+				AB92E75A1CAB112B00199034 /* DYUser.m in Sources */,
 				AB92E7201CAB01F200199034 /* ViewController.m in Sources */,
 				AB92E7311CAB03FF00199034 /* Secrets.m in Sources */,
 				AB92E71D1CAB01F200199034 /* AppDelegate.m in Sources */,
