@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "DYUser.h"
+#import "DYJournalEntry.h"
 
 @interface DataStore : NSObject
 
