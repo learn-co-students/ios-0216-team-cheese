@@ -1,20 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainFeelingView">
             <connections>
-                <outlet property="angryButton" destination="kc1-KU-sGr" id="LDY-KV-hlS"/>
                 <outlet property="contentView" destination="iN0-l3-epB" id="maF-7U-GrG"/>
-                <outlet property="excitedButton" destination="zZ6-7L-ZvF" id="jah-Rd-ncj"/>
                 <outlet property="feelingQuestionLabel" destination="SSc-1Y-kfy" id="taX-qB-cDc"/>
-                <outlet property="happyButton" destination="BKr-rJ-NVj" id="efU-UG-Ug2"/>
-                <outlet property="sadButton" destination="NIU-kc-oQD" id="qlp-JB-6pw"/>
-                <outlet property="scaredButton" destination="kc1-KU-sGr" id="R5L-Ra-lYR"/>
-                <outlet property="tenderButton" destination="Q0t-Vt-uko" id="OxH-T1-shM"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -28,48 +22,6 @@
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BKr-rJ-NVj">
-                    <rect key="frame" x="119" y="285" width="46" height="30"/>
-                    <state key="normal" title="Happy"/>
-                    <connections>
-                        <action selector="whenHappyButtonIsTapped:" destination="-1" eventType="touchUpInside" id="p1G-UF-QpY"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q0t-Vt-uko">
-                    <rect key="frame" x="119" y="323" width="61" height="30"/>
-                    <state key="normal" title="Scared"/>
-                    <connections>
-                        <action selector="whenScaredButtonIsTapped:" destination="-1" eventType="touchUpInside" id="67J-RD-b4e"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ytd-fp-ZCE">
-                    <rect key="frame" x="265" y="285" width="71" height="30"/>
-                    <state key="normal" title="Tender"/>
-                    <connections>
-                        <action selector="whenTenderButtonIsTapped:" destination="-1" eventType="touchUpInside" id="hLR-RI-rh1"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kc1-KU-sGr">
-                    <rect key="frame" x="198" y="323" width="46" height="30"/>
-                    <state key="normal" title="Angry"/>
-                    <connections>
-                        <action selector="whenAngryButtonIsTapped:" destination="-1" eventType="touchUpInside" id="wa2-rj-DtQ"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zZ6-7L-ZvF">
-                    <rect key="frame" x="185" y="285" width="72" height="30"/>
-                    <state key="normal" title="Excited"/>
-                    <connections>
-                        <action selector="whenExcitedButtonIsTapped:" destination="-1" eventType="touchUpInside" id="JLG-ZU-kuN"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NIU-kc-oQD">
-                    <rect key="frame" x="277" y="323" width="46" height="30"/>
-                    <state key="normal" title="Sad"/>
-                    <connections>
-                        <action selector="whenSadButtonIsTapped:" destination="-1" eventType="touchUpInside" id="4Gc-GS-tlp"/>
-                    </connections>
-                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <point key="canvasLocation" x="432" y="429"/>

@@ -7,7 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DYQuestion.h"
+
+@protocol QuestionViewDelegate <NSObject>
+
+-(void)questionAnswered:(UIButton *)sender;
+
+@end
+
 
 @interface QuestionView : UIView
+
+@property (strong, nonatomic) DYQuestion *question;
+@property (weak, nonatomic) id <QuestionViewDelegate> delegate;
 
 @end

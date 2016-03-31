@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
@@ -14,7 +14,7 @@
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" userLabel="MainView">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" userLabel="MainView" customClass="MainEntrySuperView">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -26,29 +26,20 @@
                                 <rect key="frame" x="0.0" y="200" width="600" height="400"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gt5-FH-kaC" customClass="NewEntrySuperView">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <color key="backgroundColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="0.5" colorSpace="calibratedRGB"/>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="0bJ-SA-AdB" secondAttribute="bottom" id="8aH-Qy-5uW"/>
                             <constraint firstItem="d2V-tN-8T8" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="9Ia-hB-XT2"/>
                             <constraint firstItem="0bJ-SA-AdB" firstAttribute="top" secondItem="d2V-tN-8T8" secondAttribute="bottom" id="9gh-qU-8BX"/>
-                            <constraint firstItem="Gt5-FH-kaC" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="C7s-Ih-8GK"/>
-                            <constraint firstItem="Gt5-FH-kaC" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="SfW-yj-Nzk"/>
                             <constraint firstItem="d2V-tN-8T8" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.3" id="W5l-Km-tQF"/>
                             <constraint firstItem="0bJ-SA-AdB" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="XtP-MR-kPz"/>
                             <constraint firstItem="0bJ-SA-AdB" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="hZR-Zl-ECs"/>
                             <constraint firstItem="d2V-tN-8T8" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="nG9-KY-l1K"/>
                             <constraint firstItem="d2V-tN-8T8" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="tFA-3f-Jef"/>
-                            <constraint firstItem="Gt5-FH-kaC" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="vrF-Ak-72w"/>
-                            <constraint firstItem="Gt5-FH-kaC" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="xAq-nH-SJD"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="addEntryFullScreenView" destination="Gt5-FH-kaC" id="itu-sB-fma"/>
                         <outlet property="addEntryTopVIew" destination="d2V-tN-8T8" id="Ro6-mg-T9g"/>
                         <outlet property="journalEntryTableView" destination="0bJ-SA-AdB" id="60c-0b-KLL"/>
                         <segue destination="jyR-wD-K8y" kind="show" customClass="segueToSettings" id="G4J-H6-Oxr"/>
@@ -72,7 +63,7 @@
                                 <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EeG-Qz-3Kq" id="NrF-Q3-BRv">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -85,7 +76,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ked-Kv-DnS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="196" y="1153"/>
+            <point key="canvasLocation" x="-126" y="1052"/>
         </scene>
         <!--Stats View Controller-->
         <scene sceneID="OZq-e7-CAp">
@@ -103,7 +94,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0N1-84-KcP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="865" y="1153"/>
+            <point key="canvasLocation" x="633" y="1058"/>
         </scene>
     </scenes>
 </document>

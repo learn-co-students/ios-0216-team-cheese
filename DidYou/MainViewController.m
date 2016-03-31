@@ -7,6 +7,7 @@
 //
 
 #import "MainViewController.h"
+#import "NewJournalEntryBlurView.h"
 #import "DataStore.h"
 #import "DYUser.h"
 
@@ -16,7 +17,7 @@
 
 @property (strong, nonatomic) IBOutlet AddJournalEntryView *addEntryTopVIew;
 @property (strong, nonatomic) IBOutlet UITableView *journalEntryTableView;
-@property (strong, nonatomic) IBOutlet UIView *addEntryFullScreenView;
+@property (strong, nonatomic) NewJournalEntryBlurView *addJournalFullScreenBlurView;
 
 @property (strong, nonatomic) DataStore *dataStore;
 
@@ -33,7 +34,7 @@
    self.dataStore =  [DataStore sharedDataStore];
     self.addEntryTopVIew.delegate = self;
     
-    self.addEntryFullScreenView.alpha = 0;
+//    self.addEntryFullScreenView.alpha = 0;
     
     
     NSLog(@"we got here");
@@ -42,9 +43,6 @@
     
     // go send to firebase synch with our dataStore
 
-    
-    
-    
     
 }
 
@@ -58,21 +56,40 @@
 
 - (void)addButtonTapped:(UIButton *)sender {
     
-    NSLog(@"we got here");
-
-    self.addEntryFullScreenView.alpha = 1;
+    
+    [self launchAddJournalFullScreenView];
     
     DYJournalEntry *entry = [[DYJournalEntry alloc] init];
     
     [self.dataStore.currentUser.journals addObject: entry];
     
     
+}
+
+
+
+
+-(void)launchAddJournalFullScreenView
+{
     
     
+    UIVisualEffect *blurEffect;
+    blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
     
+    self.addJournalFullScreenBlurView= [[NewJournalEntryBlurView alloc] initWithEffect:blurEffect];
     
+    [self.view addSubview:self.addJournalFullScreenBlurView];
     
+    self.addJournalFullScreenBlurView.translatesAutoresizingMaskIntoConstraints = NO;
+    //    [self.addJournalFullScreenBlurView removeConstraints:self.addJournalFullScreenBlurView.constraints];
     
+    [self.addJournalFullScreenBlurView.widthAnchor constraintEqualToAnchor:self.view.widthAnchor].active = YES;
+    [self.addJournalFullScreenBlurView.heightAnchor constraintEqualToAnchor:self.view.heightAnchor].active = YES;
+    [self.addJournalFullScreenBlurView.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor].active = YES;
+    [self.addJournalFullScreenBlurView.centerYAnchor constraintEqualToAnchor:self.view.centerYAnchor].active = YES;
+    
+    [self.view bringSubviewToFront:self.addJournalFullScreenBlurView];
+
 }
 
 

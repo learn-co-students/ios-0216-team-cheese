@@ -17,8 +17,6 @@
 		31FF282B1CAD736E008051C0 /* SpecificFeelingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FF282A1CAD736E008051C0 /* SpecificFeelingView.m */; };
 		31FF282E1CAD7382008051C0 /* QuestionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FF282D1CAD7382008051C0 /* QuestionView.m */; };
 		31FF28311CAD7398008051C0 /* JournalAndPictureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FF28301CAD7398008051C0 /* JournalAndPictureView.m */; };
-		31FF28331CAD7756008051C0 /* NewEntrySuper.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31FF28321CAD7756008051C0 /* NewEntrySuper.xib */; };
-		31FF28361CAD776C008051C0 /* NewEntrySuperView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FF28351CAD776C008051C0 /* NewEntrySuperView.m */; };
 		AB49939EBAFBADBED3BC9BF4 /* libPods-DidYou.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 563053DD0003F7BE5361FBFA /* libPods-DidYou.a */; };
 		AB92E71A1CAB01F200199034 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AB92E7191CAB01F200199034 /* main.m */; };
 		AB92E71D1CAB01F200199034 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AB92E71C1CAB01F200199034 /* AppDelegate.m */; };
@@ -33,6 +31,7 @@
 		AB92E7621CAC495F00199034 /* AddJournalEntryView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB92E7611CAC495F00199034 /* AddJournalEntryView.m */; };
 		AB92E76C1CAC696400199034 /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB92E76B1CAC696400199034 /* SettingsTableViewController.m */; };
 		AB92E76F1CAC697B00199034 /* StatsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB92E76E1CAC697B00199034 /* StatsViewController.m */; };
+		AB92E7951CAD9CB400199034 /* NewJournalEntryBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB92E7941CAD9CB400199034 /* NewJournalEntryBlurView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,9 +51,6 @@
 		31FF282D1CAD7382008051C0 /* QuestionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionView.m; sourceTree = "<group>"; };
 		31FF282F1CAD7398008051C0 /* JournalAndPictureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JournalAndPictureView.h; sourceTree = "<group>"; };
 		31FF28301CAD7398008051C0 /* JournalAndPictureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JournalAndPictureView.m; sourceTree = "<group>"; };
-		31FF28321CAD7756008051C0 /* NewEntrySuper.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewEntrySuper.xib; sourceTree = "<group>"; };
-		31FF28341CAD776C008051C0 /* NewEntrySuperView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewEntrySuperView.h; sourceTree = "<group>"; };
-		31FF28351CAD776C008051C0 /* NewEntrySuperView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewEntrySuperView.m; sourceTree = "<group>"; };
 		563053DD0003F7BE5361FBFA /* libPods-DidYou.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DidYou.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6F0F00FFE68D8283CB2E5C1 /* Pods-DidYou.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DidYou.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DidYou/Pods-DidYou.debug.xcconfig"; sourceTree = "<group>"; };
 		AB92E7151CAB01F200199034 /* DidYou.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DidYou.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -80,6 +76,8 @@
 		AB92E76B1CAC696400199034 /* SettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTableViewController.m; sourceTree = "<group>"; };
 		AB92E76D1CAC697B00199034 /* StatsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatsViewController.h; sourceTree = "<group>"; };
 		AB92E76E1CAC697B00199034 /* StatsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatsViewController.m; sourceTree = "<group>"; };
+		AB92E7931CAD9CB400199034 /* NewJournalEntryBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewJournalEntryBlurView.h; sourceTree = "<group>"; };
+		AB92E7941CAD9CB400199034 /* NewJournalEntryBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewJournalEntryBlurView.m; sourceTree = "<group>"; };
 		DC83E05E9AD37E69EF195C64 /* Pods-DidYou.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DidYou.release.xcconfig"; path = "Pods/Target Support Files/Pods-DidYou/Pods-DidYou.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -163,7 +161,6 @@
 				31FF28201CAD72EB008051C0 /* SpecificFeeling.xib */,
 				31FF28221CAD7303008051C0 /* Question.xib */,
 				31FF28241CAD731C008051C0 /* JournalAndPicture.xib */,
-				31FF28321CAD7756008051C0 /* NewEntrySuper.xib */,
 			);
 			name = Xibs;
 			sourceTree = "<group>";
@@ -171,18 +168,18 @@
 		AB92E7641CAC524300199034 /* Xib Views */ = {
 			isa = PBXGroup;
 			children = (
-				AB92E7601CAC495F00199034 /* AddJournalEntryView.h */,
-				AB92E7611CAC495F00199034 /* AddJournalEntryView.m */,
+				AB92E7931CAD9CB400199034 /* NewJournalEntryBlurView.h */,
+				AB92E7941CAD9CB400199034 /* NewJournalEntryBlurView.m */,
 				31FF28261CAD7356008051C0 /* MainFeelingView.h */,
 				31FF28271CAD7356008051C0 /* MainFeelingView.m */,
+				AB92E7601CAC495F00199034 /* AddJournalEntryView.h */,
+				AB92E7611CAC495F00199034 /* AddJournalEntryView.m */,
 				31FF28291CAD736E008051C0 /* SpecificFeelingView.h */,
 				31FF282A1CAD736E008051C0 /* SpecificFeelingView.m */,
 				31FF282C1CAD7382008051C0 /* QuestionView.h */,
 				31FF282D1CAD7382008051C0 /* QuestionView.m */,
 				31FF282F1CAD7398008051C0 /* JournalAndPictureView.h */,
 				31FF28301CAD7398008051C0 /* JournalAndPictureView.m */,
-				31FF28341CAD776C008051C0 /* NewEntrySuperView.h */,
-				31FF28351CAD776C008051C0 /* NewEntrySuperView.m */,
 			);
 			name = "Xib Views";
 			sourceTree = "<group>";
@@ -279,7 +276,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				31FF28251CAD731C008051C0 /* JournalAndPicture.xib in Resources */,
-				31FF28331CAD7756008051C0 /* NewEntrySuper.xib in Resources */,
 				31FF28231CAD7303008051C0 /* Question.xib in Resources */,
 				AB92E7281CAB01F200199034 /* LaunchScreen.storyboard in Resources */,
 				AB92E7251CAB01F200199034 /* Assets.xcassets in Resources */,
@@ -348,8 +344,8 @@
 				31FF282E1CAD7382008051C0 /* QuestionView.m in Sources */,
 				AB92E75D1CAB113700199034 /* DataStore.m in Sources */,
 				AB92E7621CAC495F00199034 /* AddJournalEntryView.m in Sources */,
+				AB92E7951CAD9CB400199034 /* NewJournalEntryBlurView.m in Sources */,
 				31FF28311CAD7398008051C0 /* JournalAndPictureView.m in Sources */,
-				31FF28361CAD776C008051C0 /* NewEntrySuperView.m in Sources */,
 				31FF282B1CAD736E008051C0 /* SpecificFeelingView.m in Sources */,
 				AB92E7571CAB111100199034 /* DYJournalEntry.m in Sources */,
 				31FF281D1CAD6BED008051C0 /* DYQuestion.m in Sources */,

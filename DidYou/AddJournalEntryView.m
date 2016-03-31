@@ -55,7 +55,6 @@
 -(void)setUpView
 {
     
-    NSLog(@"the init is getting called");
     
     [[NSBundle mainBundle] loadNibNamed:@"AddJournalEntry" owner:self options:nil];
     
