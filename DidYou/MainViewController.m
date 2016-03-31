@@ -8,6 +8,7 @@
 
 #import "MainViewController.h"
 #import "DataStore.h"
+#import "DYUser.h"
 
 
 
@@ -60,6 +61,18 @@
     NSLog(@"we got here");
 
     self.addEntryFullScreenView.alpha = 1;
+    
+    DYJournalEntry *entry = [[DYJournalEntry alloc] init];
+    
+    [self.dataStore.currentUser.journals addObject: entry];
+    
+    
+    
+    
+    
+    
+    
+    
 }
 
 

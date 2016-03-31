@@ -8,6 +8,16 @@
 
 #import "AddJournalEntryView.h"
 
+@interface AddJournalEntryView ()
+
+
+@property (strong, nonatomic) IBOutlet UIView *contentView;
+@property (weak, nonatomic) IBOutlet UILabel *addLabel;
+@property (weak, nonatomic) IBOutlet UIButton *addButton;
+
+@end
+
+
 @implementation AddJournalEntryView
 
 /*

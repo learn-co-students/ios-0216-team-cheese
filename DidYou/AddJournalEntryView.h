@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DYJournalEntry.h"
 
 @protocol AddJournalEntryViewDelegate <NSObject>
 
@@ -17,9 +18,10 @@
 
 @interface AddJournalEntryView : UIView
 
-@property (strong, nonatomic) IBOutlet UIView *contentView;
-@property (weak, nonatomic) IBOutlet UILabel *addLabel;
-@property (weak, nonatomic) IBOutlet UIButton *addButton;
 @property (weak, nonatomic) id <AddJournalEntryViewDelegate> delegate;
+@property (strong, nonatomic) DYJournalEntry *journalEntry;
+
+
+
 
 @end
