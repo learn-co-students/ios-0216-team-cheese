@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddJournalEntryView">
             <connections>
                 <outlet property="addButton" destination="ygO-GU-acJ" id="fkb-wY-ICc"/>
                 <outlet property="addLabel" destination="pnc-22-FuH" id="5oK-ln-8bA"/>
+                <outlet property="addressButtonTapped" destination="EdM-NR-f9p" id="kmU-Mh-p5o"/>
                 <outlet property="contentView" destination="iN0-l3-epB" id="h35-tW-h2l"/>
+                <outlet property="userAddress" destination="jIX-E6-YXu" id="qAa-9L-hj7"/>
+                <outlet property="userLatitude" destination="8Pa-AL-FhX" id="lQU-Gp-E5X"/>
+                <outlet property="userLongitude" destination="4SY-Hn-u6j" id="NDH-gh-4qm"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="AddJournalEntryView">
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="689" height="559"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -83,7 +87,7 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="360.5" y="458.5"/>
+            <point key="canvasLocation" x="330.5" y="401.5"/>
         </view>
     </objects>
 </document>

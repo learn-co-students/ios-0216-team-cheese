@@ -16,7 +16,13 @@
 @property (weak, nonatomic) IBOutlet UILabel *addLabel;
 @property (weak, nonatomic) IBOutlet UIButton *addButton;
 
+@property (weak, nonatomic) IBOutlet UILabel *userLatitude;
 
+@property (weak, nonatomic) IBOutlet UILabel *userLongitude;
+
+@property (weak, nonatomic) IBOutlet UILabel *userAddress;
+
+@property (weak, nonatomic) IBOutlet UIButton *addressButtonTapped;
 
 @end
 
@@ -63,7 +69,6 @@
     [[NSBundle mainBundle] loadNibNamed:@"AddJournalEntry" owner:self options:nil];
     
     [self addSubview:self.contentView];
-    
     
     
     self.contentView.frame = self.bounds;
