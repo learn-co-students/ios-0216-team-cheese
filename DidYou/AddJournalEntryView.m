@@ -8,12 +8,15 @@
 
 #import "AddJournalEntryView.h"
 
+
 @interface AddJournalEntryView ()
 
 
 @property (strong, nonatomic) IBOutlet UIView *contentView;
 @property (weak, nonatomic) IBOutlet UILabel *addLabel;
 @property (weak, nonatomic) IBOutlet UIButton *addButton;
+
+
 
 @end
 
@@ -27,6 +30,7 @@
     // Drawing code
 }
 */
+
 
 -(instancetype)initWithCoder:(NSCoder *)aDecoder
 {
@@ -60,6 +64,8 @@
     
     [self addSubview:self.contentView];
     
+    
+    
     self.contentView.frame = self.bounds;
     
 }
@@ -77,8 +83,6 @@
     
 
 }
-
-
 
 
 

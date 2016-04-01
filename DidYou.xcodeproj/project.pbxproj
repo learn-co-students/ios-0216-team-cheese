@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		31FF28171CAC7963008051C0 /* Secrets.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FF28161CAC7963008051C0 /* Secrets.m */; };
 		31FF281D1CAD6BED008051C0 /* DYQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FF281C1CAD6BED008051C0 /* DYQuestion.m */; };
 		31FF281F1CAD72D9008051C0 /* MainFeeling.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31FF281E1CAD72D9008051C0 /* MainFeeling.xib */; };
 		31FF28211CAD72EB008051C0 /* SpecificFeeling.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31FF28201CAD72EB008051C0 /* SpecificFeeling.xib */; };
@@ -17,6 +16,8 @@
 		31FF282B1CAD736E008051C0 /* SpecificFeelingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FF282A1CAD736E008051C0 /* SpecificFeelingView.m */; };
 		31FF282E1CAD7382008051C0 /* QuestionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FF282D1CAD7382008051C0 /* QuestionView.m */; };
 		31FF28311CAD7398008051C0 /* JournalAndPictureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FF28301CAD7398008051C0 /* JournalAndPictureView.m */; };
+		779BD8EE1CAE081F0027DC91 /* Secrets.m in Sources */ = {isa = PBXBuildFile; fileRef = 779BD8ED1CAE081F0027DC91 /* Secrets.m */; };
+		779BD8F11CAE2A1F0027DC91 /* locationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 779BD8F01CAE2A1F0027DC91 /* locationManager.m */; };
 		AB49939EBAFBADBED3BC9BF4 /* libPods-DidYou.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 563053DD0003F7BE5361FBFA /* libPods-DidYou.a */; };
 		AB92E71A1CAB01F200199034 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AB92E7191CAB01F200199034 /* main.m */; };
 		AB92E71D1CAB01F200199034 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AB92E71C1CAB01F200199034 /* AppDelegate.m */; };
@@ -35,8 +36,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		31FF28151CAC7963008051C0 /* Secrets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Secrets.h; sourceTree = "<group>"; };
-		31FF28161CAC7963008051C0 /* Secrets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Secrets.m; sourceTree = "<group>"; };
 		31FF281B1CAD6BED008051C0 /* DYQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYQuestion.h; sourceTree = "<group>"; };
 		31FF281C1CAD6BED008051C0 /* DYQuestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYQuestion.m; sourceTree = "<group>"; };
 		31FF281E1CAD72D9008051C0 /* MainFeeling.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainFeeling.xib; sourceTree = "<group>"; };
@@ -52,6 +51,10 @@
 		31FF282F1CAD7398008051C0 /* JournalAndPictureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JournalAndPictureView.h; sourceTree = "<group>"; };
 		31FF28301CAD7398008051C0 /* JournalAndPictureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JournalAndPictureView.m; sourceTree = "<group>"; };
 		563053DD0003F7BE5361FBFA /* libPods-DidYou.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DidYou.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		779BD8EC1CAE081F0027DC91 /* Secrets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Secrets.h; sourceTree = "<group>"; };
+		779BD8ED1CAE081F0027DC91 /* Secrets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Secrets.m; sourceTree = "<group>"; };
+		779BD8EF1CAE2A1F0027DC91 /* locationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = locationManager.h; sourceTree = "<group>"; };
+		779BD8F01CAE2A1F0027DC91 /* locationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = locationManager.m; sourceTree = "<group>"; };
 		A6F0F00FFE68D8283CB2E5C1 /* Pods-DidYou.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DidYou.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DidYou/Pods-DidYou.debug.xcconfig"; sourceTree = "<group>"; };
 		AB92E7151CAB01F200199034 /* DidYou.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DidYou.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB92E7191CAB01F200199034 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -129,8 +132,10 @@
 				AB92E7211CAB01F200199034 /* Main.storyboard */,
 				AB92E7551CAB111100199034 /* DYJournalEntry.h */,
 				AB92E7561CAB111100199034 /* DYJournalEntry.m */,
-				31FF28151CAC7963008051C0 /* Secrets.h */,
-				31FF28161CAC7963008051C0 /* Secrets.m */,
+				779BD8EF1CAE2A1F0027DC91 /* locationManager.h */,
+				779BD8F01CAE2A1F0027DC91 /* locationManager.m */,
+				779BD8EC1CAE081F0027DC91 /* Secrets.h */,
+				779BD8ED1CAE081F0027DC91 /* Secrets.m */,
 				AB92E7581CAB112B00199034 /* DYUser.h */,
 				AB92E7591CAB112B00199034 /* DYUser.m */,
 				AB92E7651CAC525B00199034 /* View Controllers */,
@@ -354,9 +359,10 @@
 				31FF28281CAD7356008051C0 /* MainFeelingView.m in Sources */,
 				AB92E7201CAB01F200199034 /* MainViewController.m in Sources */,
 				AB92E76F1CAC697B00199034 /* StatsViewController.m in Sources */,
+				779BD8EE1CAE081F0027DC91 /* Secrets.m in Sources */,
 				AB92E71D1CAB01F200199034 /* AppDelegate.m in Sources */,
+				779BD8F11CAE2A1F0027DC91 /* locationManager.m in Sources */,
 				AB92E71A1CAB01F200199034 /* main.m in Sources */,
-				31FF28171CAC7963008051C0 /* Secrets.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
