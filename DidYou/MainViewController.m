@@ -10,6 +10,8 @@
 #import "NewJournalEntryBlurView.h"
 #import "DataStore.h"
 #import "DYUser.h"
+#import <CoreLocation/CoreLocation.h>
+#import "AddJournalEntryView.h"
 
 
 
@@ -19,9 +21,13 @@
 @property (strong, nonatomic) IBOutlet UITableView *journalEntryTableView;
 @property (strong, nonatomic) NewJournalEntryBlurView *addJournalFullScreenBlurView;
 
+@property (strong, nonatomic) AddJournalEntryView *journalView;
+
 @property (strong, nonatomic) DataStore *dataStore;
 
-
+@property (strong, nonatomic) CLLocationManager *locationManager;
+@property (strong, nonatomic) CLGeocoder *geocoder;
+@property (strong, nonatomic) CLPlacemark *placemark;
 
 @end
 
@@ -29,30 +35,92 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
     
    self.dataStore =  [DataStore sharedDataStore];
     self.addEntryTopVIew.delegate = self;
     
 //    self.addEntryFullScreenView.alpha = 0;
     
-    
     NSLog(@"we got here");
     
    // set city and state to current users
+    self.locationManager = [[CLLocationManager alloc]init];
+    self.locationManager.delegate = self;
+    [self.locationManager requestWhenInUseAuthorization];
     
+    if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+        [self.locationManager requestWhenInUseAuthorization];
+    }
+    
+    self.geocoder = [[CLGeocoder alloc]init];
+    
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    
+   
+    
+    [self.locationManager startUpdatingLocation];
+    CGRect myFullFrame = [self.view frame];
+    CGRect frame = CGRectMake(0, 0, myFullFrame.size.height, myFullFrame.size.width);
+    AddJournalEntryView *journalView = [[AddJournalEntryView alloc]initWithFrame:frame];
+    [self.view addSubview:journalView];
+    self.journalView = journalView;
     // go send to firebase synch with our dataStore
 
     
 }
 
 
+-(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    NSLog(@"didFailWithError, %@", error);
+
+    UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"Error" message:@"Failed to get where you are" preferredStyle:UIAlertControllerStyleAlert];
+
+
+    UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+
+    }];
+
+    [errorAlert addAction:defaultAction];
+
+    [self presentViewController:errorAlert animated:YES completion:nil];
+
 }
 
+
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
+    
+    
+    CLLocation *currentLocation = locations[0];
+    
+    if (currentLocation != nil) {
+        
+        self.journalView.userLatitude.text = [NSString stringWithFormat:@"%.8f", currentLocation.coordinate.latitude];
+        
+        self.journalView.userLongitude.text = [NSString stringWithFormat:@"%.8f", currentLocation.coordinate.longitude];
+        
+        //stop location manager
+        
+        [self.locationManager stopUpdatingLocation];
+        
+        NSLog(@"resolving the address");
+        
+        //translate the locate data into a human-readable address
+        [self.geocoder reverseGeocodeLocation:currentLocation completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+            
+            if (error == nil && [placemarks count] > 0) {
+                self.placemark = [placemarks lastObject];
+                self.journalView.userAddress.text = [NSString stringWithFormat:@"%@ %@", self.placemark.locality, self.placemark.country];
+                
+            } else {
+                
+                NSLog(@"@%@", error.debugDescription);
+            }
+        }];
+    }
+    
+    
+}
 
 - (void)addButtonTapped:(UIButton *)sender {
     

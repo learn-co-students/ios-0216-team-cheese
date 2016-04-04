@@ -2,7 +2,7 @@
 //  Secrets.h
 //  DidYou
 //
-//  Created by Andre Creighton on 3/30/16.
+//  Created by Zirui Branton on 3/31/16.
 //  Copyright © 2016 Did You Nooglers. All rights reserved.
 //
 
