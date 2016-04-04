@@ -38,10 +38,10 @@
 {
     [[NSBundle mainBundle] loadNibNamed:@"SpecficFeeling" owner:self options:nil];
     
-    [self addSubview:self.contentView];
+        [self addSubview:self.contentView];
     
-    self.contentView.frame = self.bounds;
-    
+      self.contentView.frame = self.bounds;
+
     
 }
 

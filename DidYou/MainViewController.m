@@ -21,16 +21,13 @@
 @property (strong, nonatomic) IBOutlet UITableView *journalEntryTableView;
 @property (strong, nonatomic) NewJournalEntryBlurView *addJournalFullScreenBlurView;
 
+@property (strong, nonatomic) AddJournalEntryView *journalView;
+
 @property (strong, nonatomic) DataStore *dataStore;
 
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) CLGeocoder *geocoder;
 @property (strong, nonatomic) CLPlacemark *placemark;
-@property (strong, nonatomic) UILabel *latitudeLabel;
-@property (strong, nonatomic) UILabel *longitudeLabel;
-@property (strong, nonatomic) UILabel *addressLabel;
-
-
 
 @end
 
@@ -62,10 +59,11 @@
    
     
     [self.locationManager startUpdatingLocation];
-    CGRect frame = CGRectMake(0, 0, 100, 100);
+    CGRect myFullFrame = [self.view frame];
+    CGRect frame = CGRectMake(0, 0, myFullFrame.size.height, myFullFrame.size.width);
     AddJournalEntryView *journalView = [[AddJournalEntryView alloc]initWithFrame:frame];
     [self.view addSubview:journalView];
-    
+    self.journalView = journalView;
     // go send to firebase synch with our dataStore
 
     
@@ -97,9 +95,9 @@
     
     if (currentLocation != nil) {
         
-        self.latitudeLabel.text = [NSString stringWithFormat:@"%.8f", currentLocation.coordinate.latitude];
+        self.journalView.userLatitude.text = [NSString stringWithFormat:@"%.8f", currentLocation.coordinate.latitude];
         
-        self.longitudeLabel.text = [NSString stringWithFormat:@"%.8f", currentLocation.coordinate.longitude];
+        self.journalView.userLongitude.text = [NSString stringWithFormat:@"%.8f", currentLocation.coordinate.longitude];
         
         //stop location manager
         
@@ -112,7 +110,7 @@
             
             if (error == nil && [placemarks count] > 0) {
                 self.placemark = [placemarks lastObject];
-                self.addressLabel.text = [NSString stringWithFormat:@"%@ %@", self.placemark.locality, self.placemark.country];
+                self.journalView.userAddress.text = [NSString stringWithFormat:@"%@ %@", self.placemark.locality, self.placemark.country];
                 
             } else {
                 

@@ -21,7 +21,11 @@
 @property (weak, nonatomic) id <AddJournalEntryViewDelegate> delegate;
 @property (strong, nonatomic) DYJournalEntry *journalEntry;
 
+@property (weak, nonatomic) IBOutlet UILabel *userLatitude;
 
+@property (weak, nonatomic) IBOutlet UILabel *userLongitude;
+
+@property (weak, nonatomic) IBOutlet UILabel *userAddress;
 
 
 @end

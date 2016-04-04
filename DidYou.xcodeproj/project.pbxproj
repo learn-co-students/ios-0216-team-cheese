@@ -17,7 +17,6 @@
 		31FF282E1CAD7382008051C0 /* QuestionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FF282D1CAD7382008051C0 /* QuestionView.m */; };
 		31FF28311CAD7398008051C0 /* JournalAndPictureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FF28301CAD7398008051C0 /* JournalAndPictureView.m */; };
 		779BD8EE1CAE081F0027DC91 /* Secrets.m in Sources */ = {isa = PBXBuildFile; fileRef = 779BD8ED1CAE081F0027DC91 /* Secrets.m */; };
-		779BD8F11CAE2A1F0027DC91 /* locationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 779BD8F01CAE2A1F0027DC91 /* locationManager.m */; };
 		AB49939EBAFBADBED3BC9BF4 /* libPods-DidYou.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 563053DD0003F7BE5361FBFA /* libPods-DidYou.a */; };
 		AB92E71A1CAB01F200199034 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AB92E7191CAB01F200199034 /* main.m */; };
 		AB92E71D1CAB01F200199034 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AB92E71C1CAB01F200199034 /* AppDelegate.m */; };
@@ -53,8 +52,6 @@
 		563053DD0003F7BE5361FBFA /* libPods-DidYou.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DidYou.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		779BD8EC1CAE081F0027DC91 /* Secrets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Secrets.h; sourceTree = "<group>"; };
 		779BD8ED1CAE081F0027DC91 /* Secrets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Secrets.m; sourceTree = "<group>"; };
-		779BD8EF1CAE2A1F0027DC91 /* locationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = locationManager.h; sourceTree = "<group>"; };
-		779BD8F01CAE2A1F0027DC91 /* locationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = locationManager.m; sourceTree = "<group>"; };
 		A6F0F00FFE68D8283CB2E5C1 /* Pods-DidYou.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DidYou.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DidYou/Pods-DidYou.debug.xcconfig"; sourceTree = "<group>"; };
 		AB92E7151CAB01F200199034 /* DidYou.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DidYou.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB92E7191CAB01F200199034 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -132,8 +129,6 @@
 				AB92E7211CAB01F200199034 /* Main.storyboard */,
 				AB92E7551CAB111100199034 /* DYJournalEntry.h */,
 				AB92E7561CAB111100199034 /* DYJournalEntry.m */,
-				779BD8EF1CAE2A1F0027DC91 /* locationManager.h */,
-				779BD8F01CAE2A1F0027DC91 /* locationManager.m */,
 				779BD8EC1CAE081F0027DC91 /* Secrets.h */,
 				779BD8ED1CAE081F0027DC91 /* Secrets.m */,
 				AB92E7581CAB112B00199034 /* DYUser.h */,
@@ -361,7 +356,6 @@
 				AB92E76F1CAC697B00199034 /* StatsViewController.m in Sources */,
 				779BD8EE1CAE081F0027DC91 /* Secrets.m in Sources */,
 				AB92E71D1CAB01F200199034 /* AppDelegate.m in Sources */,
-				779BD8F11CAE2A1F0027DC91 /* locationManager.m in Sources */,
 				AB92E71A1CAB01F200199034 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
