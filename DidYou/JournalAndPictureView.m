@@ -8,6 +8,12 @@
 
 #import "JournalAndPictureView.h"
 
+@interface JournalAndPictureView ()
+
+@property (strong, nonatomic) IBOutlet UIView *contentView;
+
+@end
+
 @implementation JournalAndPictureView
 
 -(instancetype)initWithCoder:(NSCoder *)aDecoder
@@ -43,6 +49,12 @@
     [self addSubview:self.contentView];
     
     self.contentView.frame = self.bounds;
+    
+}
+- (IBAction)doneButtonTapped:(id)sender
+{
+    
+    [self.delegate journalComplete:sender];
     
 }
 

@@ -54,7 +54,6 @@
                     </subviews>
                 </stackView>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="i2z-uj-FZO" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="4BX-be-A6I"/>
                 <constraint firstItem="i2z-uj-FZO" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="Bd6-wU-2be"/>

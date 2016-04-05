@@ -25,6 +25,10 @@
 
 -(instancetype)initWithUserUUID:(NSString *)userUUID signUpDate:(NSDate *)signUpDate name:(NSString *)name city:(NSString *)city country:(NSString *)country journals:(NSMutableArray *)journals;
 
+-(NSArray *)journalArrayLIFO;
+
+
+
 
 
 

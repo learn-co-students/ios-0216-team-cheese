@@ -9,8 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "DYUser.h"
 
+@protocol NewJournalEntryBlurViewDelegate <NSObject>
+
+-(void)totalJournalEntryComplete;
+
+@end
+
 @interface NewJournalEntryBlurView : UIVisualEffectView
 
 @property (strong, nonatomic) DYJournalEntry *currentEntry;
+@property (strong, nonatomic) id <NewJournalEntryBlurViewDelegate> delegate;
 
 @end

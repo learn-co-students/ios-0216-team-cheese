@@ -31,7 +31,7 @@
         _emotions = [self emotionsDictionary];
         _userUUID = [self userUUID];
         
-        [self userUUID];
+        [self userUUIDToUser];
         
         [self testUsers];
     }
@@ -43,7 +43,7 @@
 {
     
     NSDictionary *emotions = @{ @"Happy"  :  @[ @"Fulfilled",@"Content",@"Glad",@"Complete",@"Satisfied",@"Optimistic",@"Pleased",@"Serene"],
-                                @"Excited"  :  @[ @"Ecstatic",@"Engergetic",@"Aroused",@"Bouncy",@"Nervous",@"Perky",@"Antsy",@"Joyful"],
+                                @"Excited"  :  @[ @"Ecstatic",@"Engergetic",@"Aroused",@"Bouncy",@"Aroused",@"Perky",@"Antsy",@"Joyful"],
                                 @"Tender"  :  @[ @"Intimate",@"Loving",@"Warm-hearted",@"Sympathetic",@"Touched",@"Kind",@"Soft",@"Trusting"],
                                 @"Scared"  :  @[ @"Tense",@"Nervous",@"Anxious",@"Jittery",@"Frightened",@"Panic-stricken",@"Terrified",@"Apprehensive"],
                                 @"Angry"  :  @[ @"Irritated",@"Resentful",@"Miffed",@"Upset",@"Mad",@"Furious",@"Raging",@"Annoyed"],
@@ -52,7 +52,7 @@
     return emotions;
 }
 
--(NSString *)userUUID
+-(void)userUUIDToUser
 {
     // look in NSUserDefaults if UUID exists
     
@@ -64,28 +64,45 @@
     
     if (uuidExists)
     {
-        return userDefaultsDictionary[@"userUUID"];
+        
+       [self createNewCurrentUserWithUUID:userDefaultsDictionary[@"userUUID"]];  // we will need to change this, what we'll need to do is go to firebase and go find the user
     }
     
     else
     {
        
-     
-        NSString *userUUID = [[NSUUID UUID] UUIDString];
+        NSString *newUUID = [self createNewUserUUID];
         
-        [[NSUserDefaults standardUserDefaults] setObject:userUUID  forKey:@"userUUID"];
-        
-        [[NSUserDefaults standardUserDefaults] synchronize];
-        
-        // create our new user
-        
-        DYUser *newUser = [[DYUser alloc] initWithUserUUID:userUUID signUpDate:[NSDate date]];
-        
-        self.currentUser = newUser;
-        
-        return userUUID;
+        [self createNewCurrentUserWithUUID:newUUID];
         
     }
+    
+}
+
+-(NSString *)createNewUserUUID
+{
+    
+    NSString *userUUID = [[NSUUID UUID] UUIDString];
+    
+    [[NSUserDefaults standardUserDefaults] setObject:userUUID  forKey:@"userUUID"];
+    
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    return  userUUID;
+
+    
+}
+
+-(void)createNewCurrentUserWithUUID:(NSString *)userUUID
+{
+    
+    DYUser *newUser = [[DYUser alloc] initWithUserUUID:userUUID signUpDate:[NSDate date]];
+    
+    self.currentUser = newUser;
+    
+    [self.users addObject:self.currentUser];
+    
+    // at this point we'd push the new user to firebase
     
 }
 
