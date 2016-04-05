@@ -11,14 +11,14 @@
 
 @protocol QuestionViewDelegate <NSObject>
 
--(void)questionAnswered:(UIButton *)sender;
+-(void)questionAnswered:(NSUInteger)answer;
 
 @end
 
 
 @interface QuestionView : UIView
 
-@property (strong, nonatomic) DYQuestion *question;
+@property (nonatomic) NSUInteger questionIndex;
 @property (weak, nonatomic) id <QuestionViewDelegate> delegate;
 
 @end

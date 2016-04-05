@@ -12,15 +12,16 @@
 #import "DYUser.h"
 #import <CoreLocation/CoreLocation.h>
 #import "AddJournalEntryView.h"
+#import "JournalEntryTableViewCell.h"
 
 
 
-@interface MainViewController () <AddJournalEntryViewDelegate>
+@interface MainViewController () <NewJournalEntryBlurViewDelegate, UITableViewDataSource, UITableViewDelegate>
 
-@property (strong, nonatomic) IBOutlet AddJournalEntryView *addEntryTopVIew;
+@property (strong, nonatomic) IBOutlet AddJournalEntryView *addEntryTopView;
 @property (strong, nonatomic) IBOutlet UITableView *journalEntryTableView;
-@property (strong, nonatomic) NewJournalEntryBlurView *addJournalFullScreenBlurView;
 
+@property (strong, nonatomic) NewJournalEntryBlurView *addJournalFullScreenBlurView;
 @property (strong, nonatomic) AddJournalEntryView *journalView;
 
 @property (strong, nonatomic) DataStore *dataStore;
@@ -36,36 +37,40 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-   self.dataStore =  [DataStore sharedDataStore];
-    self.addEntryTopVIew.delegate = self;
+    self.dataStore =  [DataStore sharedDataStore];
+    
+    self.addEntryTopView.delegate = self;
+    self.journalEntryTableView.delegate = self;
+    self.journalEntryTableView.dataSource = self;
+    
+    
     
 //    self.addEntryFullScreenView.alpha = 0;
     
-    NSLog(@"we got here");
+    [self preferredStatusBarStyle];
     
-   // set city and state to current users
-    self.locationManager = [[CLLocationManager alloc]init];
-    self.locationManager.delegate = self;
-    [self.locationManager requestWhenInUseAuthorization];
-    
-    if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
-        [self.locationManager requestWhenInUseAuthorization];
-    }
-    
-    self.geocoder = [[CLGeocoder alloc]init];
-    
-    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    
-   
-    
-    [self.locationManager startUpdatingLocation];
-    CGRect myFullFrame = [self.view frame];
-    CGRect frame = CGRectMake(0, 0, myFullFrame.size.height, myFullFrame.size.width);
-    AddJournalEntryView *journalView = [[AddJournalEntryView alloc]initWithFrame:frame];
-    [self.view addSubview:journalView];
-    self.journalView = journalView;
-    // go send to firebase synch with our dataStore
-
+//   // set city and state to current users
+//    self.locationManager = [[CLLocationManager alloc]init];
+//    self.locationManager.delegate = self;
+//    [self.locationManager requestWhenInUseAuthorization];
+//    
+//    if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+//        [self.locationManager requestWhenInUseAuthorization];
+//    }
+//    
+//    self.geocoder = [[CLGeocoder alloc]init];
+//    
+//    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+//    
+//   
+//    
+//    [self.locationManager startUpdatingLocation];
+//    CGRect myFullFrame = [self.view frame];
+//    CGRect frame = CGRectMake(0, 0, myFullFrame.size.height, myFullFrame.size.width);
+//    AddJournalEntryView *journalView = [[AddJournalEntryView alloc]initWithFrame:frame];
+//    [self.view addSubview:journalView];
+//    self.journalView = journalView;
+//    // go send to firebase synch with our dataStore
     
 }
 
@@ -95,9 +100,7 @@
     
     if (currentLocation != nil) {
         
-        self.journalView.userLatitude.text = [NSString stringWithFormat:@"%.8f", currentLocation.coordinate.latitude];
-        
-        self.journalView.userLongitude.text = [NSString stringWithFormat:@"%.8f", currentLocation.coordinate.longitude];
+
         
         //stop location manager
         
@@ -110,7 +113,7 @@
             
             if (error == nil && [placemarks count] > 0) {
                 self.placemark = [placemarks lastObject];
-                self.journalView.userAddress.text = [NSString stringWithFormat:@"%@ %@", self.placemark.locality, self.placemark.country];
+
                 
             } else {
                 
@@ -127,29 +130,22 @@
     
     [self launchAddJournalFullScreenView];
     
-    DYJournalEntry *entry = [[DYJournalEntry alloc] init];
-    
-    [self.dataStore.currentUser.journals addObject: entry];
-    
-    
 }
-
-
 
 
 -(void)launchAddJournalFullScreenView
 {
-    
     
     UIVisualEffect *blurEffect;
     blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
     
     self.addJournalFullScreenBlurView= [[NewJournalEntryBlurView alloc] initWithEffect:blurEffect];
     
+    self.addJournalFullScreenBlurView.delegate = self;
+    
     [self.view addSubview:self.addJournalFullScreenBlurView];
     
     self.addJournalFullScreenBlurView.translatesAutoresizingMaskIntoConstraints = NO;
-    //    [self.addJournalFullScreenBlurView removeConstraints:self.addJournalFullScreenBlurView.constraints];
     
     [self.addJournalFullScreenBlurView.widthAnchor constraintEqualToAnchor:self.view.widthAnchor].active = YES;
     [self.addJournalFullScreenBlurView.heightAnchor constraintEqualToAnchor:self.view.heightAnchor].active = YES;
@@ -159,6 +155,61 @@
     [self.view bringSubviewToFront:self.addJournalFullScreenBlurView];
 
 }
+
+-(void)totalJournalEntryComplete
+{
+    [self.journalEntryTableView reloadData];
+    
+    DYJournalEntry *lastEntry = [self.dataStore.currentUser.journals lastObject];
+    
+    DYQuestion *question1 = lastEntry.questions[0];
+    DYQuestion *question2 = lastEntry.questions[1];
+    DYQuestion *question3 = lastEntry.questions[2];
+    DYQuestion *question4 = lastEntry.questions[3];
+    DYQuestion *question5 = lastEntry.questions[4];
+    
+    
+    NSLog(@"Emotion is: %@",lastEntry.mainEmotion);
+    NSLog(@"Answer 1 is: %lu", question1.answer);
+    NSLog(@"Answer 2 is: %lu", question2.answer);
+    NSLog(@"Answer 3 is: %lu", question3.answer);
+    NSLog(@"Answer 4 is: %lu", question4.answer);
+    NSLog(@"Answer 5 is: %lu", question5.answer);
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.dataStore.currentUser.journals.count;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 100;
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    JournalEntryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"basicCell"];
+    
+    NSArray *journalsLIFO = [self.dataStore.currentUser journalArrayLIFO];
+    
+    DYJournalEntry *journalAtRow = journalsLIFO[indexPath.row];
+    
+    cell.cellView.journalEntry = journalAtRow;
+    
+    return cell;
+    
+    
+}
+
+
 
 
 @end

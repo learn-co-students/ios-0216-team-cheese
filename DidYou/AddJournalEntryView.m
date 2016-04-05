@@ -13,12 +13,10 @@
 
 
 @property (strong, nonatomic) IBOutlet UIView *contentView;
-@property (weak, nonatomic) IBOutlet UILabel *addLabel;
+
 @property (weak, nonatomic) IBOutlet UIButton *addButton;
 
-
-
-@property (weak, nonatomic) IBOutlet UIButton *addressButtonTapped;
+@property (weak, nonatomic) IBOutlet UIImageView *backgroundImage;
 
 @end
 
@@ -66,17 +64,13 @@
     
     [self addSubview:self.contentView];
     
+    self.backgroundImage.image = [UIImage imageNamed:@"clouds"];
+    
     
     self.contentView.frame = self.bounds;
     
 }
 
--(void)setAddLabel:(UILabel *)addLabel
-{
-    
-    self.addLabel.text = @"hey there";
-     
-}
 - (IBAction)whenAddButtonTapped:(id)sender
 {
     

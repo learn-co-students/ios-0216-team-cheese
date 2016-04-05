@@ -14,41 +14,86 @@
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" userLabel="MainView" customClass="MainEntrySuperView">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d2V-tN-8T8" customClass="AddJournalEntryView">
-                                <rect key="frame" x="0.0" y="20" width="600" height="180"/>
-                                <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4zv-DW-413" customClass="AddJournalEntryView">
+                                <rect key="frame" x="0.0" y="-20" width="600" height="180"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0bJ-SA-AdB">
-                                <rect key="frame" x="0.0" y="200" width="600" height="400"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="122" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Xo5-jG-068">
+                                <rect key="frame" x="0.0" y="160" width="600" height="440"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="basicCell" rowHeight="122" id="6ZW-Yv-chO" customClass="JournalEntryTableViewCell">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="122"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6ZW-Yv-chO" id="EBN-J3-Fhe">
+                                            <rect key="frame" x="0.0" y="0.0" width="567" height="121"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mey-ff-0UV" customClass="JournalEntryTableViewCellView">
+                                                    <rect key="frame" x="0.0" y="0.0" width="567" height="122"/>
+                                                    <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="mey-ff-0UV" firstAttribute="centerY" secondItem="EBN-J3-Fhe" secondAttribute="centerY" id="5Ju-4R-zWD"/>
+                                                <constraint firstItem="mey-ff-0UV" firstAttribute="centerX" secondItem="EBN-J3-Fhe" secondAttribute="centerX" id="IEV-r8-RBd"/>
+                                                <constraint firstItem="mey-ff-0UV" firstAttribute="width" secondItem="EBN-J3-Fhe" secondAttribute="width" id="OSO-ij-iz5"/>
+                                                <constraint firstItem="mey-ff-0UV" firstAttribute="height" secondItem="EBN-J3-Fhe" secondAttribute="height" id="h2U-Uu-HLF"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="cellView" destination="mey-ff-0UV" id="Uxt-LI-4Ux"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="0bJ-SA-AdB" secondAttribute="bottom" id="8aH-Qy-5uW"/>
-                            <constraint firstItem="d2V-tN-8T8" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="9Ia-hB-XT2"/>
-                            <constraint firstItem="0bJ-SA-AdB" firstAttribute="top" secondItem="d2V-tN-8T8" secondAttribute="bottom" id="9gh-qU-8BX"/>
-                            <constraint firstItem="d2V-tN-8T8" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.3" id="W5l-Km-tQF"/>
-                            <constraint firstItem="0bJ-SA-AdB" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="XtP-MR-kPz"/>
-                            <constraint firstItem="0bJ-SA-AdB" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="hZR-Zl-ECs"/>
-                            <constraint firstItem="d2V-tN-8T8" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="nG9-KY-l1K"/>
-                            <constraint firstItem="d2V-tN-8T8" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="tFA-3f-Jef"/>
+                            <constraint firstItem="4zv-DW-413" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="JQW-Dt-qCj"/>
+                            <constraint firstItem="Xo5-jG-068" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="LZX-vw-kn7"/>
+                            <constraint firstItem="Xo5-jG-068" firstAttribute="top" secondItem="4zv-DW-413" secondAttribute="bottom" id="Urn-TW-NPS"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Xo5-jG-068" secondAttribute="bottom" id="c6O-9q-SRD"/>
+                            <constraint firstItem="Xo5-jG-068" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="hFJ-68-h5T"/>
+                            <constraint firstItem="4zv-DW-413" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="-20" id="hHK-aF-M7O"/>
+                            <constraint firstItem="4zv-DW-413" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="imC-tX-BZp"/>
+                            <constraint firstItem="4zv-DW-413" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.3" id="wnB-e8-2Kx"/>
                         </constraints>
                     </view>
+                    <nil key="simulatedStatusBarMetrics"/>
                     <connections>
-                        <outlet property="addEntryTopVIew" destination="d2V-tN-8T8" id="Ro6-mg-T9g"/>
-                        <outlet property="journalEntryTableView" destination="0bJ-SA-AdB" id="60c-0b-KLL"/>
+                        <outlet property="addEntryTopView" destination="4zv-DW-413" id="Ue4-ij-m02"/>
+                        <outlet property="journalEntryTableView" destination="Xo5-jG-068" id="dDO-55-CUs"/>
                         <segue destination="jyR-wD-K8y" kind="show" customClass="segueToSettings" id="G4J-H6-Oxr"/>
                         <segue destination="6RC-5d-0Ds" kind="show" customClass="segueToStats" id="VAp-GV-hrt"/>
+                        <segue destination="sXp-Bh-XSW" kind="show" identifier="segueToJournalDetail" id="h4J-1p-QMr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="260" y="178"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="d6X-c8-zjl">
+            <objects>
+                <viewController id="sXp-Bh-XSW" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="79l-3y-zwj"/>
+                        <viewControllerLayoutGuide type="bottom" id="M5P-D6-Umv"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="M41-Of-SWz">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="K77-dY-qmG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1010" y="178"/>
         </scene>
         <!--Settings Table View Controller-->
         <scene sceneID="93f-Mn-x1s">

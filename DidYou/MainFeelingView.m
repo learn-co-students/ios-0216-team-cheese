@@ -8,25 +8,19 @@
 
 #import "MainFeelingView.h"
 #import "DataStore.h"
-#import "SpecificFeelingView.h"
+#import "CategoryFeelingView.h"
+
+
+
 
 
 @interface MainFeelingView ()
-@property (strong, nonatomic) IBOutlet UIView *contentView;
-@property (strong, nonatomic) IBOutlet UILabel *feelingQuestionLabel;
-@property (strong, nonatomic) IBOutlet UIButton *happyButton;
-@property (strong, nonatomic) IBOutlet UIButton *excitedButton;
-@property (strong, nonatomic) IBOutlet UIButton *tenderButton;
-@property (strong, nonatomic) IBOutlet UIButton *scaredButton;
-@property (strong, nonatomic) IBOutlet UIButton *angryButton;
-@property (strong, nonatomic) IBOutlet UIButton *sadButton;
 
-@property (strong, nonatomic) SpecificFeelingView *happyView;
-@property (strong, nonatomic) SpecificFeelingView *excitedView;
-@property (strong, nonatomic) SpecificFeelingView *tenderView;
-@property (strong, nonatomic) SpecificFeelingView *scaredView;
-@property (strong, nonatomic) SpecificFeelingView *angryView;
-@property (strong, nonatomic) SpecificFeelingView *sadView;
+@property (strong, nonatomic) IBOutlet UIView *contentView;
+
+@property (strong, nonatomic) DataStore *dataStore;
+@property (strong, nonatomic) DYJournalEntry *currentEntry;
+
 
 @end
 
@@ -65,14 +59,52 @@
     
     self.contentView.frame = self.bounds;
     
-    self.happyView = [[SpecificFeelingView alloc] init];
-    self.excitedView = [[SpecificFeelingView alloc] init];
-    self.tenderView = [[SpecificFeelingView alloc] init];
-    self.scaredView = [[SpecificFeelingView alloc] init];
-    self.angryView = [[SpecificFeelingView alloc] init];
-    self.sadView = [[SpecificFeelingView alloc] init];
+    self.dataStore = [DataStore sharedDataStore];
+    
+    NSArray *journals = self.dataStore.currentUser.journals;
+    
+    NSLog(@"in the common init for main feeling, the number or journals is: %lu", self.dataStore.currentUser.journals.count);
+    
+    self.currentEntry = [journals lastObject];
     
 }
+
+- (IBAction)happyTapped:(id)sender
+{
+    self.currentEntry.mainEmotion = @"Happy";
+    [self.delegate feelingChosen:sender];
+    
+    NSLog(@"happy tapped");
+    
+}
+
+- (IBAction)tenderTapped:(id)sender
+{
+    self.currentEntry.mainEmotion = @"Tender";
+     [self.delegate feelingChosen:sender];
+}
+
+- (IBAction)angryTapped:(id)sender
+{
+    self.currentEntry.mainEmotion = @"Angry";
+     [self.delegate feelingChosen:sender];
+}
+- (IBAction)excitedTapped:(id)sender
+{
+    self.currentEntry.mainEmotion = @"Excited";
+     [self.delegate feelingChosen:sender];
+}
+- (IBAction)scaredTapped:(id)sender
+{
+    self.currentEntry.mainEmotion = @"Scared";
+     [self.delegate feelingChosen:sender];
+}
+- (IBAction)sadTapped:(id)sender
+{
+    self.currentEntry.mainEmotion = @"Sad";
+     [self.delegate feelingChosen:sender];
+}
+
 
 
 @end

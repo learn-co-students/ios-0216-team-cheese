@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol JournalAndPictureViewDelegate <NSObject>
+
+-(void)journalComplete:(UIButton *)sender;
+
+@end
+
 @interface JournalAndPictureView : UIView
+
+@property (strong, nonatomic) id <JournalAndPictureViewDelegate> delegate;
 
 @end
