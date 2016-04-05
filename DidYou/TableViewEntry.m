@@ -7,17 +7,68 @@
 //
 
 #import "TableViewEntry.h"
+#import "DataStore.h"
+
+//@interface TableViewEntry: UIView<UITableViewDelegate, UITableViewDataSource>
+//
+//@end
 
 @implementation TableViewEntry
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
 
--
+-(instancetype)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    
+    if (self)
+    {
+        [self setUpView];
+    }
+    
+    return self;
+}
+
+-(instancetype)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    
+    if (self)
+    {
+        [self setUpView];
+    }
+    
+    return self;
+}
+
+-(void)setUpView
+{
+    
+    
+    [[NSBundle mainBundle] loadNibNamed:@"TableViewEntry" owner:self options:nil];
+    
+//    [self addSubview:self.contentView];
+//    
+//    
+//    self.contentView.frame = self.bounds;
+    
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    DataStore *dataStore = [[DataStore alloc]init];
+    return [dataStore.emotions count];
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"" forIndexPath:indexPath];
+    
+    return cell;
+}
 
 @end

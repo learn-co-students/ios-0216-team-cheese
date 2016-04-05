@@ -7,33 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DataStore.h"
 
-@interface TableViewEntry: UIView<UITableViewDelegate, UITableViewDataSource>
-
-@end
-
-@implementation TableViewEntry
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    DataStore *dataStore = [[DataStore alloc]init];
-    return [dataStore.emotions[key] count];
-}
-
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"basicCell" forIndexPath:indexPath];
-    
-    return cell;    
-}
-
+@interface TableViewEntry : UIView
 
 @end
+
+
+
 
 
