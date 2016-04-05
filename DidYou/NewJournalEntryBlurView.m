@@ -122,9 +122,9 @@
     
 }
 
--(void)questionAnswered:(UIButton *)sender;
+-(void)questionAnswered:(NSUInteger)answer;
 {
-    
+
     self.questionIndex ++;
     
     BOOL questionsDone = (self.questionIndex == self.currentEntry.questions.count);
@@ -137,7 +137,7 @@
     }
     else
     {
-        self.questionView.question = self.currentEntry.questions[self.questionIndex];
+        self.questionView.questionIndex = self.questionIndex;
     }
     
 }
@@ -161,7 +161,7 @@
     
     DYQuestion *question = self.currentEntry.questions[0];
     
-    self.questionView.question = question;
+    self.questionView.questionIndex = 0;
 
 }
 

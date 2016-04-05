@@ -30,7 +30,7 @@
         _mainEmotion = mainEmotion;
         _journalEntry = journalEntry;
         _picture1Address = picture1Address;
-        _questions = [self questions];
+        _questions = [self generateQuestions];
    
     }
     
@@ -40,7 +40,7 @@
 }
 
 
--(NSArray *)questions{
+-(NSArray *)generateQuestions{
     
     
     NSArray *questions = @[ [[DYQuestion alloc] initWithQuestion:@"get a good night's sleep?"] , [[DYQuestion alloc] initWithQuestion:@"do something nice for someone?"] ,[[DYQuestion alloc] initWithQuestion:@"eat a healthy breakfast?"] , [[DYQuestion alloc] initWithQuestion:@"workout in any way?"] , [[DYQuestion alloc] initWithQuestion:@"have sex?"]];

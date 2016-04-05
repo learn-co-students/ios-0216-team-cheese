@@ -12,6 +12,7 @@
 #import "DYUser.h"
 #import <CoreLocation/CoreLocation.h>
 #import "AddJournalEntryView.h"
+#import "JournalEntryTableViewCell.h"
 
 
 
@@ -159,7 +160,21 @@
 {
     [self.journalEntryTableView reloadData];
     
-    NSLog(@"the number of journal entries is: %lu",self.dataStore.currentUser.journals.count);
+    DYJournalEntry *lastEntry = [self.dataStore.currentUser.journals lastObject];
+    
+    DYQuestion *question1 = lastEntry.questions[0];
+    DYQuestion *question2 = lastEntry.questions[1];
+    DYQuestion *question3 = lastEntry.questions[2];
+    DYQuestion *question4 = lastEntry.questions[3];
+    DYQuestion *question5 = lastEntry.questions[4];
+    
+    
+    NSLog(@"Emotion is: %@",lastEntry.mainEmotion);
+    NSLog(@"Answer 1 is: %lu", question1.answer);
+    NSLog(@"Answer 2 is: %lu", question2.answer);
+    NSLog(@"Answer 3 is: %lu", question3.answer);
+    NSLog(@"Answer 4 is: %lu", question4.answer);
+    NSLog(@"Answer 5 is: %lu", question5.answer);
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle
@@ -172,16 +187,22 @@
     return self.dataStore.currentUser.journals.count;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 100;
+}
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"basicCell"];
+    
+    JournalEntryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"basicCell"];
     
     NSArray *journalsLIFO = [self.dataStore.currentUser journalArrayLIFO];
     
     DYJournalEntry *journalAtRow = journalsLIFO[indexPath.row];
     
-    cell.textLabel.text = journalAtRow.mainEmotion;
+    cell.cellView.journalEntry = journalAtRow;
     
     return cell;
     

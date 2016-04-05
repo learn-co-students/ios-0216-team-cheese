@@ -22,26 +22,32 @@
                                 <rect key="frame" x="0.0" y="-20" width="600" height="180"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="58" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Xo5-jG-068">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="122" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Xo5-jG-068">
                                 <rect key="frame" x="0.0" y="160" width="600" height="440"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="basicCell" textLabel="Rmg-LT-a3j" rowHeight="58" style="IBUITableViewCellStyleDefault" id="6ZW-Yv-chO">
-                                        <rect key="frame" x="0.0" y="28" width="600" height="58"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="basicCell" rowHeight="122" id="6ZW-Yv-chO" customClass="JournalEntryTableViewCell">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="122"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6ZW-Yv-chO" id="EBN-J3-Fhe">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="58"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="567" height="121.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Rmg-LT-a3j">
-                                                    <rect key="frame" x="15" y="0.0" width="570" height="58"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mey-ff-0UV" customClass="JournalEntryTableViewCellView">
+                                                    <rect key="frame" x="0.0" y="0.0" width="567" height="122"/>
+                                                    <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                </view>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="mey-ff-0UV" firstAttribute="centerY" secondItem="EBN-J3-Fhe" secondAttribute="centerY" id="5Ju-4R-zWD"/>
+                                                <constraint firstItem="mey-ff-0UV" firstAttribute="centerX" secondItem="EBN-J3-Fhe" secondAttribute="centerX" id="IEV-r8-RBd"/>
+                                                <constraint firstItem="mey-ff-0UV" firstAttribute="width" secondItem="EBN-J3-Fhe" secondAttribute="width" id="OSO-ij-iz5"/>
+                                                <constraint firstItem="mey-ff-0UV" firstAttribute="height" secondItem="EBN-J3-Fhe" secondAttribute="height" id="h2U-Uu-HLF"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="cellView" destination="mey-ff-0UV" id="Uxt-LI-4Ux"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -102,7 +108,7 @@
                                 <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EeG-Qz-3Kq" id="NrF-Q3-BRv">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
