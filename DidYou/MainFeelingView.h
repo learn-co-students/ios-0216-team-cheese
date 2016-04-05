@@ -8,7 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol MainFeelingViewDelegate <NSObject>
+
+- (void)feelingChosen:(UIButton *)sender;
+
+@end
+
 @interface MainFeelingView : UIView
+
+@property (weak, nonatomic) id <MainFeelingViewDelegate> delegate;
 
 
 

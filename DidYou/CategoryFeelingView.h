@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SpecificFeelingView : UIView
+@interface CategoryFeelingView : UIView
+
+@property (strong, nonatomic) NSString *feeling;
 
 @end

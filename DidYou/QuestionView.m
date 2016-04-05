@@ -71,6 +71,7 @@
 
 - (IBAction)yesButtonTapped:(id)sender
 {
+    NSLog(@"getting into yes button tapped");
     
     self.question.answer = 2;
     

@@ -9,11 +9,11 @@
 /* Begin PBXBuildFile section */
 		31FF281D1CAD6BED008051C0 /* DYQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FF281C1CAD6BED008051C0 /* DYQuestion.m */; };
 		31FF281F1CAD72D9008051C0 /* MainFeeling.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31FF281E1CAD72D9008051C0 /* MainFeeling.xib */; };
-		31FF28211CAD72EB008051C0 /* SpecificFeeling.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31FF28201CAD72EB008051C0 /* SpecificFeeling.xib */; };
+		31FF28211CAD72EB008051C0 /* CategoryFeeling.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31FF28201CAD72EB008051C0 /* CategoryFeeling.xib */; };
 		31FF28231CAD7303008051C0 /* Question.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31FF28221CAD7303008051C0 /* Question.xib */; };
 		31FF28251CAD731C008051C0 /* JournalAndPicture.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31FF28241CAD731C008051C0 /* JournalAndPicture.xib */; };
 		31FF28281CAD7356008051C0 /* MainFeelingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FF28271CAD7356008051C0 /* MainFeelingView.m */; };
-		31FF282B1CAD736E008051C0 /* SpecificFeelingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FF282A1CAD736E008051C0 /* SpecificFeelingView.m */; };
+		31FF282B1CAD736E008051C0 /* CategoryFeelingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FF282A1CAD736E008051C0 /* CategoryFeelingView.m */; };
 		31FF282E1CAD7382008051C0 /* QuestionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FF282D1CAD7382008051C0 /* QuestionView.m */; };
 		31FF28311CAD7398008051C0 /* JournalAndPictureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FF28301CAD7398008051C0 /* JournalAndPictureView.m */; };
 		779BD8EE1CAE081F0027DC91 /* Secrets.m in Sources */ = {isa = PBXBuildFile; fileRef = 779BD8ED1CAE081F0027DC91 /* Secrets.m */; };
@@ -34,19 +34,20 @@
 		AB92E7951CAD9CB400199034 /* NewJournalEntryBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB92E7941CAD9CB400199034 /* NewJournalEntryBlurView.m */; };
 		AB92E7971CADBC2F00199034 /* IndividualFeeling.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB92E7961CADBC2F00199034 /* IndividualFeeling.xib */; };
 		AB92E79A1CADBD2800199034 /* IndividualFeelingView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB92E7991CADBD2800199034 /* IndividualFeelingView.m */; };
+		AB92E7D21CB2E41900199034 /* CategoryFeelingDetail.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB92E7D11CB2E41900199034 /* CategoryFeelingDetail.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		31FF281B1CAD6BED008051C0 /* DYQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYQuestion.h; sourceTree = "<group>"; };
 		31FF281C1CAD6BED008051C0 /* DYQuestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYQuestion.m; sourceTree = "<group>"; };
 		31FF281E1CAD72D9008051C0 /* MainFeeling.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainFeeling.xib; sourceTree = "<group>"; };
-		31FF28201CAD72EB008051C0 /* SpecificFeeling.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SpecificFeeling.xib; sourceTree = "<group>"; };
+		31FF28201CAD72EB008051C0 /* CategoryFeeling.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategoryFeeling.xib; sourceTree = "<group>"; };
 		31FF28221CAD7303008051C0 /* Question.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Question.xib; sourceTree = "<group>"; };
 		31FF28241CAD731C008051C0 /* JournalAndPicture.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JournalAndPicture.xib; sourceTree = "<group>"; };
 		31FF28261CAD7356008051C0 /* MainFeelingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainFeelingView.h; sourceTree = "<group>"; };
 		31FF28271CAD7356008051C0 /* MainFeelingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainFeelingView.m; sourceTree = "<group>"; };
-		31FF28291CAD736E008051C0 /* SpecificFeelingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpecificFeelingView.h; sourceTree = "<group>"; };
-		31FF282A1CAD736E008051C0 /* SpecificFeelingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpecificFeelingView.m; sourceTree = "<group>"; };
+		31FF28291CAD736E008051C0 /* CategoryFeelingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryFeelingView.h; sourceTree = "<group>"; };
+		31FF282A1CAD736E008051C0 /* CategoryFeelingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryFeelingView.m; sourceTree = "<group>"; };
 		31FF282C1CAD7382008051C0 /* QuestionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionView.h; sourceTree = "<group>"; };
 		31FF282D1CAD7382008051C0 /* QuestionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionView.m; sourceTree = "<group>"; };
 		31FF282F1CAD7398008051C0 /* JournalAndPictureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JournalAndPictureView.h; sourceTree = "<group>"; };
@@ -83,6 +84,7 @@
 		AB92E7961CADBC2F00199034 /* IndividualFeeling.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IndividualFeeling.xib; sourceTree = "<group>"; };
 		AB92E7981CADBD2800199034 /* IndividualFeelingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndividualFeelingView.h; sourceTree = "<group>"; };
 		AB92E7991CADBD2800199034 /* IndividualFeelingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndividualFeelingView.m; sourceTree = "<group>"; };
+		AB92E7D11CB2E41900199034 /* CategoryFeelingDetail.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategoryFeelingDetail.xib; sourceTree = "<group>"; };
 		DC83E05E9AD37E69EF195C64 /* Pods-DidYou.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DidYou.release.xcconfig"; path = "Pods/Target Support Files/Pods-DidYou/Pods-DidYou.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -163,7 +165,8 @@
 			children = (
 				AB92E75E1CAC48DE00199034 /* AddJournalEntry.xib */,
 				31FF281E1CAD72D9008051C0 /* MainFeeling.xib */,
-				31FF28201CAD72EB008051C0 /* SpecificFeeling.xib */,
+				31FF28201CAD72EB008051C0 /* CategoryFeeling.xib */,
+				AB92E7D11CB2E41900199034 /* CategoryFeelingDetail.xib */,
 				AB92E7961CADBC2F00199034 /* IndividualFeeling.xib */,
 				31FF28221CAD7303008051C0 /* Question.xib */,
 				31FF28241CAD731C008051C0 /* JournalAndPicture.xib */,
@@ -180,10 +183,10 @@
 				31FF28271CAD7356008051C0 /* MainFeelingView.m */,
 				AB92E7601CAC495F00199034 /* AddJournalEntryView.h */,
 				AB92E7611CAC495F00199034 /* AddJournalEntryView.m */,
-				31FF28291CAD736E008051C0 /* SpecificFeelingView.h */,
+				31FF28291CAD736E008051C0 /* CategoryFeelingView.h */,
+				31FF282A1CAD736E008051C0 /* CategoryFeelingView.m */,
 				AB92E7981CADBD2800199034 /* IndividualFeelingView.h */,
 				AB92E7991CADBD2800199034 /* IndividualFeelingView.m */,
-				31FF282A1CAD736E008051C0 /* SpecificFeelingView.m */,
 				31FF282C1CAD7382008051C0 /* QuestionView.h */,
 				31FF282D1CAD7382008051C0 /* QuestionView.m */,
 				31FF282F1CAD7398008051C0 /* JournalAndPictureView.h */,
@@ -288,7 +291,8 @@
 				AB92E7971CADBC2F00199034 /* IndividualFeeling.xib in Resources */,
 				AB92E7281CAB01F200199034 /* LaunchScreen.storyboard in Resources */,
 				AB92E7251CAB01F200199034 /* Assets.xcassets in Resources */,
-				31FF28211CAD72EB008051C0 /* SpecificFeeling.xib in Resources */,
+				AB92E7D21CB2E41900199034 /* CategoryFeelingDetail.xib in Resources */,
+				31FF28211CAD72EB008051C0 /* CategoryFeeling.xib in Resources */,
 				AB92E75F1CAC48DE00199034 /* AddJournalEntry.xib in Resources */,
 				31FF281F1CAD72D9008051C0 /* MainFeeling.xib in Resources */,
 				AB92E7231CAB01F200199034 /* Main.storyboard in Resources */,
@@ -355,7 +359,7 @@
 				AB92E7621CAC495F00199034 /* AddJournalEntryView.m in Sources */,
 				AB92E7951CAD9CB400199034 /* NewJournalEntryBlurView.m in Sources */,
 				31FF28311CAD7398008051C0 /* JournalAndPictureView.m in Sources */,
-				31FF282B1CAD736E008051C0 /* SpecificFeelingView.m in Sources */,
+				31FF282B1CAD736E008051C0 /* CategoryFeelingView.m in Sources */,
 				AB92E7571CAB111100199034 /* DYJournalEntry.m in Sources */,
 				AB92E79A1CADBD2800199034 /* IndividualFeelingView.m in Sources */,
 				31FF281D1CAD6BED008051C0 /* DYQuestion.m in Sources */,

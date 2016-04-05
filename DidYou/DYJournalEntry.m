@@ -35,25 +35,18 @@
     }
     
     return self;
+    
+    
 }
 
 
 -(NSArray *)questions{
     
     
-    NSArray *questions = @[ [[DYQuestion alloc] initWithQuestion:@"This is question one"] , [[DYQuestion alloc] initWithQuestion:@"This is question two"] ,[[DYQuestion alloc] initWithQuestion:@"This is question three"] , [[DYQuestion alloc] initWithQuestion:@"This is question four"] , [[DYQuestion alloc] initWithQuestion:@"This is question five"] ];
-    
-    
-                           
-                           
-                           
-                           
-    
-                           
-                           
-    
+    NSArray *questions = @[ [[DYQuestion alloc] initWithQuestion:@"get a good night's sleep?"] , [[DYQuestion alloc] initWithQuestion:@"do something nice for someone?"] ,[[DYQuestion alloc] initWithQuestion:@"eat a healthy breakfast?"] , [[DYQuestion alloc] initWithQuestion:@"workout in any way?"] , [[DYQuestion alloc] initWithQuestion:@"have sex?"]];
     
     return questions;
+                            
 }
 
 
