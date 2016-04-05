@@ -23,7 +23,6 @@
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="og0-w0-jdu" secondAttribute="bottom" constant="43" id="1YY-42-UMz"/>
                 <constraint firstItem="og0-w0-jdu" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="ngD-ET-Tsi"/>

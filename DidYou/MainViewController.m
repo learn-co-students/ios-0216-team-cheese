@@ -43,11 +43,13 @@
     self.journalEntryTableView.delegate = self;
     self.journalEntryTableView.dataSource = self;
     
+    [self preferredStatusBarStyle];
+    
     
     
 //    self.addEntryFullScreenView.alpha = 0;
     
-    [self preferredStatusBarStyle];
+    
     
 //   // set city and state to current users
 //    self.locationManager = [[CLLocationManager alloc]init];
@@ -159,22 +161,6 @@
 -(void)totalJournalEntryComplete
 {
     [self.journalEntryTableView reloadData];
-    
-    DYJournalEntry *lastEntry = [self.dataStore.currentUser.journals lastObject];
-    
-    DYQuestion *question1 = lastEntry.questions[0];
-    DYQuestion *question2 = lastEntry.questions[1];
-    DYQuestion *question3 = lastEntry.questions[2];
-    DYQuestion *question4 = lastEntry.questions[3];
-    DYQuestion *question5 = lastEntry.questions[4];
-    
-    
-    NSLog(@"Emotion is: %@",lastEntry.mainEmotion);
-    NSLog(@"Answer 1 is: %lu", question1.answer);
-    NSLog(@"Answer 2 is: %lu", question2.answer);
-    NSLog(@"Answer 3 is: %lu", question3.answer);
-    NSLog(@"Answer 4 is: %lu", question4.answer);
-    NSLog(@"Answer 5 is: %lu", question5.answer);
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle
@@ -205,8 +191,7 @@
     cell.cellView.journalEntry = journalAtRow;
     
     return cell;
-    
-    
+
 }
 
 

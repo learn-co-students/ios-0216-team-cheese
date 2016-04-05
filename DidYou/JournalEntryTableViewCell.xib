@@ -32,31 +32,31 @@
                         <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="ABi-jz-lXl">
                             <rect key="frame" x="0.0" y="27" width="170" height="24"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TaH-0I-n1m">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TaH-0I-n1m">
                                     <rect key="frame" x="0.0" y="0.0" width="25" height="24"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="TaH-0I-n1m" secondAttribute="height" multiplier="1:1" id="JWi-RG-VTz"/>
                                     </constraints>
                                 </imageView>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cKY-rf-4ey">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cKY-rf-4ey">
                                     <rect key="frame" x="37" y="0.0" width="25" height="24"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="cKY-rf-4ey" secondAttribute="height" multiplier="1:1" id="ieF-dG-Ofp"/>
                                     </constraints>
                                 </imageView>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NMs-Z7-2xs">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NMs-Z7-2xs">
                                     <rect key="frame" x="73" y="0.0" width="24" height="24"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="NMs-Z7-2xs" secondAttribute="height" multiplier="1:1" id="ERw-Hn-tok"/>
                                     </constraints>
                                 </imageView>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DYN-nP-jnb">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DYN-nP-jnb">
                                     <rect key="frame" x="109" y="0.0" width="25" height="24"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="DYN-nP-jnb" secondAttribute="height" multiplier="1:1" id="7mS-WF-frZ"/>
                                     </constraints>
                                 </imageView>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VNI-DX-srV">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VNI-DX-srV">
                                     <rect key="frame" x="146" y="0.0" width="25" height="24"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="VNI-DX-srV" secondAttribute="height" multiplier="1:1" id="lMk-Au-Jwl"/>
