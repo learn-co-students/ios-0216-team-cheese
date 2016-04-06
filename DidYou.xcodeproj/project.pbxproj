@@ -39,6 +39,7 @@
 		AB92E7D41CB400B600199034 /* JournalEntryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB92E7D31CB400B600199034 /* JournalEntryTableViewCell.xib */; };
 		AB92E7D71CB4063A00199034 /* JournalEntryTableViewCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB92E7D61CB4063A00199034 /* JournalEntryTableViewCellView.m */; };
 		AB92E7DA1CB40C6400199034 /* JournalEntryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB92E7D91CB40C6400199034 /* JournalEntryTableViewCell.m */; };
+		D6679C0A1CB5610E003A5484 /* Secrets.m in Sources */ = {isa = PBXBuildFile; fileRef = D6679C091CB5610E003A5484 /* Secrets.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -95,6 +96,8 @@
 		AB92E7D61CB4063A00199034 /* JournalEntryTableViewCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JournalEntryTableViewCellView.m; sourceTree = "<group>"; };
 		AB92E7D81CB40C6400199034 /* JournalEntryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JournalEntryTableViewCell.h; sourceTree = "<group>"; };
 		AB92E7D91CB40C6400199034 /* JournalEntryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JournalEntryTableViewCell.m; sourceTree = "<group>"; };
+		D6679C081CB5610E003A5484 /* Secrets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Secrets.h; sourceTree = "<group>"; };
+		D6679C091CB5610E003A5484 /* Secrets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Secrets.m; sourceTree = "<group>"; };
 		DC83E05E9AD37E69EF195C64 /* Pods-DidYou.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DidYou.release.xcconfig"; path = "Pods/Target Support Files/Pods-DidYou/Pods-DidYou.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -220,6 +223,8 @@
 				AB92E76E1CAC697B00199034 /* StatsViewController.m */,
 				AB92E7D81CB40C6400199034 /* JournalEntryTableViewCell.h */,
 				AB92E7D91CB40C6400199034 /* JournalEntryTableViewCell.m */,
+				D6679C081CB5610E003A5484 /* Secrets.h */,
+				D6679C091CB5610E003A5484 /* Secrets.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -381,6 +386,7 @@
 				31FF282B1CAD736E008051C0 /* CategoryFeelingView.m in Sources */,
 				AB92E7DA1CB40C6400199034 /* JournalEntryTableViewCell.m in Sources */,
 				AB92E7571CAB111100199034 /* DYJournalEntry.m in Sources */,
+				D6679C0A1CB5610E003A5484 /* Secrets.m in Sources */,
 				AB92E79A1CADBD2800199034 /* IndividualFeelingView.m in Sources */,
 				31FF281D1CAD6BED008051C0 /* DYQuestion.m in Sources */,
 				AB92E76C1CAC696400199034 /* SettingsTableViewController.m in Sources */,

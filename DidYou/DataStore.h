@@ -20,13 +20,15 @@
 @property (strong, nonatomic) Firebase *myRootRef;
 
 
+
 + (instancetype)sharedDataStore;
 
 -(NSArray *)usersWithSameCity;
 -(NSArray *)usersWithSameCountry;
 
 -(void)setupFirebase;
--(void)addUserToFirebase: (DYUser*)user;
+-(void)addUserToFirebase: (DYUser *)user;
+-(void)addJournalToFirebase: (DYJournalEntry *)journalEntry;
 
 
 

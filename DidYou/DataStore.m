@@ -31,6 +31,7 @@
         _emotions = [self emotionsDictionary];
         _userUUID = [self userUUID];
         
+        
         [self setupFirebase];
         
         [self userUUIDToUser];
@@ -80,13 +81,24 @@
       [userRef setValue: myUser];
 }
 
+-(void)addJournalToFirebase: (DYJournalEntry *)journalEntry
+{
+    Firebase *journalRef = [[self.myRootRef childByAppendingPath:@"users"] childByAppendingPath:user.journalEntry];
+    
+    NSDictionary *myJournal = @{
+                                @"journal": journalEntry.date,
+                                @"journal": journalEntry.mainEmotion,
+                                };
+    
+}
+
 
 -(NSDictionary *)emotionsDictionary
 {
     
     NSDictionary *emotions = @{ @"Happy"  :  @[ @"Fulfilled",@"Content",@"Glad",@"Complete",@"Satisfied",@"Optimistic",@"Pleased",@"Serene"],
                                 @"Excited"  :  @[ @"Ecstatic",@"Engergetic",@"Aroused",@"Bouncy",@"Aroused",@"Perky",@"Antsy",@"Joyful"],
-                                @"Tender"  :  @[ @"Intimate",@"Loving",@"Warm-hearted",@"Sympathetic",@"Touched",@"Kind",@"Soft",@"Trusting"],
+                                    @"Tender"  :  @[ @"Intimate",@"Loving",@"Warm-hearted",@"Sympathetic",@"Touched",@"Kind",@"Soft",@"Trusting"],
                                 @"Scared"  :  @[ @"Tense",@"Nervous",@"Anxious",@"Jittery",@"Frightened",@"Panic-stricken",@"Terrified",@"Apprehensive"],
                                 @"Angry"  :  @[ @"Irritated",@"Resentful",@"Miffed",@"Upset",@"Mad",@"Furious",@"Raging",@"Annoyed"],
                                 @"Sad"  :  @[ @"Down",@"Blue",@"Mopey",@"Grieved",@"Dejected",@"Depressed",@"Heartbroken",@"Remorseful"]};
@@ -161,7 +173,7 @@
             return;
         }
          NSDictionary *result = [snapshot value];
-         DYUser *newUser = [[DYUser alloc] initWithUserUUID:userUUID signUpDate: [ self fromUTCFormatDate: result[@"signUpDate"]]];
+         DYUser *newUser = [[DYUser alloc] initWithUserUUID:userUUID signUpDate: [self fromUTCFormatDate: result[@"signUpDate"]]];
          newUser.name = result[@"name"];
          newUser.city = result[@"city"];
          newUser.country = result[@"country"];
@@ -169,6 +181,19 @@
          [self.users addObject:self.currentUser];
      }];
     
+}
+
+-(void)createNewJournalEntryFromFirebase: (NSString *)journalEntry {
+    
+    [[[self.myRootRef childByAppendingPath:@"journals"] childByAppendingPath:journalEntry] observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
+        
+        if (snapshot.value == [NSNull null]) {
+            NSLog(@"firebase returned null value for path");
+            return;
+        }
+        NSDictionary *result = [snapshot value];
+        //DYJournalEntry *newJournal = [DYJournalEntry alloc] initWithDate:date mainEmotion:<#(NSString *)#> journalEntry:<#(NSString *)#> picture1Address:<#(NSString *)#>
+    }];
 }
 
 
