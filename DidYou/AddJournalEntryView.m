@@ -16,7 +16,7 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *addButton;
 
-@property (weak, nonatomic) IBOutlet UIImageView *backgroundImage;
+@property (strong, nonatomic) UIView *circleView;
 
 @end
 
@@ -64,10 +64,9 @@
     
     [self addSubview:self.contentView];
     
-    self.backgroundImage.image = [UIImage imageNamed:@"clouds"];
-    
-    
     self.contentView.frame = self.bounds;
+    
+    [self addCircleView];
     
 }
 
@@ -77,6 +76,37 @@
     [self.delegate addButtonTapped:sender];
     
 
+}
+
+-(void)addCircleView
+{
+  
+    
+    [self addSubview:self.circleView];
+    
+    self.circleView.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    //self.circleView.frame.size.height = 100;
+    
+    
+    
+    [self.circleView.widthAnchor constraintEqualToAnchor:self.widthAnchor multiplier:.4].active = YES;
+    [self.circleView.heightAnchor constraintEqualToAnchor:self.circleView.widthAnchor].active = YES;
+    [self.circleView.rightAnchor constraintEqualToAnchor:self.rightAnchor constant:-15].active = YES;
+    [self.circleView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor constant:-15].active = YES;
+    
+    NSLog(@"The width of the circleView is %f", self.circleView.frame.size.width);
+    
+    CGFloat circleSize = MAX(self.circleView.frame.size.width, self.circleView.frame.size.height);
+    
+    self.circleView.layer.cornerRadius = circleSize / 2 ;
+    
+
+    
+    self.circleView.backgroundColor = [UIColor blueColor];
+
+    
+    
 }
 
 

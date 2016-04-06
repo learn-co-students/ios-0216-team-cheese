@@ -13,13 +13,15 @@
 #import <CoreLocation/CoreLocation.h>
 #import "AddJournalEntryView.h"
 #import "JournalEntryTableViewCell.h"
+#import "CustomTabBarView.h"
 
 
 
-@interface MainViewController () <NewJournalEntryBlurViewDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface MainViewController () <NewJournalEntryBlurViewDelegate, UITableViewDataSource, UITableViewDelegate, CustomTabBarDelegate>
 
 @property (strong, nonatomic) IBOutlet AddJournalEntryView *addEntryTopView;
 @property (strong, nonatomic) IBOutlet UITableView *journalEntryTableView;
+@property (strong, nonatomic) CustomTabBarView *tabBar;
 
 @property (strong, nonatomic) NewJournalEntryBlurView *addJournalFullScreenBlurView;
 @property (strong, nonatomic) AddJournalEntryView *journalView;
@@ -44,6 +46,8 @@
     self.journalEntryTableView.dataSource = self;
     
     [self preferredStatusBarStyle];
+    
+    [self createCustomTabBar];
     
     
     
@@ -175,7 +179,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 100;
+    return 80;
 }
 
 
@@ -193,6 +197,43 @@
     return cell;
 
 }
+
+-(void)createCustomTabBar
+{
+    
+    self.tabBar = [[CustomTabBarView alloc] init];
+    
+    self.tabBar.currentScreen = @"main";
+    
+    [self.view addSubview:self.tabBar];
+    
+    self.tabBar.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    [self.tabBar.widthAnchor constraintEqualToAnchor:self.view.widthAnchor].active = YES;
+    [self.tabBar.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor].active = YES;
+    [self.tabBar.heightAnchor constraintEqualToConstant:40].active = YES;
+    [self.tabBar.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor].active = YES;
+    
+    self.tabBar.delegate = self;
+  
+}
+
+-(void)userNavigates:(NSString *)viewChosen
+{
+    // segue to view
+    
+    NSLog(@"userNavigates getting called");
+    
+    if ([viewChosen isEqualToString:@"stats"])
+    {
+        [self performSegueWithIdentifier:@"segueMainToStats" sender:nil];
+    }
+    else if ([viewChosen isEqualToString:@"user"])
+    {
+        [self performSegueWithIdentifier:@"segueMainToUser" sender:nil];
+    }
+}
+
 
 
 

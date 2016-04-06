@@ -1,31 +1,28 @@
 //
-//  StatsViewController.m
+//  SettingsViewController.m
 //  DidYou
 //
-//  Created by Brian Clouser on 3/30/16.
+//  Created by Brian Clouser on 4/6/16.
 //  Copyright © 2016 Did You Nooglers. All rights reserved.
 //
 
-#import "StatsViewController.h"
+#import "SettingsViewController.h"
 #import "CustomTabBarView.h"
 
-@interface StatsViewController () <CustomTabBarDelegate>
+@interface SettingsViewController () <CustomTabBarDelegate>
 
 @property (strong, nonatomic) CustomTabBarView *tabBar;
 
 @end
 
-@implementation StatsViewController
-
-
+@implementation SettingsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    // Do any additional setup after loading the view.
     
-    [self createCustomTabBar];
-    
+     [self createCustomTabBar];
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -37,7 +34,7 @@
     
     self.tabBar = [[CustomTabBarView alloc] init];
     
-    self.tabBar.currentScreen = @"stats";
+    self.tabBar.currentScreen = @"user";
     
     [self.view addSubview:self.tabBar];
     
@@ -56,11 +53,11 @@
 {
     if ([viewChosen isEqualToString:@"main"])
     {
-        [self performSegueWithIdentifier:@"segueStatsToMain" sender:nil];
+        [self performSegueWithIdentifier:@"segueUserToMain" sender:nil];
     }
-    else if ([viewChosen isEqualToString:@"user"])
+    else if ([viewChosen isEqualToString:@"stats"])
     {
-        [self performSegueWithIdentifier:@"segueStatsToUser" sender:nil];
+        [self performSegueWithIdentifier:@"segueUserToStats" sender:nil];
     }
 }
 
@@ -73,7 +70,5 @@
     // Pass the selected object to the new view controller.
 }
 */
-
-
 
 @end

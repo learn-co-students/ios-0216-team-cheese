@@ -8,7 +8,6 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddJournalEntryView">
             <connections>
                 <outlet property="addButton" destination="ygO-GU-acJ" id="fkb-wY-ICc"/>
-                <outlet property="backgroundImage" destination="jd5-1G-1Mb" id="Mm8-ez-ecN"/>
                 <outlet property="contentView" destination="iN0-l3-epB" id="h35-tW-h2l"/>
             </connections>
         </placeholder>
@@ -17,12 +16,9 @@
             <rect key="frame" x="0.0" y="0.0" width="629" height="203"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jd5-1G-1Mb">
-                    <rect key="frame" x="0.0" y="1" width="629" height="203"/>
-                </imageView>
                 <button opaque="NO" alpha="0.40000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ygO-GU-acJ">
                     <rect key="frame" x="0.0" y="0.0" width="629" height="203"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <state key="normal" title="How are you feeling?">
                         <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                     </state>
@@ -36,10 +32,6 @@
                 <constraint firstItem="ygO-GU-acJ" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="6LR-Ly-1Q6"/>
                 <constraint firstItem="ygO-GU-acJ" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="FgH-zk-oul"/>
                 <constraint firstItem="ygO-GU-acJ" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Gna-eh-Sba"/>
-                <constraint firstItem="jd5-1G-1Mb" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="LrQ-EA-rIK"/>
-                <constraint firstItem="jd5-1G-1Mb" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" id="SZU-Xi-f8q"/>
-                <constraint firstItem="jd5-1G-1Mb" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="aDB-p8-iJc"/>
-                <constraint firstItem="jd5-1G-1Mb" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="l3y-eg-ODK"/>
                 <constraint firstItem="ygO-GU-acJ" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" id="mgI-zf-Nn4"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
