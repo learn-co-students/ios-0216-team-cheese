@@ -87,20 +87,6 @@
     
     self.currentQuestion.answer = 2;
     
-    NSLog(@"answer is: %lu",self.currentQuestion.answer);
-    
-    ((DYQuestion *)self.currentEntry.questions[self.questionIndex]).answer = 2;
-    
-    NSLog(@"this answer is: %lu",((DYQuestion *)self.currentEntry.questions[self.questionIndex]).answer);
-    
-    DYQuestion *whatever = self.currentEntry.questions[self.questionIndex];
-    
-    whatever.answer = 2;
-    
-    NSLog(@"Whatever: %lu", whatever.answer);
-    
-    
-    
     [self.delegate questionAnswered:2];
     
     
