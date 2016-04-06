@@ -6,6 +6,6 @@
 target 'DidYou' do
 
 pod ‘AFNetworking’
-
+pod 'Firebase', '>= 2.5.1'
 end
 

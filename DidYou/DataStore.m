@@ -31,6 +31,8 @@
         _emotions = [self emotionsDictionary];
         _userUUID = [self userUUID];
         
+        [self setupFirebase];
+        
         [self userUUIDToUser];
         
         [self testUsers];
@@ -38,6 +40,46 @@
     
     return self;
 }
+
+-(void)setupFirebase
+{
+    // Create a reference to a Firebase database URL
+    self.myRootRef = [[Firebase alloc] initWithUrl:@"https://incandescent-fire-4531.firebaseio.com/"];
+}
+
+-(NSString *)getUTCFormatDate:(NSDate *)localDate
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    NSTimeZone *timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
+    [dateFormatter setTimeZone:timeZone];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSString *dateString = [dateFormatter stringFromDate:localDate];
+    return dateString;
+}
+
+-(NSDate *)fromUTCFormatDate:(NSString *)dateString
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    NSTimeZone *timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
+    [dateFormatter setTimeZone:timeZone];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSDate *date = [dateFormatter dateFromString: dateString];
+    return date;
+}
+
+-(void)addUserToFirebase: (DYUser*)user
+{
+    Firebase *userRef = [[self.myRootRef childByAppendingPath: @"users"] childByAppendingPath:user.userUUID];
+    
+    NSDictionary *myUser = @{
+                            @"name": user.name,
+                            @"city": user.city,
+                            @"country": user.country,
+                            @"signUpDate": [self getUTCFormatDate: user.signUpDate]
+                            };
+      [userRef setValue: myUser];
+}
+
 
 -(NSDictionary *)emotionsDictionary
 {
@@ -64,8 +106,7 @@
     
     if (uuidExists)
     {
-        
-       [self createNewCurrentUserWithUUID:userDefaultsDictionary[@"userUUID"]];  // we will need to change this, what we'll need to do is go to firebase and go find the user
+        [self createNewCurrentUserFromFirebase:userDefaultsDictionary[@"userUUID"]];
     }
     
     else
@@ -103,8 +144,33 @@
     [self.users addObject:self.currentUser];
     
     // at this point we'd push the new user to firebase
+    [self addUserToFirebase: newUser];
     
 }
+
+-(void)createNewCurrentUserFromFirebase:(NSString *)userUUID
+{
+    
+    // retrieve the user information from Firebase
+    //Firebase *usersRef = [self.myRootRef childByAppendingPath: @"users"];
+    //Firebase *userRef = [usersRef childByAppendingPath: userUUID];
+    [[[self.myRootRef childByAppendingPath:@"users"] childByAppendingPath:userUUID]
+     observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
+        if (snapshot.value == [NSNull null]) {
+            NSLog(@"firebase returned null value for path");
+            return;
+        }
+         NSDictionary *result = [snapshot value];
+         DYUser *newUser = [[DYUser alloc] initWithUserUUID:userUUID signUpDate: [ self fromUTCFormatDate: result[@"signUpDate"]]];
+         newUser.name = result[@"name"];
+         newUser.city = result[@"city"];
+         newUser.country = result[@"country"];
+         self.currentUser = newUser;
+         [self.users addObject:self.currentUser];
+     }];
+    
+}
+
 
 -(NSArray *)usersWithSameCity
 {

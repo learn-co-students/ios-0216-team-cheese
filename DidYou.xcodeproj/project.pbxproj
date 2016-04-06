@@ -16,7 +16,6 @@
 		31FF282B1CAD736E008051C0 /* CategoryFeelingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FF282A1CAD736E008051C0 /* CategoryFeelingView.m */; };
 		31FF282E1CAD7382008051C0 /* QuestionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FF282D1CAD7382008051C0 /* QuestionView.m */; };
 		31FF28311CAD7398008051C0 /* JournalAndPictureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FF28301CAD7398008051C0 /* JournalAndPictureView.m */; };
-		779BD8EE1CAE081F0027DC91 /* Secrets.m in Sources */ = {isa = PBXBuildFile; fileRef = 779BD8ED1CAE081F0027DC91 /* Secrets.m */; };
 		779BD8F31CB355320027DC91 /* TableViewEntry.xib in Resources */ = {isa = PBXBuildFile; fileRef = 779BD8F21CB355320027DC91 /* TableViewEntry.xib */; };
 		779BD8F61CB356280027DC91 /* TableViewEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 779BD8F51CB356280027DC91 /* TableViewEntry.m */; };
 		AB49939EBAFBADBED3BC9BF4 /* libPods-DidYou.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 563053DD0003F7BE5361FBFA /* libPods-DidYou.a */; };
@@ -58,8 +57,6 @@
 		31FF282F1CAD7398008051C0 /* JournalAndPictureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JournalAndPictureView.h; sourceTree = "<group>"; };
 		31FF28301CAD7398008051C0 /* JournalAndPictureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JournalAndPictureView.m; sourceTree = "<group>"; };
 		563053DD0003F7BE5361FBFA /* libPods-DidYou.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DidYou.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		779BD8EC1CAE081F0027DC91 /* Secrets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Secrets.h; sourceTree = "<group>"; };
-		779BD8ED1CAE081F0027DC91 /* Secrets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Secrets.m; sourceTree = "<group>"; };
 		779BD8F21CB355320027DC91 /* TableViewEntry.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableViewEntry.xib; sourceTree = "<group>"; };
 		779BD8F41CB356280027DC91 /* TableViewEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewEntry.h; sourceTree = "<group>"; };
 		779BD8F51CB356280027DC91 /* TableViewEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewEntry.m; sourceTree = "<group>"; };
@@ -149,8 +146,6 @@
 				AB92E7211CAB01F200199034 /* Main.storyboard */,
 				AB92E7551CAB111100199034 /* DYJournalEntry.h */,
 				AB92E7561CAB111100199034 /* DYJournalEntry.m */,
-				779BD8EC1CAE081F0027DC91 /* Secrets.h */,
-				779BD8ED1CAE081F0027DC91 /* Secrets.m */,
 				AB92E7581CAB112B00199034 /* DYUser.h */,
 				AB92E7591CAB112B00199034 /* DYUser.m */,
 				AB92E7651CAC525B00199034 /* View Controllers */,
@@ -393,7 +388,6 @@
 				31FF28281CAD7356008051C0 /* MainFeelingView.m in Sources */,
 				AB92E7201CAB01F200199034 /* MainViewController.m in Sources */,
 				AB92E76F1CAC697B00199034 /* StatsViewController.m in Sources */,
-				779BD8EE1CAE081F0027DC91 /* Secrets.m in Sources */,
 				AB92E71D1CAB01F200199034 /* AppDelegate.m in Sources */,
 				AB92E71A1CAB01F200199034 /* main.m in Sources */,
 				779BD8F61CB356280027DC91 /* TableViewEntry.m in Sources */,
