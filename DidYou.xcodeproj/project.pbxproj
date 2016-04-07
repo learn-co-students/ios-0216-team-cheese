@@ -18,6 +18,7 @@
 		31FF28311CAD7398008051C0 /* JournalAndPictureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FF28301CAD7398008051C0 /* JournalAndPictureView.m */; };
 		779BD8F31CB355320027DC91 /* TableViewEntry.xib in Resources */ = {isa = PBXBuildFile; fileRef = 779BD8F21CB355320027DC91 /* TableViewEntry.xib */; };
 		779BD8F61CB356280027DC91 /* TableViewEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 779BD8F51CB356280027DC91 /* TableViewEntry.m */; };
+		779BD8F91CB60E8F0027DC91 /* DYUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 779BD8F81CB60E8F0027DC91 /* DYUtility.m */; };
 		AB49939EBAFBADBED3BC9BF4 /* libPods-DidYou.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 563053DD0003F7BE5361FBFA /* libPods-DidYou.a */; };
 		AB92E71A1CAB01F200199034 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AB92E7191CAB01F200199034 /* main.m */; };
 		AB92E71D1CAB01F200199034 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AB92E71C1CAB01F200199034 /* AppDelegate.m */; };
@@ -39,7 +40,6 @@
 		AB92E7D41CB400B600199034 /* JournalEntryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB92E7D31CB400B600199034 /* JournalEntryTableViewCell.xib */; };
 		AB92E7D71CB4063A00199034 /* JournalEntryTableViewCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB92E7D61CB4063A00199034 /* JournalEntryTableViewCellView.m */; };
 		AB92E7DA1CB40C6400199034 /* JournalEntryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB92E7D91CB40C6400199034 /* JournalEntryTableViewCell.m */; };
-		D6679C0A1CB5610E003A5484 /* Secrets.m in Sources */ = {isa = PBXBuildFile; fileRef = D6679C091CB5610E003A5484 /* Secrets.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +61,8 @@
 		779BD8F21CB355320027DC91 /* TableViewEntry.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableViewEntry.xib; sourceTree = "<group>"; };
 		779BD8F41CB356280027DC91 /* TableViewEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewEntry.h; sourceTree = "<group>"; };
 		779BD8F51CB356280027DC91 /* TableViewEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewEntry.m; sourceTree = "<group>"; };
+		779BD8F71CB60E8F0027DC91 /* DYUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYUtility.h; sourceTree = "<group>"; };
+		779BD8F81CB60E8F0027DC91 /* DYUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYUtility.m; sourceTree = "<group>"; };
 		A6F0F00FFE68D8283CB2E5C1 /* Pods-DidYou.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DidYou.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DidYou/Pods-DidYou.debug.xcconfig"; sourceTree = "<group>"; };
 		AB92E7151CAB01F200199034 /* DidYou.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DidYou.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB92E7191CAB01F200199034 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -96,8 +98,6 @@
 		AB92E7D61CB4063A00199034 /* JournalEntryTableViewCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JournalEntryTableViewCellView.m; sourceTree = "<group>"; };
 		AB92E7D81CB40C6400199034 /* JournalEntryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JournalEntryTableViewCell.h; sourceTree = "<group>"; };
 		AB92E7D91CB40C6400199034 /* JournalEntryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JournalEntryTableViewCell.m; sourceTree = "<group>"; };
-		D6679C081CB5610E003A5484 /* Secrets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Secrets.h; sourceTree = "<group>"; };
-		D6679C091CB5610E003A5484 /* Secrets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Secrets.m; sourceTree = "<group>"; };
 		DC83E05E9AD37E69EF195C64 /* Pods-DidYou.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DidYou.release.xcconfig"; path = "Pods/Target Support Files/Pods-DidYou/Pods-DidYou.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -144,6 +144,8 @@
 			children = (
 				31FF281B1CAD6BED008051C0 /* DYQuestion.h */,
 				31FF281C1CAD6BED008051C0 /* DYQuestion.m */,
+				779BD8F71CB60E8F0027DC91 /* DYUtility.h */,
+				779BD8F81CB60E8F0027DC91 /* DYUtility.m */,
 				AB92E71B1CAB01F200199034 /* AppDelegate.h */,
 				AB92E71C1CAB01F200199034 /* AppDelegate.m */,
 				AB92E7211CAB01F200199034 /* Main.storyboard */,
@@ -223,8 +225,6 @@
 				AB92E76E1CAC697B00199034 /* StatsViewController.m */,
 				AB92E7D81CB40C6400199034 /* JournalEntryTableViewCell.h */,
 				AB92E7D91CB40C6400199034 /* JournalEntryTableViewCell.m */,
-				D6679C081CB5610E003A5484 /* Secrets.h */,
-				D6679C091CB5610E003A5484 /* Secrets.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -385,8 +385,8 @@
 				31FF28311CAD7398008051C0 /* JournalAndPictureView.m in Sources */,
 				31FF282B1CAD736E008051C0 /* CategoryFeelingView.m in Sources */,
 				AB92E7DA1CB40C6400199034 /* JournalEntryTableViewCell.m in Sources */,
+				779BD8F91CB60E8F0027DC91 /* DYUtility.m in Sources */,
 				AB92E7571CAB111100199034 /* DYJournalEntry.m in Sources */,
-				D6679C0A1CB5610E003A5484 /* Secrets.m in Sources */,
 				AB92E79A1CADBD2800199034 /* IndividualFeelingView.m in Sources */,
 				31FF281D1CAD6BED008051C0 /* DYQuestion.m in Sources */,
 				AB92E76C1CAC696400199034 /* SettingsTableViewController.m in Sources */,

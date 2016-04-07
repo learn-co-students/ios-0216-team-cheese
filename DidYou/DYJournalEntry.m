@@ -8,6 +8,7 @@
 
 #import "DYJournalEntry.h"
 #import "DYQuestion.h"
+#import "DYUtility.h"
 
 @implementation DYJournalEntry
 
@@ -39,6 +40,26 @@
     
 }
 
+-(instancetype)initWithDeserialize: (NSMutableDictionary*)data
+{
+    self = [super init];
+    DYUtility *util = [[DYUtility alloc] init];
+    if (self)
+    {
+        NSMutableArray *q = [[NSMutableArray alloc] init];
+        for (NSMutableDictionary *dict in data[@"questions"])
+        {
+            [q addObject:[[DYQuestion alloc] initWithDeserialize:dict]];
+        }
+        _date = [util fromUTCFormatDate:data[@"date"]];
+        _mainEmotion = data[@"emotion"];
+        _journalEntry = data[@"journalEntry"];
+        _picture1Address = data[@"picture1Address"];
+        _questions = q;
+    }
+    return self;
+}
+
 
 -(NSArray *)generateQuestions{
     
@@ -47,6 +68,25 @@
     
     return questions;
                             
+}
+
+-(NSMutableDictionary *)serialize
+{
+    DYUtility *util = [[DYUtility alloc] init];
+    NSMutableDictionary *data = [[NSMutableDictionary alloc] init];
+    
+    NSMutableArray *questions = [[NSMutableArray alloc] init];
+    
+    for (DYQuestion *question in _questions)
+    {
+        [questions addObject:[question serialize]];
+    }
+    data[@"date"] = [util getUTCFormatDate:_date];
+    data[@"emotion"] = _mainEmotion;
+    data[@"journalEntry"] = _journalEntry;
+    data[@"picture1address"] = _picture1Address;
+    data[@"questions"] = _questions;
+    return data;
 }
 
 

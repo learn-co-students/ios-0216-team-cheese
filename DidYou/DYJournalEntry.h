@@ -17,12 +17,12 @@
 @property (strong, nonatomic) NSArray *questions;
 @property (strong, nonatomic) NSString *picture1Address;
 
-
 -(instancetype)init;
 
 -(instancetype)initWithDate:(NSDate *)date mainEmotion:(NSString *)mainEmotion journalEntry:(NSString *)journalEntry picture1Address:(NSString *)picture1Address;
 
+-(instancetype)initWithDeserialize: (NSMutableDictionary*)data;
 
-
+-(NSMutableDictionary *)serialize;
 
 @end

@@ -44,4 +44,22 @@
     
 }
 
+-(instancetype)initWithDeserialize:(NSMutableDictionary *)data
+{
+    self = [super init];
+    if (self) {
+        _question = data[@"question"];
+        _answer = [data[@"answer"] unsignedIntegerValue];
+    }
+    return self;
+}
+
+-(NSMutableDictionary *)serialize
+{
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+    dict[@"question"] = self.question;
+    dict[@"answer"] = [NSNumber numberWithUnsignedInteger:_answer];
+    return dict;
+}
+
 @end

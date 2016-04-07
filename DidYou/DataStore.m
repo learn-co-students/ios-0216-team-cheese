@@ -7,6 +7,7 @@
 //
 
 #import "DataStore.h"
+#import "DYUtility.h"
 
 @implementation DataStore
 
@@ -48,50 +49,30 @@
     self.myRootRef = [[Firebase alloc] initWithUrl:@"https://incandescent-fire-4531.firebaseio.com/"];
 }
 
--(NSString *)getUTCFormatDate:(NSDate *)localDate
-{
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    NSTimeZone *timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
-    [dateFormatter setTimeZone:timeZone];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    NSString *dateString = [dateFormatter stringFromDate:localDate];
-    return dateString;
-}
-
--(NSDate *)fromUTCFormatDate:(NSString *)dateString
-{
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    NSTimeZone *timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
-    [dateFormatter setTimeZone:timeZone];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    NSDate *date = [dateFormatter dateFromString: dateString];
-    return date;
-}
-
 -(void)addUserToFirebase: (DYUser*)user
 {
-    Firebase *userRef = [[self.myRootRef childByAppendingPath: @"users"] childByAppendingPath:user.userUUID];
-    
+    Firebase *userRef = [self getUserRef:user];
+    DYUtility *util = [[DYUtility alloc] init];
     NSDictionary *myUser = @{
                             @"name": user.name,
                             @"city": user.city,
                             @"country": user.country,
-                            @"signUpDate": [self getUTCFormatDate: user.signUpDate]
+                            @"signUpDate": [util getUTCFormatDate: user.signUpDate],
+                            @"journals": @{}
                             };
       [userRef setValue: myUser];
 }
 
--(void)addJournalToFirebase: (DYJournalEntry *)journalEntry
+-(void)addJournalToFirebase: (DYUser *)user :(DYJournalEntry *)journalEntry
 {
-    Firebase *journalRef = [[self.myRootRef childByAppendingPath:@"users"] childByAppendingPath:user.journalEntry];
-    
-    NSDictionary *myJournal = @{
-                                @"journal": journalEntry.date,
-                                @"journal": journalEntry.mainEmotion,
-                                };
-    
+    Firebase *journalRef = [[self getUserRef: user] childByAppendingPath:@"journals"];
+    [[journalRef childByAutoId] setValue:[journalEntry serialize]];
 }
 
+-(Firebase *)getUserRef: (DYUser *)user
+{
+    return [[self.myRootRef childByAppendingPath: @"users"] childByAppendingPath:user.userUUID];
+}
 
 -(NSDictionary *)emotionsDictionary
 {
@@ -172,30 +153,24 @@
             NSLog(@"firebase returned null value for path");
             return;
         }
+         DYUtility *util = [[DYUtility alloc] init];
+         NSMutableArray *journals = [[NSMutableArray alloc] init];
          NSDictionary *result = [snapshot value];
-         DYUser *newUser = [[DYUser alloc] initWithUserUUID:userUUID signUpDate: [self fromUTCFormatDate: result[@"signUpDate"]]];
+         DYUser *newUser = [[DYUser alloc] initWithUserUUID:userUUID signUpDate: [util fromUTCFormatDate: result[@"signUpDate"]]];
          newUser.name = result[@"name"];
          newUser.city = result[@"city"];
          newUser.country = result[@"country"];
+         NSMutableDictionary *journalDict = result[@"journals"];
+         for (NSString *key in [journalDict allKeys])
+         {
+             [journals addObject:[[DYJournalEntry alloc] initWithDeserialize: journalDict[key]]];
+         }
+         newUser.journals = journals;
          self.currentUser = newUser;
          [self.users addObject:self.currentUser];
      }];
     
 }
-
--(void)createNewJournalEntryFromFirebase: (NSString *)journalEntry {
-    
-    [[[self.myRootRef childByAppendingPath:@"journals"] childByAppendingPath:journalEntry] observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
-        
-        if (snapshot.value == [NSNull null]) {
-            NSLog(@"firebase returned null value for path");
-            return;
-        }
-        NSDictionary *result = [snapshot value];
-        //DYJournalEntry *newJournal = [DYJournalEntry alloc] initWithDate:date mainEmotion:<#(NSString *)#> journalEntry:<#(NSString *)#> picture1Address:<#(NSString *)#>
-    }];
-}
-
 
 -(NSArray *)usersWithSameCity
 {

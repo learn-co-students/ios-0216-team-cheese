@@ -42,9 +42,7 @@
         _journals = journals;
 
     }
-    
     return self;
-    
 }
 
 -(NSArray *)journalArrayLIFO
@@ -54,9 +52,7 @@
     for (NSInteger i = self.journals.count - 1; i >= 0; i--)
     {
         [journalsLIFO addObject:self.journals[i]];
-        
     }
-    
     return journalsLIFO;
 }
 
