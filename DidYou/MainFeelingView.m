@@ -83,7 +83,7 @@
     
     self.currentEntry.mainEmotion = secondTappedButton.titleLabel.text;
     
-        [UIView animateWithDuration:2 delay:0.5 options:0 animations:^{
+        [UIView animateWithDuration:1.5 delay:0 options:0 animations:^{
             
             self.alpha = 0;
             
@@ -141,8 +141,8 @@
 }
 
 -(void)addInitialCirclesWithAnimation:(UIView *)currentView {
-    [UIButton animateWithDuration:.7
-                            delay:0
+    [UIButton animateWithDuration:1.0
+                            delay:1.0
                           options:0
                        animations:^{
                            
@@ -234,7 +234,7 @@
     tappedButton.alpha = 1.0;
     
     [UIButton animateWithDuration:0.9
-                            delay:0.40
+                            delay:0.2
                           options:0
                        animations:^{
                            
@@ -336,12 +336,17 @@
 -(void)tappedButtonPulseWithAnimation:(UIButton *)tappedButton {
     
     CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+    
+    //you would set this fromValue to 1.0 if you want it to start at it's current size
     animation.fromValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(1.05, 1.05, 1.05)];
+    
+    //you would set this toValue to 0.0 if you want it to disappear completely
     animation.toValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(1.0, 1.0, 1.0)];
+    
     animation.repeatCount = 1;
     animation.removedOnCompletion = YES;
     animation.fillMode = kCAFillModeForwards;
-    animation.duration = 0.5 ;
+    animation.duration = 0.3 ;
     [tappedButton.layer addAnimation:animation forKey:@"transform.scale"];
 }
 
