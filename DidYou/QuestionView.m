@@ -57,15 +57,25 @@
     
     [[NSBundle mainBundle] loadNibNamed:@"Question" owner:self options:nil];
     
-    [self addSubview:self.contentView];
-    
-    self.contentView.frame = self.bounds;
-    
-    self.dataStore = [DataStore sharedDataStore];
-    
-    self.currentEntry = [self.dataStore.currentUser.journals lastObject];
-    
-    self.currentQuestion = self.currentEntry.questions[0];
+    [UIView animateWithDuration:2 delay:0 options:0 animations:^{
+        
+        self.alpha = 0;
+        
+        [self addSubview:self.contentView];
+        
+        self.contentView.frame = self.bounds;
+        
+        self.dataStore = [DataStore sharedDataStore];
+        
+        self.currentEntry = [self.dataStore.currentUser.journals lastObject];
+        
+        self.currentQuestion = self.currentEntry.questions[0];
+        
+        self.alpha = 1;
+
+    } completion:^(BOOL finished) {
+        
+    }];
     
 }
 

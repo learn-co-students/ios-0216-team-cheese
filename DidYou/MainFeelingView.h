@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MoodCircleButton.h"
 
 @protocol MainFeelingViewDelegate <NSObject>
 
@@ -17,6 +18,11 @@
 @interface MainFeelingView : UIView
 
 @property (weak, nonatomic) id <MainFeelingViewDelegate> delegate;
+
+@property (strong, nonatomic) IBOutlet UIView *circleMenuView;
+
+-(UIView *)addCircles;
+-(void)addInitialCirclesWithAnimation:(UIView *)currentView;
 
 
 
