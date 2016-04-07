@@ -61,6 +61,8 @@
     
     self.contentView.frame = self.bounds;
     
+    self.question1Image.layer.cornerRadius = 20;
+    
     
 }
 

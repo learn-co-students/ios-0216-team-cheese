@@ -42,12 +42,12 @@
 -(NSDictionary *)emotionsDictionary
 {
     
-    NSDictionary *emotions = @{ @"Happy"  :  @[ @"Fulfilled",@"Content",@"Glad",@"Complete",@"Satisfied",@"Optimistic",@"Pleased",@"Serene"],
-                                @"Excited"  :  @[ @"Ecstatic",@"Engergetic",@"Aroused",@"Bouncy",@"Aroused",@"Perky",@"Antsy",@"Joyful"],
-                                @"Tender"  :  @[ @"Intimate",@"Loving",@"Warm-hearted",@"Sympathetic",@"Touched",@"Kind",@"Soft",@"Trusting"],
-                                @"Scared"  :  @[ @"Tense",@"Nervous",@"Anxious",@"Jittery",@"Frightened",@"Panic-stricken",@"Terrified",@"Apprehensive"],
-                                @"Angry"  :  @[ @"Irritated",@"Resentful",@"Miffed",@"Upset",@"Mad",@"Furious",@"Raging",@"Annoyed"],
-                                @"Sad"  :  @[ @"Down",@"Blue",@"Mopey",@"Grieved",@"Dejected",@"Depressed",@"Heartbroken",@"Remorseful"]};
+    NSDictionary *emotions = @{ @"Happy"  :  @[ @"Fulfilled",@"Glad",@"Complete",@"Optimistic",@"Pleased",@"Serene"],
+                                @"Excited"  :  @[ @"Ecstatic",@"Engergetic",@"Aroused",@"Bouncy",@"Aroused",@"Joyful"],
+                                @"Tender"  :  @[ @"Intimate",@"Loving",@"Sympathetic",@"Touched",@"Soft",@"Trusting"],
+                                @"Scared"  :  @[ @"Tense",@"Nervous",@"Anxious",@"Frightened",@"Terrified",@"Apprehensive"],
+                                @"Angry"  :  @[ @"Irritated",@"Resentful",@"Upset",@"Furious",@"Raging",@"Annoyed"],
+                                @"Sad"  :  @[ @"Blue",@"Mopey",@"Dejected",@"Depressed",@"Heartbroken",@"Remorseful"]};
     
     return emotions;
 }
