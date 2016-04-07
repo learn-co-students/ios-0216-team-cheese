@@ -16,7 +16,15 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *addButton;
 
-@property (strong, nonatomic) UIView *circleView;
+@property (strong, nonatomic) UIView *blueCircle;
+@property (strong, nonatomic) UIView *yellowCircle;
+@property (strong, nonatomic) UIView *redCircle;
+@property (strong, nonatomic) UIView *orangeCircle;
+@property (strong, nonatomic) UIView *purpleCircle;
+@property (strong, nonatomic) UIView *grayCircle;
+
+@property (weak, nonatomic) IBOutlet UIView *addButtonView;
+
 
 @end
 
@@ -68,6 +76,8 @@
     
     [self addCircleView];
     
+    //[self addTitle];
+    
 }
 
 - (IBAction)whenAddButtonTapped:(id)sender
@@ -82,69 +92,62 @@
 {
 
     
-    self.circleView = [self createCircleViewWithRadius:80];
+    UIColor *lavendarColor = [UIColor colorWithRed:211.0f/255.0f green:145.0f/255.0f blue:255.0f/255.0f alpha:0.2];
+    UIColor *blueColor = [UIColor colorWithRed:104.0f/255.0f green:183.0f/255.0f blue:255.0f/255.0f alpha:0.2];
+    UIColor *redColor = [UIColor colorWithRed:255.0f/255.0f green:59.0f/255.0f blue:59.0f/255.0f alpha:0.2];
+    UIColor *orangeColor = [UIColor colorWithRed:253.0f/255.0f green:174.0f/255.0f blue:55.0f/255.0f alpha:0.2];
+    UIColor *greenColor = [UIColor colorWithRed:65.0f/255.0f green:194.0f/255.0f blue:65.0f/255.0f alpha:0.2];
+    UIColor *grayColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:0.2];
     
-    [self addSubview:self.circleView];
+    UIColor *blueColor2 = [UIColor colorWithRed:70.0/255.0 green:135.0/255.0 blue:255/255 alpha:.2];
+    UIColor *yellowColor2 = [UIColor colorWithRed:247.0/255.0 green:255.0/255.0 blue:0.0/255 alpha:.2];
+    UIColor *redColor2 = [UIColor colorWithRed:255.0/255.0 green:9.0/255.0 blue:9.0/255.0 alpha:.2];
+    UIColor *orangeColor2 = [UIColor colorWithRed:255.0/255.0 green:128.0/255.0 blue:0.0/255.0 alpha:.2];
+    UIColor *purpleColor2 = [UIColor colorWithRed:127.0/255.0 green:0.0/255.0 blue:255.0/255.0 alpha:.2];
+    UIColor *grayColor2 = [UIColor colorWithRed:192.0/255.0 green:192.0/255.0 blue:192.0/255.0 alpha:.2];
     
+    self.blueCircle = [self createCircleViewWithRadius:50 originX:200 originY:40 color:lavendarColor];
+    self.yellowCircle = [self createCircleViewWithRadius:30 originX:100 originY:60 color:blueColor];
+    self.redCircle = [self createCircleViewWithRadius:60 originX:20 originY:20 color:redColor];
+    self.orangeCircle = [self createCircleViewWithRadius:20 originX:150 originY:100 color:orangeColor];
+    self.purpleCircle = [self createCircleViewWithRadius:50 originX:250 originY:10 color:greenColor];
+    self.grayCircle = [self createCircleViewWithRadius:35 originX:5 originY:20 color:grayColor];
     
+    [self addSubview:self.blueCircle];
+    [self addSubview:self.yellowCircle];
+    [self addSubview:self.redCircle];
+    [self addSubview:self.orangeCircle];
+    [self addSubview:self.purpleCircle];
+    [self addSubview:self.grayCircle];
     
+    [self bringSubviewToFront:self.addButtonView];
     
-//    self.circleView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 100) ];
-//    
-//    self.circleView.clipsToBounds = YES;
-//    [self setRoundedView:self.circleView toDiameter:100.0];
-    
-//    self.circleView.translatesAutoresizingMaskIntoConstraints = NO;
-    
-    
-    
-    //self.circleView.frame.size.height = 100;
-    
-    
-//    
-//    [self.circleView.widthAnchor constraintEqualToAnchor:self.widthAnchor multiplier:.4].active = YES;
-//    [self.circleView.heightAnchor constraintEqualToAnchor:self.circleView.widthAnchor].active = YES;
-//    [self.circleView.rightAnchor constraintEqualToAnchor:self.rightAnchor constant:-15].active = YES;
-//    [self.circleView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor constant:-15].active = YES;
-    
-    NSLog(@"The width of the circleView is %f", self.circleView.frame.size.width);
-    
-    
-    
-    self.circleView.backgroundColor = [UIColor blueColor];
-    
-  [UIView animateWithDuration:5 delay:2 options:UIViewAnimationOptionAutoreverse animations:^{
-      
-      self.circleView.frame = CGRectMake(200, -20, 160, 160);
-      
-  } completion:^(BOOL finished) {
-      
-      self.circleView.frame = CGRectMake(200, 40, 160, 160);
-  }];
-    
-
-
-
+    [self animateView:self.blueCircle withRadius:50];
+    [self animateView:self.yellowCircle withRadius:30];
+    [self animateView:self.redCircle withRadius:60];
+    [self animateView:self.orangeCircle withRadius:20];
+    [self animateView:self.purpleCircle withRadius:50];
+    [self animateView:self.grayCircle withRadius:35];
     
 }
 
-- (UIView*)createCircleViewWithRadius:(int)radius
+- (UIView*)createCircleViewWithRadius:(int)radius originX:(CGFloat)originX originY:(CGFloat)originY color:(UIColor *)color
 {
     // circle view
-    UIView *circle = [[UIView alloc] initWithFrame:CGRectMake(200, 40, 2 * radius, 2 * radius)];
+    UIView *circle = [[UIView alloc] initWithFrame:CGRectMake(originX, originY, 2 * radius, 2 * radius)];
     circle.layer.cornerRadius = radius;
     circle.layer.masksToBounds = YES;
     
     // border
-    circle.layer.borderColor = [UIColor whiteColor].CGColor;
-    circle.layer.borderWidth = 1;
+//    circle.layer.borderColor = [UIColor whiteColor].CGColor;
+//    circle.layer.borderWidth = 1;
     
     // gradient background color
     CAGradientLayer *gradientBg = [CAGradientLayer layer];
     gradientBg.frame = circle.frame;
     gradientBg.frame = circle.bounds;
     gradientBg.colors = [NSArray arrayWithObjects:
-                         (id)[UIColor colorWithRed:70.0/255.0 green:135.0/255.0 blue:255/255 alpha:.7].CGColor,
+                         (id)color.CGColor,
                          (id)[UIColor lightGrayColor].CGColor,
                          nil];
     // vertical gradient
@@ -160,6 +163,30 @@
     
     return circle;
 }
+
+-(void)animateView: (UIView *)circleView withRadius:(CGFloat)radius
+{
+    NSUInteger xPosition = arc4random_uniform(351);
+    NSUInteger yPosition = arc4random_uniform(151);
+    NSUInteger time = arc4random_uniform(5);
+    
+    [UIView animateWithDuration:time + 8
+     
+                     animations:^{
+                         
+                         circleView.frame = CGRectMake(xPosition-10, yPosition-10, radius*2.0, radius*2.0);
+                         
+                          [self bringSubviewToFront:self.addButtonView];
+                         
+                     } completion:^(BOOL finished) {
+                         
+                         [self animateView:circleView withRadius:radius];
+                     }];
+    
+
+}
+
+
 
 
 
