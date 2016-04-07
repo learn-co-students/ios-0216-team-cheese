@@ -45,8 +45,6 @@
     
     [self preferredStatusBarStyle];
     
-    
-    
 //    self.addEntryFullScreenView.alpha = 0;
     
     
@@ -129,17 +127,19 @@
 
 - (void)addButtonTapped:(UIButton *)sender {
     
-    [UIView animateWithDuration:2 delay:0 options:0 animations:^{
+    [UIView animateWithDuration:2.0 delay:0.5 options:0 animations:^{
         
         self.journalEntryTableView.alpha = 0;
+        self.addEntryTopView.alpha = 0;
         
         [self launchAddJournalFullScreenView];
         
     } completion:^(BOOL finished) {
         
-        [UIView animateWithDuration:2 delay:0 options:0 animations:^{
+        [UIView animateWithDuration:0.5 delay:0 options:0 animations:^{
             
             self.journalEntryTableView.alpha = 1;
+            self.addEntryTopView.alpha = 1;
             
         } completion:^(BOOL finished) {
             
@@ -160,9 +160,14 @@
     
     self.addJournalFullScreenBlurView.delegate = self;
     
-    [UIView animateWithDuration:2 delay:0.5 options:0 animations:^{
+    self.addJournalFullScreenBlurView.alpha = 0;
+    
+    [UIView animateWithDuration:.5 delay:1.0 options:0 animations:^{
+        
         
         [self.view addSubview:self.addJournalFullScreenBlurView];
+        
+        self.addJournalFullScreenBlurView.alpha = 1;
         
         self.addJournalFullScreenBlurView.translatesAutoresizingMaskIntoConstraints = NO;
         

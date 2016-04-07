@@ -72,18 +72,10 @@
 
 - (IBAction)whenAddButtonTapped:(id)sender
 {
-    [UIView animateWithDuration:1.5 delay:0.5 options:0 animations:^{
-        
-        self.alpha = 0;
-        
-    } completion:^(BOOL finished) {
-        
+    
         [self.delegate addButtonTapped:sender];
         
         self.contentView.frame = self.bounds;
-        
-        self.alpha = 1;
-    }];
 
 
 }
