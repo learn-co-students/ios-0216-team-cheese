@@ -16,10 +16,15 @@
 
 
 
-@interface MainViewController () <NewJournalEntryBlurViewDelegate, UITableViewDataSource, UITableViewDelegate>
+
+@interface MainViewController () <NewJournalEntryBlurViewDelegate, UITableViewDataSource, UITableViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+
+
 
 @property (strong, nonatomic) IBOutlet AddJournalEntryView *addEntryTopView;
 @property (strong, nonatomic) IBOutlet UITableView *journalEntryTableView;
+
+
 
 @property (strong, nonatomic) NewJournalEntryBlurView *addJournalFullScreenBlurView;
 @property (strong, nonatomic) AddJournalEntryView *journalView;
@@ -36,9 +41,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     self.dataStore =  [DataStore sharedDataStore];
-    
     self.addEntryTopView.delegate = self;
     self.journalEntryTableView.delegate = self;
     self.journalEntryTableView.dataSource = self;
@@ -47,35 +51,8 @@
     
     
     
-//    self.addEntryFullScreenView.alpha = 0;
-    
-    
-    
-//   // set city and state to current users
-//    self.locationManager = [[CLLocationManager alloc]init];
-//    self.locationManager.delegate = self;
-//    [self.locationManager requestWhenInUseAuthorization];
-//    
-//    if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
-//        [self.locationManager requestWhenInUseAuthorization];
-//    }
-//    
-//    self.geocoder = [[CLGeocoder alloc]init];
-//    
-//    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-//    
-//   
-//    
-//    [self.locationManager startUpdatingLocation];
-//    CGRect myFullFrame = [self.view frame];
-//    CGRect frame = CGRectMake(0, 0, myFullFrame.size.height, myFullFrame.size.width);
-//    AddJournalEntryView *journalView = [[AddJournalEntryView alloc]initWithFrame:frame];
-//    [self.view addSubview:journalView];
-//    self.journalView = journalView;
-//    // go send to firebase synch with our dataStore
-    
-}
 
+}
 
 -(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
 
@@ -127,6 +104,8 @@
     
 }
 
+
+
 - (void)addButtonTapped:(UIButton *)sender {
     
     
@@ -146,7 +125,7 @@
     self.addJournalFullScreenBlurView.delegate = self;
     
     [self.view addSubview:self.addJournalFullScreenBlurView];
-    
+        
     self.addJournalFullScreenBlurView.translatesAutoresizingMaskIntoConstraints = NO;
     
     [self.addJournalFullScreenBlurView.widthAnchor constraintEqualToAnchor:self.view.widthAnchor].active = YES;
@@ -157,6 +136,9 @@
     [self.view bringSubviewToFront:self.addJournalFullScreenBlurView];
 
 }
+
+
+
 
 -(void)totalJournalEntryComplete
 {
@@ -193,6 +175,38 @@
     return cell;
 
 }
+
+
+
+# pragma mark - JournalAndPictureView methods below
+
+- (void)buttonTappedFromJournalandPictureView:(id)sender {
+    
+    UIImagePickerController *picker = [UIImagePickerController new];
+    picker.delegate = self;
+    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    [self presentViewController:picker animated:YES completion:nil];
+}
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    
+    UIImage *chosenImage = [info objectForKey:UIImagePickerControllerOriginalImage];
+    
+    NSLog(@"Image value in imagePickerController : %@", chosenImage);
+    JournalAndPictureView *journalAndPictureV = [[JournalAndPictureView alloc] init] ;
+    UIImageView *imageViewInJournalView = journalAndPictureV.imageView;
+    [imageViewInJournalView setImage:chosenImage];
+    NSLog(@"%@", imageViewInJournalView.image);
+    [self.addJournalFullScreenBlurView recieveImageFromMainViewController:chosenImage];
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    
+}
+
+-(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 
 
 

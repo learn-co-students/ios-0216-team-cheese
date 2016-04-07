@@ -12,14 +12,16 @@
 #import "CategoryFeelingView.h"
 #import "JournalAndPictureView.h"
 #import "DataStore.h"
+#import <JHChainableAnimations/JHChainableAnimations.h>
+
 
 @interface NewJournalEntryBlurView () <MainFeelingViewDelegate, QuestionViewDelegate, JournalAndPictureViewDelegate>
 
 @property (nonatomic) NSUInteger currentQuestionIndex;
 @property (strong, nonatomic) QuestionView *questionView;
 @property (strong, nonatomic) MainFeelingView *mainFeelingView;
-@property (strong, nonatomic) JournalAndPictureView *journalAndPictureView;
 @property (strong, nonatomic) DataStore *dataStore;
+
 
 @property (nonatomic) NSUInteger questionIndex;
 
@@ -87,12 +89,6 @@
     self.mainFeelingView.delegate = self;
     self.questionView.delegate = self;
     
-  
-    
-
-    
-    
-    NSLog(@"in the common init the number of journals now is: %lu", self.dataStore.currentUser.journals.count);
 
 }
 
@@ -195,8 +191,32 @@
 -(void)journalComplete:(UIButton *)sender
 {
     [self.delegate totalJournalEntryComplete];
-    
     [self removeFromSuperview];
+}
+
+-(void)whenAddPhotoButtonIsTapped:(id)sender
+{
+    
+    [self.delegate buttonTappedFromJournalandPictureView:sender];
+}
+
+-(void)whenDeleteButtonIsTapped:(id)sender
+{
+    self.journalAndPictureView.deletePhotoButton.hidden = YES;
+    self.journalAndPictureView.imageView.image = nil;
+    self.journalAndPictureView.imageView.layer.borderWidth = 0;
+
+}
+
+-(void)recieveImageFromMainViewController:(UIImage *)imageRecieved
+{
+    self.journalAndPictureView.deletePhotoButton.hidden = NO;
+    self.journalAndPictureView.imageView.image = imageRecieved;
+    self.journalAndPictureView.imageView.layer.cornerRadius = self.journalAndPictureView.imageView.frame.size.width / 2;
+    self.journalAndPictureView.imageView.contentMode = UIViewContentModeScaleAspectFill;
+    self.journalAndPictureView.imageView.clipsToBounds = YES;
+    self.journalAndPictureView.imageView.layer.borderWidth = 2.0f;
+    self.journalAndPictureView.imageView.layer.borderColor = [UIColor darkGrayColor].CGColor;
 }
 
 @end

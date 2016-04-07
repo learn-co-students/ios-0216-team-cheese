@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "AddJournalEntryView.h"
-
+#import "JournalAndPictureView.h"
 
 @interface MainViewController : UIViewController
 
-
+@property (strong, nonatomic) UIImage *chosenImage;
 
 @end
 

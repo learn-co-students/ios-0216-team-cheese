@@ -6,6 +6,7 @@
 target 'DidYou' do
 
 pod ‘AFNetworking’
+pod 'JHChainableAnimations', '~> 1.3.0'
+
 
 end
-

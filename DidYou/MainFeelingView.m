@@ -63,7 +63,7 @@
     
     NSArray *journals = self.dataStore.currentUser.journals;
     
-    NSLog(@"in the common init for main feeling, the number or journals is: %lu", self.dataStore.currentUser.journals.count);
+  //  NSLog(@"in the common init for main feeling, the number or journals is: %lu", self.dataStore.currentUser.journals.count);
     
     self.currentEntry = [journals lastObject];
     
@@ -74,7 +74,7 @@
     self.currentEntry.mainEmotion = @"Happy";
     [self.delegate feelingChosen:sender];
     
-    NSLog(@"happy tapped");
+   // NSLog(@"happy tapped");
     
 }
 
