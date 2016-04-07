@@ -7,9 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DYUser.h"
-#import "DYJournalEntry.h"
 #import <Firebase/Firebase.h>
+#import "DYUser.h"
 
 @interface DataStore : NSObject
 
@@ -18,8 +17,6 @@
 @property (strong, nonatomic) NSString *userUUID;
 @property (strong, nonatomic) DYUser *currentUser;
 @property (strong, nonatomic) Firebase *myRootRef;
-
-
 
 + (instancetype)sharedDataStore;
 

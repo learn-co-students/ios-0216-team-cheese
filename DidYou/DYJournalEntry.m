@@ -7,8 +7,6 @@
 //
 
 #import "DYJournalEntry.h"
-#import "DYQuestion.h"
-#import "DYUtility.h"
 
 @implementation DYJournalEntry
 

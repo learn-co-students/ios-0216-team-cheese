@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "DYUtility.h"
 #import "DYQuestion.h"
 
 @interface DYJournalEntry : NSObject

@@ -35,51 +35,31 @@
                             <rect key="frame" x="0.0" y="27" width="170" height="25"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TaH-0I-n1m">
-<<<<<<< HEAD
-                                    <rect key="frame" x="0.0" y="0.0" width="24" height="25"/>
-=======
                                     <rect key="frame" x="0.0" y="0.0" width="25" height="24"/>
->>>>>>> master
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="TaH-0I-n1m" secondAttribute="height" multiplier="1:1" id="JWi-RG-VTz"/>
                                     </constraints>
                                 </imageView>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cKY-rf-4ey">
-<<<<<<< HEAD
-                                    <rect key="frame" x="36" y="0.0" width="25" height="25"/>
-=======
                                     <rect key="frame" x="37" y="0.0" width="25" height="24"/>
->>>>>>> master
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="cKY-rf-4ey" secondAttribute="height" multiplier="1:1" id="ieF-dG-Ofp"/>
                                     </constraints>
                                 </imageView>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NMs-Z7-2xs">
-<<<<<<< HEAD
-                                    <rect key="frame" x="73" y="0.0" width="24" height="25"/>
-=======
                                     <rect key="frame" x="73" y="0.0" width="24" height="24"/>
->>>>>>> master
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="NMs-Z7-2xs" secondAttribute="height" multiplier="1:1" id="ERw-Hn-tok"/>
                                     </constraints>
                                 </imageView>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DYN-nP-jnb">
-<<<<<<< HEAD
-                                    <rect key="frame" x="109" y="0.0" width="25" height="25"/>
-=======
                                     <rect key="frame" x="109" y="0.0" width="25" height="24"/>
->>>>>>> master
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="DYN-nP-jnb" secondAttribute="height" multiplier="1:1" id="7mS-WF-frZ"/>
                                     </constraints>
                                 </imageView>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VNI-DX-srV">
-<<<<<<< HEAD
-                                    <rect key="frame" x="146" y="0.0" width="24" height="25"/>
-=======
                                     <rect key="frame" x="146" y="0.0" width="25" height="24"/>
->>>>>>> master
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="VNI-DX-srV" secondAttribute="height" multiplier="1:1" id="lMk-Au-Jwl"/>
                                     </constraints>
