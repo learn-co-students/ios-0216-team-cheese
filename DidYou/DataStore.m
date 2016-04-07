@@ -52,7 +52,7 @@
 -(void)addUserToFirebase: (DYUser*)user
 {
     Firebase *userRef = [self getUserRef:user];
-    DYUtility *util = [[DYUtility alloc] init];
+    DYUtility *util = [DYUtility sharedUtility];
     NSDictionary *myUser = @{
                             @"name": user.name,
                             @"city": user.city,
@@ -63,11 +63,12 @@
       [userRef setValue: myUser];
 }
 
--(void)addJournalToFirebase: (DYUser *)user :(DYJournalEntry *)journalEntry
+-(void)addJournalToFirebase: (DYUser *)user journalEntry:(DYJournalEntry *)journalEntry
 {
     Firebase *journalRef = [[self getUserRef: user] childByAppendingPath:@"journals"];
     [[journalRef childByAutoId] setValue:[journalEntry serialize]];
 }
+
 
 -(Firebase *)getUserRef: (DYUser *)user
 {
@@ -137,6 +138,7 @@
     [self.users addObject:self.currentUser];
     
     // at this point we'd push the new user to firebase
+    
     [self addUserToFirebase: newUser];
     
 }
@@ -153,7 +155,7 @@
             NSLog(@"firebase returned null value for path");
             return;
         }
-         DYUtility *util = [[DYUtility alloc] init];
+         DYUtility *util = [DYUtility sharedUtility];
          NSMutableArray *journals = [[NSMutableArray alloc] init];
          NSDictionary *result = [snapshot value];
          DYUser *newUser = [[DYUser alloc] initWithUserUUID:userUUID signUpDate: [util fromUTCFormatDate: result[@"signUpDate"]]];

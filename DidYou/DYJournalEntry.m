@@ -43,7 +43,7 @@
 -(instancetype)initWithDeserialize: (NSMutableDictionary*)data
 {
     self = [super init];
-    DYUtility *util = [[DYUtility alloc] init];
+    DYUtility *util = [DYUtility sharedUtility];
     if (self)
     {
         NSMutableArray *q = [[NSMutableArray alloc] init];
@@ -72,7 +72,7 @@
 
 -(NSMutableDictionary *)serialize
 {
-    DYUtility *util = [[DYUtility alloc] init];
+    DYUtility *util = [DYUtility sharedUtility];
     NSMutableDictionary *data = [[NSMutableDictionary alloc] init];
     
     NSMutableArray *questions = [[NSMutableArray alloc] init];

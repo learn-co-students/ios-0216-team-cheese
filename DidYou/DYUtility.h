@@ -10,10 +10,13 @@
 
 @interface DYUtility : NSObject
 
-+ (instancetype)sharedDataStore;
++ (instancetype)sharedUtility;
 
 // Utility functions
 -(NSString *)getUTCFormatDate:(NSDate *)localDate;
 -(NSDate *)fromUTCFormatDate:(NSString *)dateString;
+
+
+
 
 @end

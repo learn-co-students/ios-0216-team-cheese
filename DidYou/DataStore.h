@@ -28,7 +28,7 @@
 
 -(void)setupFirebase;
 -(void)addUserToFirebase: (DYUser *)user;
--(void)addJournalToFirebase: (DYUser *)user :(DYJournalEntry *)journalEntry :(NSInteger)Index;
+-(void)addJournalToFirebase: (DYUser *)user journalEntry:(DYJournalEntry *)journalEntry;
 
 
 

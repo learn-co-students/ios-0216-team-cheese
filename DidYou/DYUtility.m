@@ -15,7 +15,7 @@
     static DYUtility *_sharedUtility = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        _sharedUtility = [[DYUtility alloc] init];
+        _sharedUtility = [DYUtility sharedUtility];
     });
     
     return _sharedUtility;
@@ -26,7 +26,7 @@
     return [super init];
 }
 
--(NSString *)getUTCFormatDate:(NSDate *)localDate
+- (NSString *)getUTCFormatDate:(NSDate *)localDate
 {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     NSTimeZone *timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
@@ -36,7 +36,7 @@
     return dateString;
 }
 
--(NSDate *)fromUTCFormatDate:(NSString *)dateString
+- (NSDate *)fromUTCFormatDate:(NSString *)dateString
 {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     NSTimeZone *timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
