@@ -66,14 +66,13 @@
 
 -(void)setUpView
 {
-    
+    self.alpha = 1;
     
     [[NSBundle mainBundle] loadNibNamed:@"AddJournalEntry" owner:self options:nil];
     
     [self addSubview:self.contentView];
     
     self.contentView.frame = self.bounds;
-    
     [self addCircleView];
     
     //[self addTitle];
@@ -83,8 +82,10 @@
 - (IBAction)whenAddButtonTapped:(id)sender
 {
     
-    [self.delegate addButtonTapped:sender];
-    
+        [self.delegate addButtonTapped:sender];
+        
+        self.contentView.frame = self.bounds;
+
 
 }
 

@@ -47,37 +47,7 @@
     
     [self preferredStatusBarStyle];
     
-    [self createCustomTabBar];
-    
-    
-    
-//    self.addEntryFullScreenView.alpha = 0;
-    
-    
-    
-//   // set city and state to current users
-//    self.locationManager = [[CLLocationManager alloc]init];
-//    self.locationManager.delegate = self;
-//    [self.locationManager requestWhenInUseAuthorization];
-//    
-//    if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
-//        [self.locationManager requestWhenInUseAuthorization];
-//    }
-//    
-//    self.geocoder = [[CLGeocoder alloc]init];
-//    
-//    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-//    
-//   
-//    
-//    [self.locationManager startUpdatingLocation];
-//    CGRect myFullFrame = [self.view frame];
-//    CGRect frame = CGRectMake(0, 0, myFullFrame.size.height, myFullFrame.size.width);
-//    AddJournalEntryView *journalView = [[AddJournalEntryView alloc]initWithFrame:frame];
-//    [self.view addSubview:journalView];
-//    self.journalView = journalView;
-//    // go send to firebase synch with our dataStore
-    
+    [self createCustomTabBar]; 
 }
 
 
@@ -133,8 +103,25 @@
 
 - (void)addButtonTapped:(UIButton *)sender {
     
-    
-    [self launchAddJournalFullScreenView];
+    [UIView animateWithDuration:2.0 delay:0.5 options:0 animations:^{
+        
+        self.journalEntryTableView.alpha = 0;
+        self.addEntryTopView.alpha = 0;
+        
+        [self launchAddJournalFullScreenView];
+        
+    } completion:^(BOOL finished) {
+        
+        [UIView animateWithDuration:0.5 delay:0 options:0 animations:^{
+            
+            self.journalEntryTableView.alpha = 1;
+            self.addEntryTopView.alpha = 1;
+            
+        } completion:^(BOOL finished) {
+            
+        }];
+        
+    }];
     
 }
 
@@ -149,16 +136,33 @@
     
     self.addJournalFullScreenBlurView.delegate = self;
     
-    [self.view addSubview:self.addJournalFullScreenBlurView];
+    self.addJournalFullScreenBlurView.alpha = 0;
     
-    self.addJournalFullScreenBlurView.translatesAutoresizingMaskIntoConstraints = NO;
-    
-    [self.addJournalFullScreenBlurView.widthAnchor constraintEqualToAnchor:self.view.widthAnchor].active = YES;
-    [self.addJournalFullScreenBlurView.heightAnchor constraintEqualToAnchor:self.view.heightAnchor].active = YES;
-    [self.addJournalFullScreenBlurView.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor].active = YES;
-    [self.addJournalFullScreenBlurView.centerYAnchor constraintEqualToAnchor:self.view.centerYAnchor].active = YES;
-    
-    [self.view bringSubviewToFront:self.addJournalFullScreenBlurView];
+    [UIView animateWithDuration:.5 delay:1.0 options:0 animations:^{
+        
+        
+        [self.view addSubview:self.addJournalFullScreenBlurView];
+        
+        self.addJournalFullScreenBlurView.alpha = 1;
+        
+        self.addJournalFullScreenBlurView.translatesAutoresizingMaskIntoConstraints = NO;
+        
+        [self.addJournalFullScreenBlurView.widthAnchor constraintEqualToAnchor:self.view.widthAnchor].active = YES;
+        [self.addJournalFullScreenBlurView.heightAnchor constraintEqualToAnchor:self.view.heightAnchor].active = YES;
+        [self.addJournalFullScreenBlurView.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor].active = YES;
+        [self.addJournalFullScreenBlurView.centerYAnchor constraintEqualToAnchor:self.view.centerYAnchor].active = YES;
+        
+    } completion:^(BOOL finished) {
+        
+        [UIView animateWithDuration:2 delay:0 options:0 animations:^{
+            
+            [self.view bringSubviewToFront:self.addJournalFullScreenBlurView];
+            
+        } completion:^(BOOL finished) {
+            
+        }];
+        
+    }];
 
 }
 
