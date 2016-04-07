@@ -127,8 +127,23 @@
 
 - (void)addButtonTapped:(UIButton *)sender {
     
-    
-    [self launchAddJournalFullScreenView];
+    [UIView animateWithDuration:2 delay:0 options:0 animations:^{
+        
+        self.journalEntryTableView.alpha = 0;
+        
+        [self launchAddJournalFullScreenView];
+        
+    } completion:^(BOOL finished) {
+        
+        [UIView animateWithDuration:2 delay:0 options:0 animations:^{
+            
+            self.journalEntryTableView.alpha = 1;
+            
+        } completion:^(BOOL finished) {
+            
+        }];
+        
+    }];
     
 }
 
@@ -143,16 +158,28 @@
     
     self.addJournalFullScreenBlurView.delegate = self;
     
-    [self.view addSubview:self.addJournalFullScreenBlurView];
-    
-    self.addJournalFullScreenBlurView.translatesAutoresizingMaskIntoConstraints = NO;
-    
-    [self.addJournalFullScreenBlurView.widthAnchor constraintEqualToAnchor:self.view.widthAnchor].active = YES;
-    [self.addJournalFullScreenBlurView.heightAnchor constraintEqualToAnchor:self.view.heightAnchor].active = YES;
-    [self.addJournalFullScreenBlurView.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor].active = YES;
-    [self.addJournalFullScreenBlurView.centerYAnchor constraintEqualToAnchor:self.view.centerYAnchor].active = YES;
-    
-    [self.view bringSubviewToFront:self.addJournalFullScreenBlurView];
+    [UIView animateWithDuration:2 delay:0.5 options:0 animations:^{
+        
+        [self.view addSubview:self.addJournalFullScreenBlurView];
+        
+        self.addJournalFullScreenBlurView.translatesAutoresizingMaskIntoConstraints = NO;
+        
+        [self.addJournalFullScreenBlurView.widthAnchor constraintEqualToAnchor:self.view.widthAnchor].active = YES;
+        [self.addJournalFullScreenBlurView.heightAnchor constraintEqualToAnchor:self.view.heightAnchor].active = YES;
+        [self.addJournalFullScreenBlurView.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor].active = YES;
+        [self.addJournalFullScreenBlurView.centerYAnchor constraintEqualToAnchor:self.view.centerYAnchor].active = YES;
+        
+    } completion:^(BOOL finished) {
+        
+        [UIView animateWithDuration:2 delay:0 options:0 animations:^{
+            
+            [self.view bringSubviewToFront:self.addJournalFullScreenBlurView];
+            
+        } completion:^(BOOL finished) {
+            
+        }];
+        
+    }];
 
 }
 
