@@ -99,12 +99,12 @@
     UIColor *greenColor = [UIColor colorWithRed:65.0f/255.0f green:194.0f/255.0f blue:65.0f/255.0f alpha:0.2];
     UIColor *grayColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:0.2];
     
-    UIColor *blueColor2 = [UIColor colorWithRed:70.0/255.0 green:135.0/255.0 blue:255/255 alpha:.2];
-    UIColor *yellowColor2 = [UIColor colorWithRed:247.0/255.0 green:255.0/255.0 blue:0.0/255 alpha:.2];
-    UIColor *redColor2 = [UIColor colorWithRed:255.0/255.0 green:9.0/255.0 blue:9.0/255.0 alpha:.2];
-    UIColor *orangeColor2 = [UIColor colorWithRed:255.0/255.0 green:128.0/255.0 blue:0.0/255.0 alpha:.2];
-    UIColor *purpleColor2 = [UIColor colorWithRed:127.0/255.0 green:0.0/255.0 blue:255.0/255.0 alpha:.2];
-    UIColor *grayColor2 = [UIColor colorWithRed:192.0/255.0 green:192.0/255.0 blue:192.0/255.0 alpha:.2];
+//    UIColor *blueColor2 = [UIColor colorWithRed:70.0/255.0 green:135.0/255.0 blue:255/255 alpha:.2];
+//    UIColor *yellowColor2 = [UIColor colorWithRed:247.0/255.0 green:255.0/255.0 blue:0.0/255 alpha:.2];
+//    UIColor *redColor2 = [UIColor colorWithRed:255.0/255.0 green:9.0/255.0 blue:9.0/255.0 alpha:.2];
+//    UIColor *orangeColor2 = [UIColor colorWithRed:255.0/255.0 green:128.0/255.0 blue:0.0/255.0 alpha:.2];
+//    UIColor *purpleColor2 = [UIColor colorWithRed:127.0/255.0 green:0.0/255.0 blue:255.0/255.0 alpha:.2];
+//    UIColor *grayColor2 = [UIColor colorWithRed:192.0/255.0 green:192.0/255.0 blue:192.0/255.0 alpha:.2];
     
     self.blueCircle = [self createCircleViewWithRadius:50 originX:200 originY:40 color:lavendarColor];
     self.yellowCircle = [self createCircleViewWithRadius:30 originX:100 originY:60 color:blueColor];
@@ -113,6 +113,50 @@
     self.purpleCircle = [self createCircleViewWithRadius:50 originX:250 originY:10 color:greenColor];
     self.grayCircle = [self createCircleViewWithRadius:35 originX:5 originY:20 color:grayColor];
     
+    UITapGestureRecognizer *blueCircleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(circleTapped)];
+    blueCircleTap.numberOfTapsRequired = 1;
+    //blueCircleTap.numberOfTouchesRequired = 1;
+    blueCircleTap.cancelsTouchesInView = NO;
+    blueCircleTap.delaysTouchesBegan = NO;
+    blueCircleTap.delaysTouchesEnded = NO;
+    
+    UITapGestureRecognizer *yellowCircleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(circleTapped)];
+    yellowCircleTap.numberOfTapsRequired = 1;
+    //yellowCircleTap.numberOfTouchesRequired = 1;
+    yellowCircleTap.cancelsTouchesInView = NO;
+    yellowCircleTap.delaysTouchesEnded = NO;
+    yellowCircleTap.delaysTouchesBegan = NO;
+    
+    
+    UITapGestureRecognizer *redCircleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(circleTapped)];
+    redCircleTap.numberOfTapsRequired = 1;
+    //redCircleTap.numberOfTouchesRequired = 1;
+    redCircleTap.cancelsTouchesInView = NO;
+    redCircleTap.delaysTouchesBegan = NO;
+    redCircleTap.delaysTouchesEnded = NO;
+    
+    UITapGestureRecognizer *orangeCircleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(circleTapped)];
+    orangeCircleTap.numberOfTapsRequired = 1;
+    //orangeCircleTap.numberOfTouchesRequired = 1;
+    orangeCircleTap.cancelsTouchesInView = NO;
+    orangeCircleTap.delaysTouchesEnded = NO;
+    orangeCircleTap.delaysTouchesBegan = NO;
+    
+    
+    UITapGestureRecognizer *purpleCircleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(circleTapped)];
+    purpleCircleTap.numberOfTapsRequired = 1;
+    //purpleCircleTap.numberOfTouchesRequired = 1;
+    purpleCircleTap.cancelsTouchesInView = NO;
+    purpleCircleTap.delaysTouchesBegan = NO;
+    purpleCircleTap.delaysTouchesBegan = NO;
+    
+    UITapGestureRecognizer *grayCircleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(circleTapped)];
+    grayCircleTap.numberOfTapsRequired = 1;
+    //grayCircleTap.numberOfTouchesRequired = 1;
+    grayCircleTap.cancelsTouchesInView = NO;
+    grayCircleTap.delaysTouchesBegan = NO;
+    grayCircleTap.delaysTouchesEnded = NO;
+    
     [self addSubview:self.blueCircle];
     [self addSubview:self.yellowCircle];
     [self addSubview:self.redCircle];
@@ -120,7 +164,24 @@
     [self addSubview:self.purpleCircle];
     [self addSubview:self.grayCircle];
     
-    [self bringSubviewToFront:self.addButtonView];
+    [self.blueCircle addGestureRecognizer:blueCircleTap];
+    [self.yellowCircle addGestureRecognizer:yellowCircleTap];
+    [self.orangeCircle addGestureRecognizer:redCircleTap];
+    [self.purpleCircle addGestureRecognizer:orangeCircleTap];
+    [self.redCircle addGestureRecognizer:purpleCircleTap];
+    [self.grayCircle addGestureRecognizer:grayCircleTap];
+    
+    self.userInteractionEnabled = YES;
+    
+    self.blueCircle.userInteractionEnabled = YES;
+    self.yellowCircle.userInteractionEnabled = YES;
+    self.redCircle.userInteractionEnabled = YES;
+    self.orangeCircle.userInteractionEnabled = YES;
+    self.purpleCircle.userInteractionEnabled = YES;
+    self.grayCircle.userInteractionEnabled = YES;
+    
+
+    
     
     [self animateView:self.blueCircle withRadius:50];
     [self animateView:self.yellowCircle withRadius:30];
@@ -170,23 +231,39 @@
     NSUInteger yPosition = arc4random_uniform(151);
     NSUInteger time = arc4random_uniform(5);
     
-    [UIView animateWithDuration:time + 8
-     
-                     animations:^{
-                         
-                         circleView.frame = CGRectMake(xPosition-10, yPosition-10, radius*2.0, radius*2.0);
-                         
-                          [self bringSubviewToFront:self.addButtonView];
-                         
-                     } completion:^(BOOL finished) {
-                         
-                         [self animateView:circleView withRadius:radius];
-                     }];
+    [UIView animateWithDuration:time + 8 delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
+        circleView.frame = CGRectMake(xPosition-10, yPosition-10, radius*2.0, radius*2.0);
+    } completion:^(BOOL finished) {
+        [self animateView:circleView withRadius:radius];
+    }];
     
-
+//    [UIView animateWithDuration:time + 8
+//     
+//                     animations:^{
+//                         
+//                         circleView.frame = CGRectMake(xPosition-10, yPosition-10, radius*2.0, radius*2.0);
+//                         
+//                          [self bringSubviewToFront:self.addButtonView];
+//                         
+//                     } completion:^(BOOL finished) {
+//                         
+//                         [self animateView:circleView withRadius:radius];
+//                     }];
 }
 
 
+- (IBAction)menuTapped:(id)sender
+{
+    
+    [self.delegate addButtonTapped:sender];
+}
+
+-(void)circleTapped
+{
+    
+    NSLog(@"circle tapped");
+      [self.delegate addButtonTapped:nil];
+}
 
 
 
