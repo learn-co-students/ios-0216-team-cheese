@@ -82,10 +82,21 @@
     
     self.emotionLabel.text = self.journalEntry.mainEmotion;
     
- 
+    NSDateFormatter *dayFormatter = [[NSDateFormatter alloc] init];
+    NSDateFormatter *monthFormatter = [[NSDateFormatter alloc] init];
+    NSDateFormatter *weekDayFormatter = [[NSDateFormatter alloc] init];
     
+    [dayFormatter setDateFormat:@"d"];
+    [monthFormatter setDateFormat:@"MMMM"];
+    [weekDayFormatter setDateFormat:@"eeee"];
     
-                                 
+    NSString *month = [monthFormatter stringFromDate:self.journalEntry.date];
+    NSString *dayOfMonth = [dayFormatter stringFromDate:self.journalEntry.date];
+    NSString *dayOfWeek = [weekDayFormatter stringFromDate:self.journalEntry.date];
+
+    self.monthLabel.text = month;
+    self.dayOfMonthLabel.text = dayOfMonth;
+    
 }
 
 -(NSString *)imageNameGivenQuestionAnswer:(NSUInteger)answer
