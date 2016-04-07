@@ -111,6 +111,9 @@
     [self.mainFeelingView.heightAnchor constraintEqualToAnchor:self.contentView.heightAnchor].active = YES;
     [self.mainFeelingView.centerXAnchor constraintEqualToAnchor:self.contentView.centerXAnchor].active = YES;
     [self.mainFeelingView.centerYAnchor constraintEqualToAnchor:self.contentView.centerYAnchor].active = YES;
+    
+    [self.mainFeelingView addInitialCirclesWithAnimation:self.mainFeelingView];
+    
 
 }
 

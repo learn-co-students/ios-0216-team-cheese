@@ -58,7 +58,7 @@
 
 -(void)setUpView
 {
-    
+    self.alpha = 1;
     
     [[NSBundle mainBundle] loadNibNamed:@"AddJournalEntry" owner:self options:nil];
     
@@ -66,16 +66,25 @@
     
     self.backgroundImage.image = [UIImage imageNamed:@"clouds"];
     
-    
     self.contentView.frame = self.bounds;
     
 }
 
 - (IBAction)whenAddButtonTapped:(id)sender
 {
-    
-    [self.delegate addButtonTapped:sender];
-    
+    [UIView animateWithDuration:1.5 delay:0.5 options:0 animations:^{
+        
+        self.alpha = 0;
+        
+    } completion:^(BOOL finished) {
+        
+        [self.delegate addButtonTapped:sender];
+        
+        self.contentView.frame = self.bounds;
+        
+        self.alpha = 1;
+    }];
+
 
 }
 

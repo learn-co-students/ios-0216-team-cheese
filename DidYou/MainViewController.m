@@ -43,11 +43,13 @@
     self.journalEntryTableView.delegate = self;
     self.journalEntryTableView.dataSource = self;
     
+    [self preferredStatusBarStyle];
+    
     
     
 //    self.addEntryFullScreenView.alpha = 0;
     
-    [self preferredStatusBarStyle];
+    
     
 //   // set city and state to current users
 //    self.locationManager = [[CLLocationManager alloc]init];
@@ -127,8 +129,23 @@
 
 - (void)addButtonTapped:(UIButton *)sender {
     
-    
-    [self launchAddJournalFullScreenView];
+    [UIView animateWithDuration:2 delay:0 options:0 animations:^{
+        
+        self.journalEntryTableView.alpha = 0;
+        
+        [self launchAddJournalFullScreenView];
+        
+    } completion:^(BOOL finished) {
+        
+        [UIView animateWithDuration:2 delay:0 options:0 animations:^{
+            
+            self.journalEntryTableView.alpha = 1;
+            
+        } completion:^(BOOL finished) {
+            
+        }];
+        
+    }];
     
 }
 
@@ -143,38 +160,34 @@
     
     self.addJournalFullScreenBlurView.delegate = self;
     
-    [self.view addSubview:self.addJournalFullScreenBlurView];
-    
-    self.addJournalFullScreenBlurView.translatesAutoresizingMaskIntoConstraints = NO;
-    
-    [self.addJournalFullScreenBlurView.widthAnchor constraintEqualToAnchor:self.view.widthAnchor].active = YES;
-    [self.addJournalFullScreenBlurView.heightAnchor constraintEqualToAnchor:self.view.heightAnchor].active = YES;
-    [self.addJournalFullScreenBlurView.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor].active = YES;
-    [self.addJournalFullScreenBlurView.centerYAnchor constraintEqualToAnchor:self.view.centerYAnchor].active = YES;
-    
-    [self.view bringSubviewToFront:self.addJournalFullScreenBlurView];
+    [UIView animateWithDuration:2 delay:0.5 options:0 animations:^{
+        
+        [self.view addSubview:self.addJournalFullScreenBlurView];
+        
+        self.addJournalFullScreenBlurView.translatesAutoresizingMaskIntoConstraints = NO;
+        
+        [self.addJournalFullScreenBlurView.widthAnchor constraintEqualToAnchor:self.view.widthAnchor].active = YES;
+        [self.addJournalFullScreenBlurView.heightAnchor constraintEqualToAnchor:self.view.heightAnchor].active = YES;
+        [self.addJournalFullScreenBlurView.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor].active = YES;
+        [self.addJournalFullScreenBlurView.centerYAnchor constraintEqualToAnchor:self.view.centerYAnchor].active = YES;
+        
+    } completion:^(BOOL finished) {
+        
+        [UIView animateWithDuration:2 delay:0 options:0 animations:^{
+            
+            [self.view bringSubviewToFront:self.addJournalFullScreenBlurView];
+            
+        } completion:^(BOOL finished) {
+            
+        }];
+        
+    }];
 
 }
 
 -(void)totalJournalEntryComplete
 {
     [self.journalEntryTableView reloadData];
-    
-    DYJournalEntry *lastEntry = [self.dataStore.currentUser.journals lastObject];
-    
-    DYQuestion *question1 = lastEntry.questions[0];
-    DYQuestion *question2 = lastEntry.questions[1];
-    DYQuestion *question3 = lastEntry.questions[2];
-    DYQuestion *question4 = lastEntry.questions[3];
-    DYQuestion *question5 = lastEntry.questions[4];
-    
-    
-    NSLog(@"Emotion is: %@",lastEntry.mainEmotion);
-    NSLog(@"Answer 1 is: %lu", question1.answer);
-    NSLog(@"Answer 2 is: %lu", question2.answer);
-    NSLog(@"Answer 3 is: %lu", question3.answer);
-    NSLog(@"Answer 4 is: %lu", question4.answer);
-    NSLog(@"Answer 5 is: %lu", question5.answer);
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle
@@ -205,8 +218,7 @@
     cell.cellView.journalEntry = journalAtRow;
     
     return cell;
-    
-    
+
 }
 
 

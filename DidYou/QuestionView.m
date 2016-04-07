@@ -57,15 +57,25 @@
     
     [[NSBundle mainBundle] loadNibNamed:@"Question" owner:self options:nil];
     
-    [self addSubview:self.contentView];
-    
-    self.contentView.frame = self.bounds;
-    
-    self.dataStore = [DataStore sharedDataStore];
-    
-    self.currentEntry = [self.dataStore.currentUser.journals lastObject];
-    
-    self.currentQuestion = self.currentEntry.questions[0];
+    [UIView animateWithDuration:2 delay:0 options:0 animations:^{
+        
+        self.alpha = 0;
+        
+        [self addSubview:self.contentView];
+        
+        self.contentView.frame = self.bounds;
+        
+        self.dataStore = [DataStore sharedDataStore];
+        
+        self.currentEntry = [self.dataStore.currentUser.journals lastObject];
+        
+        self.currentQuestion = self.currentEntry.questions[0];
+        
+        self.alpha = 1;
+
+    } completion:^(BOOL finished) {
+        
+    }];
     
 }
 
@@ -86,20 +96,6 @@
 {
     
     self.currentQuestion.answer = 2;
-    
-    NSLog(@"answer is: %lu",self.currentQuestion.answer);
-    
-    ((DYQuestion *)self.currentEntry.questions[self.questionIndex]).answer = 2;
-    
-    NSLog(@"this answer is: %lu",((DYQuestion *)self.currentEntry.questions[self.questionIndex]).answer);
-    
-    DYQuestion *whatever = self.currentEntry.questions[self.questionIndex];
-    
-    whatever.answer = 2;
-    
-    NSLog(@"Whatever: %lu", whatever.answer);
-    
-    
     
     [self.delegate questionAnswered:2];
     
