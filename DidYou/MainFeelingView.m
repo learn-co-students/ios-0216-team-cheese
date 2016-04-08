@@ -149,7 +149,6 @@
                            
                            [self addCircles];
                            
-                           
                            [self layoutIfNeeded];
                            
                        } completion:^(BOOL finished) {

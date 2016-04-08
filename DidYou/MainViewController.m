@@ -25,8 +25,6 @@
 @property (strong, nonatomic) IBOutlet UITableView *journalEntryTableView;
 @property (strong, nonatomic) CustomTabBarView *tabBar;
 
-
-
 @property (strong, nonatomic) NewJournalEntryBlurView *addJournalFullScreenBlurView;
 @property (strong, nonatomic) AddJournalEntryView *journalView;
 
@@ -36,9 +34,9 @@
 @property (strong, nonatomic) CLGeocoder *geocoder;
 @property (strong, nonatomic) CLPlacemark *placemark;
 
-@property (strong, nonatomic) NSLayoutConstraint *blurViewheightConstraint;
-@property (strong, nonatomic) NSLayoutConstraint *blurViewWidthConstraint;
-@property (strong, nonatomic)
+@property (strong, nonatomic) NSLayoutConstraint *blurViewSmallHeightConstraint;
+@property (strong, nonatomic) NSLayoutConstraint *blurViewBigHeightConstraint;
+
 
 @end
 
@@ -125,25 +123,27 @@
 
 - (void)addButtonTapped:(UIButton *)sender {
     
-    [UIView animateWithDuration:2.0 delay:0.5 options:0 animations:^{
-        
-        self.journalEntryTableView.alpha = 0;
-        self.addEntryTopView.alpha = 0;
-        
-        [self launchAddJournalFullScreenView];
-        
-    } completion:^(BOOL finished) {
-        
-        [UIView animateWithDuration:0.5 delay:0 options:0 animations:^{
-            
-            self.journalEntryTableView.alpha = 1;
-            self.addEntryTopView.alpha = 1;
-            
-        } completion:^(BOOL finished) {
-            
-        }];
-        
-    }];
+    [self launchAddJournalFullScreenView];
+    
+//    [UIView animateWithDuration:2.0 delay:0.5 options:0 animations:^{
+//        
+//        self.journalEntryTableView.alpha = 0;
+//        self.addEntryTopView.alpha = 0;
+//        
+//        [self launchAddJournalFullScreenView];
+//        
+//    } completion:^(BOOL finished) {
+//        
+//        [UIView animateWithDuration:0.5 delay:0 options:0 animations:^{
+//            
+//            self.journalEntryTableView.alpha = 1;
+//            self.addEntryTopView.alpha = 1;
+//            
+//        } completion:^(BOOL finished) {
+//            
+//        }];
+//        
+//    }];
     
 }
 
@@ -151,41 +151,57 @@
 -(void)launchAddJournalFullScreenView
 {
     
-    UIVisualEffect *blurEffect;
-    blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
     
-    self.addJournalFullScreenBlurView= [[NewJournalEntryBlurView alloc] initWithEffect:blurEffect];
     
-    self.addJournalFullScreenBlurView.delegate = self;
+    [self createBlurView];
     
-    self.addJournalFullScreenBlurView.alpha = 0;
+//    [UIView animateWithDuration:.5 delay:.2 options:nil
+//                     animations:^{
+//                         self.blurViewSmallHeightConstraint.active = NO;
+//                         self.blurViewBigHeightConstraint.active = YES;
+//                         [self.view layoutIfNeeded];
+//                         
+//                     } completion:^(BOOL finished) {
+//                         nil;
+//                     }];
+    
+//    UIVisualEffect *blurEffect;
+//    blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+//    
+//    self.addJournalFullScreenBlurView= [[NewJournalEntryBlurView alloc] initWithEffect:blurEffect];
+//    
+//    self.addJournalFullScreenBlurView.delegate = self;
+//    
+//    self.addJournalFullScreenBlurView.alpha = 0;
+    
+    
 
 
-    [UIView animateWithDuration:.5 delay:0 options:0 animations:^{
-        
-        
-        [self.view addSubview:self.addJournalFullScreenBlurView];
-        
-        self.addJournalFullScreenBlurView.alpha = 1;
-        
-        self.addJournalFullScreenBlurView.translatesAutoresizingMaskIntoConstraints = NO;
-        
-        [self.addJournalFullScreenBlurView.widthAnchor constraintEqualToAnchor:self.view.widthAnchor].active = YES;
-        [self.addJournalFullScreenBlurView.heightAnchor constraintEqualToAnchor:self.view.heightAnchor].active = YES;
-        [self.addJournalFullScreenBlurView.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor].active = YES;
-        [self.addJournalFullScreenBlurView.centerYAnchor constraintEqualToAnchor:self.view.centerYAnchor].active = YES;
-        
-    } completion:^(BOOL finished) {
-        
-        [UIView animateWithDuration:2 delay:0 options:0 animations:^{
-            
-            [self.view bringSubviewToFront:self.addJournalFullScreenBlurView];
-            
-        } completion:^(BOOL finished) {
-            
-        }];
-        
-    }];
+//    [UIView animateWithDuration:.5 delay:0 options:0 animations:^{
+//        
+//        
+//        [self.view addSubview:self.addJournalFullScreenBlurView];
+//        
+//        self.addJournalFullScreenBlurView.alpha = 1;
+//        
+//        self.addJournalFullScreenBlurView.translatesAutoresizingMaskIntoConstraints = NO;
+//        
+//        [self.addJournalFullScreenBlurView.widthAnchor constraintEqualToAnchor:self.view.widthAnchor].active = YES;
+//        [self.addJournalFullScreenBlurView.heightAnchor constraintEqualToAnchor:self.view.heightAnchor].active = YES;
+//        [self.addJournalFullScreenBlurView.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor].active = YES;
+//        [self.addJournalFullScreenBlurView.centerYAnchor constraintEqualToAnchor:self.view.centerYAnchor].active = YES;
+//        
+//    } completion:^(BOOL finished) {
+//        
+//        [UIView animateWithDuration:2 delay:0 options:0 animations:^{
+//            
+//            [self.view bringSubviewToFront:self.addJournalFullScreenBlurView];
+//            
+//        } completion:^(BOOL finished) {
+//            
+//        }];
+//        
+//    }];
 
 }
 
@@ -300,44 +316,39 @@
 
 
 
-//-(void)createBlurView
-//{
-//    
-//    UIVisualEffect *blurEffect;
-//    blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
-//    
-//    self.addJournalFullScreenBlurView= [[NewJournalEntryBlurView alloc] initWithEffect:blurEffect];
-//    
-//    self.addJournalFullScreenBlurView.delegate = self;
-//    
-//    self.addJournalFullScreenBlurView.translatesAutoresizingMaskIntoConstraints = NO;
-//    
-//    self.blurViewheightConstraint = [self.addJournalFullScreenBlurView.heightAnchor constraintEqualToAnchor:self.view.heightAnchor multiplier:.3];
-//    self.blurViewheightConstraint.active = YES;
-//    
-//    [self.addJournalFullScreenBlurView.topAnchor constraintEqualToAnchor:self.view.topAnchor].active = YES;
-//    [self.addJournalFullScreenBlurView.widthAnchor constraintEqualToAnchor:self.view.widthAnchor].active = YES;
-//    [self.addJournalFullScreenBlurView.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor].active = YES;
-//    
-//    
-//    
-//
-//    
-//}
-//-(void)topViewToBlur
-//{
-//    
-//}
-//
-//-(void)restOfScreenToBlur
-//{
-//    
-//}
-//
-//-(void)mainFeelingLaunched
-//{
-//    
-//}
+-(void)createBlurView
+{
+    
+    UIVisualEffect *blurEffect;
+    blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+    
+    self.addJournalFullScreenBlurView= [[NewJournalEntryBlurView alloc] initWithEffect:blurEffect];
+    
+    self.addJournalFullScreenBlurView.delegate = self;
+    
+    [self.view addSubview:self.addJournalFullScreenBlurView];
+    
+    self.addJournalFullScreenBlurView.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    self.blurViewSmallHeightConstraint = [self.addJournalFullScreenBlurView.heightAnchor constraintEqualToAnchor:self.view.heightAnchor multiplier:.3];
+    self.blurViewSmallHeightConstraint.active = NO;
+    
+    self.blurViewBigHeightConstraint = [self.addJournalFullScreenBlurView.heightAnchor constraintEqualToAnchor:self.view.heightAnchor];
+    self.blurViewBigHeightConstraint.active = YES;
+    
+    [self.addJournalFullScreenBlurView.topAnchor constraintEqualToAnchor:self.view.topAnchor].active = YES;
+    [self.addJournalFullScreenBlurView.widthAnchor constraintEqualToAnchor:self.view.widthAnchor].active = YES;
+    [self.addJournalFullScreenBlurView.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor].active = YES;
+
+}
+
+
+
+
+-(void)mainFeelingLaunched
+{
+    
+}
 
 
 
