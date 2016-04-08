@@ -7,21 +7,61 @@
 //
 
 #import "StatsViewController.h"
+#import "CustomTabBarView.h"
 
-@interface StatsViewController ()
+@interface StatsViewController () <CustomTabBarDelegate>
+
+@property (strong, nonatomic) CustomTabBarView *tabBar;
 
 @end
 
 @implementation StatsViewController
 
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    [self createCustomTabBar];
+    
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)createCustomTabBar
+{
+    
+    self.tabBar = [[CustomTabBarView alloc] init];
+    
+    self.tabBar.currentScreen = @"stats";
+    
+    [self.view addSubview:self.tabBar];
+    
+    self.tabBar.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    [self.tabBar.widthAnchor constraintEqualToAnchor:self.view.widthAnchor].active = YES;
+    [self.tabBar.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor].active = YES;
+    [self.tabBar.heightAnchor constraintEqualToConstant:40].active = YES;
+    [self.tabBar.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor].active = YES;
+    
+    self.tabBar.delegate = self;
+    
+}
+
+-(void)userNavigates:(NSString *)viewChosen
+{
+    if ([viewChosen isEqualToString:@"main"])
+    {
+        [self performSegueWithIdentifier:@"segueStatsToMain" sender:nil];
+    }
+    else if ([viewChosen isEqualToString:@"user"])
+    {
+        [self performSegueWithIdentifier:@"segueStatsToUser" sender:nil];
+    }
 }
 
 /*
@@ -33,5 +73,7 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+
 
 @end

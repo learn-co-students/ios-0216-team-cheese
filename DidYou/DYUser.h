@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DYJournalEntry.h"
 
 @interface DYUser : NSObject
 

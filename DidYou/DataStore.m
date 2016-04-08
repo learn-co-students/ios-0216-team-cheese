@@ -7,6 +7,8 @@
 //
 
 #import "DataStore.h"
+#import "DYUser.h"
+#import "DYJournalEntry.h"
 
 @implementation DataStore
 
@@ -31,23 +33,67 @@
         _emotions = [self emotionsDictionary];
         _userUUID = [self userUUID];
         
+        [self setupFirebase];
         [self userUUIDToUser];
-        
-        [self testUsers];
+
     }
     
     return self;
 }
 
+-(void)setupFirebase
+{
+    // Create a reference to a Firebase database URL
+    self.myRootRef = [[Firebase alloc] initWithUrl:@"https://incandescent-fire-4531.firebaseio.com/"];
+}
+
+-(void)addUserToFirebase: (DYUser*)user
+{
+    // Add new user to firebase
+    Firebase *userRef = [self getUserRef:user];
+    DYUtility *util = [DYUtility sharedUtility];
+    NSDictionary *myUser = @{
+                            @"name": user.name,
+                            @"city": user.city,
+                            @"country": user.country,
+                            @"signUpDate": [util getUTCFormatDate: user.signUpDate],
+                            @"journals": @{}
+                            };
+      [userRef setValue: myUser];
+}
+
+-(void)addJournalToFirebase:(DYUser *)user :(DYJournalEntry *)journalEntry;
+
+{
+    // get the user reference and serialize the journal
+    // use childByAutoId to assign random key to journal entry
+    Firebase *journalRef = [[self getUserRef: user] childByAppendingPath:@"journals"];
+    [[journalRef childByAutoId] setValue:[journalEntry serialize]];
+}
+
+-(void)pushLastJournal
+{
+    // Journal was updated so push entry to firebase
+    [self addJournalToFirebase:self.currentUser :[self.currentUser.journals lastObject]];
+}
+
+
+-(Firebase *)getUserRef: (DYUser *)user
+{
+    return [[self.myRootRef childByAppendingPath: @"users"] childByAppendingPath:user.userUUID];
+}
+
 -(NSDictionary *)emotionsDictionary
 {
     
-    NSDictionary *emotions = @{ @"Happy"  :  @[ @"Fulfilled",@"Content",@"Glad",@"Complete",@"Satisfied",@"Optimistic",@"Pleased",@"Serene"],
-                                @"Excited"  :  @[ @"Ecstatic",@"Engergetic",@"Aroused",@"Bouncy",@"Aroused",@"Perky",@"Antsy",@"Joyful"],
-                                @"Tender"  :  @[ @"Intimate",@"Loving",@"Warm-hearted",@"Sympathetic",@"Touched",@"Kind",@"Soft",@"Trusting"],
-                                @"Scared"  :  @[ @"Tense",@"Nervous",@"Anxious",@"Jittery",@"Frightened",@"Panic-stricken",@"Terrified",@"Apprehensive"],
-                                @"Angry"  :  @[ @"Irritated",@"Resentful",@"Miffed",@"Upset",@"Mad",@"Furious",@"Raging",@"Annoyed"],
-                                @"Sad"  :  @[ @"Down",@"Blue",@"Mopey",@"Grieved",@"Dejected",@"Depressed",@"Heartbroken",@"Remorseful"]};
+
+    NSDictionary *emotions = @{ @"Happy"  :  @[ @"Fulfilled",@"Glad",@"Complete",@"Optimistic",@"Pleased",@"Serene"],
+                                @"Excited"  :  @[ @"Ecstatic",@"Engergetic",@"Aroused",@"Bouncy",@"Aroused",@"Joyful"],
+                                @"Tender"  :  @[ @"Intimate",@"Loving",@"Sympathetic",@"Touched",@"Soft",@"Trusting"],
+                                @"Scared"  :  @[ @"Tense",@"Nervous",@"Anxious",@"Frightened",@"Terrified",@"Apprehensive"],
+                                @"Angry"  :  @[ @"Irritated",@"Resentful",@"Upset",@"Furious",@"Raging",@"Annoyed"],
+                                @"Sad"  :  @[ @"Blue",@"Mopey",@"Dejected",@"Depressed",@"Heartbroken",@"Remorseful"]};
+
     
     return emotions;
 }
@@ -64,15 +110,13 @@
     
     if (uuidExists)
     {
-        
-       [self createNewCurrentUserWithUUID:userDefaultsDictionary[@"userUUID"]];  // we will need to change this, what we'll need to do is go to firebase and go find the user
+        [self createNewCurrentUserFromFirebase:userDefaultsDictionary[@"userUUID"]];
     }
     
     else
     {
        
         NSString *newUUID = [self createNewUserUUID];
-        
         [self createNewCurrentUserWithUUID:newUUID];
         
     }
@@ -100,9 +144,57 @@
     
     self.currentUser = newUser;
     
+    // duh
+    //DYJournalEntry *dummyEntry = [[DYJournalEntry alloc] init];
+    //[self.currentUser.journals addObject:dummyEntry];
+
     [self.users addObject:self.currentUser];
     
-    // at this point we'd push the new user to firebase
+    [self addUserToFirebase: newUser];
+    
+}
+
+-(void)createNewCurrentUserFromFirebase:(NSString *)userUUID
+{
+    
+    // retrieve the user information from Firebase
+    //Firebase *usersRef = [self.myRootRef childByAppendingPath: @"users"];
+    //Firebase *userRef = [usersRef childByAppendingPath: userUUID];
+    [[[self.myRootRef childByAppendingPath:@"users"] childByAppendingPath:userUUID]
+     // Take the snapshot of the entire tree under users/userUUID
+     observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
+        if (snapshot.value == [NSNull null]) {
+            NSLog(@"firebase returned null value for path");
+            return;
+        }
+         DYUtility *util = [DYUtility sharedUtility];
+         NSMutableArray *journals = [[NSMutableArray alloc] init];
+         NSDictionary *result = [snapshot value];
+         DYUser *newUser = [[DYUser alloc] initWithUserUUID:userUUID signUpDate: [util fromUTCFormatDate: result[@"signUpDate"]]];
+         newUser.name = result[@"name"];
+         newUser.city = result[@"city"];
+         newUser.country = result[@"country"];
+         // Deserialize each journal entry
+         NSMutableDictionary *journalDict = result[@"journals"];
+         for (NSString *key in [journalDict allKeys])
+         {
+             [journals addObject:[[DYJournalEntry alloc] initWithDeserialize: journalDict[key]]];
+         }
+         newUser.journals = journals;
+         
+//         if ([newUser.journals count] == 0) {
+//             DYJournalEntry *dummy = [[DYJournalEntry alloc] init];
+//             [newUser.journals addObject:dummy];
+//         }
+         self.currentUser = newUser;
+         [self.users addObject:self.currentUser];
+         // Notify the main controller that the firebase data
+         // has arrived
+         [[NSNotificationCenter defaultCenter]
+          postNotificationName:@"FirebaseNotification"
+          object:self];
+         
+     }];
     
 }
 
@@ -169,7 +261,7 @@
     
     testEntry2.date = [[NSDate date] dateByAddingTimeInterval:-60*60*24];
     testEntry2.mainEmotion = @"Nervous";
-    testEntry2.journalEntry = @"I am really nervous today.  I goign to ask my girlfriend to marry me but I'm not sure she likes me all that much so this should be interesting.\n\nHere I go.";
+    testEntry2.journalEntry = @"I am really nervous today.  I was going to ask my girlfriend to marry me but I'm not sure she likes me all that much so this should be interesting.\n\nHere I go.";
     testEntry2.picture1Address = @"testImage2";
     
     testEntry3.date = [[NSDate date] dateByAddingTimeInterval:-60*60*24*2];

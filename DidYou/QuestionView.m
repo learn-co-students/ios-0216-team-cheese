@@ -8,6 +8,8 @@
 
 #import "QuestionView.h"
 #import "DataStore.h"
+#import "DYUser.h"
+#import "DYJournalEntry.h"
 
 @interface QuestionView ()
 
@@ -84,7 +86,6 @@
     _questionIndex = questionIndex;
     
     self.currentQuestion = self.currentEntry.questions[self.questionIndex];
-    
     self.questionLabel.text = self.currentQuestion.question;
     
 }

@@ -7,7 +7,6 @@
 //
 
 #import "DYJournalEntry.h"
-#import "DYQuestion.h"
 
 @implementation DYJournalEntry
 
@@ -39,14 +38,49 @@
     
 }
 
+-(instancetype)initWithDeserialize: (NSMutableDictionary*)data
+{
+    self = [super init];
+    if (self)
+    {
+        DYUtility *util = [DYUtility sharedUtility];
+        NSMutableArray *q = [[NSMutableArray alloc] init];
+        for (NSMutableDictionary *dict in data[@"questions"])
+        {
+            [q addObject:[[DYQuestion alloc] initWithDeserialize:dict]];
+        }
+        _date = [util fromUTCFormatDate:data[@"date"]];
+        _mainEmotion = data[@"emotion"];
+        _journalEntry = data[@"journalEntry"];
+        _picture1Address = data[@"picture1Address"];
+        _questions = q;
+    }
+    return self;
+}
 
--(NSArray *)generateQuestions{
+-(NSMutableDictionary *)serialize
+{
+    DYUtility *util = [DYUtility sharedUtility];
+    NSMutableDictionary *data = [[NSMutableDictionary alloc] init];
     
+    NSMutableArray *questions = [[NSMutableArray alloc] init];
     
-    NSArray *questions = @[ [[DYQuestion alloc] initWithQuestion:@"get a good night's sleep?"] , [[DYQuestion alloc] initWithQuestion:@"do something nice for someone?"] ,[[DYQuestion alloc] initWithQuestion:@"eat a healthy breakfast?"] , [[DYQuestion alloc] initWithQuestion:@"workout in any way?"] , [[DYQuestion alloc] initWithQuestion:@"have sex?"]];
+    for (DYQuestion *question in _questions)
+    {
+        [questions addObject:[question serialize]];
+    }
+    data[@"date"] = [util getUTCFormatDate:_date];
+    data[@"emotion"] = _mainEmotion;
+    data[@"journalEntry"] = _journalEntry;
+    data[@"picture1address"] = _picture1Address;
+    data[@"questions"] = questions;
+    return data;
+}
+
+-(NSArray *)generateQuestions
+{
     
-    return questions;
-                            
+    return @[ [[DYQuestion alloc] initWithQuestion:@"get a good night's sleep?"] , [[DYQuestion alloc] initWithQuestion:@"eat a healthy breakfast?"] ,[[DYQuestion alloc] initWithQuestion:@"workout in any way?"] , [[DYQuestion alloc] initWithQuestion:@"do something nice for someone?"] , [[DYQuestion alloc] initWithQuestion:@"have sex?"]];
 }
 
 

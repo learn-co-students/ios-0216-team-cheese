@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddJournalEntryView">
             <connections>
-                <outlet property="addButton" destination="ygO-GU-acJ" id="fkb-wY-ICc"/>
-                <outlet property="backgroundImage" destination="jd5-1G-1Mb" id="Mm8-ez-ecN"/>
                 <outlet property="contentView" destination="iN0-l3-epB" id="h35-tW-h2l"/>
             </connections>
         </placeholder>
@@ -17,34 +17,30 @@
             <rect key="frame" x="0.0" y="0.0" width="629" height="203"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jd5-1G-1Mb">
-                    <rect key="frame" x="0.0" y="1" width="629" height="203"/>
-                </imageView>
-                <button opaque="NO" alpha="0.40000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ygO-GU-acJ">
-                    <rect key="frame" x="0.0" y="0.0" width="629" height="203"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <state key="normal" title="How are you feeling?">
-                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    </state>
-                    <connections>
-                        <action selector="whenAddButtonTapped:" destination="-1" eventType="touchUpInside" id="IcT-ZG-q57"/>
-                    </connections>
-                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="didYou" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CYs-mf-zSt">
+                    <rect key="frame" x="10" y="10" width="154" height="46"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="26"/>
+                    <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+            <gestureRecognizers/>
             <constraints>
-                <constraint firstItem="ygO-GU-acJ" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="6LR-Ly-1Q6"/>
-                <constraint firstItem="ygO-GU-acJ" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="FgH-zk-oul"/>
-                <constraint firstItem="ygO-GU-acJ" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Gna-eh-Sba"/>
-                <constraint firstItem="jd5-1G-1Mb" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="LrQ-EA-rIK"/>
-                <constraint firstItem="jd5-1G-1Mb" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" id="SZU-Xi-f8q"/>
-                <constraint firstItem="jd5-1G-1Mb" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="aDB-p8-iJc"/>
-                <constraint firstItem="jd5-1G-1Mb" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="l3y-eg-ODK"/>
-                <constraint firstItem="ygO-GU-acJ" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" id="mgI-zf-Nn4"/>
+                <constraint firstItem="CYs-mf-zSt" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="eN8-eM-GvV"/>
+                <constraint firstItem="CYs-mf-zSt" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="ldF-4o-0gB"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outletCollection property="gestureRecognizers" destination="uZV-Uc-XVg" appends="YES" id="COl-q6-I7C"/>
+            </connections>
             <point key="canvasLocation" x="299.5" y="24.5"/>
         </view>
+        <tapGestureRecognizer cancelsTouchesInView="NO" delaysTouchesEnded="NO" id="uZV-Uc-XVg">
+            <connections>
+                <action selector="menuTapped:" destination="-1" id="Jd2-iL-wK6"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
 </document>

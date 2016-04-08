@@ -21,9 +21,8 @@
 
 -(instancetype)initWithQuestion:(NSString *)question;
 
-
-
-
+-(instancetype)initWithDeserialize:(NSMutableDictionary *)data;
+-(NSMutableDictionary *)serialize;
 
 
 @end

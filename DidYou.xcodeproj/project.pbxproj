@@ -16,6 +16,9 @@
 		31FF282B1CAD736E008051C0 /* CategoryFeelingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FF282A1CAD736E008051C0 /* CategoryFeelingView.m */; };
 		31FF282E1CAD7382008051C0 /* QuestionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FF282D1CAD7382008051C0 /* QuestionView.m */; };
 		31FF28311CAD7398008051C0 /* JournalAndPictureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FF28301CAD7398008051C0 /* JournalAndPictureView.m */; };
+
+		779BD9041CB736560027DC91 /* DYUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 779BD9031CB736560027DC91 /* DYUtility.m */; };
+
 		AB49939EBAFBADBED3BC9BF4 /* libPods-DidYou.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 563053DD0003F7BE5361FBFA /* libPods-DidYou.a */; };
 		AB92E71A1CAB01F200199034 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AB92E7191CAB01F200199034 /* main.m */; };
 		AB92E71D1CAB01F200199034 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AB92E71C1CAB01F200199034 /* AppDelegate.m */; };
@@ -28,7 +31,6 @@
 		AB92E75D1CAB113700199034 /* DataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = AB92E75C1CAB113700199034 /* DataStore.m */; };
 		AB92E75F1CAC48DE00199034 /* AddJournalEntry.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB92E75E1CAC48DE00199034 /* AddJournalEntry.xib */; };
 		AB92E7621CAC495F00199034 /* AddJournalEntryView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB92E7611CAC495F00199034 /* AddJournalEntryView.m */; };
-		AB92E76C1CAC696400199034 /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB92E76B1CAC696400199034 /* SettingsTableViewController.m */; };
 		AB92E76F1CAC697B00199034 /* StatsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB92E76E1CAC697B00199034 /* StatsViewController.m */; };
 		AB92E7951CAD9CB400199034 /* NewJournalEntryBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB92E7941CAD9CB400199034 /* NewJournalEntryBlurView.m */; };
 		AB92E7971CADBC2F00199034 /* IndividualFeeling.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB92E7961CADBC2F00199034 /* IndividualFeeling.xib */; };
@@ -37,6 +39,10 @@
 		AB92E7D41CB400B600199034 /* JournalEntryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB92E7D31CB400B600199034 /* JournalEntryTableViewCell.xib */; };
 		AB92E7D71CB4063A00199034 /* JournalEntryTableViewCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB92E7D61CB4063A00199034 /* JournalEntryTableViewCellView.m */; };
 		AB92E7DA1CB40C6400199034 /* JournalEntryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB92E7D91CB40C6400199034 /* JournalEntryTableViewCell.m */; };
+		AB92E7DC1CB5585D00199034 /* CustomTabBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB92E7DB1CB5585D00199034 /* CustomTabBar.xib */; };
+		AB92E7DF1CB55BE000199034 /* CustomTabBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB92E7DE1CB55BE000199034 /* CustomTabBarView.m */; };
+		AB92E7E21CB5708200199034 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB92E7E11CB5708200199034 /* SettingsViewController.m */; };
+		AB92E7E41CB71A1A00199034 /* JournalEntryTableViewCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB92E7E31CB71A1A00199034 /* JournalEntryTableViewCell2.xib */; };
 		CD4CCAC51CB6EA0C00805B1F /* Stats.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD4CCAC41CB6EA0C00805B1F /* Stats.xib */; };
 		CDA19A171CB58A28001E1872 /* MoodCircleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CDA19A161CB58A28001E1872 /* MoodCircleButton.m */; };
 /* End PBXBuildFile section */
@@ -57,6 +63,8 @@
 		31FF282F1CAD7398008051C0 /* JournalAndPictureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JournalAndPictureView.h; sourceTree = "<group>"; };
 		31FF28301CAD7398008051C0 /* JournalAndPictureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JournalAndPictureView.m; sourceTree = "<group>"; };
 		563053DD0003F7BE5361FBFA /* libPods-DidYou.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DidYou.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		779BD9021CB736560027DC91 /* DYUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYUtility.h; sourceTree = "<group>"; };
+		779BD9031CB736560027DC91 /* DYUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYUtility.m; sourceTree = "<group>"; };
 		A6F0F00FFE68D8283CB2E5C1 /* Pods-DidYou.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DidYou.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DidYou/Pods-DidYou.debug.xcconfig"; sourceTree = "<group>"; };
 		AB92E7151CAB01F200199034 /* DidYou.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DidYou.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB92E7191CAB01F200199034 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -77,8 +85,6 @@
 		AB92E75E1CAC48DE00199034 /* AddJournalEntry.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddJournalEntry.xib; sourceTree = "<group>"; };
 		AB92E7601CAC495F00199034 /* AddJournalEntryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddJournalEntryView.h; sourceTree = "<group>"; };
 		AB92E7611CAC495F00199034 /* AddJournalEntryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddJournalEntryView.m; sourceTree = "<group>"; };
-		AB92E76A1CAC696400199034 /* SettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsTableViewController.h; sourceTree = "<group>"; };
-		AB92E76B1CAC696400199034 /* SettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTableViewController.m; sourceTree = "<group>"; };
 		AB92E76D1CAC697B00199034 /* StatsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatsViewController.h; sourceTree = "<group>"; };
 		AB92E76E1CAC697B00199034 /* StatsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatsViewController.m; sourceTree = "<group>"; };
 		AB92E7931CAD9CB400199034 /* NewJournalEntryBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewJournalEntryBlurView.h; sourceTree = "<group>"; };
@@ -92,6 +98,12 @@
 		AB92E7D61CB4063A00199034 /* JournalEntryTableViewCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JournalEntryTableViewCellView.m; sourceTree = "<group>"; };
 		AB92E7D81CB40C6400199034 /* JournalEntryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JournalEntryTableViewCell.h; sourceTree = "<group>"; };
 		AB92E7D91CB40C6400199034 /* JournalEntryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JournalEntryTableViewCell.m; sourceTree = "<group>"; };
+		AB92E7DB1CB5585D00199034 /* CustomTabBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomTabBar.xib; sourceTree = "<group>"; };
+		AB92E7DD1CB55BE000199034 /* CustomTabBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTabBarView.h; sourceTree = "<group>"; };
+		AB92E7DE1CB55BE000199034 /* CustomTabBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTabBarView.m; sourceTree = "<group>"; };
+		AB92E7E01CB5708200199034 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		AB92E7E11CB5708200199034 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		AB92E7E31CB71A1A00199034 /* JournalEntryTableViewCell2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JournalEntryTableViewCell2.xib; sourceTree = "<group>"; };
 		CD4CCAC41CB6EA0C00805B1F /* Stats.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Stats.xib; sourceTree = "<group>"; };
 		CDA19A151CB58A28001E1872 /* MoodCircleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoodCircleButton.h; sourceTree = "<group>"; };
 		CDA19A161CB58A28001E1872 /* MoodCircleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoodCircleButton.m; sourceTree = "<group>"; };
@@ -141,6 +153,8 @@
 			children = (
 				31FF281B1CAD6BED008051C0 /* DYQuestion.h */,
 				31FF281C1CAD6BED008051C0 /* DYQuestion.m */,
+				779BD9021CB736560027DC91 /* DYUtility.h */,
+				779BD9031CB736560027DC91 /* DYUtility.m */,
 				AB92E71B1CAB01F200199034 /* AppDelegate.h */,
 				AB92E71C1CAB01F200199034 /* AppDelegate.m */,
 				AB92E7211CAB01F200199034 /* Main.storyboard */,
@@ -156,6 +170,7 @@
 				AB92E7691CAC528600199034 /* Singleton Data Store */,
 				AB92E7241CAB01F200199034 /* Assets.xcassets */,
 				AB92E7261CAB01F200199034 /* LaunchScreen.storyboard */,
+				31FF28301CAD7398008051C0 /* JournalAndPictureView.m */,
 				AB92E7291CAB01F200199034 /* Info.plist */,
 				AB92E7181CAB01F200199034 /* Supporting Files */,
 			);
@@ -178,7 +193,9 @@
 				31FF281E1CAD72D9008051C0 /* MainFeeling.xib */,
 				31FF28201CAD72EB008051C0 /* CategoryFeeling.xib */,
 				AB92E7D11CB2E41900199034 /* CategoryFeelingDetail.xib */,
+				AB92E7DB1CB5585D00199034 /* CustomTabBar.xib */,
 				AB92E7961CADBC2F00199034 /* IndividualFeeling.xib */,
+				AB92E7E31CB71A1A00199034 /* JournalEntryTableViewCell2.xib */,
 				AB92E7D31CB400B600199034 /* JournalEntryTableViewCell.xib */,
 				31FF28221CAD7303008051C0 /* Question.xib */,
 				31FF28241CAD731C008051C0 /* JournalAndPicture.xib */,
@@ -195,16 +212,17 @@
 				31FF28271CAD7356008051C0 /* MainFeelingView.m */,
 				AB92E7601CAC495F00199034 /* AddJournalEntryView.h */,
 				AB92E7611CAC495F00199034 /* AddJournalEntryView.m */,
+				AB92E7DD1CB55BE000199034 /* CustomTabBarView.h */,
+				AB92E7DE1CB55BE000199034 /* CustomTabBarView.m */,
 				31FF28291CAD736E008051C0 /* CategoryFeelingView.h */,
+				31FF282A1CAD736E008051C0 /* CategoryFeelingView.m */,
 				AB92E7D51CB4063A00199034 /* JournalEntryTableViewCellView.h */,
 				AB92E7D61CB4063A00199034 /* JournalEntryTableViewCellView.m */,
-				31FF282A1CAD736E008051C0 /* CategoryFeelingView.m */,
 				AB92E7981CADBD2800199034 /* IndividualFeelingView.h */,
 				AB92E7991CADBD2800199034 /* IndividualFeelingView.m */,
 				31FF282C1CAD7382008051C0 /* QuestionView.h */,
 				31FF282D1CAD7382008051C0 /* QuestionView.m */,
 				31FF282F1CAD7398008051C0 /* JournalAndPictureView.h */,
-				31FF28301CAD7398008051C0 /* JournalAndPictureView.m */,
 			);
 			name = "Xib Views";
 			sourceTree = "<group>";
@@ -214,10 +232,10 @@
 			children = (
 				AB92E71E1CAB01F200199034 /* MainViewController.h */,
 				AB92E71F1CAB01F200199034 /* MainViewController.m */,
-				AB92E76A1CAC696400199034 /* SettingsTableViewController.h */,
-				AB92E76B1CAC696400199034 /* SettingsTableViewController.m */,
 				AB92E76D1CAC697B00199034 /* StatsViewController.h */,
 				AB92E76E1CAC697B00199034 /* StatsViewController.m */,
+				AB92E7E01CB5708200199034 /* SettingsViewController.h */,
+				AB92E7E11CB5708200199034 /* SettingsViewController.m */,
 				AB92E7D81CB40C6400199034 /* JournalEntryTableViewCell.h */,
 				AB92E7D91CB40C6400199034 /* JournalEntryTableViewCell.m */,
 			);
@@ -302,6 +320,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB92E7DC1CB5585D00199034 /* CustomTabBar.xib in Resources */,
 				31FF28251CAD731C008051C0 /* JournalAndPicture.xib in Resources */,
 				31FF28231CAD7303008051C0 /* Question.xib in Resources */,
 				AB92E7971CADBC2F00199034 /* IndividualFeeling.xib in Resources */,
@@ -312,6 +331,7 @@
 				31FF28211CAD72EB008051C0 /* CategoryFeeling.xib in Resources */,
 				AB92E75F1CAC48DE00199034 /* AddJournalEntry.xib in Resources */,
 				31FF281F1CAD72D9008051C0 /* MainFeeling.xib in Resources */,
+				AB92E7E41CB71A1A00199034 /* JournalEntryTableViewCell2.xib in Resources */,
 				AB92E7D41CB400B600199034 /* JournalEntryTableViewCell.xib in Resources */,
 				AB92E7231CAB01F200199034 /* Main.storyboard in Resources */,
 			);
@@ -380,14 +400,16 @@
 				AB92E7951CAD9CB400199034 /* NewJournalEntryBlurView.m in Sources */,
 				31FF28311CAD7398008051C0 /* JournalAndPictureView.m in Sources */,
 				31FF282B1CAD736E008051C0 /* CategoryFeelingView.m in Sources */,
+				779BD9041CB736560027DC91 /* DYUtility.m in Sources */,
+				AB92E7E21CB5708200199034 /* SettingsViewController.m in Sources */,
 				AB92E7DA1CB40C6400199034 /* JournalEntryTableViewCell.m in Sources */,
 				AB92E7571CAB111100199034 /* DYJournalEntry.m in Sources */,
 				AB92E79A1CADBD2800199034 /* IndividualFeelingView.m in Sources */,
 				31FF281D1CAD6BED008051C0 /* DYQuestion.m in Sources */,
-				AB92E76C1CAC696400199034 /* SettingsTableViewController.m in Sources */,
 				AB92E75A1CAB112B00199034 /* DYUser.m in Sources */,
 				31FF28281CAD7356008051C0 /* MainFeelingView.m in Sources */,
 				AB92E7201CAB01F200199034 /* MainViewController.m in Sources */,
+				AB92E7DF1CB55BE000199034 /* CustomTabBarView.m in Sources */,
 				AB92E76F1CAC697B00199034 /* StatsViewController.m in Sources */,
 				AB92E71D1CAB01F200199034 /* AppDelegate.m in Sources */,
 				AB92E71A1CAB01F200199034 /* main.m in Sources */,
