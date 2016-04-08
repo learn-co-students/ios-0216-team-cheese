@@ -40,17 +40,12 @@
     return self;
 }
 
--(void)commonInit
-{
-    
-    
+-(void)commonInit {
     [[NSBundle mainBundle] loadNibNamed:@"JournalAndPicture" owner:self options:nil];
-    
     [self addSubview:self.contentView];
-    
     self.contentView.frame = self.bounds;
-    
 }
+
 - (IBAction)doneButtonTapped:(id)sender
 {
     
