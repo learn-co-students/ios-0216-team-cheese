@@ -7,6 +7,7 @@
 //
 
 #import "DYUser.h"
+#import "DYJournalEntry.h"
 
 @implementation DYUser
 

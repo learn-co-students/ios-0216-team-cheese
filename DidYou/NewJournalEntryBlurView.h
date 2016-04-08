@@ -7,17 +7,23 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DYUser.h"
+@class JournalAndPictureView;
+@class DYJournalEntry;
 
 @protocol NewJournalEntryBlurViewDelegate <NSObject>
 
 -(void)totalJournalEntryComplete;
+- (void)buttonTappedFromJournalandPictureView:(id)sender;
 
 @end
 
 @interface NewJournalEntryBlurView : UIVisualEffectView
 
 @property (strong, nonatomic) DYJournalEntry *currentEntry;
+@property (strong, nonatomic) JournalAndPictureView *journalAndPictureView;
 @property (strong, nonatomic) id <NewJournalEntryBlurViewDelegate> delegate;
+
+
+-(void)recieveImageFromMainViewController:(UIImage *)imageRecieved;
 
 @end

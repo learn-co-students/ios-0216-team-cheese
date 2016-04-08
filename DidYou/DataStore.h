@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <Firebase/Firebase.h>
+#import "DYJournalEntry.h"
 #import "DYUser.h"
 
 @interface DataStore : NSObject
@@ -25,8 +26,9 @@
 
 -(void)setupFirebase;
 -(void)addUserToFirebase: (DYUser *)user;
--(void)addJournalToFirebase: (DYUser *)user journalEntry:(DYJournalEntry *)journalEntry;
-
+-(void)addJournalToFirebase:(DYUser *)user :(DYJournalEntry *)journalEntry;
+-(void)pushLastJournal;
+-(NSArray *)generateQuestions;
 
 
 

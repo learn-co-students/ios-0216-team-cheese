@@ -15,7 +15,7 @@
     static DYUtility *_sharedUtility = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        _sharedUtility = [DYUtility sharedUtility];
+        _sharedUtility = [[DYUtility alloc] init];
     });
     
     return _sharedUtility;
@@ -26,6 +26,7 @@
     return [super init];
 }
 
+// Serialize date object to string
 - (NSString *)getUTCFormatDate:(NSDate *)localDate
 {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -36,6 +37,7 @@
     return dateString;
 }
 
+// Take a UTC string and convert back to date object
 - (NSDate *)fromUTCFormatDate:(NSString *)dateString
 {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];

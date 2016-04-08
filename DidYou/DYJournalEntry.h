@@ -25,5 +25,7 @@
 -(instancetype)initWithDeserialize: (NSMutableDictionary*)data;
 
 -(NSMutableDictionary *)serialize;
+-(NSArray *)generateQuestions;
+
 
 @end

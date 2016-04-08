@@ -7,7 +7,6 @@
 //
 
 #import "MainFeelingView.h"
-#import "DataStore.h"
 #import "CategoryFeelingView.h"
 
 
@@ -58,7 +57,7 @@
     
     NSArray *journals = self.dataStore.currentUser.journals;
     
-    NSLog(@"in the common init for main feeling, the number or journals is: %lu", self.dataStore.currentUser.journals.count);
+  //  NSLog(@"in the common init for main feeling, the number or journals is: %lu", self.dataStore.currentUser.journals.count);
     
     self.currentEntry = [journals lastObject];
     
@@ -67,11 +66,13 @@
 -(IBAction)firstCircleMenuButtonTapped:(id)sender
 {
     
+
     UIButton *firstTappedButton = sender;
     
     [self tappedButtonPulseWithAnimation:firstTappedButton];
     
     [self newButtonMenuWithAnimation:sender];
+
     
 }
 

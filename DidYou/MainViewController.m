@@ -13,13 +13,22 @@
 #import <CoreLocation/CoreLocation.h>
 #import "AddJournalEntryView.h"
 #import "JournalEntryTableViewCell.h"
+#import "CustomTabBarView.h"
 
 
 
-@interface MainViewController () <NewJournalEntryBlurViewDelegate, UITableViewDataSource, UITableViewDelegate>
+
+
+@interface MainViewController () <NewJournalEntryBlurViewDelegate, UITableViewDataSource, UITableViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, CustomTabBarDelegate>
+
+
+
 
 @property (strong, nonatomic) IBOutlet AddJournalEntryView *addEntryTopView;
 @property (strong, nonatomic) IBOutlet UITableView *journalEntryTableView;
+@property (strong, nonatomic) CustomTabBarView *tabBar;
+
+
 
 @property (strong, nonatomic) NewJournalEntryBlurView *addJournalFullScreenBlurView;
 @property (strong, nonatomic) AddJournalEntryView *journalView;
@@ -36,46 +45,30 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     self.dataStore =  [DataStore sharedDataStore];
-    
     self.addEntryTopView.delegate = self;
+
     self.journalEntryTableView.delegate = self;
     self.journalEntryTableView.dataSource = self;
     
     [self preferredStatusBarStyle];
     
-    
-    
-//    self.addEntryFullScreenView.alpha = 0;
-    
-    
-    
-//   // set city and state to current users
-//    self.locationManager = [[CLLocationManager alloc]init];
-//    self.locationManager.delegate = self;
-//    [self.locationManager requestWhenInUseAuthorization];
-//    
-//    if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
-//        [self.locationManager requestWhenInUseAuthorization];
-//    }
-//    
-//    self.geocoder = [[CLGeocoder alloc]init];
-//    
-//    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-//    
-//   
-//    
-//    [self.locationManager startUpdatingLocation];
-//    CGRect myFullFrame = [self.view frame];
-//    CGRect frame = CGRectMake(0, 0, myFullFrame.size.height, myFullFrame.size.width);
-//    AddJournalEntryView *journalView = [[AddJournalEntryView alloc]initWithFrame:frame];
-//    [self.view addSubview:journalView];
-//    self.journalView = journalView;
-//    // go send to firebase synch with our dataStore
-    
+
+    [self createCustomTabBar]; 
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(receiveFirebaseNotification:)
+                                                 name:@"FirebaseNotification"
+                                               object:nil];
 }
 
+-(void)receiveFirebaseNotification: (NSNotification *)notification
+{
+    // Call back for firebase when data arrives
+    if ([[notification name] isEqualToString:@"FirebaseNotification"])
+        [self.journalEntryTableView reloadData];
+}
 
 -(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
 
@@ -127,19 +120,23 @@
     
 }
 
+
+
 - (void)addButtonTapped:(UIButton *)sender {
     
-    [UIView animateWithDuration:2 delay:0 options:0 animations:^{
+    [UIView animateWithDuration:2.0 delay:0.5 options:0 animations:^{
         
         self.journalEntryTableView.alpha = 0;
+        self.addEntryTopView.alpha = 0;
         
         [self launchAddJournalFullScreenView];
         
     } completion:^(BOOL finished) {
         
-        [UIView animateWithDuration:2 delay:0 options:0 animations:^{
+        [UIView animateWithDuration:0.5 delay:0 options:0 animations:^{
             
             self.journalEntryTableView.alpha = 1;
+            self.addEntryTopView.alpha = 1;
             
         } completion:^(BOOL finished) {
             
@@ -160,9 +157,16 @@
     
     self.addJournalFullScreenBlurView.delegate = self;
     
-    [UIView animateWithDuration:2 delay:0.5 options:0 animations:^{
+
+    self.addJournalFullScreenBlurView.alpha = 0;
+
+
+    [UIView animateWithDuration:.5 delay:1.0 options:0 animations:^{
+        
         
         [self.view addSubview:self.addJournalFullScreenBlurView];
+        
+        self.addJournalFullScreenBlurView.alpha = 1;
         
         self.addJournalFullScreenBlurView.translatesAutoresizingMaskIntoConstraints = NO;
         
@@ -185,8 +189,13 @@
 
 }
 
+
+
+
 -(void)totalJournalEntryComplete
 {
+    // Signal firebase push
+    [[DataStore sharedDataStore] pushLastJournal];
     [self.journalEntryTableView reloadData];
 }
 
@@ -202,7 +211,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 100;
+    return 80;
 }
 
 
@@ -220,6 +229,75 @@
     return cell;
 
 }
+
+-(void)createCustomTabBar
+{
+    
+    self.tabBar = [[CustomTabBarView alloc] init];
+    
+    self.tabBar.currentScreen = @"main";
+    
+    [self.view addSubview:self.tabBar];
+    
+    self.tabBar.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    [self.tabBar.widthAnchor constraintEqualToAnchor:self.view.widthAnchor].active = YES;
+    [self.tabBar.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor].active = YES;
+    [self.tabBar.heightAnchor constraintEqualToConstant:40].active = YES;
+    [self.tabBar.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor].active = YES;
+    
+    self.tabBar.delegate = self;
+  
+}
+
+-(void)userNavigates:(NSString *)viewChosen
+{
+    // segue to view
+    
+    NSLog(@"userNavigates getting called");
+    
+    if ([viewChosen isEqualToString:@"stats"])
+    {
+        [self performSegueWithIdentifier:@"segueMainToStats" sender:nil];
+    }
+    else if ([viewChosen isEqualToString:@"user"])
+    {
+        [self performSegueWithIdentifier:@"segueMainToUser" sender:nil];
+    }
+}
+
+
+
+
+# pragma mark - JournalAndPictureView methods below
+
+- (void)buttonTappedFromJournalandPictureView:(id)sender {
+    
+    UIImagePickerController *picker = [UIImagePickerController new];
+    picker.delegate = self;
+    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    [self presentViewController:picker animated:YES completion:nil];
+}
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    
+    UIImage *chosenImage = [info objectForKey:UIImagePickerControllerOriginalImage];
+    
+    NSLog(@"Image value in imagePickerController : %@", chosenImage);
+    JournalAndPictureView *journalAndPictureV = [[JournalAndPictureView alloc] init] ;
+    UIImageView *imageViewInJournalView = journalAndPictureV.imageView;
+    [imageViewInJournalView setImage:chosenImage];
+    NSLog(@"%@", imageViewInJournalView.image);
+    [self.addJournalFullScreenBlurView recieveImageFromMainViewController:chosenImage];
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    
+}
+
+-(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 
 
 

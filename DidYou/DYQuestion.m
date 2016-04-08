@@ -48,6 +48,7 @@
 {
     self = [super init];
     if (self) {
+        // grab question and answer from the dict
         _question = data[@"question"];
         _answer = [data[@"answer"] unsignedIntegerValue];
     }
@@ -56,6 +57,7 @@
 
 -(NSMutableDictionary *)serialize
 {
+    // convert into firebase friendly dict
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
     dict[@"question"] = self.question;
     dict[@"answer"] = [NSNumber numberWithUnsignedInteger:_answer];

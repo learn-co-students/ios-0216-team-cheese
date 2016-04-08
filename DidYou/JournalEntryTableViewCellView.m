@@ -11,9 +11,10 @@
 @interface JournalEntryTableViewCellView ()
 
 @property (strong, nonatomic) IBOutlet UIView *contentView;
-@property (weak, nonatomic) IBOutlet UIView *dayOfWeekView;
+
 @property (weak, nonatomic) IBOutlet UILabel *monthLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dayOfMonthLabel;
+@property (weak, nonatomic) IBOutlet UILabel *dayOfWeekLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *emotionLabel;
 
@@ -74,11 +75,19 @@
     DYQuestion *question4 = self.journalEntry.questions[3];
     DYQuestion *question5 = self.journalEntry.questions[4];
     
-    self.question1Image.image = [UIImage imageNamed:[self imageNameGivenQuestionAnswer:question1.answer]];
-    self.question2Image.image = [UIImage imageNamed:[self imageNameGivenQuestionAnswer:question2.answer]];
-    self.question3Image.image = [UIImage imageNamed:[self imageNameGivenQuestionAnswer:question3.answer]];
-    self.question4Image.image = [UIImage imageNamed:[self imageNameGivenQuestionAnswer:question4.answer]];
-    self.question5Image.image = [UIImage imageNamed:[self imageNameGivenQuestionAnswer:question5.answer]];
+    self.question1Image.image = [UIImage imageNamed:@"sleep"];
+    self.question2Image.image = [UIImage imageNamed:@"breakfast_480"];
+    self.question3Image.image = [UIImage imageNamed:@"workout"];
+    self.question4Image.image = [UIImage imageNamed:@"nice"];
+    self.question5Image.image = [UIImage imageNamed:@"sex"];
+    
+    self.question1Image.layer.backgroundColor = [[self colorGivenQuestionAnswer:question1.answer] CGColor];
+    self.question2Image.layer.backgroundColor = [[self colorGivenQuestionAnswer:question2.answer] CGColor];
+    self.question3Image.layer.backgroundColor = [[self colorGivenQuestionAnswer:question3.answer] CGColor];
+    self.question4Image.layer.backgroundColor = [[self colorGivenQuestionAnswer:question4.answer] CGColor];
+    self.question5Image.layer.backgroundColor = [[self colorGivenQuestionAnswer:question5.answer] CGColor];
+  
+
     
     self.emotionLabel.text = self.journalEntry.mainEmotion;
     
@@ -96,22 +105,23 @@
 
     self.monthLabel.text = month;
     self.dayOfMonthLabel.text = dayOfMonth;
+    self.dayOfWeekLabel.text = dayOfWeek;
     
 }
 
--(NSString *)imageNameGivenQuestionAnswer:(NSUInteger)answer
+-(UIColor *)colorGivenQuestionAnswer:(NSUInteger)answer
 {
     if (answer == 0)
     {
-        return @"greenDot";
+        return [UIColor grayColor];
     }
     else if (answer == 1)
     {
-        return @"redDot";
+        return [UIColor redColor];
     }
     else
     {
-        return @"greenDot";
+        return [UIColor greenColor];
     }
 }
 
