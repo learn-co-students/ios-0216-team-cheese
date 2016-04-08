@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DYUser.h"
 @class JournalAndPictureView;
+@class DYJournalEntry;
 
 @protocol NewJournalEntryBlurViewDelegate <NSObject>
 

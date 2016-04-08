@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "MoodCircleButton.h"
+#import "DataStore.h"
+
 
 @protocol MainFeelingViewDelegate <NSObject>
 

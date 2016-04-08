@@ -7,7 +7,6 @@
 //
 
 #import "MainFeelingView.h"
-#import "DataStore.h"
 #import "CategoryFeelingView.h"
 
 

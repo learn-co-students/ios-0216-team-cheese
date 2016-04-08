@@ -21,9 +21,6 @@
 
 @interface MainViewController () <NewJournalEntryBlurViewDelegate, UITableViewDataSource, UITableViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, CustomTabBarDelegate>
 
-
-
-
 @property (strong, nonatomic) IBOutlet AddJournalEntryView *addEntryTopView;
 @property (strong, nonatomic) IBOutlet UITableView *journalEntryTableView;
 @property (strong, nonatomic) CustomTabBarView *tabBar;
@@ -48,6 +45,7 @@
 
     self.dataStore =  [DataStore sharedDataStore];
     self.addEntryTopView.delegate = self;
+
     self.journalEntryTableView.delegate = self;
     self.journalEntryTableView.dataSource = self;
     
@@ -56,7 +54,17 @@
 
     [self createCustomTabBar]; 
 
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(receiveFirebaseNotification:)
+                                                 name:@"FirebaseNotification"
+                                               object:nil];
+}
 
+-(void)receiveFirebaseNotification: (NSNotification *)notification
+{
+    // Call back for firebase when data arrives
+    if ([[notification name] isEqualToString:@"FirebaseNotification"])
+        [self.journalEntryTableView reloadData];
 }
 
 -(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
@@ -182,6 +190,8 @@
 
 -(void)totalJournalEntryComplete
 {
+    // Signal firebase push
+    [[DataStore sharedDataStore] pushLastJournal];
     [self.journalEntryTableView reloadData];
 }
 
