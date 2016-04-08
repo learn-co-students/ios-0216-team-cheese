@@ -36,6 +36,10 @@
 @property (strong, nonatomic) CLGeocoder *geocoder;
 @property (strong, nonatomic) CLPlacemark *placemark;
 
+@property (strong, nonatomic) NSLayoutConstraint *blurViewheightConstraint;
+@property (strong, nonatomic) NSLayoutConstraint *blurViewWidthConstraint;
+@property (strong, nonatomic)
+
 @end
 
 @implementation MainViewController
@@ -295,20 +299,45 @@
 }
 
 
--(void)topViewToBlur
-{
-    
-}
 
--(void)restOfScreenToBlur
-{
-    
-}
-
--(void)mainFeelingLaunched
-{
-    
-}
+//-(void)createBlurView
+//{
+//    
+//    UIVisualEffect *blurEffect;
+//    blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+//    
+//    self.addJournalFullScreenBlurView= [[NewJournalEntryBlurView alloc] initWithEffect:blurEffect];
+//    
+//    self.addJournalFullScreenBlurView.delegate = self;
+//    
+//    self.addJournalFullScreenBlurView.translatesAutoresizingMaskIntoConstraints = NO;
+//    
+//    self.blurViewheightConstraint = [self.addJournalFullScreenBlurView.heightAnchor constraintEqualToAnchor:self.view.heightAnchor multiplier:.3];
+//    self.blurViewheightConstraint.active = YES;
+//    
+//    [self.addJournalFullScreenBlurView.topAnchor constraintEqualToAnchor:self.view.topAnchor].active = YES;
+//    [self.addJournalFullScreenBlurView.widthAnchor constraintEqualToAnchor:self.view.widthAnchor].active = YES;
+//    [self.addJournalFullScreenBlurView.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor].active = YES;
+//    
+//    
+//    
+//
+//    
+//}
+//-(void)topViewToBlur
+//{
+//    
+//}
+//
+//-(void)restOfScreenToBlur
+//{
+//    
+//}
+//
+//-(void)mainFeelingLaunched
+//{
+//    
+//}
 
 
 

@@ -85,11 +85,11 @@
 //    self.question4Image.image = [UIImage imageNamed:@"nice"];
 //    self.question5Image.image = [UIImage imageNamed:@"sex"];
     
-    self.sleepView.layer.cornerRadius = 20;
-    self.breakfastView.layer.cornerRadius = 20;
-    self.workoutView.layer.cornerRadius = 20;
-    self.niceView.layer.cornerRadius = 20;
-    self.sexView.layer.cornerRadius = 20;
+    self.sleepView.layer.cornerRadius = 16;
+    self.breakfastView.layer.cornerRadius = 16;
+    self.workoutView.layer.cornerRadius = 16;
+    self.niceView.layer.cornerRadius = 16;
+    self.sexView.layer.cornerRadius = 16;
     
     self.sleepView.backgroundColor = [self colorGivenQuestionAnswer:question1.answer];
     self.breakfastView.backgroundColor = [self colorGivenQuestionAnswer:question2.answer];
