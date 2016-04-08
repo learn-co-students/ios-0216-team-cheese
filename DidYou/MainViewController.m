@@ -146,11 +146,10 @@
     
     self.addJournalFullScreenBlurView.delegate = self;
     
-
     self.addJournalFullScreenBlurView.alpha = 0;
 
 
-    [UIView animateWithDuration:.5 delay:1.0 options:0 animations:^{
+    [UIView animateWithDuration:.5 delay:0 options:0 animations:^{
         
         
         [self.view addSubview:self.addJournalFullScreenBlurView];
@@ -283,6 +282,22 @@
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+-(void)topViewToBlur
+{
+    
+}
+
+-(void)restOfScreenToBlur
+{
+    
+}
+
+-(void)mainFeelingLaunched
+{
+    
 }
 
 
