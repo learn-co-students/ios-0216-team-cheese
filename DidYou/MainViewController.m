@@ -31,6 +31,10 @@
 @property (strong, nonatomic) CLGeocoder *geocoder;
 @property (strong, nonatomic) CLPlacemark *placemark;
 
+@property (strong, nonatomic) NSLayoutConstraint *blurViewheightConstraint;
+@property (strong, nonatomic) NSLayoutConstraint *blurViewWidthConstraint;
+
+
 @end
 
 @implementation MainViewController
@@ -40,13 +44,24 @@
 
     self.dataStore =  [DataStore sharedDataStore];
     self.addEntryTopView.delegate = self;
+
     self.journalEntryTableView.delegate = self;
     self.journalEntryTableView.dataSource = self;
     
     [self preferredStatusBarStyle];
     [self createCustomTabBar]; 
 
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(receiveFirebaseNotification:)
+                                                 name:@"FirebaseNotification"
+                                               object:nil];
+}
 
+-(void)receiveFirebaseNotification: (NSNotification *)notification
+{
+    // Call back for firebase when data arrives
+    if ([[notification name] isEqualToString:@"FirebaseNotification"])
+        [self.journalEntryTableView reloadData];
 }
 
 -(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
@@ -99,7 +114,7 @@
 
 - (void)addButtonTapped:(UIButton *)sender {
     
-    [UIView animateWithDuration:2.0 delay:0.5 options:0 animations:^{
+    [UIView animateWithDuration:0.8 delay:0 options:0 animations:^{
         
         self.journalEntryTableView.alpha = 0;
         self.addEntryTopView.alpha = 0;
@@ -108,7 +123,7 @@
         
     } completion:^(BOOL finished) {
         
-        [UIView animateWithDuration:0.5 delay:0 options:0 animations:^{
+        [UIView animateWithDuration:0.5 delay:0.6 options:0 animations:^{
             
             self.journalEntryTableView.alpha = 1;
             self.addEntryTopView.alpha = 1;
@@ -132,11 +147,10 @@
     
     self.addJournalFullScreenBlurView.delegate = self;
     
-
     self.addJournalFullScreenBlurView.alpha = 0;
 
 
-    [UIView animateWithDuration:.5 delay:1.0 options:0 animations:^{
+    [UIView animateWithDuration:.5 delay:0 options:0 animations:^{
         
         
         [self.view addSubview:self.addJournalFullScreenBlurView];
@@ -169,6 +183,8 @@
 
 -(void)totalJournalEntryComplete
 {
+    // Signal firebase push
+    [[DataStore sharedDataStore] pushLastJournal];
     [self.journalEntryTableView reloadData];
 }
 
@@ -279,6 +295,47 @@
     [self performSegueWithIdentifier:@"segueToJournalDetail" sender:self];
     
 }
+
+//-(void)createBlurView
+//{
+//    
+//    UIVisualEffect *blurEffect;
+//    blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+//    
+//    self.addJournalFullScreenBlurView= [[NewJournalEntryBlurView alloc] initWithEffect:blurEffect];
+//    
+//    self.addJournalFullScreenBlurView.delegate = self;
+//    
+//    self.addJournalFullScreenBlurView.translatesAutoresizingMaskIntoConstraints = NO;
+//    
+//    self.blurViewheightConstraint = [self.addJournalFullScreenBlurView.heightAnchor constraintEqualToAnchor:self.view.heightAnchor multiplier:.3];
+//    self.blurViewheightConstraint.active = YES;
+//    
+//    [self.addJournalFullScreenBlurView.topAnchor constraintEqualToAnchor:self.view.topAnchor].active = YES;
+//    [self.addJournalFullScreenBlurView.widthAnchor constraintEqualToAnchor:self.view.widthAnchor].active = YES;
+//    [self.addJournalFullScreenBlurView.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor].active = YES;
+//    
+//    
+//    
+//
+//    
+//}
+//-(void)topViewToBlur
+//{
+//    
+//}
+//
+//-(void)restOfScreenToBlur
+//{
+//    
+//}
+//
+//-(void)mainFeelingLaunched
+//{
+//    
+//}
+
+
 
 
 

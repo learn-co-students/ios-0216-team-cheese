@@ -93,12 +93,12 @@
 {
 
     
-    UIColor *lavendarColor = [UIColor colorWithRed:211.0f/255.0f green:145.0f/255.0f blue:255.0f/255.0f alpha:0.2];
-    UIColor *blueColor = [UIColor colorWithRed:104.0f/255.0f green:183.0f/255.0f blue:255.0f/255.0f alpha:0.2];
-    UIColor *redColor = [UIColor colorWithRed:255.0f/255.0f green:59.0f/255.0f blue:59.0f/255.0f alpha:0.2];
-    UIColor *orangeColor = [UIColor colorWithRed:253.0f/255.0f green:174.0f/255.0f blue:55.0f/255.0f alpha:0.2];
-    UIColor *greenColor = [UIColor colorWithRed:65.0f/255.0f green:194.0f/255.0f blue:65.0f/255.0f alpha:0.2];
-    UIColor *grayColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:0.2];
+    UIColor *lavendarColor = [UIColor colorWithRed:211.0f/255.0f green:145.0f/255.0f blue:255.0f/255.0f alpha:0.4];
+    UIColor *blueColor = [UIColor colorWithRed:104.0f/255.0f green:183.0f/255.0f blue:255.0f/255.0f alpha:0.4];
+    UIColor *redColor = [UIColor colorWithRed:255.0f/255.0f green:59.0f/255.0f blue:59.0f/255.0f alpha:0.4];
+    UIColor *orangeColor = [UIColor colorWithRed:253.0f/255.0f green:174.0f/255.0f blue:55.0f/255.0f alpha:0.4];
+    UIColor *greenColor = [UIColor colorWithRed:65.0f/255.0f green:194.0f/255.0f blue:65.0f/255.0f alpha:0.4];
+    UIColor *grayColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:0.4];
     
 //    UIColor *blueColor2 = [UIColor colorWithRed:70.0/255.0 green:135.0/255.0 blue:255/255 alpha:.2];
 //    UIColor *yellowColor2 = [UIColor colorWithRed:247.0/255.0 green:255.0/255.0 blue:0.0/255 alpha:.2];
@@ -233,23 +233,12 @@
     NSUInteger time = arc4random_uniform(5);
     
     [UIView animateWithDuration:time + 8 delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
-        circleView.frame = CGRectMake(xPosition-10, yPosition-10, radius*2.0, radius*2.0);
+        circleView.frame = CGRectMake(xPosition, yPosition, radius*2.0, radius*2.0);
     } completion:^(BOOL finished) {
         [self animateView:circleView withRadius:radius];
     }];
     
-//    [UIView animateWithDuration:time + 8
-//     
-//                     animations:^{
-//                         
-//                         circleView.frame = CGRectMake(xPosition-10, yPosition-10, radius*2.0, radius*2.0);
-//                         
-//                          [self bringSubviewToFront:self.addButtonView];
-//                         
-//                     } completion:^(BOOL finished) {
-//                         
-//                         [self animateView:circleView withRadius:radius];
-//                     }];
+
 }
 
 

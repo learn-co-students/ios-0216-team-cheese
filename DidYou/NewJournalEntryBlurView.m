@@ -12,6 +12,8 @@
 #import "CategoryFeelingView.h"
 #import "JournalAndPictureView.h"
 #import "DataStore.h"
+#import "DYJournalEntry.h"
+#import "DYUser.h"
 #import <JHChainableAnimations/JHChainableAnimations.h>
 
 
@@ -68,7 +70,6 @@
 
 -(void)commonInit
 {
-    
     // create new journal entry
     
     self.dataStore = [DataStore sharedDataStore];
@@ -88,7 +89,6 @@
     
     self.mainFeelingView.delegate = self;
     self.questionView.delegate = self;
-    
 
 }
 
@@ -158,7 +158,9 @@
     [self.questionView.centerXAnchor constraintEqualToAnchor:self.contentView.centerXAnchor].active = YES;
     [self.questionView.centerYAnchor constraintEqualToAnchor:self.contentView.centerYAnchor].active = YES;
     
-//    DYQuestion *question = self.currentEntry.questions[0];
+
+    //DYQuestion *question = self.currentEntry.questions[0];
+
     
     self.questionView.questionIndex = 0;
 

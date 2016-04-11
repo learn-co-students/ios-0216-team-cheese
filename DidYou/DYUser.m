@@ -7,6 +7,7 @@
 //
 
 #import "DYUser.h"
+#import "DYJournalEntry.h"
 
 @implementation DYUser
 
@@ -42,9 +43,7 @@
         _journals = journals;
 
     }
-    
     return self;
-    
 }
 
 -(NSArray *)journalArrayLIFO
@@ -54,9 +53,7 @@
     for (NSInteger i = self.journals.count - 1; i >= 0; i--)
     {
         [journalsLIFO addObject:self.journals[i]];
-        
     }
-    
     return journalsLIFO;
 }
 
