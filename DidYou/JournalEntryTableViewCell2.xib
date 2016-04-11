@@ -50,7 +50,7 @@
                                 <constraint firstItem="TJs-ta-fed" firstAttribute="height" secondItem="25h-IN-Q0R" secondAttribute="height" multiplier="0.72" id="sag-cA-3Ts"/>
                             </constraints>
                         </view>
-                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OQb-ic-ijP">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OQb-ic-ijP">
                             <rect key="frame" x="40" y="0.0" width="32" height="32"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="breakfast2" highlightedImage="breakfast_480" translatesAutoresizingMaskIntoConstraints="NO" id="Law-fe-15U">
@@ -67,7 +67,7 @@
                                 <constraint firstItem="Law-fe-15U" firstAttribute="centerY" secondItem="OQb-ic-ijP" secondAttribute="centerY" constant="-1" id="evI-ZK-Xqm"/>
                             </constraints>
                         </view>
-                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lT9-u7-fjS">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lT9-u7-fjS">
                             <rect key="frame" x="80" y="0.0" width="32" height="32"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="workout2" translatesAutoresizingMaskIntoConstraints="NO" id="gBE-DV-6Bs">
@@ -84,7 +84,7 @@
                                 <constraint firstItem="gBE-DV-6Bs" firstAttribute="centerY" secondItem="lT9-u7-fjS" secondAttribute="centerY" constant="1" id="xAi-G2-qtY"/>
                             </constraints>
                         </view>
-                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eb5-Tl-hAa">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eb5-Tl-hAa">
                             <rect key="frame" x="120" y="0.0" width="32" height="32"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nice" translatesAutoresizingMaskIntoConstraints="NO" id="PRz-aS-EZY">
@@ -101,7 +101,7 @@
                                 <constraint firstItem="PRz-aS-EZY" firstAttribute="centerY" secondItem="eb5-Tl-hAa" secondAttribute="centerY" constant="1" id="yV1-VF-Ufk"/>
                             </constraints>
                         </view>
-                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Os3-Ed-91D">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Os3-Ed-91D">
                             <rect key="frame" x="160" y="0.0" width="32" height="32"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sex" translatesAutoresizingMaskIntoConstraints="NO" id="m8o-pe-I7i">

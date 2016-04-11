@@ -38,7 +38,7 @@
 
 @property (strong, nonatomic) NSLayoutConstraint *blurViewheightConstraint;
 @property (strong, nonatomic) NSLayoutConstraint *blurViewWidthConstraint;
-@property (strong, nonatomic)
+
 
 @end
 
