@@ -12,7 +12,7 @@
 
 @protocol NewJournalEntryBlurViewDelegate <NSObject>
 
--(void)totalJournalEntryComplete;
+- (void)totalJournalEntryComplete;
 - (void)buttonTappedFromJournalandPictureView:(id)sender;
 
 @end

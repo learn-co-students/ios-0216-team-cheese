@@ -14,12 +14,12 @@
 #import "AddJournalEntryView.h"
 #import "JournalEntryTableViewCell.h"
 #import "CustomTabBarView.h"
+#import "LoadingFirstPageView.h"
 
 
 
 
-
-@interface MainViewController () <NewJournalEntryBlurViewDelegate, UITableViewDataSource, UITableViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, CustomTabBarDelegate>
+@interface MainViewController () <NewJournalEntryBlurViewDelegate, UITableViewDataSource, UITableViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, CustomTabBarDelegate, LoadingFirstPageViewDelegate>
 
 @property (strong, nonatomic) IBOutlet AddJournalEntryView *addEntryTopView;
 @property (strong, nonatomic) IBOutlet UITableView *journalEntryTableView;
@@ -27,14 +27,18 @@
 
 
 
+
 @property (strong, nonatomic) NewJournalEntryBlurView *addJournalFullScreenBlurView;
 @property (strong, nonatomic) AddJournalEntryView *journalView;
+@property (strong, nonatomic) LoadingFirstPageView *spinView;
 
 @property (strong, nonatomic) DataStore *dataStore;
 
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) CLGeocoder *geocoder;
 @property (strong, nonatomic) CLPlacemark *placemark;
+
+@property (strong, nonatomic) LoadingFirstPageView *contentView;
 
 @end
 
@@ -49,6 +53,27 @@
     self.journalEntryTableView.delegate = self;
     self.journalEntryTableView.dataSource = self;
     
+    self.spinView = [[LoadingFirstPageView alloc]initWithFrame:self.journalEntryTableView.frame];
+    self.contentView.translatesAutoresizingMaskIntoConstraints = NO;
+    LoadingFirstPageView *contentView = [[LoadingFirstPageView alloc]init];
+    
+    [self.contentView.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor].active = YES;
+    
+    [self.contentView.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor].active = YES;
+    
+    [self.contentView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor].active = YES;
+    
+    [self.contentView.topAnchor constraintEqualToAnchor:self.addEntryTopView.bottomAnchor].active = YES;
+    
+    self.spinView.delegate = self;
+    
+    
+    
+    [self.view addSubview:self.spinView];
+    
+    [self.spinView.activityIndicator startAnimating];
+    
+    
     [self preferredStatusBarStyle];
     
 
@@ -58,13 +83,22 @@
                                              selector:@selector(receiveFirebaseNotification:)
                                                  name:@"FirebaseNotification"
                                                object:nil];
+    
+//    [self.journalEntryTableView reloadData];
+    
+    
 }
+
+
 
 -(void)receiveFirebaseNotification: (NSNotification *)notification
 {
     // Call back for firebase when data arrives
     if ([[notification name] isEqualToString:@"FirebaseNotification"])
+        
         [self.journalEntryTableView reloadData];
+    
+        [self.spinView.activityIndicator stopAnimating];
 }
 
 -(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
