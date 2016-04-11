@@ -41,14 +41,16 @@
     return self;
 }
 
+
 -(void)commonInit
 {
     [self.imageView reloadInputViews];
     
+
     [[NSBundle mainBundle] loadNibNamed:@"JournalAndPicture" owner:self options:nil];
-    
     [self addSubview:self.contentView];
     self.contentView.frame = self.bounds;
+
     
     [self viewsAreSet];
     
@@ -56,6 +58,7 @@
 
 
 -(void)viewsAreSet
+
 {
     
     

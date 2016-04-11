@@ -125,7 +125,7 @@
 
 - (void)addButtonTapped:(UIButton *)sender {
     
-    [UIView animateWithDuration:2.0 delay:0.5 options:0 animations:^{
+    [UIView animateWithDuration:0.8 delay:0 options:0 animations:^{
         
         self.journalEntryTableView.alpha = 0;
         self.addEntryTopView.alpha = 0;
@@ -134,7 +134,7 @@
         
     } completion:^(BOOL finished) {
         
-        [UIView animateWithDuration:0.5 delay:0 options:0 animations:^{
+        [UIView animateWithDuration:0.5 delay:0.6 options:0 animations:^{
             
             self.journalEntryTableView.alpha = 1;
             self.addEntryTopView.alpha = 1;
