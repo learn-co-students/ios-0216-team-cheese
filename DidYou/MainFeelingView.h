@@ -23,8 +23,8 @@
 
 @property (strong, nonatomic) IBOutlet UIView *circleMenuView;
 
--(UIView *)addCircles;
--(void)addInitialCirclesWithAnimation:(UIView *)currentView;
+//-(void)addCircles;
+//-(void)addInitialCirclesWithAnimation;
 
 
 

@@ -95,20 +95,26 @@
 -(void)setUpInitialConstraintsForAllSubViews
 {
     
-    [self.contentView addSubview:self.mainFeelingView];
     
-    [self.mainFeelingView removeConstraints:self.mainFeelingView.constraints];
+    
+    //[self.mainFeelingView removeConstraints:self.mainFeelingView.constraints];
     
     self.translatesAutoresizingMaskIntoConstraints = NO;
     
     self.mainFeelingView.translatesAutoresizingMaskIntoConstraints = NO;
+    
+     [self.contentView addSubview:self.mainFeelingView];
 
     [self.mainFeelingView.widthAnchor constraintEqualToAnchor:self.contentView.widthAnchor].active = YES;
     [self.mainFeelingView.heightAnchor constraintEqualToAnchor:self.contentView.heightAnchor].active = YES;
     [self.mainFeelingView.centerXAnchor constraintEqualToAnchor:self.contentView.centerXAnchor].active = YES;
     [self.mainFeelingView.centerYAnchor constraintEqualToAnchor:self.contentView.centerYAnchor].active = YES;
     
-    [self.mainFeelingView addInitialCirclesWithAnimation:self.mainFeelingView];
+    
+    
+   
+    
+    //[self.mainFeelingView addInitialCirclesWithAnimation];
     
 
 }

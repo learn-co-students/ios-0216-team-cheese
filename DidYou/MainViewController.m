@@ -125,23 +125,17 @@
 - (void)addButtonTapped:(UIButton *)sender {
     
 
-    [UIView animateWithDuration:0.8 delay:0 options:0 animations:^{
+    [UIView animateWithDuration:0.2 delay:0 options:0 animations:^{
         
         self.journalEntryTableView.alpha = 0;
         self.addEntryTopView.alpha = 0;
         
-        [self launchAddJournalFullScreenView];
+        
         
     } completion:^(BOOL finished) {
         
-        [UIView animateWithDuration:0.5 delay:0.6 options:0 animations:^{
-            
-            self.journalEntryTableView.alpha = 1;
-            self.addEntryTopView.alpha = 1;
-            
-        } completion:^(BOOL finished) {
-            
-        }];
+        [self launchAddJournalFullScreenView];
+
         
     }];
 
@@ -153,32 +147,17 @@
 {
     
     
+    UIVisualEffect *blurEffect;
+    blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
     
-    //[self createBlurView];
+    self.addJournalFullScreenBlurView= [[NewJournalEntryBlurView alloc] initWithEffect:blurEffect];
     
-//    [UIView animateWithDuration:.5 delay:.2 options:nil
-//                     animations:^{
-//                         self.blurViewSmallHeightConstraint.active = NO;
-//                         self.blurViewBigHeightConstraint.active = YES;
-//                         [self.view layoutIfNeeded];
-//                         
-//                     } completion:^(BOOL finished) {
-//                         nil;
-//                     }];
-//    
-//    UIVisualEffect *blurEffect;
-//    blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
-//    
-//    self.addJournalFullScreenBlurView= [[NewJournalEntryBlurView alloc] initWithEffect:blurEffect];
-//    
-//    self.addJournalFullScreenBlurView.delegate = self;
-//    
-//    self.addJournalFullScreenBlurView.alpha = 0;
+    self.addJournalFullScreenBlurView.delegate = self;
+    
+    self.addJournalFullScreenBlurView.alpha = 0;
     
     
-
-
-    [UIView animateWithDuration:.5 delay:0 options:0 animations:^{
+    [UIView animateWithDuration:0 delay:0 options:0 animations:^{
         
         
         [self.view addSubview:self.addJournalFullScreenBlurView];
@@ -192,9 +171,12 @@
         [self.addJournalFullScreenBlurView.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor].active = YES;
         [self.addJournalFullScreenBlurView.centerYAnchor constraintEqualToAnchor:self.view.centerYAnchor].active = YES;
         
+        self.journalEntryTableView.alpha = 1;
+        self.addEntryTopView.alpha = 1;
+        
     } completion:^(BOOL finished) {
         
-        [UIView animateWithDuration:2 delay:0 options:0 animations:^{
+        [UIView animateWithDuration:0 delay:0 options:0 animations:^{
             
             [self.view bringSubviewToFront:self.addJournalFullScreenBlurView];
             

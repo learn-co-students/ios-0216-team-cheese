@@ -23,7 +23,8 @@
 }
 
 
--(instancetype)initWithQuestion:(NSString *)question{
+-(instancetype)initWithQuestion:(NSString *)question 
+{
     
     
     self = [super init];
@@ -33,8 +34,7 @@
         
         _question = question;
         _answer = 0;
-        
-        
+      
         
         
     }
