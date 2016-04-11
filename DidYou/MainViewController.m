@@ -21,20 +21,12 @@
 
 @interface MainViewController () <NewJournalEntryBlurViewDelegate, UITableViewDataSource, UITableViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, CustomTabBarDelegate>
 
-
-
-
 @property (strong, nonatomic) IBOutlet AddJournalEntryView *addEntryTopView;
 @property (strong, nonatomic) IBOutlet UITableView *journalEntryTableView;
 @property (strong, nonatomic) CustomTabBarView *tabBar;
-
-
-
 @property (strong, nonatomic) NewJournalEntryBlurView *addJournalFullScreenBlurView;
 @property (strong, nonatomic) AddJournalEntryView *journalView;
-
 @property (strong, nonatomic) DataStore *dataStore;
-
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) CLGeocoder *geocoder;
 @property (strong, nonatomic) CLPlacemark *placemark;
@@ -52,8 +44,6 @@
     self.journalEntryTableView.dataSource = self;
     
     [self preferredStatusBarStyle];
-    
-
     [self createCustomTabBar]; 
 
 
@@ -64,12 +54,8 @@
     NSLog(@"didFailWithError, %@", error);
 
     UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"Error" message:@"Failed to get where you are" preferredStyle:UIAlertControllerStyleAlert];
-
-
     UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-
     }];
-
     [errorAlert addAction:defaultAction];
 
     [self presentViewController:errorAlert animated:YES completion:nil];
@@ -213,8 +199,10 @@
     
     cell.cellView.journalEntry = journalAtRow;
     
+    
+    NSLog(@"%@",cell.cellView.journalEntry.date);
+    
     return cell;
-
 }
 
 -(void)createCustomTabBar
@@ -269,7 +257,6 @@
 {
     
     UIImage *chosenImage = [info objectForKey:UIImagePickerControllerOriginalImage];
-    
     NSLog(@"Image value in imagePickerController : %@", chosenImage);
     JournalAndPictureView *journalAndPictureV = [[JournalAndPictureView alloc] init] ;
     UIImageView *imageViewInJournalView = journalAndPictureV.imageView;
@@ -286,6 +273,12 @@
 }
 
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    [self performSegueWithIdentifier:@"segueToJournalDetail" sender:self];
+    
+}
 
 
 
