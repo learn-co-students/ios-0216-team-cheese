@@ -9,6 +9,7 @@
 #import "DataStore.h"
 #import "DYUser.h"
 #import "DYJournalEntry.h"
+#import "DYUtility.h"
 
 @implementation DataStore
 
@@ -176,6 +177,8 @@
          newUser.country = result[@"country"];
          // Deserialize each journal entry
          NSMutableDictionary *journalDict = result[@"journals"];
+         
+         
          for (NSString *key in [journalDict allKeys])
          {
              [journals addObject:[[DYJournalEntry alloc] initWithDeserialize: journalDict[key]]];

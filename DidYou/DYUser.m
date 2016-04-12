@@ -54,6 +54,7 @@
     {
         [journalsLIFO addObject:self.journals[i]];
     }
+    
     return journalsLIFO;
 }
 

@@ -101,7 +101,7 @@
         
         [self.journalEntryTableView reloadData];
     
-    // [self.spinView.activityIndicator stopAnimating];
+        [self.spinView.activityIndicator stopAnimating];
 }
 
 -(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
