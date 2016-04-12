@@ -224,11 +224,6 @@
     return cell;
 }
 
--(BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return NO;
-}
-
 -(void)createCustomTabBar
 {
     
@@ -265,9 +260,6 @@
     }
 }
 
-
-
-
 # pragma mark - JournalAndPictureView methods below
 
 - (void)buttonTappedFromJournalandPictureView:(id)sender {
@@ -296,15 +288,6 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-
-
-//-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    
-//    NSLog(@"Selected row %li",indexPath.row);
-//    [self performSegueWithIdentifier:@"journalDetail" sender:self];
-//    
-//}
 
 -(void)createBlurView
 {
@@ -337,19 +320,16 @@
 
 
 
+
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     
-    if([segue.identifier isEqualToString:@"journalDetail"])
+    if([segue.identifier isEqualToString:@"journalDetailVC"])
     {
-
-        NSLog(@"prepareForSegue");
         JournalLogViewController *destVC = segue.destinationViewController;
         NSArray *journals = self.dataStore.currentUser.journals;
         DYJournalEntry *currentJournal = [journals lastObject];
         destVC.jorunalEntry = currentJournal;
-        
     }
-    
     
 }
 

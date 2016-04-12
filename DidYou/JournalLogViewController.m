@@ -20,6 +20,7 @@
     [self setUpLabelAndButtonViews];
     [self setUpStackView];
     
+    
 }
 -(void)setUpLabelAndButtonViews
 {
@@ -46,8 +47,9 @@
     [self.backButton addTarget:self action:@selector(whenBackButtonIsTapped:) forControlEvents:UIControlEventTouchUpInside];
     [self.backButton setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.view addSubview:self.backButton];
+
     [self.backButton.leftAnchor constraintEqualToAnchor:self.view.leftAnchor constant:20].active = YES;
-    [self.backButton.topAnchor  constraintEqualToAnchor:self.theLabelForTheDate.bottomAnchor constant:-35].active =YES;
+    [self.backButton.topAnchor  constraintEqualToAnchor:self.theLabelForTheDate.bottomAnchor constant:-40].active =YES;
     
     
 
@@ -111,11 +113,32 @@
     [self.view addSubview: stackView];
     
     [stackView.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor].active = YES;
-    [stackView.centerYAnchor constraintEqualToAnchor:self.view.centerYAnchor].active = YES;
+    [stackView.topAnchor constraintEqualToAnchor:self.theLabelForTheDate.bottomAnchor constant:20].active = YES;
     
     
     
+}
+
+-(void)setUpScrollView
+{
     
+    
+    UIScrollView *scrollView  = [UIScrollView new];
+    //scrollView.contentSize = CGSizeMake(300, 800);
+    scrollView.showsVerticalScrollIndicator = YES;
+    
+    scrollView.backgroundColor = [UIColor greenColor];
+    
+    [scrollView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.view addSubview:scrollView];
+    
+    [scrollView.centerYAnchor constraintEqualToAnchor:self.view.centerYAnchor].active = YES;
+    [scrollView.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor].active = YES;
+    [scrollView.heightAnchor constraintEqualToConstant:100].active = YES;
+    [scrollView.widthAnchor  constraintEqualToConstant:100].active = YES;
+    
+
+
 }
 
 -(IBAction)whenBackButtonIsTapped:(id)sender
