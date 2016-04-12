@@ -180,7 +180,7 @@
     
     
     [UIButton animateWithDuration:.2
-                            delay:1
+                            delay:.6
                           options:0
                        animations:^{
                            
