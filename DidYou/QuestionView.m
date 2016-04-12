@@ -69,17 +69,27 @@
 {
     
     
-        [[NSBundle mainBundle] loadNibNamed:@"Question" owner:self options:nil];
+    [[NSBundle mainBundle] loadNibNamed:@"Question" owner:self options:nil];
+
+    [self addSubview:self.contentView];
     
-        [self addSubview:self.contentView];
-        
-        self.contentView.frame = self.bounds;
-        
-        self.dataStore = [DataStore sharedDataStore];
-        
-        self.currentEntry = [self.dataStore.currentUser.journals lastObject];
-        
-        self.currentQuestion = self.currentEntry.questions[0];
+    self.contentView.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    [self.contentView.topAnchor constraintEqualToAnchor:self.topAnchor].active = YES;
+    [self.contentView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor].active = YES;
+    [self.contentView.leftAnchor constraintEqualToAnchor:self.leftAnchor].active = YES;
+    [self.contentView.rightAnchor constraintEqualToAnchor:self.rightAnchor].active = YES;
+    
+    
+    self.dataStore = [DataStore sharedDataStore];
+    
+    self.currentEntry = [self.dataStore.currentUser.journals lastObject];
+    
+    self.currentQuestion = self.currentEntry.questions[0];
+    
+    [self setUpButtons];
+    
+    NSLog(@"done with initializer");
     
     
     
@@ -89,18 +99,16 @@
 
 -(void)setUpButtons
 {
-    self.yesButton.layer.cornerRadius = 50;
-    self.noButton.layer.cornerRadius = 50;
+    self.yesButton.layer.cornerRadius = 40;
+    self.noButton.layer.cornerRadius = 40;
     
     self.yesButton.backgroundColor = [UIColor colorWithRed:34.0/255.0 green:164.0/255.0 blue:0 alpha:.5];
     self.noButton.backgroundColor = [UIColor colorWithRed:255.0/255.0 green:0 blue:17.0/255.0 alpha:.5];
     
+    self.yesButton.enabled = NO;
+    self.noButton.enabled = NO;
     
-//    self.yesButton.layer.borderWidth = 3;
-//    self.noButton.layer.borderWidth= 3;
-//    
-//    self.yesButton.layer.borderColor = [[UIColor colorWithRed:255.0/255.0 green:0 blue:17.0/255.0 alpha:.5] CGColor];
-//    self.noButton.layer.borderColor = [[UIColor colorWithRed:34.0/255.0 green:164.0/255.0 blue:0 alpha:.5] CGColor];
+//    [self layoutIfNeeded];
     
     
 }
@@ -111,9 +119,11 @@
     
     [self addSubview:self.imageIcon];
     
-    self.imageIcon.image = [UIImage imageNamed:self.iconName];
-    
     self.imageIcon.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    self.imageIcon.image = [UIImage imageNamed:self.iconName];
+    self.imageIcon.clipsToBounds = YES;
+    
     
     [self.imageIcon.centerYAnchor constraintEqualToAnchor:self.centerYAnchor].active = YES;
     
@@ -138,16 +148,22 @@
     self.iconCenterXConstraintLeft.active = NO;
     self.iconCenterXConstraintCenter.active = YES;
     
+    [self layoutIfNeeded];
     
+    NSLog(@"Done with set up image small");
     
 }
 
 -(void)moveImageToCenter
 {
     
+    [self layoutIfNeeded];
+    
+    
     [UIView animateWithDuration:.3 animations:^{
         
-      
+        [self layoutIfNeeded];
+        
         self.iconSmallHeight.active = NO;
         self.iconSmallWidth.active = NO;
         self.iconBigWidth.active = YES;
@@ -157,9 +173,14 @@
         
     } completion:^(BOOL finished) {
         
-        // enable both buttons
+        NSLog(@"done with move to center completion");
+        
+        self.yesButton.enabled = YES;
+        self.noButton.enabled = YES;
     }];
     
+    
+    NSLog(@"done with move to center");
 }
 
 
@@ -172,11 +193,13 @@
     
     [self generateIconName];
     
-    [self setUpButtons];
-    
     [self setUpImageSmall];
     
+    [self layoutIfNeeded];
+    
     [self moveImageToCenter];
+    
+    NSLog(@"done with question setter");
 
     
 }
@@ -215,6 +238,10 @@
     
     [UIView animateWithDuration:.3 animations:^{
         
+        self.yesButton.enabled = NO;
+        self.noButton.enabled = NO;
+        
+        
         self.iconCenterXConstraintCenter.active = NO;
         self.iconCenterXConstraintRight.active = YES;
         [self layoutIfNeeded];
@@ -236,8 +263,11 @@
     
     [UIView animateWithDuration:.3 animations:^{
         
+        self.yesButton.enabled = NO;
+        self.noButton.enabled = NO;
+        
         self.iconCenterXConstraintCenter.active = NO;
-        self.iconCenterXConstraintRight.active = YES;
+        self.iconCenterXConstraintLeft.active = YES;
         
         [self layoutIfNeeded];
         

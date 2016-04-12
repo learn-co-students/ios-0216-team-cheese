@@ -123,6 +123,8 @@
 {
     [self leaveMainFeelingView];
     
+    [self layoutIfNeeded];
+    
     [self setUpQuestionView];
     
 }
@@ -151,9 +153,11 @@
 -(void)setUpQuestionView
 {
     
-    self.questionView = [[QuestionView alloc] init];
+    self.questionView = [[QuestionView alloc] initWithFrame:CGRectZero];
     
     [self.contentView addSubview:self.questionView];
+    
+    self.questionView.alpha = 0;
     
     self.questionView.delegate = self;
     
@@ -164,7 +168,12 @@
     [self.questionView.centerXAnchor constraintEqualToAnchor:self.contentView.centerXAnchor].active = YES;
     [self.questionView.centerYAnchor constraintEqualToAnchor:self.contentView.centerYAnchor].active = YES;
     
-    //DYQuestion *question = self.currentEntry.questions[0];
+    [self layoutIfNeeded];
+    
+    [UIView animateWithDuration:0.8 animations:^{
+        self.questionView.alpha = 1.0;
+        
+    }];
     
     self.questionView.questionIndex = 0;
 
@@ -189,12 +198,18 @@
 
 -(void)leaveQuestionView
 {
+    
     self.questionView.alpha = 0;
+    
+    [self.questionView removeFromSuperview];
 }
 
 -(void)leaveMainFeelingView
 {
     self.mainFeelingView.alpha = 0;
+    
+    [self.mainFeelingView removeFromSuperview];
+    
 }
 
 -(void)journalComplete:(UIButton *)sender

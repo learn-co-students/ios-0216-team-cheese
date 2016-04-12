@@ -100,13 +100,7 @@
         
     } completion:^(BOOL finished) {
         
-        [UIView animateWithDuration:.5 delay:0 options:0 animations:^{
-            
-            [self.delegate feelingChosen:sender];
-            
-        } completion:^(BOOL finished) {
-            
-        }];
+        [self.delegate feelingChosen:sender];
         
     }];
     
@@ -158,7 +152,7 @@
         
         [outerCircleButton setTitle:moodsArray[i] forState:UIControlStateNormal];
         [outerCircleButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        outerCircleButton.titleLabel.font = [UIFont boldSystemFontOfSize:20];
+        //outerCircleButton.titleLabel.font = [UIFont boldSystemFontOfSize:20];
         outerCircleButton.titleLabel.adjustsFontSizeToFitWidth = YES;
         
         [self addSubview:outerCircleButton];
@@ -361,7 +355,8 @@
         [outerCircleButtons setTitle:specificMoodsArray[i] forState:UIControlStateNormal];
         [outerCircleButtons setTitleColor: [UIColor whiteColor] forState:UIControlStateNormal];
         //[UIColor colorWithRed:(160 / 255) green:(160 / 255) blue:(160 / 255) alpha:0.6] forState:UIControlStateNormal];
-        outerCircleButtons.titleLabel.font = [UIFont boldSystemFontOfSize:20];
+        //outerCircleButtons.titleLabel.font = [UIFont boldSystemFontOfSize:20];
+        outerCircleButtons.titleLabel.adjustsFontSizeToFitWidth = YES;
         
         [self addSubview:outerCircleButtons];
         
