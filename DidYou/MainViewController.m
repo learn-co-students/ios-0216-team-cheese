@@ -14,6 +14,7 @@
 #import "AddJournalEntryView.h"
 #import "JournalEntryTableViewCell.h"
 #import "CustomTabBarView.h"
+#import "JournalLogViewController.h"
 
 
 
@@ -216,7 +217,7 @@
     cell.cellView.journalEntry = journalAtRow;
     
     
-    NSLog(@"%@",cell.cellView.journalEntry.date);
+    //NSLog(@"%@",cell.cellView.journalEntry.date);
     
     return cell;
 }
@@ -289,51 +290,37 @@
 }
 
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+//-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    
+//    [self performSegueWithIdentifier:@"segueToJournalDetail" sender:self];
+//    
+//}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     
-    [self performSegueWithIdentifier:@"segueToJournalDetail" sender:self];
+    
+    if([segue.identifier isEqualToString:@"journalDetail"])
+    {
+
+//        NSArray *journals = self.dataStore.currentUser.journals;
+//        DYJournalEntry *currentJournal = [journals lastObject];
+        
+        JournalLogViewController *destVC = segue.destinationViewController;
+        
+        NSArray *journals = self.dataStore.currentUser.journals;
+        DYJournalEntry *currentJournal = [journals lastObject];
+        
+        destVC.jorunalEntry = currentJournal;
+        
+        
+    }
+    
     
 }
 
-//-(void)createBlurView
-//{
-//    
-//    UIVisualEffect *blurEffect;
-//    blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
-//    
-//    self.addJournalFullScreenBlurView= [[NewJournalEntryBlurView alloc] initWithEffect:blurEffect];
-//    
-//    self.addJournalFullScreenBlurView.delegate = self;
-//    
-//    self.addJournalFullScreenBlurView.translatesAutoresizingMaskIntoConstraints = NO;
-//    
-//    self.blurViewheightConstraint = [self.addJournalFullScreenBlurView.heightAnchor constraintEqualToAnchor:self.view.heightAnchor multiplier:.3];
-//    self.blurViewheightConstraint.active = YES;
-//    
-//    [self.addJournalFullScreenBlurView.topAnchor constraintEqualToAnchor:self.view.topAnchor].active = YES;
-//    [self.addJournalFullScreenBlurView.widthAnchor constraintEqualToAnchor:self.view.widthAnchor].active = YES;
-//    [self.addJournalFullScreenBlurView.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor].active = YES;
-//    
-//    
-//    
-//
-//    
-//}
-//-(void)topViewToBlur
-//{
-//    
-//}
-//
-//-(void)restOfScreenToBlur
-//{
-//    
-//}
-//
-//-(void)mainFeelingLaunched
-//{
-//    
-//}
+
+
 
 
 

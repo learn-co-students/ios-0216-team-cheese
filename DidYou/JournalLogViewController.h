@@ -7,12 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DYJournalEntry.h"
+
 
 @interface JournalLogViewController : UIViewController
 
 
 
+@property (nonatomic, strong) DYJournalEntry *jorunalEntry;
 @property (nonatomic, strong) UILabel *theLabelForTheDate;
 @property (nonatomic, strong) UIButton *backButton;
+@property (nonatomic, strong) NSDate *dateOfPost;
 
 @end
