@@ -25,6 +25,7 @@
 @property (strong, nonatomic) IBOutlet AddJournalEntryView *addEntryTopView;
 @property (strong, nonatomic) IBOutlet UITableView *journalEntryTableView;
 @property (strong, nonatomic) CustomTabBarView *tabBar;
+
 @property (strong, nonatomic) NewJournalEntryBlurView *addJournalFullScreenBlurView;
 @property (strong, nonatomic) AddJournalEntryView *journalView;
 @property (strong, nonatomic) DataStore *dataStore;
@@ -34,6 +35,7 @@
 
 @property (strong, nonatomic) NSLayoutConstraint *blurViewheightConstraint;
 @property (strong, nonatomic) NSLayoutConstraint *blurViewWidthConstraint;
+
 
 
 @end
@@ -115,31 +117,28 @@
 
 - (void)addButtonTapped:(UIButton *)sender {
     
-    [UIView animateWithDuration:0.8 delay:0 options:0 animations:^{
+
+    [UIView animateWithDuration:0.2 delay:0 options:0 animations:^{
         
         self.journalEntryTableView.alpha = 0;
         self.addEntryTopView.alpha = 0;
         
-        [self launchAddJournalFullScreenView];
+        
         
     } completion:^(BOOL finished) {
         
-        [UIView animateWithDuration:0.5 delay:0.6 options:0 animations:^{
-            
-            self.journalEntryTableView.alpha = 1;
-            self.addEntryTopView.alpha = 1;
-            
-        } completion:^(BOOL finished) {
-            
-        }];
+        [self launchAddJournalFullScreenView];
+
         
     }];
+
     
 }
 
 
 -(void)launchAddJournalFullScreenView
 {
+    
     
     UIVisualEffect *blurEffect;
     blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
@@ -149,9 +148,9 @@
     self.addJournalFullScreenBlurView.delegate = self;
     
     self.addJournalFullScreenBlurView.alpha = 0;
-
-
-    [UIView animateWithDuration:.5 delay:0 options:0 animations:^{
+    
+    
+    [UIView animateWithDuration:0 delay:0 options:0 animations:^{
         
         
         [self.view addSubview:self.addJournalFullScreenBlurView];
@@ -165,9 +164,12 @@
         [self.addJournalFullScreenBlurView.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor].active = YES;
         [self.addJournalFullScreenBlurView.centerYAnchor constraintEqualToAnchor:self.view.centerYAnchor].active = YES;
         
+        self.journalEntryTableView.alpha = 1;
+        self.addEntryTopView.alpha = 1;
+        
     } completion:^(BOOL finished) {
         
-        [UIView animateWithDuration:2 delay:0 options:0 animations:^{
+        [UIView animateWithDuration:0 delay:0 options:0 animations:^{
             
             [self.view bringSubviewToFront:self.addJournalFullScreenBlurView];
             
@@ -220,6 +222,11 @@
     //NSLog(@"%@",cell.cellView.journalEntry.date);
     
     return cell;
+}
+
+-(BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return NO;
 }
 
 -(void)createCustomTabBar
@@ -290,29 +297,56 @@
 }
 
 
+
 //-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 //{
 //    
-//    [self performSegueWithIdentifier:@"segueToJournalDetail" sender:self];
+//    NSLog(@"Selected row %li",indexPath.row);
+//    [self performSegueWithIdentifier:@"journalDetail" sender:self];
 //    
 //}
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+-(void)createBlurView
+{
     
+    UIVisualEffect *blurEffect;
+    blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+    
+    self.addJournalFullScreenBlurView= [[NewJournalEntryBlurView alloc] initWithEffect:blurEffect];
+    
+    self.addJournalFullScreenBlurView.delegate = self;
+    
+    [self.view addSubview:self.addJournalFullScreenBlurView];
+    
+    self.addJournalFullScreenBlurView.translatesAutoresizingMaskIntoConstraints = NO;
+    
+//    self.blurViewSmallHeightConstraint = [self.addJournalFullScreenBlurView.heightAnchor constraintEqualToAnchor:self.view.heightAnchor multiplier:.3];
+//    self.blurViewSmallHeightConstraint.active = NO;
+
+//    
+//    self.blurViewBigHeightConstraint = [self.addJournalFullScreenBlurView.heightAnchor constraintEqualToAnchor:self.view.heightAnchor];
+//    self.blurViewBigHeightConstraint.active = YES;
+    
+    [self.addJournalFullScreenBlurView.topAnchor constraintEqualToAnchor:self.view.topAnchor].active = YES;
+    [self.addJournalFullScreenBlurView.widthAnchor constraintEqualToAnchor:self.view.widthAnchor].active = YES;
+    [self.addJournalFullScreenBlurView.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor].active = YES;
+    
+    [self.addJournalFullScreenBlurView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor].active = YES;
+
+}
+
+
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     
     if([segue.identifier isEqualToString:@"journalDetail"])
     {
 
-//        NSArray *journals = self.dataStore.currentUser.journals;
-//        DYJournalEntry *currentJournal = [journals lastObject];
-        
+        NSLog(@"prepareForSegue");
         JournalLogViewController *destVC = segue.destinationViewController;
-        
         NSArray *journals = self.dataStore.currentUser.journals;
         DYJournalEntry *currentJournal = [journals lastObject];
-        
         destVC.jorunalEntry = currentJournal;
-        
         
     }
     

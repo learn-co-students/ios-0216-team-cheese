@@ -235,6 +235,7 @@
     [UIView animateWithDuration:time + 8 delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
         circleView.frame = CGRectMake(xPosition, yPosition, radius*2.0, radius*2.0);
     } completion:^(BOOL finished) {
+        
         [self animateView:circleView withRadius:radius];
     }];
     

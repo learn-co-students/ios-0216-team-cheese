@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		31FF281D1CAD6BED008051C0 /* DYQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FF281C1CAD6BED008051C0 /* DYQuestion.m */; };
-		31FF281F1CAD72D9008051C0 /* MainFeeling.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31FF281E1CAD72D9008051C0 /* MainFeeling.xib */; };
-		31FF28211CAD72EB008051C0 /* CategoryFeeling.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31FF28201CAD72EB008051C0 /* CategoryFeeling.xib */; };
 		31FF28231CAD7303008051C0 /* Question.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31FF28221CAD7303008051C0 /* Question.xib */; };
 		31FF28251CAD731C008051C0 /* JournalAndPicture.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31FF28241CAD731C008051C0 /* JournalAndPicture.xib */; };
 		31FF28281CAD7356008051C0 /* MainFeelingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FF28271CAD7356008051C0 /* MainFeelingView.m */; };
@@ -19,9 +17,7 @@
 
 		31FF28721CBC4691008051C0 /* JournalLogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FF28711CBC4691008051C0 /* JournalLogViewController.m */; };
 
-
 		779BD9041CB736560027DC91 /* DYUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 779BD9031CB736560027DC91 /* DYUtility.m */; };
-
 		AB49939EBAFBADBED3BC9BF4 /* libPods-DidYou.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 563053DD0003F7BE5361FBFA /* libPods-DidYou.a */; };
 		AB92E71A1CAB01F200199034 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AB92E7191CAB01F200199034 /* main.m */; };
 		AB92E71D1CAB01F200199034 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AB92E71C1CAB01F200199034 /* AppDelegate.m */; };
@@ -36,9 +32,7 @@
 		AB92E7621CAC495F00199034 /* AddJournalEntryView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB92E7611CAC495F00199034 /* AddJournalEntryView.m */; };
 		AB92E76F1CAC697B00199034 /* StatsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB92E76E1CAC697B00199034 /* StatsViewController.m */; };
 		AB92E7951CAD9CB400199034 /* NewJournalEntryBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB92E7941CAD9CB400199034 /* NewJournalEntryBlurView.m */; };
-		AB92E7971CADBC2F00199034 /* IndividualFeeling.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB92E7961CADBC2F00199034 /* IndividualFeeling.xib */; };
 		AB92E79A1CADBD2800199034 /* IndividualFeelingView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB92E7991CADBD2800199034 /* IndividualFeelingView.m */; };
-		AB92E7D21CB2E41900199034 /* CategoryFeelingDetail.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB92E7D11CB2E41900199034 /* CategoryFeelingDetail.xib */; };
 		AB92E7D41CB400B600199034 /* JournalEntryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB92E7D31CB400B600199034 /* JournalEntryTableViewCell.xib */; };
 		AB92E7D71CB4063A00199034 /* JournalEntryTableViewCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB92E7D61CB4063A00199034 /* JournalEntryTableViewCellView.m */; };
 		AB92E7DA1CB40C6400199034 /* JournalEntryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB92E7D91CB40C6400199034 /* JournalEntryTableViewCell.m */; };
@@ -53,8 +47,6 @@
 /* Begin PBXFileReference section */
 		31FF281B1CAD6BED008051C0 /* DYQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYQuestion.h; sourceTree = "<group>"; };
 		31FF281C1CAD6BED008051C0 /* DYQuestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYQuestion.m; sourceTree = "<group>"; };
-		31FF281E1CAD72D9008051C0 /* MainFeeling.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainFeeling.xib; sourceTree = "<group>"; };
-		31FF28201CAD72EB008051C0 /* CategoryFeeling.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategoryFeeling.xib; sourceTree = "<group>"; };
 		31FF28221CAD7303008051C0 /* Question.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Question.xib; sourceTree = "<group>"; };
 		31FF28241CAD731C008051C0 /* JournalAndPicture.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JournalAndPicture.xib; sourceTree = "<group>"; };
 		31FF28261CAD7356008051C0 /* MainFeelingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainFeelingView.h; sourceTree = "<group>"; };
@@ -98,10 +90,8 @@
 		AB92E76E1CAC697B00199034 /* StatsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatsViewController.m; sourceTree = "<group>"; };
 		AB92E7931CAD9CB400199034 /* NewJournalEntryBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewJournalEntryBlurView.h; sourceTree = "<group>"; };
 		AB92E7941CAD9CB400199034 /* NewJournalEntryBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewJournalEntryBlurView.m; sourceTree = "<group>"; };
-		AB92E7961CADBC2F00199034 /* IndividualFeeling.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IndividualFeeling.xib; sourceTree = "<group>"; };
 		AB92E7981CADBD2800199034 /* IndividualFeelingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndividualFeelingView.h; sourceTree = "<group>"; };
 		AB92E7991CADBD2800199034 /* IndividualFeelingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndividualFeelingView.m; sourceTree = "<group>"; };
-		AB92E7D11CB2E41900199034 /* CategoryFeelingDetail.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategoryFeelingDetail.xib; sourceTree = "<group>"; };
 		AB92E7D31CB400B600199034 /* JournalEntryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JournalEntryTableViewCell.xib; sourceTree = "<group>"; };
 		AB92E7D51CB4063A00199034 /* JournalEntryTableViewCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JournalEntryTableViewCellView.h; sourceTree = "<group>"; };
 		AB92E7D61CB4063A00199034 /* JournalEntryTableViewCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JournalEntryTableViewCellView.m; sourceTree = "<group>"; };
@@ -198,11 +188,7 @@
 			children = (
 				CD4CCAC41CB6EA0C00805B1F /* Stats.xib */,
 				AB92E75E1CAC48DE00199034 /* AddJournalEntry.xib */,
-				31FF281E1CAD72D9008051C0 /* MainFeeling.xib */,
-				31FF28201CAD72EB008051C0 /* CategoryFeeling.xib */,
-				AB92E7D11CB2E41900199034 /* CategoryFeelingDetail.xib */,
 				AB92E7DB1CB5585D00199034 /* CustomTabBar.xib */,
-				AB92E7961CADBC2F00199034 /* IndividualFeeling.xib */,
 				AB92E7E31CB71A1A00199034 /* JournalEntryTableViewCell2.xib */,
 				AB92E7D31CB400B600199034 /* JournalEntryTableViewCell.xib */,
 				31FF28221CAD7303008051C0 /* Question.xib */,
@@ -334,14 +320,10 @@
 				AB92E7DC1CB5585D00199034 /* CustomTabBar.xib in Resources */,
 				31FF28251CAD731C008051C0 /* JournalAndPicture.xib in Resources */,
 				31FF28231CAD7303008051C0 /* Question.xib in Resources */,
-				AB92E7971CADBC2F00199034 /* IndividualFeeling.xib in Resources */,
 				AB92E7281CAB01F200199034 /* LaunchScreen.storyboard in Resources */,
 				AB92E7251CAB01F200199034 /* Assets.xcassets in Resources */,
 				CD4CCAC51CB6EA0C00805B1F /* Stats.xib in Resources */,
-				AB92E7D21CB2E41900199034 /* CategoryFeelingDetail.xib in Resources */,
-				31FF28211CAD72EB008051C0 /* CategoryFeeling.xib in Resources */,
 				AB92E75F1CAC48DE00199034 /* AddJournalEntry.xib in Resources */,
-				31FF281F1CAD72D9008051C0 /* MainFeeling.xib in Resources */,
 				AB92E7E41CB71A1A00199034 /* JournalEntryTableViewCell2.xib in Resources */,
 				AB92E7D41CB400B600199034 /* JournalEntryTableViewCell.xib in Resources */,
 				AB92E7231CAB01F200199034 /* Main.storyboard in Resources */,
