@@ -46,45 +46,48 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     self.dataStore =  [DataStore sharedDataStore];
     self.addEntryTopView.delegate = self;
-
+    
     self.journalEntryTableView.delegate = self;
     self.journalEntryTableView.dataSource = self;
     
-    self.spinView = [[LoadingFirstPageView alloc]initWithFrame:self.journalEntryTableView.frame];
-    self.contentView.translatesAutoresizingMaskIntoConstraints = NO;
-    LoadingFirstPageView *contentView = [[LoadingFirstPageView alloc]init];
-    
-    [self.contentView.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor].active = YES;
-    
-    [self.contentView.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor].active = YES;
-    
-    [self.contentView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor].active = YES;
-    
-    [self.contentView.topAnchor constraintEqualToAnchor:self.addEntryTopView.bottomAnchor].active = YES;
-    
-    self.spinView.delegate = self;
-    
-    
-    
+    self.spinView = [[LoadingFirstPageView alloc]initWithFrame:CGRectZero];
     [self.view addSubview:self.spinView];
+    self.spinView.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    [self.spinView.heightAnchor constraintEqualToConstant:100].active = YES;
+    [self.spinView.widthAnchor constraintEqualToConstant:100].active = YES;
+    [self.spinView.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor].active = YES;
+    [self.spinView.centerYAnchor constraintEqualToAnchor:self.view.centerYAnchor].active = YES;
+    
+    
+//    
+//    [self.spinView.leadingAnchor constraintEqualToAnchor:self.journalEntryTableView.leadingAnchor].active = YES;
+//    
+//    [self.spinView.trailingAnchor constraintEqualToAnchor:self.journalEntryTableView.trailingAnchor].active = YES;
+//    
+//    [self.spinView.bottomAnchor constraintEqualToAnchor:self.journalEntryTableView.bottomAnchor].active = YES;
+//    
+//    [self.spinView.topAnchor constraintEqualToAnchor:self.journalEntryTableView.topAnchor].active = YES;
+ 
+    self.spinView.delegate = self;
     
     [self.spinView.activityIndicator startAnimating];
     
     
     [self preferredStatusBarStyle];
     
-
-    [self createCustomTabBar]; 
-
+    
+    [self createCustomTabBar];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(receiveFirebaseNotification:)
                                                  name:@"FirebaseNotification"
                                                object:nil];
     
-//    [self.journalEntryTableView reloadData];
+    [self.journalEntryTableView reloadData];
     
     
 }
@@ -98,24 +101,24 @@
         
         [self.journalEntryTableView reloadData];
     
-        [self.spinView.activityIndicator stopAnimating];
+    // [self.spinView.activityIndicator stopAnimating];
 }
 
 -(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
-
+    
     NSLog(@"didFailWithError, %@", error);
-
+    
     UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"Error" message:@"Failed to get where you are" preferredStyle:UIAlertControllerStyleAlert];
-
-
+    
+    
     UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-
+        
     }];
-
+    
     [errorAlert addAction:defaultAction];
-
+    
     [self presentViewController:errorAlert animated:YES completion:nil];
-
+    
 }
 
 
@@ -126,7 +129,7 @@
     
     if (currentLocation != nil) {
         
-
+        
         
         //stop location manager
         
@@ -139,7 +142,7 @@
             
             if (error == nil && [placemarks count] > 0) {
                 self.placemark = [placemarks lastObject];
-
+                
                 
             } else {
                 
@@ -189,8 +192,8 @@
     self.addJournalFullScreenBlurView.delegate = self;
     
     self.addJournalFullScreenBlurView.alpha = 0;
-
-
+    
+    
     [UIView animateWithDuration:.5 delay:0 options:0 animations:^{
         
         
@@ -216,7 +219,7 @@
         }];
         
     }];
-
+    
 }
 
 
@@ -257,7 +260,7 @@
     cell.cellView.journalEntry = journalAtRow;
     
     return cell;
-
+    
 }
 
 -(void)createCustomTabBar
@@ -277,7 +280,7 @@
     [self.tabBar.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor].active = YES;
     
     self.tabBar.delegate = self;
-  
+    
 }
 
 -(void)userNavigates:(NSString *)viewChosen
