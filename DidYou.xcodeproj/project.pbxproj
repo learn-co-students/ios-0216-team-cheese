@@ -14,6 +14,9 @@
 		31FF282B1CAD736E008051C0 /* CategoryFeelingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FF282A1CAD736E008051C0 /* CategoryFeelingView.m */; };
 		31FF282E1CAD7382008051C0 /* QuestionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FF282D1CAD7382008051C0 /* QuestionView.m */; };
 		31FF28311CAD7398008051C0 /* JournalAndPictureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FF28301CAD7398008051C0 /* JournalAndPictureView.m */; };
+
+		31FF28721CBC4691008051C0 /* JournalLogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FF28711CBC4691008051C0 /* JournalLogViewController.m */; };
+
 		779BD9041CB736560027DC91 /* DYUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 779BD9031CB736560027DC91 /* DYUtility.m */; };
 		AB49939EBAFBADBED3BC9BF4 /* libPods-DidYou.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 563053DD0003F7BE5361FBFA /* libPods-DidYou.a */; };
 		AB92E71A1CAB01F200199034 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AB92E7191CAB01F200199034 /* main.m */; };
@@ -54,6 +57,12 @@
 		31FF282D1CAD7382008051C0 /* QuestionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionView.m; sourceTree = "<group>"; };
 		31FF282F1CAD7398008051C0 /* JournalAndPictureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JournalAndPictureView.h; sourceTree = "<group>"; };
 		31FF28301CAD7398008051C0 /* JournalAndPictureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JournalAndPictureView.m; sourceTree = "<group>"; };
+
+		31FF286D1CB550C1008051C0 /* Secrets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Secrets.h; sourceTree = "<group>"; };
+		31FF286E1CB550C1008051C0 /* Secrets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Secrets.m; sourceTree = "<group>"; };
+		31FF28701CBC4691008051C0 /* JournalLogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JournalLogViewController.h; sourceTree = "<group>"; };
+		31FF28711CBC4691008051C0 /* JournalLogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JournalLogViewController.m; sourceTree = "<group>"; };
+
 		563053DD0003F7BE5361FBFA /* libPods-DidYou.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DidYou.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		779BD9021CB736560027DC91 /* DYUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYUtility.h; sourceTree = "<group>"; };
 		779BD9031CB736560027DC91 /* DYUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYUtility.m; sourceTree = "<group>"; };
@@ -160,7 +169,6 @@
 				AB92E7691CAC528600199034 /* Singleton Data Store */,
 				AB92E7241CAB01F200199034 /* Assets.xcassets */,
 				AB92E7261CAB01F200199034 /* LaunchScreen.storyboard */,
-				31FF28301CAD7398008051C0 /* JournalAndPictureView.m */,
 				AB92E7291CAB01F200199034 /* Info.plist */,
 				AB92E7181CAB01F200199034 /* Supporting Files */,
 			);
@@ -209,6 +217,7 @@
 				31FF282C1CAD7382008051C0 /* QuestionView.h */,
 				31FF282D1CAD7382008051C0 /* QuestionView.m */,
 				31FF282F1CAD7398008051C0 /* JournalAndPictureView.h */,
+				31FF28301CAD7398008051C0 /* JournalAndPictureView.m */,
 			);
 			name = "Xib Views";
 			sourceTree = "<group>";
@@ -216,6 +225,8 @@
 		AB92E7651CAC525B00199034 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				31FF28701CBC4691008051C0 /* JournalLogViewController.h */,
+				31FF28711CBC4691008051C0 /* JournalLogViewController.m */,
 				AB92E71E1CAB01F200199034 /* MainViewController.h */,
 				AB92E71F1CAB01F200199034 /* MainViewController.m */,
 				AB92E76D1CAC697B00199034 /* StatsViewController.h */,
@@ -389,6 +400,7 @@
 				AB92E79A1CADBD2800199034 /* IndividualFeelingView.m in Sources */,
 				31FF281D1CAD6BED008051C0 /* DYQuestion.m in Sources */,
 				AB92E75A1CAB112B00199034 /* DYUser.m in Sources */,
+				31FF28721CBC4691008051C0 /* JournalLogViewController.m in Sources */,
 				31FF28281CAD7356008051C0 /* MainFeelingView.m in Sources */,
 				AB92E7201CAB01F200199034 /* MainViewController.m in Sources */,
 				AB92E7DF1CB55BE000199034 /* CustomTabBarView.m in Sources */,

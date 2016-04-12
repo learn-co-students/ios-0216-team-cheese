@@ -168,12 +168,14 @@
     [self.questionView.centerXAnchor constraintEqualToAnchor:self.contentView.centerXAnchor].active = YES;
     [self.questionView.centerYAnchor constraintEqualToAnchor:self.contentView.centerYAnchor].active = YES;
     
+
     [self layoutIfNeeded];
     
     [UIView animateWithDuration:0.8 animations:^{
         self.questionView.alpha = 1.0;
         
     }];
+
     
     self.questionView.questionIndex = 0;
 
@@ -182,13 +184,9 @@
 -(void)setUpJournalAndPictureView
 {
     self.journalAndPictureView = [[JournalAndPictureView alloc] init];
-    
     [self.contentView addSubview:self.journalAndPictureView];
-    
     self.journalAndPictureView.delegate = self;
-    
     self.journalAndPictureView.translatesAutoresizingMaskIntoConstraints = NO;
-    
     [self.journalAndPictureView.widthAnchor constraintEqualToAnchor:self.contentView.widthAnchor].active = YES;
     [self.journalAndPictureView.heightAnchor constraintEqualToAnchor:self.contentView.heightAnchor].active = YES;
     [self.journalAndPictureView.centerXAnchor constraintEqualToAnchor:self.contentView.centerXAnchor].active = YES;
@@ -239,7 +237,6 @@
     self.journalAndPictureView.imageView.layer.cornerRadius = self.journalAndPictureView.imageView.frame.size.width / 2;
     self.journalAndPictureView.imageView.contentMode = UIViewContentModeScaleAspectFill;
     self.journalAndPictureView.imageView.clipsToBounds = YES;
-    self.journalAndPictureView.imageView.layer.borderWidth = 2.0f;
     self.journalAndPictureView.imageView.layer.borderColor = [UIColor darkGrayColor].CGColor;
 }
 
