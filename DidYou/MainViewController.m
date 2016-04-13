@@ -219,8 +219,6 @@
     cell.cellView.journalEntry = journalAtRow;
     
     
-    //NSLog(@"%@",cell.cellView.journalEntry.date);
-    
     return cell;
 }
 
