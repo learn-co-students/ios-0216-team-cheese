@@ -104,7 +104,7 @@
     
     UIButton *addPhotoButton = [UIButton buttonWithType:UIButtonTypeSystem];
     [addPhotoButton setImage:[UIImage imageNamed:@"cameraImage"] forState:UIControlStateNormal];
-    [addPhotoButton setTintColor:[UIColor darkGrayColor]];
+    [addPhotoButton setTintColor:[[UIColor alloc]initWithRed:0 green:.50 blue:1 alpha:1]];
     [[addPhotoButton imageView] setContentMode:UIViewContentModeScaleAspectFill];
     [addPhotoButton addTarget:self action:@selector(whenAddPhotoButtonIsTapped:) forControlEvents:UIControlEventTouchUpInside];
     [addPhotoButton setTranslatesAutoresizingMaskIntoConstraints:NO];

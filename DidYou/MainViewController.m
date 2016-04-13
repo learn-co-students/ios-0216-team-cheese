@@ -14,6 +14,7 @@
 #import "AddJournalEntryView.h"
 #import "JournalEntryTableViewCell.h"
 #import "CustomTabBarView.h"
+#import "JournalLogViewController.h"
 
 
 
@@ -218,14 +219,9 @@
     cell.cellView.journalEntry = journalAtRow;
     
     
-    NSLog(@"%@",cell.cellView.journalEntry.date);
+    //NSLog(@"%@",cell.cellView.journalEntry.date);
     
     return cell;
-}
-
--(BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return NO;
 }
 
 -(void)createCustomTabBar
@@ -264,9 +260,6 @@
     }
 }
 
-
-
-
 # pragma mark - JournalAndPictureView methods below
 
 - (void)buttonTappedFromJournalandPictureView:(id)sender {
@@ -296,13 +289,6 @@
 }
 
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    
-    [self performSegueWithIdentifier:@"segueToJournalDetail" sender:self];
-    
-}
-
 -(void)createBlurView
 {
     
@@ -317,7 +303,6 @@
     
     self.addJournalFullScreenBlurView.translatesAutoresizingMaskIntoConstraints = NO;
     
-    
     [self.addJournalFullScreenBlurView.topAnchor constraintEqualToAnchor:self.view.topAnchor].active = YES;
     [self.addJournalFullScreenBlurView.widthAnchor constraintEqualToAnchor:self.view.widthAnchor].active = YES;
     [self.addJournalFullScreenBlurView.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor].active = YES;
@@ -325,6 +310,22 @@
     [self.addJournalFullScreenBlurView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor].active = YES;
 
 }
+
+
+
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    
+    if([segue.identifier isEqualToString:@"journalDetailVC"])
+    {
+        JournalLogViewController *destVC = segue.destinationViewController;
+        NSArray *journals = self.dataStore.currentUser.journals;
+        DYJournalEntry *currentJournal = [journals lastObject];
+        destVC.jorunalEntry = currentJournal;
+    }
+    
+}
+
 
 
 
