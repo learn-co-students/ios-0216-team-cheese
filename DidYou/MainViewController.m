@@ -317,11 +317,6 @@
     
     self.addJournalFullScreenBlurView.translatesAutoresizingMaskIntoConstraints = NO;
     
-//    self.blurViewSmallHeightConstraint = [self.addJournalFullScreenBlurView.heightAnchor constraintEqualToAnchor:self.view.heightAnchor multiplier:.3];
-//    self.blurViewSmallHeightConstraint.active = NO;
-//    
-//    self.blurViewBigHeightConstraint = [self.addJournalFullScreenBlurView.heightAnchor constraintEqualToAnchor:self.view.heightAnchor];
-//    self.blurViewBigHeightConstraint.active = YES;
     
     [self.addJournalFullScreenBlurView.topAnchor constraintEqualToAnchor:self.view.topAnchor].active = YES;
     [self.addJournalFullScreenBlurView.widthAnchor constraintEqualToAnchor:self.view.widthAnchor].active = YES;
@@ -330,6 +325,10 @@
     [self.addJournalFullScreenBlurView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor].active = YES;
 
 }
+
+
+
+
 
 
 
