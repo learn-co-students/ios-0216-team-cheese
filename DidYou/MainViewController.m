@@ -27,11 +27,11 @@
 @property (strong, nonatomic) NewJournalEntryBlurView *addJournalFullScreenBlurView;
 @property (strong, nonatomic) AddJournalEntryView *journalView;
 @property (strong, nonatomic) LoadingFirstPageView *spinView;
-
 @property (strong, nonatomic) DataStore *dataStore;
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) CLGeocoder *geocoder;
 @property (strong, nonatomic) CLPlacemark *placemark;
+
 
 
 @property (strong, nonatomic) LoadingFirstPageView *contentView;
@@ -51,6 +51,7 @@
     self.journalEntryTableView.delegate = self;
     self.journalEntryTableView.dataSource = self;
     
+
     self.spinView = [[LoadingFirstPageView alloc]initWithFrame:CGRectZero];
     if (!self.dataStore.isFirstTime)
     {
@@ -65,6 +66,7 @@
         
     }
     
+
     [self preferredStatusBarStyle];
     [self createCustomTabBar]; 
 
@@ -96,7 +98,6 @@
     UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"Error" message:@"Failed to get where you are" preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
     }];
-
     [errorAlert addAction:defaultAction];
     
     [self presentViewController:errorAlert animated:YES completion:nil];
@@ -325,18 +326,12 @@
     [self.view addSubview:self.addJournalFullScreenBlurView];
     
     self.addJournalFullScreenBlurView.translatesAutoresizingMaskIntoConstraints = NO;
-    
-//    self.blurViewSmallHeightConstraint = [self.addJournalFullScreenBlurView.heightAnchor constraintEqualToAnchor:self.view.heightAnchor multiplier:.3];
-//    self.blurViewSmallHeightConstraint.active = NO;
 
-//    
-//    self.blurViewBigHeightConstraint = [self.addJournalFullScreenBlurView.heightAnchor constraintEqualToAnchor:self.view.heightAnchor];
-//    self.blurViewBigHeightConstraint.active = YES;
     
     [self.addJournalFullScreenBlurView.topAnchor constraintEqualToAnchor:self.view.topAnchor].active = YES;
     [self.addJournalFullScreenBlurView.widthAnchor constraintEqualToAnchor:self.view.widthAnchor].active = YES;
     [self.addJournalFullScreenBlurView.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor].active = YES;
-    
+
     [self.addJournalFullScreenBlurView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor].active = YES;
 
 }
@@ -355,12 +350,5 @@
     }
     
 }
-
-
-
-
-
-
-
 
 @end

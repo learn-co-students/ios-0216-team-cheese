@@ -202,14 +202,9 @@
     [self.questionView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor].active = YES;
     [self.questionView.topAnchor constraintEqualToAnchor:self.topAnchor constant:70].active = YES;
     
-//    [self.questionView.widthAnchor constraintEqualToAnchor:self.contentView.widthAnchor].active = YES;
-//    [self.questionView.heightAnchor constraintEqualToAnchor:self.contentView.heightAnchor].active = YES;
-//    [self.questionView.centerXAnchor constraintEqualToAnchor:self.contentView.centerXAnchor].active = YES;
-//    [self.questionView.centerYAnchor constraintEqualToAnchor:self.contentView.centerYAnchor].active = YES;
-    
+
 
     [self layoutIfNeeded];
-    
     [UIView animateWithDuration:0.8 animations:^{
         self.questionView.alpha = 1.0;
         
@@ -226,10 +221,14 @@
     [self.contentView addSubview:self.journalAndPictureView];
     self.journalAndPictureView.delegate = self;
     self.journalAndPictureView.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.journalAndPictureView.widthAnchor constraintEqualToAnchor:self.contentView.widthAnchor].active = YES;
-    [self.journalAndPictureView.heightAnchor constraintEqualToAnchor:self.contentView.heightAnchor].active = YES;
-    [self.journalAndPictureView.centerXAnchor constraintEqualToAnchor:self.contentView.centerXAnchor].active = YES;
-    [self.journalAndPictureView.centerYAnchor constraintEqualToAnchor:self.contentView.centerYAnchor].active = YES;
+
+    
+    [self.journalAndPictureView.leftAnchor constraintEqualToAnchor:self.leftAnchor].active = YES;
+    [self.journalAndPictureView.rightAnchor constraintEqualToAnchor:self.rightAnchor].active = YES;
+    [self.journalAndPictureView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor].active = YES;
+    [self.journalAndPictureView.topAnchor constraintEqualToAnchor:self.topAnchor constant:70].active = YES;
+
+
     
 }
 
