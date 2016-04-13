@@ -19,6 +19,7 @@
 @property (strong, nonatomic) DYUser *currentUser;
 @property (strong, nonatomic) Firebase *myRootRef;
 @property (nonatomic) BOOL isFirstTime;
+@property (strong, nonatomic) UIImage *userImage;
 
 + (instancetype)sharedDataStore;
 

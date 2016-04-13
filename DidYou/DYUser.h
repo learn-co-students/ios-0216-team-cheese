@@ -14,6 +14,7 @@
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *city;
 @property (strong, nonatomic) NSString *country;
+//@property (strong, nonatomic) UIImage *image;
 @property (strong, nonatomic) NSDate *signUpDate;
 
 @property (strong, nonatomic) NSMutableArray *journals;

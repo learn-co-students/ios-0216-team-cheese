@@ -19,7 +19,7 @@
 }
 
 
--(instancetype)initWithDate:(NSDate *)date mainEmotion:(NSString *)mainEmotion journalEntry:(NSString *)journalEntry picture1Address:(NSString *)picture1Address
+-(instancetype)initWithDate:(NSDate *)date mainEmotion:(NSString *)mainEmotion journalEntry:(NSString *)journalEntry picture1Address:(NSString *)picture1Address userImage:(UIImage *)userImage
 {
     self = [super init];
     
@@ -29,6 +29,7 @@
         _mainEmotion = mainEmotion;
         _journalEntry = journalEntry;
         _picture1Address = picture1Address;
+        _userImage = userImage;
         _questions = [self generateQuestions];
    
     }
@@ -53,6 +54,7 @@
         _mainEmotion = data[@"emotion"];
         _journalEntry = data[@"journalEntry"];
         _picture1Address = data[@"picture1Address"];
+        _userImage = data[@"userImage"];
         _questions = q;
     }
     return self;
@@ -64,6 +66,8 @@
     NSMutableDictionary *data = [[NSMutableDictionary alloc] init];
     
     NSMutableArray *questions = [[NSMutableArray alloc] init];
+
+    //UIImage *userImage = [util decodeBase64ToImage: _picture1Address];
     
     for (DYQuestion *question in _questions)
     {
@@ -73,7 +77,9 @@
     data[@"emotion"] = _mainEmotion;
     data[@"journalEntry"] = _journalEntry;
     data[@"picture1address"] = _picture1Address;
+    data[@"userImage"] = _userImage;
     data[@"questions"] = questions;
+    
     return data;
 }
 

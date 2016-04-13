@@ -121,8 +121,6 @@
 
 -(void)setUpScrollView
 {
-    
-    
     UIScrollView *scrollView  = [UIScrollView new];
     //scrollView.contentSize = CGSizeMake(300, 800);
     scrollView.showsVerticalScrollIndicator = YES;

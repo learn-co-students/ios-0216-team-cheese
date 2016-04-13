@@ -10,6 +10,7 @@
 #import "DYUser.h"
 #import "DYJournalEntry.h"
 #import "DYUtility.h"
+#import "DYJournalEntry.h"
 
 @implementation DataStore
 
@@ -34,6 +35,7 @@
         _users = [[NSMutableArray alloc] init];
         _emotions = [self emotionsDictionary];
         _userUUID = [self userUUID];
+        _userImage = [self userImage];
         
         [self setupFirebase];
         [self userUUIDToUser];
@@ -60,6 +62,7 @@
                             @"country": user.country,
                             @"signUpDate": [util getUTCFormatDate: user.signUpDate],
                             @"journals": @{}
+                           
                             };
       [userRef setValue: myUser];
 }
@@ -75,8 +78,7 @@
 }
 
 -(void)pushLastJournal
-{
-    // Journal was updated so push entry to firebase
+{   // Journal was updated so push entry to firebase
     [self addJournalToFirebase:self.currentUser :[self.currentUser.journals lastObject]];
 }
 
@@ -143,13 +145,9 @@
 
 -(void)createNewCurrentUserWithUUID:(NSString *)userUUID
 {
-    
     DYUser *newUser = [[DYUser alloc] initWithUserUUID:userUUID signUpDate:[NSDate date]];
     
     self.currentUser = newUser;
-    
-    //DYJournalEntry *dummyEntry = [[DYJournalEntry alloc] init];
-    //[self.currentUser.journals addObject:dummyEntry];
 
     [self.users addObject:self.currentUser];
     
@@ -159,7 +157,7 @@
 -(void)createNewCurrentUserFromFirebase:(NSString *)userUUID
 {
     [[[self.myRootRef childByAppendingPath:@"users"] childByAppendingPath:userUUID]
-      // Take the snapshot of the entire tree under users/userUUID, give you the total view of the data right now under this path, deserilize into journals and user info
+      // Take the snapshot of the entire tree under users/userUUID, give you the total view of the data right now under this path, deserialize into journals and user info
      observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
         if (snapshot.value == [NSNull null]) {
             NSLog(@"firebase returned null value for path");
@@ -173,6 +171,7 @@
          newUser.city = result[@"city"];
          newUser.country = result[@"country"];
          
+         
          // Deserialize each journal entry
          NSMutableDictionary *journalDict = result[@"journals"];
          
@@ -184,19 +183,13 @@
          
          newUser.journals = [util sortEntriesFromArray:journals];
          
-//         if ([newUser.journals count] == 0) {
-//             DYJournalEntry *dummy = [[DYJournalEntry alloc] init];
-//             [newUser.journals addObject:dummy];
-//         }
          self.currentUser = newUser;
          [self.users addObject:self.currentUser];
-         // Notify the main controller that the firebase data
-         // has arrived
+         // Notify the main controller that the firebase data has arrived
+         //this block doesn't get executed until the snapshot is delivered
          [[NSNotificationCenter defaultCenter]
           postNotificationName:@"FirebaseNotification"
           object:self];
-          //this block doesn't get executed until the snapshot is delivered
-         
      }];
     
 }
@@ -223,9 +216,6 @@
     return usersWithSameCountry;
     
 }
-
-
-
 
 -(void)testUsers
 {
@@ -279,7 +269,7 @@
     
     testEntry5.date = [[NSDate date] dateByAddingTimeInterval:-60*60*24];
     testEntry5.mainEmotion = @"Mad";
-    testEntry5.journalEntry = @"I am so fucking pissed my boyfriend has been texting with this other girl and I want to smack him in the face.";
+    testEntry5.journalEntry = @"I am so pissed my boyfriend has been texting with this other girl and I want to smack him in the face.";
     testEntry5.picture1Address = @"testImage5";
     
     testEntry6.date = [[NSDate date] dateByAddingTimeInterval:-60*60*24*2];
