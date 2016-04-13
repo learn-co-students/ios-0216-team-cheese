@@ -28,8 +28,6 @@
 @property (nonatomic,strong) UIImage                *imageInImageView;
 @property (nonatomic,strong) NSLayoutConstraint     *imageHeightConstraint;
 @property (nonatomic,strong) NSLayoutConstraint     *imageWidthConstraint;
-
--(void)setImageInImageView:(UIImage *)image;
-
+@property (nonatomic,strong) UIButton               *buttonThatAppears;
 
 @end

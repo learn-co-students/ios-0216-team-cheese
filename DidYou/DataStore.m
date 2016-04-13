@@ -9,6 +9,7 @@
 #import "DataStore.h"
 #import "DYUser.h"
 #import "DYJournalEntry.h"
+#import "DYUtility.h"
 
 @implementation DataStore
 
@@ -29,6 +30,7 @@
     
     if (self)
     {
+        _isFirstTime = false;
         _users = [[NSMutableArray alloc] init];
         _emotions = [self emotionsDictionary];
         _userUUID = [self userUUID];
@@ -49,7 +51,7 @@
 
 -(void)addUserToFirebase: (DYUser*)user
 {
-    // Add new user to firebase
+    // Add new user to firebase, serialize user
     Firebase *userRef = [self getUserRef:user];
     DYUtility *util = [DYUtility sharedUtility];
     NSDictionary *myUser = @{
@@ -66,7 +68,8 @@
 
 {
     // get the user reference and serialize the journal
-    // use childByAutoId to assign random key to journal entry
+    // use childByAutoId to assign random key to journal entry, in firebase, have an array, don't want to push array in its entirty every time, JS has a push method, randomly put in there, sort later
+    
     Firebase *journalRef = [[self getUserRef: user] childByAppendingPath:@"journals"];
     [[journalRef childByAutoId] setValue:[journalEntry serialize]];
 }
@@ -79,7 +82,8 @@
 
 
 -(Firebase *)getUserRef: (DYUser *)user
-{
+
+{   //unique path to the users data
     return [[self.myRootRef childByAppendingPath: @"users"] childByAppendingPath:user.userUUID];
 }
 
@@ -115,7 +119,7 @@
     
     else
     {
-       
+        _isFirstTime = true;
         NSString *newUUID = [self createNewUserUUID];
         [self createNewCurrentUserWithUUID:newUUID];
         
@@ -144,25 +148,18 @@
     
     self.currentUser = newUser;
     
-    // duh
     //DYJournalEntry *dummyEntry = [[DYJournalEntry alloc] init];
     //[self.currentUser.journals addObject:dummyEntry];
 
     [self.users addObject:self.currentUser];
     
     [self addUserToFirebase: newUser];
-    
 }
 
 -(void)createNewCurrentUserFromFirebase:(NSString *)userUUID
 {
-    
-    // retrieve the user information from Firebase
-    //Firebase *usersRef = [self.myRootRef childByAppendingPath: @"users"];
-    //Firebase *userRef = [usersRef childByAppendingPath: userUUID];
-
     [[[self.myRootRef childByAppendingPath:@"users"] childByAppendingPath:userUUID]
-     // Take the snapshot of the entire tree under users/userUUID
+      // Take the snapshot of the entire tree under users/userUUID, give you the total view of the data right now under this path, deserilize into journals and user info
      observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
         if (snapshot.value == [NSNull null]) {
             NSLog(@"firebase returned null value for path");
@@ -176,13 +173,17 @@
          newUser.name = result[@"name"];
          newUser.city = result[@"city"];
          newUser.country = result[@"country"];
+         
          // Deserialize each journal entry
          NSMutableDictionary *journalDict = result[@"journals"];
+         
          for (NSString *key in [journalDict allKeys])
-         {
+             
+         {   // this is how you deserializing the object in firebase
              [journals addObject:[[DYJournalEntry alloc] initWithDeserialize: journalDict[key]]];
          }
-         newUser.journals = journals;
+         
+         newUser.journals = [util sortEntriesFromArray:journals];
          
          self.currentUser = newUser;
          [self.users addObject:self.currentUser];

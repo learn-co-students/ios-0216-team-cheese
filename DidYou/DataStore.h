@@ -18,6 +18,7 @@
 @property (strong, nonatomic) NSString *userUUID;
 @property (strong, nonatomic) DYUser *currentUser;
 @property (strong, nonatomic) Firebase *myRootRef;
+@property (nonatomic) BOOL isFirstTime;
 
 + (instancetype)sharedDataStore;
 

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
@@ -26,7 +25,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kKI-oR-CTo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-604" y="1103"/>
+            <point key="canvasLocation" x="-760" y="1050"/>
         </scene>
         <!--Item-->
         <scene sceneID="tne-QT-ifu">
@@ -91,19 +90,19 @@
                     <connections>
                         <outlet property="addEntryTopView" destination="4zv-DW-413" id="Ue4-ij-m02"/>
                         <outlet property="journalEntryTableView" destination="Xo5-jG-068" id="dDO-55-CUs"/>
-                        <segue destination="sXp-Bh-XSW" kind="show" identifier="segueToJournalDetail" id="h4J-1p-QMr"/>
                         <segue destination="6RC-5d-0Ds" kind="show" identifier="segueMainToStats" animates="NO" id="8Ks-0k-YCc"/>
                         <segue destination="lhL-yJ-LM7" kind="show" identifier="segueMainToUser" animates="NO" id="Wm1-gx-EGU"/>
+                        <segue destination="sXp-Bh-XSW" kind="show" identifier="journalDetail" id="wDP-bp-As5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="221" y="1038"/>
+            <point key="canvasLocation" x="-19" y="982"/>
         </scene>
-        <!--View Controller-->
+        <!--Journal Log View Controller-->
         <scene sceneID="d6X-c8-zjl">
             <objects>
-                <viewController id="sXp-Bh-XSW" sceneMemberID="viewController">
+                <viewController id="sXp-Bh-XSW" customClass="JournalLogViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="79l-3y-zwj"/>
                         <viewControllerLayoutGuide type="bottom" id="M5P-D6-Umv"/>
@@ -116,7 +115,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K77-dY-qmG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="267" y="1849"/>
+            <point key="canvasLocation" x="-12" y="1871"/>
         </scene>
         <!--Item-->
         <scene sceneID="OZq-e7-CAp">
@@ -139,12 +138,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0N1-84-KcP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1047" y="1137"/>
+            <point key="canvasLocation" x="1101" y="1331"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="O8z-72-piC"/>
         <segue reference="8Ks-0k-YCc"/>
+        <segue reference="5Zm-TD-8hW"/>
         <segue reference="Wm1-gx-EGU"/>
     </inferredMetricsTieBreakers>
 </document>
