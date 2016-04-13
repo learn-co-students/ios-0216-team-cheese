@@ -226,6 +226,8 @@
     [self.journalAndPictureView.rightAnchor constraintEqualToAnchor:self.rightAnchor].active = YES;
     [self.journalAndPictureView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor].active = YES;
     [self.journalAndPictureView.topAnchor constraintEqualToAnchor:self.topAnchor constant:70].active = YES;
+    [self.journalAndPictureView.textView becomeFirstResponder];
+    [self.journalAndPictureView.contentView becomeFirstResponder];
 
     
 }

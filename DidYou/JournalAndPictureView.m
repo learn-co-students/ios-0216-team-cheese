@@ -11,7 +11,7 @@
 
 
 @interface JournalAndPictureView () <UITextViewDelegate>
-@property (strong, nonatomic) IBOutlet UIView *contentView;
+
 @property (strong, nonatomic) UIButton *doneEditingButton;
 @property (strong, nonatomic) DataStore *dataStore;
 @property (strong, nonatomic) NSString *emotion;
@@ -20,6 +20,8 @@
 @end
 
 @implementation JournalAndPictureView
+
+
 
 -(instancetype)initWithCoder:(NSCoder *)aDecoder
 {
@@ -48,7 +50,7 @@
 
 -(void)commonInit
 {
-    [self.imageView reloadInputViews];
+    
     
 
     [[NSBundle mainBundle] loadNibNamed:@"JournalAndPicture" owner:self options:nil];
@@ -67,8 +69,6 @@
     NSArray *journals = self.dataStore.currentUser.journals;
     DYJournalEntry *currentJournal = [journals lastObject];
     self.emotion = currentJournal.mainEmotion;
-    
-    [self.textView becomeFirstResponder];
     
     self.tapOutKeyboard = [[UITapGestureRecognizer alloc] init];
     [self.contentView addGestureRecognizer:self.tapOutKeyboard];
@@ -139,10 +139,9 @@
     
     self.deletePhotoButton.hidden = YES;
 }
-
-
 -(void)textViewDidBeginEditing:(UITextView *)textView
 {
+
     
     if(self.textView.textColor == [UIColor lightGrayColor])
     {

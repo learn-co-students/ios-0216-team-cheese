@@ -26,7 +26,7 @@
 {
     
     
-    self.view.backgroundColor = [UIColor lightGrayColor];
+    self.view.backgroundColor = [UIColor whiteColor];
     self.theLabelForTheDate = [UILabel new];
     [self.theLabelForTheDate setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.view addSubview:self.theLabelForTheDate];
