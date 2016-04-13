@@ -10,6 +10,8 @@
 #import "DYUser.h"
 #import "DYJournalEntry.h"
 #import "DYUtility.h"
+#import <SystemConfiguration/SystemConfiguration.h>
+
 
 @implementation DataStore
 
@@ -49,6 +51,31 @@
     self.myRootRef = [[Firebase alloc] initWithUrl:@"https://incandescent-fire-4531.firebaseio.com/"];
 }
 
+-(void)userUUIDToUser
+{
+    // look in NSUserDefaults if UUID exists
+    
+    NSDictionary *userDefaultsDictionary = [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
+    
+    NSArray *userDefaultsKeys = [[[NSUserDefaults standardUserDefaults] dictionaryRepresentation] allKeys];
+    
+    BOOL uuidExists = [userDefaultsKeys containsObject:@"userUUID"];
+    
+    if (uuidExists)
+    {
+        [self createNewCurrentUserFromFirebase:userDefaultsDictionary[@"userUUID"]];
+    }
+    
+    else
+    {
+        _isFirstTime = true;
+        NSString *newUUID = [self createNewUserUUID];
+        [self createNewCurrentUserWithUUID:newUUID];
+        
+    }
+    
+}
+
 -(void)addUserToFirebase: (DYUser*)user
 {
     // Add new user to firebase, serialize user
@@ -77,6 +104,7 @@
 -(void)pushLastJournal
 {
     // Journal was updated so push entry to firebase
+    
     [self addJournalToFirebase:self.currentUser :[self.currentUser.journals lastObject]];
 }
 
@@ -102,30 +130,7 @@
     return emotions;
 }
 
--(void)userUUIDToUser
-{
-    // look in NSUserDefaults if UUID exists
-    
-    NSDictionary *userDefaultsDictionary = [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
-    
-    NSArray *userDefaultsKeys = [[[NSUserDefaults standardUserDefaults] dictionaryRepresentation] allKeys];
-                                            
-    BOOL uuidExists = [userDefaultsKeys containsObject:@"userUUID"];
-    
-    if (uuidExists)
-    {
-        [self createNewCurrentUserFromFirebase:userDefaultsDictionary[@"userUUID"]];
-    }
-    
-    else
-    {
-        _isFirstTime = true;
-        NSString *newUUID = [self createNewUserUUID];
-        [self createNewCurrentUserWithUUID:newUUID];
-        
-    }
-    
-}
+
 
 -(NSString *)createNewUserUUID
 {
@@ -147,9 +152,6 @@
     DYUser *newUser = [[DYUser alloc] initWithUserUUID:userUUID signUpDate:[NSDate date]];
     
     self.currentUser = newUser;
-    
-    //DYJournalEntry *dummyEntry = [[DYJournalEntry alloc] init];
-    //[self.currentUser.journals addObject:dummyEntry];
 
     [self.users addObject:self.currentUser];
     
@@ -158,48 +160,80 @@
 
 -(void)createNewCurrentUserFromFirebase:(NSString *)userUUID
 {
-    [[[self.myRootRef childByAppendingPath:@"users"] childByAppendingPath:userUUID]
-      // Take the snapshot of the entire tree under users/userUUID, give you the total view of the data right now under this path, deserilize into journals and user info
-     observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
-        if (snapshot.value == [NSNull null]) {
-            NSLog(@"firebase returned null value for path");
-            return;
-        }
-         DYUtility *util = [DYUtility sharedUtility];
-         NSMutableArray *journals = [[NSMutableArray alloc] init];
-         NSDictionary *result = [snapshot value];
-         DYUser *newUser = [[DYUser alloc] initWithUserUUID:userUUID signUpDate: [util fromUTCFormatDate: result[@"signUpDate"]]];
-         newUser.name = result[@"name"];
-         newUser.city = result[@"city"];
-         newUser.country = result[@"country"];
-         
-         // Deserialize each journal entry
-         NSMutableDictionary *journalDict = result[@"journals"];
-         
-         for (NSString *key in [journalDict allKeys])
-             
-         {   // this is how you deserializing the object in firebase
-             [journals addObject:[[DYJournalEntry alloc] initWithDeserialize: journalDict[key]]];
-         }
-         
-         newUser.journals = [util sortEntriesFromArray:journals];
-         
-//         if ([newUser.journals count] == 0) {
-//             DYJournalEntry *dummy = [[DYJournalEntry alloc] init];
-//             [newUser.journals addObject:dummy];
-//         }
-         self.currentUser = newUser;
-         [self.users addObject:self.currentUser];
-         // Notify the main controller that the firebase data
-         // has arrived
-         [[NSNotificationCenter defaultCenter]
-          postNotificationName:@"FirebaseNotification"
-          object:self];
-          //this block doesn't get executed until the snapshot is delivered
-         
-     }];
+    
+    Firebase *firebase = [[self.myRootRef childByAppendingPath:@"users"] childByAppendingPath:userUUID];
+    
+    
+    [firebase observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
+        
+              if (snapshot.value == [NSNull null]) {
+                        NSLog(@"firebase returned null value for path");
+                        return;
+                    }
+            
+                     NSLog(@"in the firebase completion");
+            
+                     DYUtility *util = [DYUtility sharedUtility];
+                     NSMutableArray *journals = [[NSMutableArray alloc] init];
+                     NSDictionary *result = [snapshot value];
+            
+                     DYUser *newUser = [[DYUser alloc] initWithUserUUID:userUUID signUpDate: [util fromUTCFormatDate: result[@"signUpDate"]]];
+                     newUser.name = result[@"name"];
+                     newUser.city = result[@"city"];
+                     newUser.country = result[@"country"];
+            
+                     // Deserialize each journal entry
+                     NSMutableDictionary *journalDict = result[@"journals"];
+            
+                     for (NSString *key in [journalDict allKeys])
+            
+                     {   // this is how you deserializing the object in firebase
+                         [journals addObject:[[DYJournalEntry alloc] initWithDeserialize: journalDict[key]]];
+                     }
+            
+                     newUser.journals = [util sortEntriesFromArray:journals];
+            
+                     self.currentUser = newUser;
+            
+                     [self.users addObject:self.currentUser];
+                     
+                     // Notify the main controller that the firebase data
+                     // has arrived
+                     [[NSNotificationCenter defaultCenter]
+                      postNotificationName:@"FirebaseNotification"
+                      object:self];
+                      //this block doesn't get executed until the snapshot is delivered
+        
+     
+        
+    } ];
+    
+    
+    
+    
+
     
 }
+
+
+
++ (BOOL)isNetworkAvailable
+{
+    SCNetworkReachabilityFlags flags;
+    SCNetworkReachabilityRef address;
+    address = SCNetworkReachabilityCreateWithName(NULL, "www.apple.com" );
+    Boolean success = SCNetworkReachabilityGetFlags(address, &flags);
+    CFRelease(address);
+    
+    BOOL canReach = success
+    && !(flags & kSCNetworkReachabilityFlagsConnectionRequired)
+    && (flags & kSCNetworkReachabilityFlagsReachable);
+    
+    return canReach;
+}
+
+
+
 
 -(NSArray *)usersWithSameCity
 {
@@ -225,6 +259,18 @@
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+#pragma test user data
 
 
 -(void)testUsers
@@ -358,6 +404,9 @@
     
     
 }
+
+
+
 
 
 

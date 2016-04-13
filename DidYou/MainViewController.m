@@ -51,23 +51,39 @@
     self.journalEntryTableView.delegate = self;
     self.journalEntryTableView.dataSource = self;
     
-
-    self.spinView = [[LoadingFirstPageView alloc]initWithFrame:CGRectZero];
-    if (!self.dataStore.isFirstTime)
+    self.journalEntryTableView.userInteractionEnabled = NO;
+    
+    BOOL canConnect = [DataStore isNetworkAvailable];
+    
+    if (canConnect)
     {
-        [self.view addSubview:self.spinView];
-        self.spinView.translatesAutoresizingMaskIntoConstraints = NO;
-        [self.spinView.heightAnchor constraintEqualToConstant:100].active = YES;
-        [self.spinView.widthAnchor constraintEqualToConstant:100].active = YES;
-        [self.spinView.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor].active = YES;
-        [self.spinView.centerYAnchor constraintEqualToAnchor:self.view.centerYAnchor].active = YES;
-        self.spinView.delegate = self;
-        [self.spinView.activityIndicator startAnimating];
-        
+        self.spinView = [[LoadingFirstPageView alloc]initWithFrame:CGRectZero];
+        if (!self.dataStore.isFirstTime)
+        {
+            [self.view addSubview:self.spinView];
+            self.spinView.translatesAutoresizingMaskIntoConstraints = NO;
+            
+            [self.spinView.heightAnchor constraintEqualToAnchor:self.view.heightAnchor multiplier:.7].active = YES;
+            [self.spinView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor].active = YES;
+            [self.spinView.leftAnchor constraintEqualToAnchor:self.view.leftAnchor].active = YES;
+            [self.spinView.rightAnchor constraintEqualToAnchor:self.view.rightAnchor].active = YES;
+            
+            self.spinView.delegate = self;
+            [self.spinView.activityIndicator startAnimating];
+            
+        }
+    }
+    
+    else
+    {
+        NSLog(@"can't get internet");
     }
     
 
-    [self preferredStatusBarStyle];
+
+    
+
+    //[self preferredStatusBarStyle];
     [self createCustomTabBar]; 
 
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -89,6 +105,10 @@
         
         [self.journalEntryTableView reloadData];
         [self.spinView.activityIndicator stopAnimating];
+    
+    [self.spinView removeFromSuperview];
+    
+    self.journalEntryTableView.userInteractionEnabled = YES;
 }
 
 -(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {

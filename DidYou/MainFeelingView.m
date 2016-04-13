@@ -75,6 +75,8 @@
 
     UIButton *firstTappedButton = sender;
     
+    firstTappedButton.enabled = NO;
+    
     [self tappedButtonPulseWithAnimation:firstTappedButton];
     
     [self newButtonMenuWithAnimation:sender];
@@ -150,9 +152,9 @@
         
         outerCircleButton.alpha = 0;
         
+        
         [outerCircleButton setTitle:moodsArray[i] forState:UIControlStateNormal];
         [outerCircleButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        //outerCircleButton.titleLabel.font = [UIFont boldSystemFontOfSize:20];
         outerCircleButton.titleLabel.adjustsFontSizeToFitWidth = YES;
         
         [self addSubview:outerCircleButton];
@@ -169,6 +171,8 @@
         [outerCircleButton addTarget:self
                               action:@selector(firstCircleMenuButtonTapped:)
                     forControlEvents:UIControlEventTouchUpInside];
+        
+        outerCircleButton.enabled = NO;
     }
     
     
@@ -205,13 +209,19 @@
                                                            withButtons:self.circleButtons[i]
                                                              withIndex:i];
                                
+                               if (i == self.circleButtons.count - 1)
+                               {
+                                   [self enableOriginalButtons];
+                               }
+                               
                            }
                            
                        }];
 }
 
 
--(void)initialButtonsAppearWithAnimation:(UIView *)view  withDuration:(NSTimeInterval)duration withButtons:(UIButton *)buttons withIndex:(NSInteger)index {
+-(void)initialButtonsAppearWithAnimation:(UIView *)view  withDuration:(NSTimeInterval)duration withButtons:(UIButton *)buttons withIndex:(NSInteger)index
+{
     
     NSLog(@"%lu",index);
     
@@ -224,43 +234,43 @@
     
     NSArray *buttonColorsArray = @[lavendarColor, redColor, blueColor, orangeColor, grayColor, greenColor];
     
-    
-    [UIView animateWithDuration:duration
-                     animations:^{
-                         
-                         UIColor *currentColor = buttonColorsArray[index];
-                         
-                         buttons.layer.backgroundColor = currentColor.CGColor;
-                         
-                         //below are the gradients that we could either turn off or on
-                         /*
-                          CAGradientLayer *gradientLayer = [CAGradientLayer layer];
-                          gradientLayer.frame = buttons.layer.bounds;
-                          
-                          gradientLayer.colors = [NSArray arrayWithObjects:
-                          (id)[UIColor colorWithWhite:1.0f alpha:0.1f].CGColor,
-                          (id)[UIColor colorWithWhite:0.4f alpha:0.5f].CGColor,
-                          nil];
-                          
-                          gradientLayer.locations = [NSArray arrayWithObjects:
-                          [NSNumber numberWithFloat:0.0f],
-                          [NSNumber numberWithFloat:1.0f],
-                          nil];
-                          
-                          gradientLayer.cornerRadius = buttons.layer.cornerRadius;
-                          [buttons.layer addSublayer:gradientLayer];
-                          */
-                         
-                         //                         buttons.backgroundColor= [UIColor colorWithRed:(204 / 255) green:(229 / 255) blue:(255 / 255) alpha:0.2];
-                         //                         buttons.layer.borderColor = [UIColor colorWithRed:(160 / 255) green:(160 / 255) blue:(160 / 255) alpha:0.1].CGColor;
-                         //                         buttons.layer.borderWidth = 2.0;
-                         
-                         view.alpha = 1.0;
-                         
-                     }];
+    [UIView animateWithDuration:duration animations:^{
+        UIColor *currentColor = buttonColorsArray[index];
+        
+        buttons.layer.backgroundColor = currentColor.CGColor;
+        
+        view.alpha = 1.0;
+        
+        //below are the gradients that we could either turn off or on
+        /*
+         CAGradientLayer *gradientLayer = [CAGradientLayer layer];
+         gradientLayer.frame = buttons.layer.bounds;
+         
+         gradientLayer.colors = [NSArray arrayWithObjects:
+         (id)[UIColor colorWithWhite:1.0f alpha:0.1f].CGColor,
+         (id)[UIColor colorWithWhite:0.4f alpha:0.5f].CGColor,
+         nil];
+         
+         gradientLayer.locations = [NSArray arrayWithObjects:
+         [NSNumber numberWithFloat:0.0f],
+         [NSNumber numberWithFloat:1.0f],
+         nil];
+         
+         gradientLayer.cornerRadius = buttons.layer.cornerRadius;
+         [buttons.layer addSublayer:gradientLayer];
+         */
+        
+        //                         buttons.backgroundColor= [UIColor colorWithRed:(204 / 255) green:(229 / 255) blue:(255 / 255) alpha:0.2];
+        //                         buttons.layer.borderColor = [UIColor colorWithRed:(160 / 255) green:(160 / 255) blue:(160 / 255) alpha:0.1].CGColor;
+        //                         buttons.layer.borderWidth = 2.0;
+        
+    } completion:^(BOOL finished) {
+      
+        
+        
+    }];
     
 }
-
 
 
 -(void)newButtonMenuWithAnimation:(MoodCircleButton *)tappedButton
@@ -302,6 +312,8 @@
                                
                                [self buttonsAppearWithAnimation:self.subviews[i]
                                                    withDuration:duration];
+                               
+                               tappedButton.enabled = YES;
                                
                            }
                            
@@ -345,17 +357,9 @@
         
         
         outerCircleButtons.backgroundColor = tappedButton.backgroundColor;
-        /*
-         [UIColor colorWithRed:(100 / 255) green:(229 / 255) blue:(255 / 255) alpha:0.1];
-         outerCircleButtons.backgroundColor = [UIColor orangeColor];
-         outerCircleButtons.layer.borderColor = [UIColor colorWithRed:(160 / 255) green:(160 / 255) blue:(160 / 255) alpha:0.1].CGColor;
-         outerCircleButtons.layer.borderWidth = 2.0;
-         */
         
         [outerCircleButtons setTitle:specificMoodsArray[i] forState:UIControlStateNormal];
         [outerCircleButtons setTitleColor: [UIColor whiteColor] forState:UIControlStateNormal];
-        //[UIColor colorWithRed:(160 / 255) green:(160 / 255) blue:(160 / 255) alpha:0.6] forState:UIControlStateNormal];
-        //outerCircleButtons.titleLabel.font = [UIFont boldSystemFontOfSize:20];
         outerCircleButtons.titleLabel.adjustsFontSizeToFitWidth = YES;
         
         [self addSubview:outerCircleButtons];
@@ -392,6 +396,15 @@
     animation.fillMode = kCAFillModeForwards;
     animation.duration = 0.3 ;
     [tappedButton.layer addAnimation:animation forKey:@"transform.scale"];
+}
+
+-(void)enableOriginalButtons
+{
+    for (MoodCircleButton *button in self.circleButtons)
+    {
+        button.enabled = YES;
+    }
+    
 }
 
 
