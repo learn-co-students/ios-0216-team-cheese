@@ -160,6 +160,7 @@
     // retrieve the user information from Firebase
     //Firebase *usersRef = [self.myRootRef childByAppendingPath: @"users"];
     //Firebase *userRef = [usersRef childByAppendingPath: userUUID];
+
     [[[self.myRootRef childByAppendingPath:@"users"] childByAppendingPath:userUUID]
      // Take the snapshot of the entire tree under users/userUUID
      observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
@@ -171,6 +172,7 @@
          NSMutableArray *journals = [[NSMutableArray alloc] init];
          NSDictionary *result = [snapshot value];
          DYUser *newUser = [[DYUser alloc] initWithUserUUID:userUUID signUpDate: [util fromUTCFormatDate: result[@"signUpDate"]]];
+//         NSLog(@"what is my ID %@", userUUID);
          newUser.name = result[@"name"];
          newUser.city = result[@"city"];
          newUser.country = result[@"country"];
@@ -182,10 +184,6 @@
          }
          newUser.journals = journals;
          
-//         if ([newUser.journals count] == 0) {
-//             DYJournalEntry *dummy = [[DYJournalEntry alloc] init];
-//             [newUser.journals addObject:dummy];
-//         }
          self.currentUser = newUser;
          [self.users addObject:self.currentUser];
          // Notify the main controller that the firebase data
@@ -193,9 +191,7 @@
          [[NSNotificationCenter defaultCenter]
           postNotificationName:@"FirebaseNotification"
           object:self];
-         
      }];
-    
 }
 
 -(NSArray *)usersWithSameCity
@@ -220,9 +216,6 @@
     return usersWithSameCountry;
     
 }
-
-
-
 
 -(void)testUsers
 {

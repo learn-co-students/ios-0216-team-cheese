@@ -62,6 +62,15 @@
                                              selector:@selector(receiveFirebaseNotification:)
                                                  name:@"FirebaseNotification"
                                                object:nil];
+    
+    DYStatsInfo *testInfo = [[DYStatsInfo alloc]init];
+    
+    __block __weak typeof (testInfo)blockSelf = testInfo;
+    [testInfo addToMoodArrays:^(BOOL success) {
+        NSLog(@"am I even here in the VC? : %@", blockSelf.happyArray);
+    }];
+
+    
 }
 
 -(void)receiveFirebaseNotification: (NSNotification *)notification
