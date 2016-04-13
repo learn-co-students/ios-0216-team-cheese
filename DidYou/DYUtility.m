@@ -26,7 +26,7 @@
     return [super init];
 }
 
-// Serialize date object to string
+// Serialize date object to string, firebase can't store object, so have to put it in a format, this is a time stamp
 - (NSString *)getUTCFormatDate:(NSDate *)localDate
 {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -37,7 +37,7 @@
     return dateString;
 }
 
-// Take a UTC string and convert back to date object
+// Take a UTC string and convert back to date object, reverse of the above method, this is how you insert to your date object, deserialization
 - (NSDate *)fromUTCFormatDate:(NSString *)dateString
 {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
