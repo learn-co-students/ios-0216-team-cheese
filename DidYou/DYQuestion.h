@@ -16,7 +16,6 @@
 
 
 
-
 -(instancetype)init;
 
 -(instancetype)initWithQuestion:(NSString *)question;

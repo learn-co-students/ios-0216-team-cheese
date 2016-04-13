@@ -15,8 +15,7 @@
 #import "JournalEntryTableViewCell.h"
 #import "CustomTabBarView.h"
 #import "LoadingFirstPageView.h"
-
-
+#import "JournalLogViewController.h"
 
 
 @interface MainViewController () <NewJournalEntryBlurViewDelegate, UITableViewDataSource, UITableViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, CustomTabBarDelegate, LoadingFirstPageViewDelegate>
@@ -25,20 +24,19 @@
 @property (strong, nonatomic) IBOutlet UITableView *journalEntryTableView;
 @property (strong, nonatomic) CustomTabBarView *tabBar;
 
-
-
-
 @property (strong, nonatomic) NewJournalEntryBlurView *addJournalFullScreenBlurView;
 @property (strong, nonatomic) AddJournalEntryView *journalView;
 @property (strong, nonatomic) LoadingFirstPageView *spinView;
 
 @property (strong, nonatomic) DataStore *dataStore;
-
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) CLGeocoder *geocoder;
 @property (strong, nonatomic) CLPlacemark *placemark;
 
+
 @property (strong, nonatomic) LoadingFirstPageView *contentView;
+@property (strong, nonatomic) NSLayoutConstraint *blurViewheightConstraint;
+@property (strong, nonatomic) NSLayoutConstraint *blurViewWidthConstraint;
 
 @end
 
@@ -54,34 +52,22 @@
     self.journalEntryTableView.dataSource = self;
     
     self.spinView = [[LoadingFirstPageView alloc]initWithFrame:CGRectZero];
-    [self.view addSubview:self.spinView];
-    self.spinView.translatesAutoresizingMaskIntoConstraints = NO;
-    
-    [self.spinView.heightAnchor constraintEqualToConstant:100].active = YES;
-    [self.spinView.widthAnchor constraintEqualToConstant:100].active = YES;
-    [self.spinView.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor].active = YES;
-    [self.spinView.centerYAnchor constraintEqualToAnchor:self.view.centerYAnchor].active = YES;
-    
-    
-//    
-//    [self.spinView.leadingAnchor constraintEqualToAnchor:self.journalEntryTableView.leadingAnchor].active = YES;
-//    
-//    [self.spinView.trailingAnchor constraintEqualToAnchor:self.journalEntryTableView.trailingAnchor].active = YES;
-//    
-//    [self.spinView.bottomAnchor constraintEqualToAnchor:self.journalEntryTableView.bottomAnchor].active = YES;
-//    
-//    [self.spinView.topAnchor constraintEqualToAnchor:self.journalEntryTableView.topAnchor].active = YES;
- 
-     self.spinView.delegate = self;
-    
-    [self.spinView.activityIndicator startAnimating];
-    
+    if (!self.dataStore.isFirstTime)
+    {
+        [self.view addSubview:self.spinView];
+        self.spinView.translatesAutoresizingMaskIntoConstraints = NO;
+        [self.spinView.heightAnchor constraintEqualToConstant:100].active = YES;
+        [self.spinView.widthAnchor constraintEqualToConstant:100].active = YES;
+        [self.spinView.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor].active = YES;
+        [self.spinView.centerYAnchor constraintEqualToAnchor:self.view.centerYAnchor].active = YES;
+        self.spinView.delegate = self;
+        [self.spinView.activityIndicator startAnimating];
+        
+    }
     
     [self preferredStatusBarStyle];
-    
-    
-    [self createCustomTabBar];
-    
+    [self createCustomTabBar]; 
+
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(receiveFirebaseNotification:)
                                                  name:@"FirebaseNotification"
@@ -100,7 +86,6 @@
     if ([[notification name] isEqualToString:@"FirebaseNotification"])
         
         [self.journalEntryTableView reloadData];
-    
         [self.spinView.activityIndicator stopAnimating];
 }
 
@@ -109,12 +94,9 @@
     NSLog(@"didFailWithError, %@", error);
     
     UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"Error" message:@"Failed to get where you are" preferredStyle:UIAlertControllerStyleAlert];
-    
-    
     UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        
     }];
-    
+
     [errorAlert addAction:defaultAction];
     
     [self presentViewController:errorAlert animated:YES completion:nil];
@@ -158,31 +140,28 @@
 
 - (void)addButtonTapped:(UIButton *)sender {
     
-    [UIView animateWithDuration:2.0 delay:0.5 options:0 animations:^{
+
+    [UIView animateWithDuration:0.2 delay:0 options:0 animations:^{
         
         self.journalEntryTableView.alpha = 0;
         self.addEntryTopView.alpha = 0;
         
-        [self launchAddJournalFullScreenView];
+        
         
     } completion:^(BOOL finished) {
         
-        [UIView animateWithDuration:0.5 delay:0 options:0 animations:^{
-            
-            self.journalEntryTableView.alpha = 1;
-            self.addEntryTopView.alpha = 1;
-            
-        } completion:^(BOOL finished) {
-            
-        }];
+        [self launchAddJournalFullScreenView];
+
         
     }];
+
     
 }
 
 
 -(void)launchAddJournalFullScreenView
 {
+    
     
     UIVisualEffect *blurEffect;
     blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
@@ -194,7 +173,7 @@
     self.addJournalFullScreenBlurView.alpha = 0;
     
     
-    [UIView animateWithDuration:.5 delay:0 options:0 animations:^{
+    [UIView animateWithDuration:0 delay:0 options:0 animations:^{
         
         
         [self.view addSubview:self.addJournalFullScreenBlurView];
@@ -208,9 +187,12 @@
         [self.addJournalFullScreenBlurView.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor].active = YES;
         [self.addJournalFullScreenBlurView.centerYAnchor constraintEqualToAnchor:self.view.centerYAnchor].active = YES;
         
+        self.journalEntryTableView.alpha = 1;
+        self.addEntryTopView.alpha = 1;
+        
     } completion:^(BOOL finished) {
         
-        [UIView animateWithDuration:2 delay:0 options:0 animations:^{
+        [UIView animateWithDuration:0 delay:0 options:0 animations:^{
             
             [self.view bringSubviewToFront:self.addJournalFullScreenBlurView];
             
@@ -259,8 +241,10 @@
     
     cell.cellView.journalEntry = journalAtRow;
     
-    return cell;
     
+    //NSLog(@"%@",cell.cellView.journalEntry.date);
+    
+    return cell;
 }
 
 -(void)createCustomTabBar
@@ -299,9 +283,6 @@
     }
 }
 
-
-
-
 # pragma mark - JournalAndPictureView methods below
 
 - (void)buttonTappedFromJournalandPictureView:(id)sender {
@@ -315,7 +296,6 @@
 {
     
     UIImage *chosenImage = [info objectForKey:UIImagePickerControllerOriginalImage];
-    
     NSLog(@"Image value in imagePickerController : %@", chosenImage);
     JournalAndPictureView *journalAndPictureV = [[JournalAndPictureView alloc] init] ;
     UIImageView *imageViewInJournalView = journalAndPictureV.imageView;
@@ -332,20 +312,52 @@
 }
 
 
--(void)topViewToBlur
+-(void)createBlurView
 {
+    
+    UIVisualEffect *blurEffect;
+    blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+    
+    self.addJournalFullScreenBlurView= [[NewJournalEntryBlurView alloc] initWithEffect:blurEffect];
+    
+    self.addJournalFullScreenBlurView.delegate = self;
+    
+    [self.view addSubview:self.addJournalFullScreenBlurView];
+    
+    self.addJournalFullScreenBlurView.translatesAutoresizingMaskIntoConstraints = NO;
+    
+//    self.blurViewSmallHeightConstraint = [self.addJournalFullScreenBlurView.heightAnchor constraintEqualToAnchor:self.view.heightAnchor multiplier:.3];
+//    self.blurViewSmallHeightConstraint.active = NO;
+
+//    
+//    self.blurViewBigHeightConstraint = [self.addJournalFullScreenBlurView.heightAnchor constraintEqualToAnchor:self.view.heightAnchor];
+//    self.blurViewBigHeightConstraint.active = YES;
+    
+    [self.addJournalFullScreenBlurView.topAnchor constraintEqualToAnchor:self.view.topAnchor].active = YES;
+    [self.addJournalFullScreenBlurView.widthAnchor constraintEqualToAnchor:self.view.widthAnchor].active = YES;
+    [self.addJournalFullScreenBlurView.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor].active = YES;
+    
+    [self.addJournalFullScreenBlurView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor].active = YES;
+
+}
+
+
+
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    
+    if([segue.identifier isEqualToString:@"journalDetailVC"])
+    {
+        JournalLogViewController *destVC = segue.destinationViewController;
+        NSArray *journals = self.dataStore.currentUser.journals;
+        DYJournalEntry *currentJournal = [journals lastObject];
+        destVC.jorunalEntry = currentJournal;
+    }
     
 }
 
--(void)restOfScreenToBlur
-{
-    
-}
 
--(void)mainFeelingLaunched
-{
-    
-}
+
 
 
 

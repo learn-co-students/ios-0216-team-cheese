@@ -1,0 +1,5 @@
+using firebase - 
+uniqueID in nsuserDefaults, persists  =
+
+every launch of the app, we hit firebase to pull down the INFO. // ALL OF IT Wis working, slight bugs.
+

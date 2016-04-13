@@ -30,6 +30,7 @@
     
     if (self)
     {
+        _isFirstTime = false;
         _users = [[NSMutableArray alloc] init];
         _emotions = [self emotionsDictionary];
         _userUUID = [self userUUID];
@@ -116,7 +117,7 @@
     
     else
     {
-       
+        _isFirstTime = true;
         NSString *newUUID = [self createNewUserUUID];
         [self createNewCurrentUserWithUUID:newUUID];
         
@@ -152,7 +153,6 @@
     [self.users addObject:self.currentUser];
     
     [self addUserToFirebase: newUser];
-    
 }
 
 -(void)createNewCurrentUserFromFirebase:(NSString *)userUUID
