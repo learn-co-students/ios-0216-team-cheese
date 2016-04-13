@@ -48,9 +48,9 @@
     return date;
 }
 
-//add a sortbydate method to DYUtility and call it after you deseriaize the objects and before you set the journals property.
+//add a sortbydate method to DYUtility and call it after deseriaize the objects and before set the journals property.
 
--(NSArray *) sortEntriesFromArray: (NSArray *) nodeEventArray{
+-(NSMutableArray *)sortEntriesFromArray: (NSMutableArray *) nodeEventArray{
     NSSortDescriptor *dateDescriptor = [NSSortDescriptor
                                         sortDescriptorWithKey:@"date"
                                         ascending:YES];
@@ -58,7 +58,9 @@
     
     NSArray *sortedEventArray = [nodeEventArray
                                  sortedArrayUsingDescriptors:sortDescriptors];
-    return sortedEventArray;
+    NSLog(@"%@", sortedEventArray);
+    return [sortedEventArray mutableCopy];
+
 }
 
 @end

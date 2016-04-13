@@ -72,7 +72,7 @@
 //    
 //    [self.spinView.topAnchor constraintEqualToAnchor:self.journalEntryTableView.topAnchor].active = YES;
  
-    self.spinView.delegate = self;
+     self.spinView.delegate = self;
     
     [self.spinView.activityIndicator startAnimating];
     

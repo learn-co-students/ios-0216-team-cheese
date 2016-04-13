@@ -178,12 +178,12 @@
          // Deserialize each journal entry
          NSMutableDictionary *journalDict = result[@"journals"];
          
-         
          for (NSString *key in [journalDict allKeys])
          {
              [journals addObject:[[DYJournalEntry alloc] initWithDeserialize: journalDict[key]]];
          }
-         newUser.journals = journals;
+         
+         newUser.journals = [util sortEntriesFromArray:journals];
          
 //         if ([newUser.journals count] == 0) {
 //             DYJournalEntry *dummy = [[DYJournalEntry alloc] init];
