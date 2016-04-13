@@ -15,6 +15,7 @@
 // Utility functions
 -(NSString *)getUTCFormatDate:(NSDate *)localDate;
 -(NSDate *)fromUTCFormatDate:(NSString *)dateString;
+-(NSArray *) sortEntriesFromArray: (NSArray *) nodeEventArray;
 
 
 
