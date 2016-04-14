@@ -19,6 +19,8 @@
 		AB49939EBAFBADBED3BC9BF4 /* libPods-DidYou.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 563053DD0003F7BE5361FBFA /* libPods-DidYou.a */; };
 		AB69AF281CBD87F400CC9F9B /* EmptyTable.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB69AF271CBD87F400CC9F9B /* EmptyTable.xib */; };
 		AB69AF531CBFF01200CC9F9B /* EmptyTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB69AF521CBFF01200CC9F9B /* EmptyTableView.m */; };
+		AB69AF571CC03A7D00CC9F9B /* noInternet.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB69AF561CC03A7D00CC9F9B /* noInternet.xib */; };
+		AB69AF5A1CC03BFE00CC9F9B /* NoInternetView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB69AF591CC03BFE00CC9F9B /* NoInternetView.m */; };
 		AB92E71A1CAB01F200199034 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AB92E7191CAB01F200199034 /* main.m */; };
 		AB92E71D1CAB01F200199034 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AB92E71C1CAB01F200199034 /* AppDelegate.m */; };
 		AB92E7201CAB01F200199034 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB92E71F1CAB01F200199034 /* MainViewController.m */; };
@@ -68,6 +70,9 @@
 		AB69AF271CBD87F400CC9F9B /* EmptyTable.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyTable.xib; sourceTree = "<group>"; };
 		AB69AF511CBFF01200CC9F9B /* EmptyTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyTableView.h; sourceTree = "<group>"; };
 		AB69AF521CBFF01200CC9F9B /* EmptyTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyTableView.m; sourceTree = "<group>"; };
+		AB69AF561CC03A7D00CC9F9B /* noInternet.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = noInternet.xib; sourceTree = "<group>"; };
+		AB69AF581CC03BFE00CC9F9B /* NoInternetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoInternetView.h; sourceTree = "<group>"; };
+		AB69AF591CC03BFE00CC9F9B /* NoInternetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoInternetView.m; sourceTree = "<group>"; };
 		AB92E7151CAB01F200199034 /* DidYou.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DidYou.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB92E7191CAB01F200199034 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		AB92E71B1CAB01F200199034 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -195,6 +200,7 @@
 				AB92E7DB1CB5585D00199034 /* CustomTabBar.xib */,
 				AB69AF271CBD87F400CC9F9B /* EmptyTable.xib */,
 				AB92E7E31CB71A1A00199034 /* JournalEntryTableViewCell2.xib */,
+				AB69AF561CC03A7D00CC9F9B /* noInternet.xib */,
 				AB92E7D31CB400B600199034 /* JournalEntryTableViewCell.xib */,
 				31FF28221CAD7303008051C0 /* Question.xib */,
 				31FF28241CAD731C008051C0 /* JournalAndPicture.xib */,
@@ -208,8 +214,10 @@
 			children = (
 				AB92E7931CAD9CB400199034 /* NewJournalEntryBlurView.h */,
 				AB92E7941CAD9CB400199034 /* NewJournalEntryBlurView.m */,
-				31FF28261CAD7356008051C0 /* MainFeelingView.h */,
 				31FF28271CAD7356008051C0 /* MainFeelingView.m */,
+				31FF28261CAD7356008051C0 /* MainFeelingView.h */,
+				AB69AF581CC03BFE00CC9F9B /* NoInternetView.h */,
+				AB69AF591CC03BFE00CC9F9B /* NoInternetView.m */,
 				AB92E7601CAC495F00199034 /* AddJournalEntryView.h */,
 				AB92E7611CAC495F00199034 /* AddJournalEntryView.m */,
 				AB92E7DD1CB55BE000199034 /* CustomTabBarView.h */,
@@ -335,6 +343,7 @@
 				CD4CCAC51CB6EA0C00805B1F /* Stats.xib in Resources */,
 				AB92E75F1CAC48DE00199034 /* AddJournalEntry.xib in Resources */,
 				AB92E7E41CB71A1A00199034 /* JournalEntryTableViewCell2.xib in Resources */,
+				AB69AF571CC03A7D00CC9F9B /* noInternet.xib in Resources */,
 				AB92E7D41CB400B600199034 /* JournalEntryTableViewCell.xib in Resources */,
 				D60655921CBC27E800709533 /* loadingView.xib in Resources */,
 				AB69AF281CBD87F400CC9F9B /* EmptyTable.xib in Resources */,
@@ -411,6 +420,7 @@
 				AB92E7DA1CB40C6400199034 /* JournalEntryTableViewCell.m in Sources */,
 				AB92E7571CAB111100199034 /* DYJournalEntry.m in Sources */,
 				AB92E79A1CADBD2800199034 /* IndividualFeelingView.m in Sources */,
+				AB69AF5A1CC03BFE00CC9F9B /* NoInternetView.m in Sources */,
 				31FF281D1CAD6BED008051C0 /* DYQuestion.m in Sources */,
 				AB92E75A1CAB112B00199034 /* DYUser.m in Sources */,
 				31FF28721CBC4691008051C0 /* JournalLogViewController.m in Sources */,

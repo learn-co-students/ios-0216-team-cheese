@@ -17,9 +17,10 @@
 #import "LoadingFirstPageView.h"
 #import "JournalLogViewController.h"
 #import "EmptyTableView.h"
+#import "NoInternetView.h"
 
 
-@interface MainViewController () <NewJournalEntryBlurViewDelegate, UITableViewDataSource, UITableViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, CustomTabBarDelegate, LoadingFirstPageViewDelegate>
+@interface MainViewController () <NewJournalEntryBlurViewDelegate, UITableViewDataSource, UITableViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, CustomTabBarDelegate, LoadingFirstPageViewDelegate, NoInternetDelegate>
 
 @property (strong, nonatomic) IBOutlet AddJournalEntryView *addEntryTopView;
 @property (strong, nonatomic) IBOutlet UITableView *journalEntryTableView;
@@ -35,6 +36,7 @@
 
 
 @property (strong, nonatomic) EmptyTableView *firstTimeScreen;
+@property (strong, nonatomic) NoInternetView *noInternetScreen;
 @property (strong, nonatomic) LoadingFirstPageView *contentView;
 @property (strong, nonatomic) NSLayoutConstraint *blurViewheightConstraint;
 @property (strong, nonatomic) NSLayoutConstraint *blurViewWidthConstraint;
@@ -70,9 +72,11 @@
     
     if (!self.connected)
     {
-      
+        self.dataStore = [DataStore sharedDataStore];
+        [self launchNoInternetView];
         // show internet screen
         self.journalEntryTableView.userInteractionEnabled = NO;
+        self.tabBar.userInteractionEnabled = NO;
     }
     else
     {
@@ -87,15 +91,35 @@
             [self launchFirstTimeScreen];
         }
         
-        
-        
-        
     }
     
    
     [self.journalEntryTableView reloadData];
     
 
+    
+}
+
+-(void)refreshTapped
+{
+    NSLog(@"in refresh tapped");
+    
+    self.connected = [DataStore isNetworkAvailable];
+    
+    if (self.connected)
+    {
+    
+        [self.noInternetScreen removeFromSuperview];
+        
+        self.journalEntryTableView.userInteractionEnabled = YES;
+        self.tabBar.userInteractionEnabled = YES;
+        
+        [DataStore sharedDataStore];
+        
+        [self.journalEntryTableView reloadData];
+    }
+
+    
     
 }
 
@@ -145,6 +169,22 @@
 
 }
 
+-(void)launchNoInternetView
+{
+    self.noInternetScreen = [[NoInternetView alloc] init];
+    
+    [self.view addSubview:self.noInternetScreen];
+    
+    self.noInternetScreen.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    [self.noInternetScreen.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor].active = YES;
+    [self.noInternetScreen.leftAnchor constraintEqualToAnchor:self.view.leftAnchor].active = YES;
+    [self.noInternetScreen.rightAnchor constraintEqualToAnchor:self.view.rightAnchor].active = YES;
+    [self.noInternetScreen.heightAnchor constraintEqualToAnchor:self.view.heightAnchor multiplier:.7].active = YES;
+    
+    self.noInternetScreen.delegate = self;
+    
+}
 
 
 -(void)launchSpinView
@@ -353,8 +393,8 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-//    NSLog(@"in number of rows in section and the answer is: %lu", self.dataStore.currentUser.journals.count);
-//    NSLog(@"%d is first screen displayed", self.firstTimeScreenDisplayed);
+    NSLog(@"in number of rows in section and the answer is: %lu", self.dataStore.currentUser.journals.count);
+    NSLog(@"%d is first screen displayed", self.firstTimeScreenDisplayed);
     
        
 //    if (self.dataStore.currentUser.journals.count == 0 && !self.firstTimeScreenDisplayed)
