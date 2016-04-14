@@ -30,6 +30,11 @@
 -(void)addJournalToFirebase:(DYUser *)user :(DYJournalEntry *)journalEntry;
 -(void)pushLastJournal;
 
+-(NSArray *)generateQuestions;
++ (BOOL)isNetworkAvailable;
+
+
+
 
 
 

@@ -61,15 +61,7 @@
     [self.contentView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor].active = YES;
     
     self.contentView.translatesAutoresizingMaskIntoConstraints = NO;
-  
-//    [self.spinView.heightAnchor constraintEqualToAnchor: self.superview.heightAnchor].active = YES;
-//    
-//    [self.spinView.widthAnchor constraintEqualToAnchor: self.superview.widthAnchor].active = YES;
 
-
-    
-    
-//    self.contentView.frame = self.bounds;
     
 }
 
