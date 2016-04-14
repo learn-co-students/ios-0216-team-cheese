@@ -7,6 +7,8 @@
 //
 
 #import "DYJournalEntry.h"
+#import "DYUtility.h"
+#import "DYQuestion.h"
 
 @implementation DYJournalEntry
 
@@ -14,7 +16,7 @@
 -(instancetype)init
 {
     
-    self = [self initWithDate:[NSDate date] mainEmotion:@"" journalEntry:@"" picture1Address:@""];
+    self = [self initWithDate:[NSDate date] mainEmotion:@"" journalEntry:@"" picture1Address:@"" userImage:nil];
     return self;
 }
 
@@ -54,7 +56,7 @@
         _mainEmotion = data[@"emotion"];
         _journalEntry = data[@"journalEntry"];
         _picture1Address = data[@"picture1Address"];
-        _userImage = data[@"userImage"];
+        _userImage = [util decodeBase64ToImage: data[@"userImage"]];
         _questions = q;
     }
     return self;
@@ -77,7 +79,7 @@
     data[@"emotion"] = _mainEmotion;
     data[@"journalEntry"] = _journalEntry;
     data[@"picture1address"] = _picture1Address;
-    data[@"userImage"] = _userImage;
+    data[@"userImage"] = [util encodeToBase64String:_userImage];
     data[@"questions"] = questions;
     
     return data;

@@ -278,6 +278,7 @@
 
 -(void)recieveImageFromMainViewController:(UIImage *)imageRecieved
 {
+    self.currentEntry.userImage = imageRecieved;
     self.journalAndPictureView.deletePhotoButton.hidden = NO;
     self.journalAndPictureView.imageView.image = imageRecieved;
     self.journalAndPictureView.imageView.layer.cornerRadius = self.journalAndPictureView.imageView.frame.size.width / 2;
