@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DYStatsInfo.h"
 
 @interface StatsViewController : UIViewController
+
+@property (strong, nonatomic) DYStatsInfo *statsInfo;
+
+-(instancetype)init;
 
 @end

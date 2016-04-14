@@ -8,16 +8,28 @@
 
 #import "StatsViewController.h"
 #import "CustomTabBarView.h"
+#import "StatsMenuView.h"
+#import "StatsMonthView.h"
+#import "StatsHistoryView.h"
+#import "StatsWorldView.h"
 
 @interface StatsViewController () <CustomTabBarDelegate>
 
 @property (strong, nonatomic) CustomTabBarView *tabBar;
+@property (strong, nonatomic) StatsMenuView *menuView;
 
 @end
 
 @implementation StatsViewController
 
-
+-(instancetype)init {
+    self = [super init];
+    
+    if (self) {
+        _statsInfo = [[DYStatsInfo alloc]init];
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -25,7 +37,6 @@
     [self createCustomTabBar];
     
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -62,6 +73,16 @@
     {
         [self performSegueWithIdentifier:@"segueStatsToUser" sender:nil];
     }
+}
+
+//how many bar graphs do we need to create for first page?
+
+-(void)createMoodBarGraph {
+    
+}
+
+-(void)createSixBoolBarGraphs {
+    
 }
 
 /*

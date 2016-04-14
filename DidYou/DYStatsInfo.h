@@ -10,26 +10,28 @@
 #import "DataStore.h"
 #import <CoreLocation/CoreLocation.h>
 #import <CoreGraphics/CoreGraphics.h>
+#import "DYUser.h"
+#import "DYJournalEntry.h"
 
 @interface DYStatsInfo : NSObject
 
 //once logic is set, remove these properties and reference malleable keys
+@property (strong, nonatomic) DYUser *currentUser;
+@property (strong, nonatomic) DYJournalEntry *journalEntry;
 @property (strong, nonatomic) NSMutableArray *happyArray;
 @property (strong, nonatomic) NSMutableArray *excitedArray;
 @property (strong, nonatomic) NSMutableArray *tenderArray;
 @property (strong, nonatomic) NSMutableArray *scaredArray;
 @property (strong, nonatomic) NSMutableArray *angryArray;
 @property (strong, nonatomic) NSMutableArray *sadArray;
-@property (strong, nonatomic) NSMutableArray *arrayOfJournalDictionaries;
+@property (strong, nonatomic) NSArray *allMoodsArray;
+
 //@property (strong, nonatomic) NSDictionary *journalsDict; -- don't need? replaced with arrayOfJournalDictionaries to reduce lines of code
 @property (strong, nonatomic) NSMutableArray *arrayOfCurrentMonthJournalDictionaries;
 @property (nonatomic) NSInteger countOfAllEntries;
 @property (nonatomic) NSInteger countOfCurrentMonthEntries;
 
 -(instancetype)init;
--(void)getAllJournalsDictionary:(void(^)(BOOL))completion;
--(void)addAllHistoryToMoodArrays:(void(^)(BOOL))completion;
--(void)getEntriesFromCurrentMonth:(void(^)(BOOL))completion;
 
 /*
  @"Happy"
