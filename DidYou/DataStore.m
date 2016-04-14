@@ -185,12 +185,12 @@
          
          self.currentUser = newUser;
          [self.users addObject:self.currentUser];
-         // Notify the main controller that the firebase data has arrived
+         // Notify the main controller that firebase data has arrived
          //this block doesn't get executed until the snapshot is delivered
          [[NSNotificationCenter defaultCenter]
           postNotificationName:@"FirebaseNotification"
           object:self];
-     }];
+        }];
     
 }
 
