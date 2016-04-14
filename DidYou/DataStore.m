@@ -17,6 +17,8 @@
 
 + (instancetype)sharedDataStore;
 {
+    
+  
     static DataStore *_sharedDataStore = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -36,6 +38,15 @@
         _users = [[NSMutableArray alloc] init];
         _emotions = [self emotionsDictionary];
         _userUUID = [self userUUID];
+        
+        [[NSNotificationCenter defaultCenter]
+         postNotificationName:@"SingletonAboutToBeCreated"
+         object:self];
+        
+       
+
+        
+        
         
         [self setupFirebase];
         [self userUUIDToUser];
@@ -161,10 +172,14 @@
 -(void)createNewCurrentUserFromFirebase:(NSString *)userUUID
 {
     
+    NSLog(@"in the firebase method");
+    
     Firebase *firebase = [[self.myRootRef childByAppendingPath:@"users"] childByAppendingPath:userUUID];
     
     
     [firebase observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
+        
+        NSLog(@"in the firebase completion block");
         
               if (snapshot.value == [NSNull null]) {
                         NSLog(@"firebase returned null value for path");
@@ -199,9 +214,13 @@
                      
                      // Notify the main controller that the firebase data
                      // has arrived
+        
+        
                      [[NSNotificationCenter defaultCenter]
                       postNotificationName:@"FirebaseNotification"
                       object:self];
+        
+        
                       //this block doesn't get executed until the snapshot is delivered
         
      

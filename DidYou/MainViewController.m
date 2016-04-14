@@ -45,6 +45,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(receiveSingletonNotification)
+                                                 name:@"SingletonAboutToBeCreated"
+                                               object:nil];
+    
+    
     self.dataStore =  [DataStore sharedDataStore];
     self.addEntryTopView.delegate = self;
     
@@ -53,7 +60,30 @@
     
     self.journalEntryTableView.userInteractionEnabled = NO;
     
+    
+
+
+    //[self preferredStatusBarStyle];
+    [self createCustomTabBar]; 
+
+  
+    
+    [self.journalEntryTableView reloadData];
+    
+    
+}
+
+-(void)receiveSingletonNotification
+{
+    
+    NSLog(@"recievesingletonnotification");
+    
     BOOL canConnect = [DataStore isNetworkAvailable];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(receiveFirebaseNotification:)
+                                                 name:@"FirebaseNotification"
+                                               object:nil];
     
     if (canConnect)
     {
@@ -78,28 +108,15 @@
     {
         NSLog(@"can't get internet");
     }
-    
 
-
-    
-
-    //[self preferredStatusBarStyle];
-    [self createCustomTabBar]; 
-
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(receiveFirebaseNotification:)
-                                                 name:@"FirebaseNotification"
-                                               object:nil];
-    
-    [self.journalEntryTableView reloadData];
-    
-    
 }
 
 
 
 -(void)receiveFirebaseNotification: (NSNotification *)notification
 {
+    
+    NSLog(@"getting in firebasenotification thing");
     // Call back for firebase when data arrives
     if ([[notification name] isEqualToString:@"FirebaseNotification"])
         
@@ -110,6 +127,8 @@
     
     self.journalEntryTableView.userInteractionEnabled = YES;
 }
+
+
 
 -(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
     
