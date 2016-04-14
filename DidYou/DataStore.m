@@ -23,6 +23,10 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _sharedDataStore = [[DataStore alloc] init];
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"singletonBeingCreated" object:nil];
+
+        
     });
     
     return _sharedDataStore;
@@ -38,15 +42,7 @@
         _users = [[NSMutableArray alloc] init];
         _emotions = [self emotionsDictionary];
         _userUUID = [self userUUID];
-        
-        [[NSNotificationCenter defaultCenter]
-         postNotificationName:@"SingletonAboutToBeCreated"
-         object:self];
-        
-       
 
-        
-        
         
         [self setupFirebase];
         [self userUUIDToUser];
@@ -72,13 +68,19 @@
     
     BOOL uuidExists = [userDefaultsKeys containsObject:@"userUUID"];
     
-    if (uuidExists)
+
+   if (uuidExists)
     {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"connectedAndUserExists" object:nil];
+        
         [self createNewCurrentUserFromFirebase:userDefaultsDictionary[@"userUUID"]];
     }
     
     else
     {
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"connectedAndUserIsNew" object:nil];
+        
         _isFirstTime = true;
         NSString *newUUID = [self createNewUserUUID];
         [self createNewCurrentUserWithUUID:newUUID];
@@ -214,6 +216,8 @@
                      
                      // Notify the main controller that the firebase data
                      // has arrived
+        
+                    NSLog(@"about to post firebase notification");
         
         
                      [[NSNotificationCenter defaultCenter]
