@@ -41,28 +41,144 @@
         _scaredArray = [NSMutableArray new];
         _angryArray = [NSMutableArray new];
         _sadArray = [NSMutableArray new];
+        _arrayOfCurrentMonthJournalDictionaries = [NSMutableArray new];
+        _arrayOfJournalDictionaries = [NSMutableArray new];
     }
     return self;
 }
 
--(void)getJournalsDictionary:(void(^)(BOOL))completion{
-    
+//gets all entries from history
+-(void)getAllJournalsDictionary:(void(^)(BOOL))completion{
     DataStore *dataStore = [[DataStore alloc]init];
     //can't run this with childByAppendingPath saying datastore.myRootRef for some reason...(possibly no UUID for comp without phone?)
     
     [[[dataStore.myRootRef childByAppendingPath:@"users"] childByAppendingPath:@"D9F755A7-92DB-4DF4-A4E9-143FA2FCFDD9"]
      observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
-         
          if (snapshot.value == [NSNull null]) {
              NSLog(@"firebase returned null value for path");
              completion(NO);
              return;
+         } else {
+             NSDictionary *resultDictionary = [snapshot value];
+             NSDictionary *journalsDict = resultDictionary[@"journals"];
+             for (NSString *journalEntryString in journalsDict) {
+                 NSDictionary *journalEntryDetails = journalsDict[journalEntryString];
+                 [self.arrayOfJournalDictionaries addObject:journalEntryDetails];
+             }
          }
-         NSDictionary *resultDictionary = [snapshot value];
-         self.journalsDict = resultDictionary[@"journals"];
          completion(YES);
      }];
 }
+
+//gets all entries from current month
+-(void)getEntriesFromCurrentMonth:(void(^)(BOOL))completion {
+    [self getAllJournalsDictionary:^(BOOL success) {
+        if (success) {
+            for (NSDictionary *journalEntryDetails in self.arrayOfJournalDictionaries) {
+                NSString *journalDateString = journalEntryDetails[@"date"];
+                NSString *journalMonthString = [self getMonthStringFromString:journalDateString];
+                NSString *currentMonthString = [self getCurrentMonthString];
+                
+                if (journalMonthString == currentMonthString) {
+                    [self.arrayOfCurrentMonthJournalDictionaries addObject:journalEntryDetails];
+                }
+            }
+            completion(YES);
+        }else {
+            NSLog(@"could not get journals dictionary for numberOfEntriesOverCurrentMonth method");
+            completion(NO);
+        }
+    }];
+}
+
+//edit mood arrays based on the provided array of journal dictionaries (such as current month dictionary or year dictionary)
+-(void)addToMoodArrays: (NSDictionary *)givenJournalsArray {
+    for (NSDictionary *journalEntryDetails in givenJournalsArray) {
+        NSLog(@"journal details dictionary: %@", journalEntryDetails);
+        
+        NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitMonth fromDate:[NSDate date]];
+        NSLog(@"date components %@", components);
+        
+        NSString *emotionString = journalEntryDetails[@"emotion"];
+        NSString *mainEmotion = [self generateMainEmotion:emotionString];
+        if ([mainEmotion isEqualToString:@"Happy"]) {
+            [self.happyArray addObject:mainEmotion];
+        } else if ([mainEmotion isEqualToString:@"Excited"]) {
+            [self.excitedArray addObject:mainEmotion];
+        } else if ([mainEmotion isEqualToString:@"Tender"]) {
+            [self.tenderArray addObject:mainEmotion];
+        } else if ([mainEmotion isEqualToString:@"Scared"]) {
+            [self.scaredArray addObject:mainEmotion];
+        } else if ([mainEmotion isEqualToString:@"Angry"]) {
+            [self.angryArray addObject:mainEmotion];
+        } else if ([mainEmotion isEqualToString:@"Sad"]) {
+            [self.sadArray addObject:mainEmotion];
+        }
+    }
+}
+
+//changes sub emotion to a main emotion key (so switches something like blue to sad)
+-(NSString *)generateMainEmotion:(NSString *)storedEmotion {
+    DataStore *dataObject = [[DataStore alloc]init];
+    NSString *mainEmotionKey = @"";
+    NSArray *emotionKeysArray = [dataObject.emotions allKeys];
+    
+    for (NSString *emotion in emotionKeysArray) {
+        if ([dataObject.emotions[emotion] containsObject:storedEmotion]) {
+            mainEmotionKey = emotion;
+        } else if ([emotion isEqualToString:storedEmotion]){
+            mainEmotionKey = emotion;
+        }
+    }
+    return mainEmotionKey;
+}
+
+-(NSUInteger)calculateEmotionPercentage:(NSArray *)emotionArray ofEntries:(NSUInteger)entryCount {
+    NSUInteger emotionCount = [emotionArray count];
+    NSUInteger emotionPercentage = (emotionCount / entryCount) * 100;
+    return emotionPercentage;
+}
+
+-(NSString *)getMonthStringFromString:(NSString *)dateString {
+    NSString *removeYearString = [dateString substringFromIndex:5];
+    NSString *monthString = [removeYearString substringToIndex:2];
+    return monthString;
+}
+
+-(NSString *)getCurrentMonthString {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    [dateFormatter setDateFormat:@"MM"];
+    NSString *stringDate = [dateFormatter stringFromDate:[NSDate date]];
+    return stringDate;
+}
+
+
+
+//DON'T EVEN THINK I USED THESE?
+
+//should I calculate all emotions for the current month?
+-(void)calculateEmotionsForCurrentMonth {
+    [self getEntriesFromCurrentMonth:^(BOOL success) {
+        if (success) {
+            self.countOfCurrentMonthEntries = [self.arrayOfCurrentMonthJournalDictionaries count];
+        }
+    }];
+}
+
+-(NSUInteger)numberOfEntriesOverAllTime:(void(^)(BOOL))completion {
+    
+    [self getAllJournalsDictionary:^(BOOL success) {
+        if (success) {
+            completion(YES);
+        } else {
+            NSLog(@"could not get journals dictionary for numberOfEntriesOverAllTime method");
+            completion(NO);
+        }
+    }];
+    NSUInteger entriesCount = [self.arrayOfJournalDictionaries count];
+    return entriesCount;
+}
+
 
 -(NSMutableArray *)arrayOfAllUserMoods:(NSDictionary*)userJournalsDict {
     NSDictionary *journalEmotionsDictionary = userJournalsDict[@"emotions"];
@@ -80,26 +196,18 @@
     return moodsArray;
 }
 
--(NSString *)generateMainEmotion:(NSString *)storedEmotion {
-    DataStore *dataObject = [[DataStore alloc]init];
-    NSString *mainEmotionKey = @"";
-    NSArray *emotionKeysArray = [dataObject.emotions allKeys];
-    
-    for (NSString *emotion in emotionKeysArray) {
-        if ([dataObject.emotions[emotion] containsObject:storedEmotion]) {
-            mainEmotionKey = emotion;
-        } else if ([emotion isEqualToString:storedEmotion]){
-            mainEmotionKey = emotion;
-        }
-    }
-    return mainEmotionKey;
-}
 
--(void)addToMoodArrays:(void(^)(BOOL))completion {
-    [self getJournalsDictionary:^(BOOL success) {
+-(void)addAllHistoryToMoodArrays:(void(^)(BOOL))completion {
+    [self getAllJournalsDictionary:^(BOOL success) {
         if (success) {
-            for (NSString *journalEntryString in [self.journalsDict allKeys]) {
-                NSDictionary *journalEntryDetails = self.journalsDict[journalEntryString];
+            //            for (NSString *journalEntryString in [self.journalsDict allKeys]) {
+            //                NSDictionary *journalEntryDetails = self.journalsDict[journalEntryString];
+            for (NSDictionary *journalEntryDetails in self.arrayOfJournalDictionaries) {
+                NSLog(@"journal details dictionary: %@", journalEntryDetails);
+                
+                NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitMonth fromDate:[NSDate date]];
+                NSLog(@"date components %@", components);
+                
                 NSString *emotionString = journalEntryDetails[@"emotion"];
                 NSString *mainEmotion = [self generateMainEmotion:emotionString];
                 if ([mainEmotion isEqualToString:@"Happy"]) {
@@ -125,27 +233,21 @@
     }];
 }
 
--(NSUInteger)numberOfEntriesOverAllTime:(void(^)(BOOL))completion {
-    [self getJournalsDictionary:^(BOOL success) {
-        if (success) {
-            completion(YES);
-        } else {
-            completion(NO);
-        }
-    }];
-    NSUInteger entriesCount = [[self.journalsDict allKeys] count];
-    return entriesCount;
-}
 
-//-(NSUInteger)numberOfEntriesOverCurrentMonth:(void(^)(BOOL))completion {
-//    
-//}
+/*
+ date = "2016-04-13 18:46:10";
+ 
+ NSString *dateString = @"01-02-2010";
+ NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+ // this is imporant - we set our input date format to match our input string
+ // if format doesn't match you'll get nil from your string, so be careful
+ [dateFormatter setDateFormat:@"dd-MM-yyyy"];
+ NSDate *dateFromString = [[NSDate alloc] init];
+ // voila!
+ dateFromString = [dateFormatter dateFromString:dateString];
+ */
 
--(NSUInteger)calculateEmotionPercentage:(NSArray *)emotionArray ofEntries:(NSUInteger)entryCount {
-    NSUInteger emotionCount = [emotionArray count];
-    NSUInteger emotionPercentage = (emotionCount / entryCount) * 100;
-    return emotionPercentage;
-}
+
 
 
 
@@ -178,32 +280,6 @@
 //
 //}
 
-/*
- // retrieve the user information from Firebase
- //Firebase *usersRef = [self.myRootRef childByAppendingPath: @"users"];
- //Firebase *userRef = [usersRef childByAppendingPath: userUUID];
- [[[self.myRootRef childByAppendingPath:@"users"] childByAppendingPath:userUUID]
- // Take the snapshot of the entire tree under users/userUUID
- observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
- if (snapshot.value == [NSNull null]) {
- NSLog(@"firebase returned null value for path");
- return;
- }
- DYUtility *util = [DYUtility sharedUtility];
- NSMutableArray *journals = [[NSMutableArray alloc] init];
- NSDictionary *result = [snapshot value];
- DYUser *newUser = [[DYUser alloc] initWithUserUUID:userUUID signUpDate: [util fromUTCFormatDate: result[@"signUpDate"]]];
- newUser.name = result[@"name"];
- newUser.city = result[@"city"];
- newUser.country = result[@"country"];
- // Deserialize each journal entry
- NSMutableDictionary *journalDict = result[@"journals"];
- for (NSString *key in [journalDict allKeys])
- {
- [journals addObject:[[DYJournalEntry alloc] initWithDeserialize: journalDict[key]]];
- }
- newUser.journals = journals;
- */
 
 
 

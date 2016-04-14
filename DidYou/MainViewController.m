@@ -75,6 +75,16 @@
                                                  name:@"FirebaseNotification"
                                                object:nil];
     [self.journalEntryTableView reloadData];
+    
+//    DYStatsInfo *currentStats = [[DYStatsInfo alloc]init];
+//    [currentStats getEntriesFromCurrentMonth:^(BOOL success) {
+//        NSLog(@"month array %@", currentStats.currentMonthJournalsArray);
+//    }];
+//    [currentStats addToMoodArrays:^(BOOL success) {
+//    }];
+//    
+//    NSLog(@"%@", currentStats.journalsDict);
+    
 }
 
 
@@ -98,7 +108,6 @@
     [errorAlert addAction:defaultAction];
     
     [self presentViewController:errorAlert animated:YES completion:nil];
-    
 }
 
 
