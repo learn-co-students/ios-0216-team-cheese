@@ -42,8 +42,10 @@
 		AB92E7DF1CB55BE000199034 /* CustomTabBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB92E7DE1CB55BE000199034 /* CustomTabBarView.m */; };
 		AB92E7E21CB5708200199034 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB92E7E11CB5708200199034 /* SettingsViewController.m */; };
 		AB92E7E41CB71A1A00199034 /* JournalEntryTableViewCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB92E7E31CB71A1A00199034 /* JournalEntryTableViewCell2.xib */; };
+		BF5BF979033B37544EC4DF92 /* Pods_DidYou.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFF7DDDE657B306A19BB7719 /* Pods_DidYou.framework */; };
 		CD4CCAC51CB6EA0C00805B1F /* Stats.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD4CCAC41CB6EA0C00805B1F /* Stats.xib */; };
 		CDA19A171CB58A28001E1872 /* MoodCircleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CDA19A161CB58A28001E1872 /* MoodCircleButton.m */; };
+		CDA730891CBC4DE70014C12D /* DYStatsInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CDA730881CBC4DE70014C12D /* DYStatsInfo.m */; };
 		D60655921CBC27E800709533 /* loadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D60655911CBC27E800709533 /* loadingView.xib */; };
 		D60655981CBC2F9A00709533 /* LoadingFirstPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = D60655971CBC2F9A00709533 /* LoadingFirstPageView.m */; };
 /* End PBXBuildFile section */
@@ -112,10 +114,13 @@
 		CD4CCAC41CB6EA0C00805B1F /* Stats.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Stats.xib; sourceTree = "<group>"; };
 		CDA19A151CB58A28001E1872 /* MoodCircleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoodCircleButton.h; sourceTree = "<group>"; };
 		CDA19A161CB58A28001E1872 /* MoodCircleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoodCircleButton.m; sourceTree = "<group>"; };
+		CDA730871CBC4DE70014C12D /* DYStatsInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYStatsInfo.h; sourceTree = "<group>"; };
+		CDA730881CBC4DE70014C12D /* DYStatsInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYStatsInfo.m; sourceTree = "<group>"; };
 		D60655911CBC27E800709533 /* loadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = loadingView.xib; sourceTree = "<group>"; };
 		D60655961CBC2F9A00709533 /* LoadingFirstPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingFirstPageView.h; sourceTree = "<group>"; };
 		D60655971CBC2F9A00709533 /* LoadingFirstPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingFirstPageView.m; sourceTree = "<group>"; };
 		DC83E05E9AD37E69EF195C64 /* Pods-DidYou.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DidYou.release.xcconfig"; path = "Pods/Target Support Files/Pods-DidYou/Pods-DidYou.release.xcconfig"; sourceTree = "<group>"; };
+		FFF7DDDE657B306A19BB7719 /* Pods_DidYou.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DidYou.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,7 +128,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB49939EBAFBADBED3BC9BF4 /* libPods-DidYou.a in Frameworks */,
+				BF5BF979033B37544EC4DF92 /* Pods_DidYou.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -133,7 +138,7 @@
 		8ABA9F5621704F6F3234271E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				563053DD0003F7BE5361FBFA /* libPods-DidYou.a */,
+				FFF7DDDE657B306A19BB7719 /* Pods_DidYou.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -161,6 +166,8 @@
 			children = (
 				31FF281B1CAD6BED008051C0 /* DYQuestion.h */,
 				31FF281C1CAD6BED008051C0 /* DYQuestion.m */,
+				CDA730871CBC4DE70014C12D /* DYStatsInfo.h */,
+				CDA730881CBC4DE70014C12D /* DYStatsInfo.m */,
 				779BD9021CB736560027DC91 /* DYUtility.h */,
 				779BD9031CB736560027DC91 /* DYUtility.m */,
 				AB92E71B1CAB01F200199034 /* AppDelegate.h */,
@@ -260,8 +267,8 @@
 		AB92E7691CAC528600199034 /* Singleton Data Store */ = {
 			isa = PBXGroup;
 			children = (
-				AB92E75C1CAB113700199034 /* DataStore.m */,
 				AB92E75B1CAB113700199034 /* DataStore.h */,
+				AB92E75C1CAB113700199034 /* DataStore.m */,
 			);
 			name = "Singleton Data Store";
 			sourceTree = "<group>";
@@ -430,6 +437,7 @@
 				AB92E76F1CAC697B00199034 /* StatsViewController.m in Sources */,
 				D60655981CBC2F9A00709533 /* LoadingFirstPageView.m in Sources */,
 				AB92E71D1CAB01F200199034 /* AppDelegate.m in Sources */,
+				CDA730891CBC4DE70014C12D /* DYStatsInfo.m in Sources */,
 				AB92E71A1CAB01F200199034 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -541,11 +549,14 @@
 			baseConfigurationReference = A6F0F00FFE68D8283CB2E5C1 /* Pods-DidYou.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = DidYou/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.flatironSchool.DidYou.DidYou;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -554,11 +565,14 @@
 			baseConfigurationReference = DC83E05E9AD37E69EF195C64 /* Pods-DidYou.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = DidYou/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.flatironSchool.DidYou.DidYou;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

@@ -173,6 +173,7 @@
 
 -(void)createNewCurrentUserFromFirebase:(NSString *)userUUID
 {
+
     
     NSLog(@"in the firebase method");
     
@@ -253,6 +254,7 @@
     && (flags & kSCNetworkReachabilityFlagsReachable);
     
     return canReach;
+
 }
 
 
@@ -293,7 +295,9 @@
 
 
 
+
 #pragma test user data
+
 
 
 -(void)testUsers

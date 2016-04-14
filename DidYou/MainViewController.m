@@ -142,6 +142,7 @@
                                              selector:@selector(receiveFirebaseNotification)
                                                  name:@"FirebaseNotification"
                                                object:nil];
+
     
     [self launchSpinView];
     
@@ -166,6 +167,8 @@
     
     self.journalEntryTableView.delegate = self;
     self.journalEntryTableView.dataSource = self;
+
+
 
 }
 
