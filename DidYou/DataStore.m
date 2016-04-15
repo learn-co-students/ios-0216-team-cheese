@@ -46,8 +46,6 @@
         _userUUID = [self userUUID];
         _userImage = [self userImage];
 
-
-
         
         [self setupFirebase];
         [self userUUIDToUser];

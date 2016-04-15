@@ -56,15 +56,12 @@
     
     [super viewDidLoad];
     
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userExists) name:@"connectedAndUserExists" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userIsNew) name:@"connectedAndUserIsNew" object:nil];
     
     self.journalEntryTableView.userInteractionEnabled = NO;
-   
     
     [self setUpDelegates];
-    
     [self createCustomTabBar];
     
     self.connected = [DataStore isNetworkAvailable];
@@ -92,10 +89,7 @@
         
     }
     
-   
     [self.journalEntryTableView reloadData];
-    
-
     
 }
 
@@ -213,8 +207,6 @@
 
 -(void)receiveFirebaseNotification
 {
-    
-  
         [self.journalEntryTableView reloadData];
         [self.journalEntryTableView reloadData];
         [self.spinView.activityIndicator stopAnimating];
