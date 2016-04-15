@@ -292,6 +292,7 @@
     
 }
 
+
 -(void)addPlacemark: (CLPlacemark*)placeMark
 {
     //sending city info to firebase
@@ -301,13 +302,20 @@
     Firebase *countryRef = [[[self.myRootRef childByAppendingPath: @"countries"] childByAppendingPath: placeMark.country] childByAppendingPath:self.currentUser.userUUID];
     [countryRef setValue: @""];
     
-    //need some kind of backend services to parse through the user data in order to aggregate, otherwise we are pulling down users info, right now the only way to do the stats is to iterate over the users answers and journals, in order to display graphs, we would need to pull a lot of user data, need to grab each user's data and then aggregate it which can be a problem, would be slow and not secure.
-    //server side problem, should not be doing it on the app http://thanish.me/2014-05-25-aggregation-for-firebase/  firebase doesn't let you do aggregation
-    
-    //have to write methods to get UUID, request journal, and look up emotions and then make a new ref every single time and add up, once there are a lot of users, would be really slow
-    
-    //write code to aggregate data on the server side, then app only grabs the data 
 }
+
+-(void)deleteAllCurrentUserEntries
+{
+    
+    NSMutableArray *currentUserJournals = self.currentUser.journals;
+    
+    [currentUserJournals removeAllObjects];
+    
+    
+}
+
+
+
 
 
 
