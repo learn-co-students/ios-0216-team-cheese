@@ -44,7 +44,6 @@
         _users = [[NSMutableArray alloc] init];
         _emotions = [self emotionsDictionary];
         _userUUID = [self userUUID];
-
         _userImage = [self userImage];
 
 
