@@ -11,10 +11,7 @@
 
 @interface AddJournalEntryView ()
 
-
-@property (strong, nonatomic) IBOutlet UIImageView *contentView;
-
-@property (weak, nonatomic) IBOutlet UIButton *addButton;
+@property (strong, nonatomic) IBOutlet UIView *contentView;
 
 @property (strong, nonatomic) UIView *blueCircle;
 @property (strong, nonatomic) UIView *yellowCircle;
@@ -228,11 +225,29 @@
 
 -(void)animateView: (UIView *)circleView withRadius:(CGFloat)radius
 {
-    NSUInteger xPosition = arc4random_uniform(351);
-    NSUInteger yPosition = arc4random_uniform(151);
+    
+    
+    NSUInteger xPosition = arc4random_uniform(self.contentView.frame.size.width - 70);
+    NSUInteger yPosition = arc4random_uniform(self.contentView.frame.size.height - 50);
+    
+    if (xPosition > 375)
+    {
+        xPosition = arc4random_uniform(305);
+    }
+    
+  
+    
+    
+    
+    NSLog(@"%f is the width", self.contentView.frame.size.width);
+    NSLog(@"%f is the height", self.contentView.frame.size.height);
+    
+    NSLog(@"%lu", xPosition);
+    NSLog(@"%lu", yPosition);
+    
     NSUInteger time = arc4random_uniform(5);
     
-    [UIView animateWithDuration:time + 8 delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
+    [UIView animateWithDuration:time + 13 delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
         circleView.frame = CGRectMake(xPosition, yPosition, radius*2.0, radius*2.0);
     } completion:^(BOOL finished) {
         
