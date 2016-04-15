@@ -8,10 +8,17 @@
 
 #import "SettingsViewController.h"
 #import "CustomTabBarView.h"
+#import "DataStore.h"
 
-@interface SettingsViewController () <CustomTabBarDelegate>
+@interface SettingsViewController () <CustomTabBarDelegate, UITableViewDataSource, UITableViewDelegate>
+
+@property (weak, nonatomic) IBOutlet UITableView *settingsTableView;
 
 @property (strong, nonatomic) CustomTabBarView *tabBar;
+@property (weak, nonatomic) IBOutlet UISwitch *locationSwitch;
+@property (weak, nonatomic) IBOutlet UIButton *deleteEntriesButton;
+
+@property (strong, nonatomic) DataStore *dataStore;
 
 @end
 
@@ -21,8 +28,69 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-     [self createCustomTabBar];
+    [self createCustomTabBar];
+    
+    self.settingsTableView.delegate = self;
+    self.settingsTableView.dataSource = self;
+    
+    self.settingsTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    
+    self.dataStore = [DataStore sharedDataStore];
+    
+    // set switch to location services boolean
+    
 }
+
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 3;
+}
+
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    if (indexPath.row == 0)
+    {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"locationCell"];
+        
+        return cell;
+    }
+    
+    else if (indexPath.row == 1)
+    {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"termsCell"];
+        
+        return cell;
+    }
+    
+    else
+    {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"deleteEntriesCell"];
+        
+        return cell;
+    }
+    
+    
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  
+    
+    return 100;
+ 
+    
+}
+
+- (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return NO;
+}
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -59,6 +127,17 @@
     {
         [self performSegueWithIdentifier:@"segueUserToStats" sender:nil];
     }
+}
+- (IBAction)deleteButtonTapped:(id)sender
+{
+    
+    // launch alert - are you sure you want to delete all your entries?
+    
+}
+- (IBAction)switchChanged:(id)sender
+{
+    
+    
 }
 
 /*

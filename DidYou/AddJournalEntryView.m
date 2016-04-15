@@ -97,13 +97,6 @@
     UIColor *greenColor = [UIColor colorWithRed:65.0f/255.0f green:194.0f/255.0f blue:65.0f/255.0f alpha:0.4];
     UIColor *grayColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:0.4];
     
-//    UIColor *blueColor2 = [UIColor colorWithRed:70.0/255.0 green:135.0/255.0 blue:255/255 alpha:.2];
-//    UIColor *yellowColor2 = [UIColor colorWithRed:247.0/255.0 green:255.0/255.0 blue:0.0/255 alpha:.2];
-//    UIColor *redColor2 = [UIColor colorWithRed:255.0/255.0 green:9.0/255.0 blue:9.0/255.0 alpha:.2];
-//    UIColor *orangeColor2 = [UIColor colorWithRed:255.0/255.0 green:128.0/255.0 blue:0.0/255.0 alpha:.2];
-//    UIColor *purpleColor2 = [UIColor colorWithRed:127.0/255.0 green:0.0/255.0 blue:255.0/255.0 alpha:.2];
-//    UIColor *grayColor2 = [UIColor colorWithRed:192.0/255.0 green:192.0/255.0 blue:192.0/255.0 alpha:.2];
-    
     self.blueCircle = [self createCircleViewWithRadius:50 originX:200 originY:40 color:lavendarColor];
     self.yellowCircle = [self createCircleViewWithRadius:30 originX:100 originY:60 color:blueColor];
     self.redCircle = [self createCircleViewWithRadius:60 originX:20 originY:20 color:redColor];
