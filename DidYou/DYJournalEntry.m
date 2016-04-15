@@ -56,7 +56,12 @@
         _mainEmotion = data[@"emotion"];
         _journalEntry = data[@"journalEntry"];
         _picture1Address = data[@"picture1Address"];
-        _userImage = [util decodeBase64ToImage: data[@"userImage"]];
+        if ([data[@"userImage"] isEqualToString:@"nil"]) {
+            _userImage = nil;
+        } else
+        {
+            _userImage = [util decodeBase64ToImage: data[@"userImage"]];
+        }
         _questions = q;
     }
     return self;
@@ -79,7 +84,13 @@
     data[@"emotion"] = _mainEmotion;
     data[@"journalEntry"] = _journalEntry;
     data[@"picture1address"] = _picture1Address;
-    data[@"userImage"] = [util encodeToBase64String:_userImage];
+    if (!_userImage)
+    {
+        data[@"userImage"] = @"nil";
+    } else
+    {
+        data[@"userImage"] = [util encodeToBase64String:[util compressForUpload:_userImage scale:0.5]];
+    }
     data[@"questions"] = questions;
     
     return data;

@@ -156,6 +156,8 @@
 -(void)cancelTapped
 {
     
+    [self.dataStore.currentUser.journals removeObject:self.currentEntry];
+    
     [UIView animateWithDuration:.6 animations:^{
         self.contentView.alpha = 0;
     } completion:^(BOOL finished) {

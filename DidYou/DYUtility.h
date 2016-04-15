@@ -23,6 +23,7 @@
 //decoding
 -(UIImage *)decodeBase64ToImage: (NSString *)strEncodeData;
 
+-(UIImage *)compressForUpload:(UIImage *)original scale:(CGFloat)scale;
 
 
 

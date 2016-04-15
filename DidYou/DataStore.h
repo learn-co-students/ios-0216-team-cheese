@@ -10,6 +10,7 @@
 #import <Firebase/Firebase.h>
 #import "DYJournalEntry.h"
 #import "DYUser.h"
+#import <CoreLocation/CoreLocation.h>
 
 @interface DataStore : NSObject
 
@@ -30,7 +31,11 @@
 -(void)addUserToFirebase: (DYUser *)user;
 -(void)addJournalToFirebase:(DYUser *)user :(DYJournalEntry *)journalEntry;
 -(void)pushLastJournal;
+
 -(NSArray *)generateQuestions;
++ (BOOL)isNetworkAvailable;
+
+-(void)addPlacemark: (CLPlacemark*)placeMark;
 
 
 

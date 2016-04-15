@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "AddJournalEntryView.h"
 #import "JournalAndPictureView.h"
+#import "DYStatsInfo.h"
 
 @interface MainViewController : UIViewController
 
