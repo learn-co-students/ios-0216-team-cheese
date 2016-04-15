@@ -283,6 +283,17 @@
     
 }
 
+-(void)deleteAllCurrentUserEntries
+{
+    
+    NSMutableArray *currentUserJournals = self.currentUser.journals;
+    
+    [currentUserJournals removeAllObjects];
+    
+    
+}
+
+
 
 
 
