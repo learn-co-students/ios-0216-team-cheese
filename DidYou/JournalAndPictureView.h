@@ -30,5 +30,8 @@
 @property (nonatomic,strong) NSLayoutConstraint     *imageWidthConstraint;
 @property (nonatomic,strong) UIButton               *buttonThatAppears;
 @property (strong, nonatomic) IBOutlet UIView *contentView;
+@property (strong, nonatomic) UILabel *labelOverKeyboard;
+@property (strong, nonatomic) UIButton *addPhotoButton;
+
 
 @end

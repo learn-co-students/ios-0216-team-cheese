@@ -172,9 +172,11 @@
     
     if (questionsDone)
     {
-        [self leaveQuestionView];
+  
+        //[self leaveQuestionView];
+        [self performSelectorOnMainThread:@selector(leaveQuestionView) withObject:nil waitUntilDone:NO];
+        [self performSelectorOnMainThread:@selector(setUpJournalAndPictureView) withObject:nil waitUntilDone:NO];
         
-        [self setUpJournalAndPictureView];
     }
     else
     {
@@ -203,8 +205,8 @@
     [self.questionView.topAnchor constraintEqualToAnchor:self.topAnchor constant:70].active = YES;
     
 
+
     [self layoutIfNeeded];
-    
     [UIView animateWithDuration:0.8 animations:^{
         self.questionView.alpha = 1.0;
         
@@ -221,6 +223,7 @@
     [self.contentView addSubview:self.journalAndPictureView];
     self.journalAndPictureView.delegate = self;
     self.journalAndPictureView.translatesAutoresizingMaskIntoConstraints = NO;
+
     
     [self.journalAndPictureView.leftAnchor constraintEqualToAnchor:self.leftAnchor].active = YES;
     [self.journalAndPictureView.rightAnchor constraintEqualToAnchor:self.rightAnchor].active = YES;
@@ -228,6 +231,7 @@
     [self.journalAndPictureView.topAnchor constraintEqualToAnchor:self.topAnchor constant:70].active = YES;
     [self.journalAndPictureView.textView becomeFirstResponder];
     [self.journalAndPictureView.contentView becomeFirstResponder];
+
 
     
 }

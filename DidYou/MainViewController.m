@@ -14,13 +14,11 @@
 #import "AddJournalEntryView.h"
 #import "JournalEntryTableViewCell.h"
 #import "CustomTabBarView.h"
+#import "LoadingFirstPageView.h"
 #import "JournalLogViewController.h"
 
 
-
-
-
-@interface MainViewController () <NewJournalEntryBlurViewDelegate, UITableViewDataSource, UITableViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, CustomTabBarDelegate>
+@interface MainViewController () <NewJournalEntryBlurViewDelegate, UITableViewDataSource, UITableViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, CustomTabBarDelegate, LoadingFirstPageViewDelegate>
 
 @property (strong, nonatomic) IBOutlet AddJournalEntryView *addEntryTopView;
 @property (strong, nonatomic) IBOutlet UITableView *journalEntryTableView;
@@ -28,15 +26,17 @@
 
 @property (strong, nonatomic) NewJournalEntryBlurView *addJournalFullScreenBlurView;
 @property (strong, nonatomic) AddJournalEntryView *journalView;
+@property (strong, nonatomic) LoadingFirstPageView *spinView;
 @property (strong, nonatomic) DataStore *dataStore;
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) CLGeocoder *geocoder;
 @property (strong, nonatomic) CLPlacemark *placemark;
 
+
+
+@property (strong, nonatomic) LoadingFirstPageView *contentView;
 @property (strong, nonatomic) NSLayoutConstraint *blurViewheightConstraint;
 @property (strong, nonatomic) NSLayoutConstraint *blurViewWidthConstraint;
-
-
 
 @end
 
@@ -44,13 +44,29 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     self.dataStore =  [DataStore sharedDataStore];
     self.addEntryTopView.delegate = self;
-
+    
     self.journalEntryTableView.delegate = self;
     self.journalEntryTableView.dataSource = self;
     
+
+    self.spinView = [[LoadingFirstPageView alloc]initWithFrame:CGRectZero];
+    if (!self.dataStore.isFirstTime)
+    {
+        [self.view addSubview:self.spinView];
+        self.spinView.translatesAutoresizingMaskIntoConstraints = NO;
+        [self.spinView.heightAnchor constraintEqualToConstant:100].active = YES;
+        [self.spinView.widthAnchor constraintEqualToConstant:100].active = YES;
+        [self.spinView.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor].active = YES;
+        [self.spinView.centerYAnchor constraintEqualToAnchor:self.view.centerYAnchor].active = YES;
+        self.spinView.delegate = self;
+        [self.spinView.activityIndicator startAnimating];
+        
+    }
+    
+
     [self preferredStatusBarStyle];
     [self createCustomTabBar]; 
 
@@ -58,26 +74,34 @@
                                              selector:@selector(receiveFirebaseNotification:)
                                                  name:@"FirebaseNotification"
                                                object:nil];
+    
+    [self.journalEntryTableView reloadData];
+    
+    
 }
+
+
 
 -(void)receiveFirebaseNotification: (NSNotification *)notification
 {
     // Call back for firebase when data arrives
     if ([[notification name] isEqualToString:@"FirebaseNotification"])
+        
         [self.journalEntryTableView reloadData];
+        [self.spinView.activityIndicator stopAnimating];
 }
 
 -(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
-
+    
     NSLog(@"didFailWithError, %@", error);
-
+    
     UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"Error" message:@"Failed to get where you are" preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
     }];
     [errorAlert addAction:defaultAction];
-
+    
     [self presentViewController:errorAlert animated:YES completion:nil];
-
+    
 }
 
 
@@ -88,7 +112,7 @@
     
     if (currentLocation != nil) {
         
-
+        
         
         //stop location manager
         
@@ -101,7 +125,7 @@
             
             if (error == nil && [placemarks count] > 0) {
                 self.placemark = [placemarks lastObject];
-
+                
                 
             } else {
                 
@@ -178,7 +202,7 @@
         }];
         
     }];
-
+    
 }
 
 
@@ -218,6 +242,8 @@
     
     cell.cellView.journalEntry = journalAtRow;
     
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
     
     return cell;
 }
@@ -239,7 +265,7 @@
     [self.tabBar.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor].active = YES;
     
     self.tabBar.delegate = self;
-  
+    
 }
 
 -(void)userNavigates:(NSString *)viewChosen
@@ -265,6 +291,7 @@
     UIImagePickerController *picker = [UIImagePickerController new];
     picker.delegate = self;
     picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        
     [self presentViewController:picker animated:YES completion:nil];
 }
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
@@ -300,11 +327,12 @@
     [self.view addSubview:self.addJournalFullScreenBlurView];
     
     self.addJournalFullScreenBlurView.translatesAutoresizingMaskIntoConstraints = NO;
+
     
     [self.addJournalFullScreenBlurView.topAnchor constraintEqualToAnchor:self.view.topAnchor].active = YES;
     [self.addJournalFullScreenBlurView.widthAnchor constraintEqualToAnchor:self.view.widthAnchor].active = YES;
     [self.addJournalFullScreenBlurView.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor].active = YES;
-    
+
     [self.addJournalFullScreenBlurView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor].active = YES;
 
 }
@@ -312,12 +340,20 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
-    [self performSegueWithIdentifier:@"journalDetailVC" sender:self];
+    NSLog(@"pressed");
+    dispatch_async(dispatch_get_main_queue(), ^{
+         [self performSegueWithIdentifier:@"journalDetailVC" sender:self];
+    });
+                    
 
     
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    
+    
+    
+    NSLog(@"starting prepare for segue");
     
     if([segue.identifier isEqualToString:@"journalDetailVC"])
     {
@@ -327,17 +363,8 @@
         destVC.jorunalEntry = currentJournal;
     }
     
+    NSLog(@"finishing prepare for segue");
+    
 }
-
-
-
-
-
-
-
-
-
-
-
 
 @end

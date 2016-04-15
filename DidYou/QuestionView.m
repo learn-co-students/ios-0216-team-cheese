@@ -89,7 +89,7 @@
     
     [self setUpButtons];
     
-    NSLog(@"done with initializer");
+    
     
     
     
@@ -150,7 +150,7 @@
     
     [self layoutIfNeeded];
     
-    NSLog(@"Done with set up image small");
+    
     
 }
 
@@ -173,14 +173,14 @@
         
     } completion:^(BOOL finished) {
         
-        NSLog(@"done with move to center completion");
+        
         
         self.yesButton.enabled = YES;
         self.noButton.enabled = YES;
     }];
     
     
-    NSLog(@"done with move to center");
+    
 }
 
 
@@ -199,7 +199,7 @@
     
     [self moveImageToCenter];
     
-    NSLog(@"done with question setter");
+    
 
     
 }
