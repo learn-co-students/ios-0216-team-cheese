@@ -19,6 +19,7 @@
 @property (strong, nonatomic) DYUser *currentUser;
 @property (strong, nonatomic) Firebase *myRootRef;
 @property (nonatomic) BOOL isFirstTime;
+@property (nonatomic) BOOL gotCreated;
 
 + (instancetype)sharedDataStore;
 
@@ -34,6 +35,8 @@
 
 -(NSArray *)generateQuestions;
 + (BOOL)isNetworkAvailable;
+
+-(void)createNewCurrentUserFromFirebase:(NSString *)userUUID;
 
 
 

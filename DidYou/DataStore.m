@@ -18,13 +18,17 @@
 + (instancetype)sharedDataStore;
 {
     
-  
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"singletonBeingCreated" object:nil];
+
     static DataStore *_sharedDataStore = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
+        
+        NSLog(@"about to send notification");
+//        [[NSNotificationCenter defaultCenter] postNotificationName:@"singletonBeingCreated" object:nil];
+
         _sharedDataStore = [[DataStore alloc] init];
         
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"singletonBeingCreated" object:nil];
 
         
     });
@@ -42,6 +46,7 @@
         _users = [[NSMutableArray alloc] init];
         _emotions = [self emotionsDictionary];
         _userUUID = [self userUUID];
+        _gotCreated = YES;
 
         
         [self setupFirebase];

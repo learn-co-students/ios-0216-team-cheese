@@ -41,11 +41,15 @@
 @property (strong, nonatomic) NSLayoutConstraint *blurViewheightConstraint;
 @property (strong, nonatomic) NSLayoutConstraint *blurViewWidthConstraint;
 
+@property (strong, nonatomic) NSString *UUID;
+
 @property (nonatomic) BOOL singletonCreated;
 @property (nonatomic) BOOL brandNewUser;
 @property (nonatomic) BOOL connected;
 
 @property (nonatomic) BOOL firstTimeScreenDisplayed;
+
+@property (nonatomic) BOOL isAlive;
 
 
 @end
@@ -57,12 +61,14 @@
     [super viewDidLoad];
     
     
+    _isAlive = YES;
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userExists) name:@"connectedAndUserExists" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userIsNew) name:@"connectedAndUserIsNew" object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userExists) name:@"connectedAndUserExists" object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userIsNew) name:@"connectedAndUserIsNew" object:nil];
     
-    self.journalEntryTableView.userInteractionEnabled = NO;
+   // self.journalEntryTableView.userInteractionEnabled = NO;
    
+    self.isAlive = YES;
     
     [self setUpDelegates];
     
@@ -70,53 +76,101 @@
     
     self.connected = [DataStore isNetworkAvailable];
     
+    self.UUID = [self userUUID];
+    
+  
     if (!self.connected)
     {
-        self.dataStore = [DataStore sharedDataStore];
+       
         [self launchNoInternetView];
-        // show internet screen
+     
         self.journalEntryTableView.userInteractionEnabled = NO;
         self.tabBar.userInteractionEnabled = NO;
+        
     }
+    
+    else if ([self.UUID isEqualToString:@"new"])
+    {
+        [self launchFirstTimeScreen];
+    }
+    
+    
     else
     {
-        self.singletonCreated = NO;
+        if (self.dataStore == nil)
+        {
+             [self launchSpinView];
+        }
+    
         
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(singletonBeingCreated) name:@"singletonBeingCreated" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveFirebaseNotification) name:@"FirebaseNotification" object:nil];
         
         self.dataStore = [DataStore sharedDataStore];
         
-        if (!self.singletonCreated && self.dataStore.currentUser.journals.count == 0)
-        {
-            [self launchFirstTimeScreen];
-        }
+        [self.dataStore createNewCurrentUserFromFirebase:self.UUID];
         
     }
     
    
     [self.journalEntryTableView reloadData];
     
+    
 
     
 }
+- (BOOL)canIAnimate {
+    NSLog(@"canIAnimate is getting called from the VC.");   
+    return _isAlive;
+}
+
+-(NSString *)userUUID
+{
+    NSDictionary *userDefaultsDictionary = [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
+    
+    NSArray *userDefaultsKeys = [[[NSUserDefaults standardUserDefaults] dictionaryRepresentation] allKeys];
+    
+    BOOL uuidExists = [userDefaultsKeys containsObject:@"userUUID"];
+    
+    if (uuidExists)
+    {
+        return   userDefaultsDictionary[@"userUUID"];
+    }
+    else
+    {
+        return @"new";
+    }
+
+}
+
+
+
+
 
 -(void)refreshTapped
 {
+    
+    
+
     NSLog(@"in refresh tapped");
     
     self.connected = [DataStore isNetworkAvailable];
     
     if (self.connected)
     {
-    
+        
         [self.noInternetScreen removeFromSuperview];
         
-        self.journalEntryTableView.userInteractionEnabled = YES;
-        self.tabBar.userInteractionEnabled = YES;
+        if (self.dataStore == nil)
+        {
+            [self launchSpinView];
+        }
         
-        [DataStore sharedDataStore];
         
-        [self.journalEntryTableView reloadData];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveFirebaseNotification) name:@"FirebaseNotification" object:nil];
+        
+        self.dataStore = [DataStore sharedDataStore];
+        
+        [self.dataStore createNewCurrentUserFromFirebase:self.UUID];
     }
 
     
@@ -125,46 +179,47 @@
 
 -(void)singletonBeingCreated
 {
+    
+    NSLog(@"singletonbeingcreated being set to yes.");
     self.singletonCreated = YES;
 }
 
 
--(void)userExists
-{
-    
-    NSLog(@"in user exists");
-    
-     self.firstTimeScreenDisplayed = NO;
-    
-    self.journalEntryTableView.userInteractionEnabled = NO;
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(receiveFirebaseNotification)
-                                                 name:@"FirebaseNotification"
-                                               object:nil];
-
-    
-    [self launchSpinView];
-    
-    
-}
-
--(void)userIsNew
-{
-    
-    NSLog(@"in users is new");
-    
-    [self launchFirstTimeScreen];
-    
-    
-}
+//-(void)userExists
+//{
+//    
+//    NSLog(@"in user exists");
+//    
+//     self.firstTimeScreenDisplayed = NO;
+//    
+//    //self.journalEntryTableView.userInteractionEnabled = NO;
+//    
+//    [[NSNotificationCenter defaultCenter] addObserver:self
+//                                             selector:@selector(receiveFirebaseNotification)
+//                                                 name:@"FirebaseNotification"
+//                                               object:nil];
+//
+//    
+//    [self launchSpinView];
+//    
+//    
+////}
+//
+//-(void)userIsNew
+//{
+//    
+//    NSLog(@"in users is new");
+//    
+//    [self launchFirstTimeScreen];
+//    
+//    
+//}
 
 -(void)setUpDelegates
 {
     
     
     self.addEntryTopView.delegate = self;
-    
     self.journalEntryTableView.delegate = self;
     self.journalEntryTableView.dataSource = self;
 
@@ -212,6 +267,7 @@
 
 
 
+
 -(void)receiveFirebaseNotification
 {
     
@@ -220,7 +276,7 @@
         [self.journalEntryTableView reloadData];
         [self.spinView.activityIndicator stopAnimating];
     
-    [self.spinView removeFromSuperview];
+        [self.spinView removeFromSuperview];
     
     if (self.dataStore.currentUser.journals.count == 0)
     {
@@ -228,6 +284,9 @@
     }
     
     self.journalEntryTableView.userInteractionEnabled = YES;
+    self.tabBar.userInteractionEnabled = YES;
+    
+    
 }
 
 
@@ -261,11 +320,12 @@
         
         NSLog(@"resolving the address");
         
+                __weak typeof(self) tmpself = self;
         //translate the locate data into a human-readable address
         [self.geocoder reverseGeocodeLocation:currentLocation completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
             
             if (error == nil && [placemarks count] > 0) {
-                self.placemark = [placemarks lastObject];
+                tmpself.placemark = [placemarks lastObject];
                 
                 
             } else {
@@ -282,17 +342,18 @@
 
 - (void)addButtonTapped:(UIButton *)sender {
     
+    __weak typeof(self) tmpself = self;
 
     [UIView animateWithDuration:0.2 delay:0 options:0 animations:^{
         
-        self.journalEntryTableView.alpha = 0;
-        self.addEntryTopView.alpha = 0;
+        tmpself.journalEntryTableView.alpha = 0;
+        tmpself.addEntryTopView.alpha = 0;
         
         
         
     } completion:^(BOOL finished) {
         
-        [self launchAddJournalFullScreenView];
+        [tmpself launchAddJournalFullScreenView];
 
         
     }];
@@ -327,6 +388,7 @@
 -(void)launchAddJournalFullScreenView
 {
     
+    //self.addEntryTopView.shouldAnimate = NO;
     
     UIVisualEffect *blurEffect;
     blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
@@ -336,30 +398,31 @@
     self.addJournalFullScreenBlurView.delegate = self;
     
     self.addJournalFullScreenBlurView.alpha = 0;
-    
+    __weak typeof(self) tmpself = self;
+
     
     [UIView animateWithDuration:0 delay:0 options:0 animations:^{
         
         
-        [self.view addSubview:self.addJournalFullScreenBlurView];
+        [tmpself.view addSubview:self.addJournalFullScreenBlurView];
         
-        self.addJournalFullScreenBlurView.alpha = 1;
+        tmpself.addJournalFullScreenBlurView.alpha = 1;
         
-        self.addJournalFullScreenBlurView.translatesAutoresizingMaskIntoConstraints = NO;
+        tmpself.addJournalFullScreenBlurView.translatesAutoresizingMaskIntoConstraints = NO;
         
-        [self.addJournalFullScreenBlurView.widthAnchor constraintEqualToAnchor:self.view.widthAnchor].active = YES;
-        [self.addJournalFullScreenBlurView.heightAnchor constraintEqualToAnchor:self.view.heightAnchor].active = YES;
-        [self.addJournalFullScreenBlurView.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor].active = YES;
-        [self.addJournalFullScreenBlurView.centerYAnchor constraintEqualToAnchor:self.view.centerYAnchor].active = YES;
+        [tmpself.addJournalFullScreenBlurView.widthAnchor constraintEqualToAnchor:self.view.widthAnchor].active = YES;
+        [tmpself.addJournalFullScreenBlurView.heightAnchor constraintEqualToAnchor:self.view.heightAnchor].active = YES;
+        [tmpself.addJournalFullScreenBlurView.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor].active = YES;
+        [tmpself.addJournalFullScreenBlurView.centerYAnchor constraintEqualToAnchor:self.view.centerYAnchor].active = YES;
         
-        self.journalEntryTableView.alpha = 1;
-        self.addEntryTopView.alpha = 1;
+        tmpself.journalEntryTableView.alpha = 1;
+        tmpself.addEntryTopView.alpha = 1;
         
     } completion:^(BOOL finished) {
         
         [UIView animateWithDuration:0 delay:0 options:0 animations:^{
             
-            [self.view bringSubviewToFront:self.addJournalFullScreenBlurView];
+            [tmpself.view bringSubviewToFront:self.addJournalFullScreenBlurView];
             
         } completion:^(BOOL finished) {
             
@@ -532,6 +595,12 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     
+
+    self.isAlive = NO;
+    self.dataStore = nil;
+    self.addEntryTopView.delegate = nil;
+    
+    
     if([segue.identifier isEqualToString:@"journalDetailVC"])
     {
         JournalLogViewController *destVC = segue.destinationViewController;
@@ -539,6 +608,7 @@
         DYJournalEntry *currentJournal = [journals lastObject];
         destVC.jorunalEntry = currentJournal;
     }
+    
     
 }
 
