@@ -43,11 +43,10 @@
 
 @property (strong, nonatomic) NSString *UUID;
 
-@property (nonatomic) BOOL singletonCreated;
-@property (nonatomic) BOOL brandNewUser;
 @property (nonatomic) BOOL connected;
+@property(nonatomic) BOOL firstTimeScreenDisplayed;
 
-@property (nonatomic) BOOL firstTimeScreenDisplayed;
+
 
 @property (nonatomic) BOOL isAlive;
 
@@ -58,14 +57,20 @@
 
 - (void)viewDidLoad {
     
-    [super viewDidLoad];
+    NSLog(@"vc before super view did load");
     
+    [super viewDidLoad];
+    NSLog(@"VC 1");
 
     self.isAlive = YES;
+    
+     NSLog(@"VC 2");
 
     
     [self setUpDelegates];
     [self createCustomTabBar];
+    
+     NSLog(@"VC 3");
     
     [self launchScreenLogic];
     
@@ -74,13 +79,18 @@
 
 -(void)launchScreenLogic
 {
+     NSLog(@"VC 4");
+    
     self.connected = [DataStore isNetworkAvailable];
+    
+     NSLog(@"VC 5");
     
     self.UUID = [self userUUID];
     
     
     if (!self.connected)
     {
+         NSLog(@"in the if on main VC");
         
         [self launchNoInternetView];
         
@@ -91,27 +101,33 @@
     
     else if ([self.UUID isEqualToString:@"new"])
     {
+        
+        NSLog(@"in the else if on main VC");
+        
         [self launchFirstTimeScreen];
     }
     
     
     else
     {
-        if (self.dataStore == nil)
-        {
-            [self launchSpinView];
-        }
+        NSLog(@"in the else on main VC");
         
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveFirebaseNotification) name:@"FirebaseNotification" object:nil];
-        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(singletonBeingCreated) name:@"singltonBeingCreated" object:nil];
+
         self.dataStore = [DataStore sharedDataStore];
-        
-        [self.dataStore createNewCurrentUserFromFirebase:self.UUID];
         
     }
     
     [self.journalEntryTableView reloadData];
+}
+
+-(void)singletonBeingCreated
+{
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveFirebaseNotification) name:@"FirebaseNotification" object:nil];
+    
+    [self launchSpinView];
+    
 }
 
 
@@ -174,58 +190,20 @@
     
 }
 
--(void)singletonBeingCreated
-{
-    
-    NSLog(@"singletonbeingcreated being set to yes.");
-    self.singletonCreated = YES;
-}
 
-
-//-(void)userExists
-//{
-//    
-//    NSLog(@"in user exists");
-//    
-//     self.firstTimeScreenDisplayed = NO;
-//    
-//    //self.journalEntryTableView.userInteractionEnabled = NO;
-//    
-//    [[NSNotificationCenter defaultCenter] addObserver:self
-//                                             selector:@selector(receiveFirebaseNotification)
-//                                                 name:@"FirebaseNotification"
-//                                               object:nil];
-//
-//    
-//    [self launchSpinView];
-//    
-//    
-////}
-//
-//-(void)userIsNew
-//{
-//    
-//    NSLog(@"in users is new");
-//    
-//    [self launchFirstTimeScreen];
-//    
-//    
-//}
 
 -(void)setUpDelegates
 {
-    
     
     self.addEntryTopView.delegate = self;
     self.journalEntryTableView.delegate = self;
     self.journalEntryTableView.dataSource = self;
 
-
-
 }
 
 -(void)launchNoInternetView
 {
+    
     self.noInternetScreen = [[NoInternetView alloc] init];
     
     [self.view addSubview:self.noInternetScreen];
@@ -282,78 +260,75 @@
         [self launchFirstTimeScreen];
     }
     
-    [self startLocationManager];
+    //[self startLocationManager];
     
     self.journalEntryTableView.userInteractionEnabled = YES;
     self.tabBar.userInteractionEnabled = YES;
     
-    
 }
 
--(void)startLocationManager
-{
-    self.locationManager = [[CLLocationManager alloc]init];
-    self.locationManager.delegate = self;
-    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    [self.locationManager requestWhenInUseAuthorization];
-    
-    if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
-        [self.locationManager requestWhenInUseAuthorization];
-    }
-    [self.locationManager startUpdatingLocation];
-    
-    self.geocoder = [[CLGeocoder alloc]init];
-}
-
-
--(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
-    
-    NSLog(@"didFailWithError, %@", error);
-    
-    UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"Error" message:@"Failed to get where you are" preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-    }];
-    [errorAlert addAction:defaultAction];
-    
-    [self presentViewController:errorAlert animated:YES completion:nil];
-    
-}
-
-
--(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
-    
-    NSLog(@"LOCATION");
-    CLLocation *currentLocation = locations[0];
-    
-    if (currentLocation != nil) {
-        
-        
-        
-        //stop location manager
-        
-        [self.locationManager stopUpdatingLocation];
-        
-        NSLog(@"resolving the address");
-        
-                __weak typeof(self) tmpself = self;
-        //translate the locate data into a human-readable address
-        [self.geocoder reverseGeocodeLocation:currentLocation completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
-            
-            if (error == nil && [placemarks count] > 0) {
-
-                self.placemark = [placemarks lastObject];
-                [self.dataStore addPlacemark: self.placemark];
-
-                
-            } else {
-                
-                NSLog(@"@%@", error.debugDescription);
-            }
-        }];
-    }
-    
-    
-}
+//-(void)startLocationManager
+//{
+//    
+//    NSLog(@"location manager getting called");
+//    
+//    self.locationManager = [[CLLocationManager alloc]init];
+//    self.locationManager.delegate = self;
+//    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+//    [self.locationManager requestWhenInUseAuthorization];
+//    
+//    if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+//        [self.locationManager requestWhenInUseAuthorization];
+//    }
+//    [self.locationManager startUpdatingLocation];
+//    
+//    self.geocoder = [[CLGeocoder alloc]init];
+//}
+//
+//
+//-(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+//    
+//    NSLog(@"didFailWithError, %@", error);
+//    
+//    UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"Error" message:@"Failed to get where you are" preferredStyle:UIAlertControllerStyleAlert];
+//    UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//    }];
+//    [errorAlert addAction:defaultAction];
+//    
+//    [self presentViewController:errorAlert animated:YES completion:nil];
+//    
+//}
+//
+//
+//-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
+//    
+//    NSLog(@"LOCATION");
+//    CLLocation *currentLocation = locations[0];
+//    
+//    if (currentLocation != nil) {
+//        
+//        //stop location manager
+//        
+//        [self.locationManager stopUpdatingLocation];
+//    
+//        //translate the locate data into a human-readable address
+//        
+//        [self.geocoder reverseGeocodeLocation:currentLocation completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+//            
+//            if (error == nil && [placemarks count] > 0) {
+//
+//                self.placemark = [placemarks lastObject];
+//                [self.dataStore addPlacemark: self.placemark];
+//
+//                
+//            } else {
+//                
+//                NSLog(@"@%@", error.debugDescription);
+//            }
+//        }];
+//    }
+//    
+//}
 
 
 
@@ -476,23 +451,8 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSLog(@"in number of rows in section and the answer is: %lu", self.dataStore.currentUser.journals.count);
-    NSLog(@"%d is first screen displayed", self.firstTimeScreenDisplayed);
-    
-       
-//    if (self.dataStore.currentUser.journals.count == 0 && !self.firstTimeScreenDisplayed)
-//    {
-//        
-//        [self launchFirstTimeScreen];
-//        
-//    }
-//    else if (self.dataStore.currentUser.journals.count != 0 && self.firstTimeScreenDisplayed)
-//    {
-//        [self.firstTimeScreen removeFromSuperview];
-//    }
-    
+
     return self.dataStore.currentUser.journals.count;
-    
 
 }
 
