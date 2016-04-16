@@ -225,17 +225,11 @@
                       postNotificationName:@"FirebaseNotification"
                       object:self];
         
-        
                       //this block doesn't get executed until the snapshot is delivered
         
      
         
     } ];
-    
-    
-    
-    
-
     
 }
 

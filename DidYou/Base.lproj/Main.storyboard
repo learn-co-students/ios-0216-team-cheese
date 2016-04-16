@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
@@ -117,21 +118,53 @@
             </objects>
             <point key="canvasLocation" x="-12" y="1871"/>
         </scene>
-        <!--Item-->
+        <!--StatsViewController-->
         <scene sceneID="OZq-e7-CAp">
             <objects>
-                <viewController id="6RC-5d-0Ds" customClass="StatsViewController" sceneMemberID="viewController">
+                <viewController id="6RC-5d-0Ds" userLabel="StatsViewController" customClass="StatsViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="VTN-3Y-nUD"/>
-                        <viewControllerLayoutGuide type="bottom" id="FDf-nM-eCo"/>
+                        <viewControllerLayoutGuide type="top" id="Mjm-EE-slc"/>
+                        <viewControllerLayoutGuide type="bottom" id="dtr-Hj-KuL"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Eya-0h-62D">
+                    <view key="view" contentMode="scaleToFill" id="7ij-5E-SI6">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2l4-LV-O1D">
+                                <rect key="frame" x="20" y="75" width="600" height="525"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="qwJ-4w-MCs" customClass="StatsMainTableViewCell">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qwJ-4w-MCs" id="qtJ-ZP-ytm">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D1V-sn-RsL" customClass="StatsMenuView">
+                                <rect key="frame" x="0.0" y="25" width="600" height="90"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="2l4-LV-O1D" firstAttribute="top" secondItem="D1V-sn-RsL" secondAttribute="top" constant="50" id="6fM-gF-N5q"/>
+                            <constraint firstItem="2l4-LV-O1D" firstAttribute="leading" secondItem="7ij-5E-SI6" secondAttribute="leadingMargin" id="DPy-Bh-dTN"/>
+                            <constraint firstItem="D1V-sn-RsL" firstAttribute="centerX" secondItem="7ij-5E-SI6" secondAttribute="centerX" id="N8l-ZL-JF4"/>
+                            <constraint firstItem="2l4-LV-O1D" firstAttribute="bottom" secondItem="dtr-Hj-KuL" secondAttribute="top" id="ZRZ-hE-x7p"/>
+                            <constraint firstItem="2l4-LV-O1D" firstAttribute="width" secondItem="7ij-5E-SI6" secondAttribute="width" id="abQ-BI-iaq"/>
+                            <constraint firstItem="D1V-sn-RsL" firstAttribute="top" secondItem="Mjm-EE-slc" secondAttribute="bottom" constant="25" id="co7-mV-Rvz"/>
+                            <constraint firstItem="D1V-sn-RsL" firstAttribute="width" secondItem="7ij-5E-SI6" secondAttribute="width" id="cr1-6a-mpR"/>
+                            <constraint firstItem="D1V-sn-RsL" firstAttribute="height" secondItem="7ij-5E-SI6" secondAttribute="height" multiplier="0.15" id="qOM-WG-SrL"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="HzY-n9-fHO"/>
                     <connections>
+                        <outlet property="statsMenuView" destination="D1V-sn-RsL" id="AT4-o9-vJz"/>
+                        <outlet property="statsTableView" destination="2l4-LV-O1D" id="Qnm-Ha-Th3"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="segueStatsToMain" animates="NO" id="O8z-72-piC"/>
                         <segue destination="lhL-yJ-LM7" kind="show" identifier="segueStatsToUser" animates="NO" id="hqO-i4-hvB"/>
                     </connections>
@@ -142,8 +175,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="hqO-i4-hvB"/>
         <segue reference="8Ks-0k-YCc"/>
-        <segue reference="5Zm-TD-8hW"/>
-        <segue reference="Wm1-gx-EGU"/>
+        <segue reference="O8z-72-piC"/>
     </inferredMetricsTieBreakers>
 </document>

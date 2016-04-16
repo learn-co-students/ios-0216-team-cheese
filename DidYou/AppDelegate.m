@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "DidYou-Bridging-Header.h"
 
 @interface AppDelegate ()
 

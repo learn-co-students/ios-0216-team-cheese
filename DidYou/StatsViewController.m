@@ -8,15 +8,14 @@
 
 #import "StatsViewController.h"
 #import "CustomTabBarView.h"
+#import "StatsMainTableViewCell.h"
 #import "StatsMenuView.h"
-#import "StatsMonthView.h"
-#import "StatsHistoryView.h"
-#import "StatsWorldView.h"
 
-@interface StatsViewController () <CustomTabBarDelegate>
+@interface StatsViewController () <CustomTabBarDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) CustomTabBarView *tabBar;
-@property (strong, nonatomic) StatsMenuView *menuView;
+@property (weak, nonatomic) IBOutlet StatsMenuView *statsMenuView;
+@property (weak, nonatomic) IBOutlet UITableView *statsTableView;
 
 @end
 
@@ -27,6 +26,10 @@
     
     if (self) {
         _statsInfo = [[DYStatsInfo alloc]init];
+        _personalStatsDataDictionary = @{};
+        _cityStatsDataDictionary = @{};
+        _worldStatsDataDictionary = @{};
+        _arrayOfStatsDataDictionaries = @[self.personalStatsDataDictionary, self.cityStatsDataDictionary, self.worldStatsDataDictionary];
     }
     return self;
 }
@@ -35,7 +38,9 @@
     [super viewDidLoad];
     
     [self createCustomTabBar];
-    
+    [self.view addSubview:self.statsMenuView];
+
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -60,7 +65,6 @@
     [self.tabBar.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor].active = YES;
     
     self.tabBar.delegate = self;
-    
 }
 
 -(void)userNavigates:(NSString *)viewChosen
@@ -75,18 +79,35 @@
     }
 }
 
-//how many bar graphs do we need to create for first page?
-
--(void)createMoodBarGraph {
-    
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 3;
 }
 
--(void)createSixBoolBarGraphs {
-    
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 2;
 }
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    StatsMainTableViewCell *cell = [[StatsMainTableViewCell alloc]init];
+    return cell;
+}
+
 
 /*
-#pragma mark - Navigation
+ 
+ - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
+ 
+ // Row display. Implementers should *always* try to reuse cells by setting each cell's reuseIdentifier and querying for available reusable cells with dequeueReusableCellWithIdentifier:
+ // Cell gets various attributes set automatically based on table (separators) and data source (accessory views, editing controls)
+ 
+
+ 
+ @optional
+ 
+ - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView;              // Default is 1 if not implemented
+ 
+ - (nullable NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section;    // fixed font style. use custom view (UILabel) if you want something different
+ - (nullable NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section;
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

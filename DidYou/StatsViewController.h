@@ -12,6 +12,11 @@
 @interface StatsViewController : UIViewController
 
 @property (strong, nonatomic) DYStatsInfo *statsInfo;
+@property (strong, nonatomic) NSArray *arrayOfStatsDataDictionaries;
+@property (strong, nonatomic) NSDictionary *personalStatsDataDictionary;
+@property (strong, nonatomic) NSDictionary *cityStatsDataDictionary;
+@property (strong, nonatomic) NSDictionary *worldStatsDataDictionary;
+
 
 -(instancetype)init;
 

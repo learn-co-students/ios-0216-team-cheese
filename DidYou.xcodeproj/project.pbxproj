@@ -16,7 +16,6 @@
 		31FF28311CAD7398008051C0 /* JournalAndPictureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FF28301CAD7398008051C0 /* JournalAndPictureView.m */; };
 		31FF28721CBC4691008051C0 /* JournalLogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FF28711CBC4691008051C0 /* JournalLogViewController.m */; };
 		779BD9041CB736560027DC91 /* DYUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 779BD9031CB736560027DC91 /* DYUtility.m */; };
-		AB49939EBAFBADBED3BC9BF4 /* libPods-DidYou.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 563053DD0003F7BE5361FBFA /* libPods-DidYou.a */; };
 		AB69AF281CBD87F400CC9F9B /* EmptyTable.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB69AF271CBD87F400CC9F9B /* EmptyTable.xib */; };
 		AB69AF531CBFF01200CC9F9B /* EmptyTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB69AF521CBFF01200CC9F9B /* EmptyTableView.m */; };
 		AB69AF571CC03A7D00CC9F9B /* noInternet.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB69AF561CC03A7D00CC9F9B /* noInternet.xib */; };
@@ -43,17 +42,14 @@
 		AB92E7E21CB5708200199034 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB92E7E11CB5708200199034 /* SettingsViewController.m */; };
 		AB92E7E41CB71A1A00199034 /* JournalEntryTableViewCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB92E7E31CB71A1A00199034 /* JournalEntryTableViewCell2.xib */; };
 		BF5BF979033B37544EC4DF92 /* Pods_DidYou.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFF7DDDE657B306A19BB7719 /* Pods_DidYou.framework */; };
-		CD4CCAC51CB6EA0C00805B1F /* Stats.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD4CCAC41CB6EA0C00805B1F /* Stats.xib */; };
+		CD4CCAC51CB6EA0C00805B1F /* StatsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD4CCAC41CB6EA0C00805B1F /* StatsTableViewCell.xib */; };
+		CD7801F91CC0622C00B412E3 /* Stuffff.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7801F81CC0622C00B412E3 /* Stuffff.swift */; };
+		CD78032C1CC130F500B412E3 /* StatsMainTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD78032B1CC130F500B412E3 /* StatsMainTableViewCell.m */; };
+		CD9093571CC1B4C400A1D1B3 /* StatsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD9093561CC1B4C400A1D1B3 /* StatsTableViewController.m */; };
 		CDA19A171CB58A28001E1872 /* MoodCircleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CDA19A161CB58A28001E1872 /* MoodCircleButton.m */; };
 		CDA730891CBC4DE70014C12D /* DYStatsInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CDA730881CBC4DE70014C12D /* DYStatsInfo.m */; };
-		CDA7308F1CC0433B0014C12D /* StatsHistoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = CDA7308E1CC0433B0014C12D /* StatsHistoryView.m */; };
-		CDA730951CC043900014C12D /* StatsMonthView.m in Sources */ = {isa = PBXBuildFile; fileRef = CDA730941CC043900014C12D /* StatsMonthView.m */; };
-		CDA730981CC043A50014C12D /* StatsWorldView.m in Sources */ = {isa = PBXBuildFile; fileRef = CDA730971CC043A50014C12D /* StatsWorldView.m */; };
 		CDA7309A1CC047C00014C12D /* StatsMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDA730991CC047C00014C12D /* StatsMenu.xib */; };
 		CDA730A01CC049B60014C12D /* StatsMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = CDA7309F1CC049B60014C12D /* StatsMenuView.m */; };
-		CDA730A21CC04A880014C12D /* StatsMonth.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDA730A11CC04A880014C12D /* StatsMonth.xib */; };
-		CDA730A41CC04A930014C12D /* StatsHistory.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDA730A31CC04A930014C12D /* StatsHistory.xib */; };
-		CDA730A61CC04A9C0014C12D /* StatsWorld.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDA730A51CC04A9C0014C12D /* StatsWorld.xib */; };
 		D60655921CBC27E800709533 /* loadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D60655911CBC27E800709533 /* loadingView.xib */; };
 		D60655981CBC2F9A00709533 /* LoadingFirstPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = D60655971CBC2F9A00709533 /* LoadingFirstPageView.m */; };
 /* End PBXBuildFile section */
@@ -118,23 +114,20 @@
 		AB92E7E01CB5708200199034 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		AB92E7E11CB5708200199034 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		AB92E7E31CB71A1A00199034 /* JournalEntryTableViewCell2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JournalEntryTableViewCell2.xib; sourceTree = "<group>"; };
-		CD4CCAC41CB6EA0C00805B1F /* Stats.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Stats.xib; sourceTree = "<group>"; };
+		CD4CCAC41CB6EA0C00805B1F /* StatsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatsTableViewCell.xib; sourceTree = "<group>"; };
+		CD7801F71CC0622C00B412E3 /* DidYou-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DidYou-Bridging-Header.h"; sourceTree = "<group>"; };
+		CD7801F81CC0622C00B412E3 /* Stuffff.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stuffff.swift; sourceTree = "<group>"; };
+		CD78032A1CC130F500B412E3 /* StatsMainTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatsMainTableViewCell.h; sourceTree = "<group>"; };
+		CD78032B1CC130F500B412E3 /* StatsMainTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatsMainTableViewCell.m; sourceTree = "<group>"; };
+		CD9093551CC1B4C400A1D1B3 /* StatsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatsTableViewController.h; sourceTree = "<group>"; };
+		CD9093561CC1B4C400A1D1B3 /* StatsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatsTableViewController.m; sourceTree = "<group>"; };
 		CDA19A151CB58A28001E1872 /* MoodCircleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoodCircleButton.h; sourceTree = "<group>"; };
 		CDA19A161CB58A28001E1872 /* MoodCircleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoodCircleButton.m; sourceTree = "<group>"; };
 		CDA730871CBC4DE70014C12D /* DYStatsInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYStatsInfo.h; sourceTree = "<group>"; };
 		CDA730881CBC4DE70014C12D /* DYStatsInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYStatsInfo.m; sourceTree = "<group>"; };
-		CDA7308D1CC0433B0014C12D /* StatsHistoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatsHistoryView.h; sourceTree = "<group>"; };
-		CDA7308E1CC0433B0014C12D /* StatsHistoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatsHistoryView.m; sourceTree = "<group>"; };
-		CDA730931CC043900014C12D /* StatsMonthView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatsMonthView.h; sourceTree = "<group>"; };
-		CDA730941CC043900014C12D /* StatsMonthView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatsMonthView.m; sourceTree = "<group>"; };
-		CDA730961CC043A50014C12D /* StatsWorldView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatsWorldView.h; sourceTree = "<group>"; };
-		CDA730971CC043A50014C12D /* StatsWorldView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatsWorldView.m; sourceTree = "<group>"; };
 		CDA730991CC047C00014C12D /* StatsMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatsMenu.xib; sourceTree = "<group>"; };
 		CDA7309E1CC049B60014C12D /* StatsMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatsMenuView.h; sourceTree = "<group>"; };
 		CDA7309F1CC049B60014C12D /* StatsMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatsMenuView.m; sourceTree = "<group>"; };
-		CDA730A11CC04A880014C12D /* StatsMonth.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatsMonth.xib; sourceTree = "<group>"; };
-		CDA730A31CC04A930014C12D /* StatsHistory.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatsHistory.xib; sourceTree = "<group>"; };
-		CDA730A51CC04A9C0014C12D /* StatsWorld.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatsWorld.xib; sourceTree = "<group>"; };
 		D60655911CBC27E800709533 /* loadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = loadingView.xib; sourceTree = "<group>"; };
 		D60655961CBC2F9A00709533 /* LoadingFirstPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingFirstPageView.h; sourceTree = "<group>"; };
 		D60655971CBC2F9A00709533 /* LoadingFirstPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingFirstPageView.m; sourceTree = "<group>"; };
@@ -206,6 +199,8 @@
 				AB92E7261CAB01F200199034 /* LaunchScreen.storyboard */,
 				AB92E7291CAB01F200199034 /* Info.plist */,
 				AB92E7181CAB01F200199034 /* Supporting Files */,
+				CD7801F81CC0622C00B412E3 /* Stuffff.swift */,
+				CD7801F71CC0622C00B412E3 /* DidYou-Bridging-Header.h */,
 			);
 			path = DidYou;
 			sourceTree = "<group>";
@@ -221,17 +216,14 @@
 		AB92E7631CAC522A00199034 /* Xibs */ = {
 			isa = PBXGroup;
 			children = (
-				CD4CCAC41CB6EA0C00805B1F /* Stats.xib */,
+				CD4CCAC41CB6EA0C00805B1F /* StatsTableViewCell.xib */,
+				AB92E7D31CB400B600199034 /* JournalEntryTableViewCell.xib */,
 				CDA730991CC047C00014C12D /* StatsMenu.xib */,
-				CDA730A11CC04A880014C12D /* StatsMonth.xib */,
-				CDA730A31CC04A930014C12D /* StatsHistory.xib */,
-				CDA730A51CC04A9C0014C12D /* StatsWorld.xib */,
 				AB92E75E1CAC48DE00199034 /* AddJournalEntry.xib */,
 				AB92E7DB1CB5585D00199034 /* CustomTabBar.xib */,
 				AB69AF271CBD87F400CC9F9B /* EmptyTable.xib */,
 				AB92E7E31CB71A1A00199034 /* JournalEntryTableViewCell2.xib */,
 				AB69AF561CC03A7D00CC9F9B /* noInternet.xib */,
-				AB92E7D31CB400B600199034 /* JournalEntryTableViewCell.xib */,
 				31FF28221CAD7303008051C0 /* Question.xib */,
 				31FF28241CAD731C008051C0 /* JournalAndPicture.xib */,
 				D60655911CBC27E800709533 /* loadingView.xib */,
@@ -242,14 +234,14 @@
 		AB92E7641CAC524300199034 /* Xib Views */ = {
 			isa = PBXGroup;
 			children = (
+				CD78032A1CC130F500B412E3 /* StatsMainTableViewCell.h */,
+				CD78032B1CC130F500B412E3 /* StatsMainTableViewCell.m */,
 				CDA7309E1CC049B60014C12D /* StatsMenuView.h */,
 				CDA7309F1CC049B60014C12D /* StatsMenuView.m */,
-				CDA730931CC043900014C12D /* StatsMonthView.h */,
-				CDA730941CC043900014C12D /* StatsMonthView.m */,
-				CDA7308D1CC0433B0014C12D /* StatsHistoryView.h */,
-				CDA7308E1CC0433B0014C12D /* StatsHistoryView.m */,
-				CDA730961CC043A50014C12D /* StatsWorldView.h */,
-				CDA730971CC043A50014C12D /* StatsWorldView.m */,
+				AB92E7D51CB4063A00199034 /* JournalEntryTableViewCellView.h */,
+				AB92E7D61CB4063A00199034 /* JournalEntryTableViewCellView.m */,
+				CD9093551CC1B4C400A1D1B3 /* StatsTableViewController.h */,
+				CD9093561CC1B4C400A1D1B3 /* StatsTableViewController.m */,
 				AB92E7931CAD9CB400199034 /* NewJournalEntryBlurView.h */,
 				AB92E7941CAD9CB400199034 /* NewJournalEntryBlurView.m */,
 				31FF28271CAD7356008051C0 /* MainFeelingView.m */,
@@ -264,8 +256,6 @@
 				AB69AF521CBFF01200CC9F9B /* EmptyTableView.m */,
 				31FF28291CAD736E008051C0 /* CategoryFeelingView.h */,
 				31FF282A1CAD736E008051C0 /* CategoryFeelingView.m */,
-				AB92E7D51CB4063A00199034 /* JournalEntryTableViewCellView.h */,
-				AB92E7D61CB4063A00199034 /* JournalEntryTableViewCellView.m */,
 				AB92E7981CADBD2800199034 /* IndividualFeelingView.h */,
 				AB92E7991CADBD2800199034 /* IndividualFeelingView.m */,
 				31FF282C1CAD7382008051C0 /* QuestionView.h */,
@@ -375,14 +365,11 @@
 			files = (
 				CDA7309A1CC047C00014C12D /* StatsMenu.xib in Resources */,
 				AB92E7DC1CB5585D00199034 /* CustomTabBar.xib in Resources */,
-				CDA730A41CC04A930014C12D /* StatsHistory.xib in Resources */,
 				31FF28251CAD731C008051C0 /* JournalAndPicture.xib in Resources */,
 				31FF28231CAD7303008051C0 /* Question.xib in Resources */,
 				AB92E7281CAB01F200199034 /* LaunchScreen.storyboard in Resources */,
-				CDA730A61CC04A9C0014C12D /* StatsWorld.xib in Resources */,
 				AB92E7251CAB01F200199034 /* Assets.xcassets in Resources */,
-				CDA730A21CC04A880014C12D /* StatsMonth.xib in Resources */,
-				CD4CCAC51CB6EA0C00805B1F /* Stats.xib in Resources */,
+				CD4CCAC51CB6EA0C00805B1F /* StatsTableViewCell.xib in Resources */,
 				AB92E75F1CAC48DE00199034 /* AddJournalEntry.xib in Resources */,
 				AB92E7E41CB71A1A00199034 /* JournalEntryTableViewCell2.xib in Resources */,
 				AB69AF571CC03A7D00CC9F9B /* noInternet.xib in Resources */,
@@ -455,6 +442,7 @@
 				AB92E7D71CB4063A00199034 /* JournalEntryTableViewCellView.m in Sources */,
 				AB69AF531CBFF01200CC9F9B /* EmptyTableView.m in Sources */,
 				AB92E7951CAD9CB400199034 /* NewJournalEntryBlurView.m in Sources */,
+				CD7801F91CC0622C00B412E3 /* Stuffff.swift in Sources */,
 				31FF28311CAD7398008051C0 /* JournalAndPictureView.m in Sources */,
 				31FF282B1CAD736E008051C0 /* CategoryFeelingView.m in Sources */,
 				779BD9041CB736560027DC91 /* DYUtility.m in Sources */,
@@ -463,19 +451,18 @@
 				AB92E7571CAB111100199034 /* DYJournalEntry.m in Sources */,
 				AB92E79A1CADBD2800199034 /* IndividualFeelingView.m in Sources */,
 				AB69AF5A1CC03BFE00CC9F9B /* NoInternetView.m in Sources */,
+				CD78032C1CC130F500B412E3 /* StatsMainTableViewCell.m in Sources */,
 				31FF281D1CAD6BED008051C0 /* DYQuestion.m in Sources */,
 				AB92E75A1CAB112B00199034 /* DYUser.m in Sources */,
-				CDA730951CC043900014C12D /* StatsMonthView.m in Sources */,
 				31FF28721CBC4691008051C0 /* JournalLogViewController.m in Sources */,
 				31FF28281CAD7356008051C0 /* MainFeelingView.m in Sources */,
 				AB92E7201CAB01F200199034 /* MainViewController.m in Sources */,
 				AB92E7DF1CB55BE000199034 /* CustomTabBarView.m in Sources */,
 				AB92E76F1CAC697B00199034 /* StatsViewController.m in Sources */,
 				CDA730A01CC049B60014C12D /* StatsMenuView.m in Sources */,
-				CDA730981CC043A50014C12D /* StatsWorldView.m in Sources */,
+				CD9093571CC1B4C400A1D1B3 /* StatsTableViewController.m in Sources */,
 				D60655981CBC2F9A00709533 /* LoadingFirstPageView.m in Sources */,
 				AB92E71D1CAB01F200199034 /* AppDelegate.m in Sources */,
-				CDA7308F1CC0433B0014C12D /* StatsHistoryView.m in Sources */,
 				CDA730891CBC4DE70014C12D /* DYStatsInfo.m in Sources */,
 				AB92E71A1CAB01F200199034 /* main.m in Sources */,
 			);
@@ -588,6 +575,7 @@
 			baseConfigurationReference = A6F0F00FFE68D8283CB2E5C1 /* Pods-DidYou.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = DidYou/Info.plist;
@@ -596,6 +584,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.flatironSchool.DidYou.DidYou;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "DidYou/DidYou-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -604,6 +594,7 @@
 			baseConfigurationReference = DC83E05E9AD37E69EF195C64 /* Pods-DidYou.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = DidYou/Info.plist;
@@ -612,6 +603,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.flatironSchool.DidYou.DidYou;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "DidYou/DidYou-Bridging-Header.h";
 			};
 			name = Release;
 		};

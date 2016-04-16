@@ -9,20 +9,47 @@
 #import "StatsMenuView.h"
 
 @interface StatsMenuView ()
+@property (weak, nonatomic) IBOutlet UIButton *statsWeekButton;
 @property (weak, nonatomic) IBOutlet UIButton *statsMonthButton;
-@property (weak, nonatomic) IBOutlet UIButton *statsHistoryButton;
-@property (weak, nonatomic) IBOutlet UIButton *worldStatsButton;
+@property (weak, nonatomic) IBOutlet UIButton *statsAllTimeButton;
+@property (strong, nonatomic) IBOutlet UIView *contentView;
 
 @end
 
 @implementation StatsMenuView
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+-(instancetype)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    
+    if (self)
+    {
+        [self commonInit];
+    }
+    
+    return self;
 }
-*/
+
+-(instancetype)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    
+    if (self)
+    {
+        [self commonInit];
+    }
+    
+    return self;
+}
+
+
+-(void)commonInit
+{
+    [[NSBundle mainBundle] loadNibNamed:@"StatsMenu" owner:self options:nil];
+
+    [self addSubview:self.contentView];
+    
+    self.contentView.frame = self.bounds;
+}
 
 @end

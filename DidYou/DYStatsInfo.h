@@ -31,6 +31,12 @@
 @property (nonatomic) NSInteger countOfAllEntries;
 @property (nonatomic) NSInteger countOfCurrentMonthEntries;
 
+-(CGFloat)moodPercentageForBarGraph:(NSArray *)journalArray;
+-(CGFloat)calculateEmotionPercentage:(NSArray *)emotionArray ofEntries:(CGFloat)entryCount;
+-(void)addToMoodArrays: (NSArray *)givenJournalsArray;
+-(void)getEntriesFromCurrentMonth;
+-(NSString *)generateMainEmotion:(NSString *)storedEmotion;
+
 -(instancetype)init;
 
 /*
