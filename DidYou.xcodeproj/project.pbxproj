@@ -43,7 +43,6 @@
 		AB92E7E41CB71A1A00199034 /* JournalEntryTableViewCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB92E7E31CB71A1A00199034 /* JournalEntryTableViewCell2.xib */; };
 		BF5BF979033B37544EC4DF92 /* Pods_DidYou.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFF7DDDE657B306A19BB7719 /* Pods_DidYou.framework */; };
 		CD4CCAC51CB6EA0C00805B1F /* StatsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD4CCAC41CB6EA0C00805B1F /* StatsTableViewCell.xib */; };
-		CD7801F91CC0622C00B412E3 /* Stuffff.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7801F81CC0622C00B412E3 /* Stuffff.swift */; };
 		CD78032C1CC130F500B412E3 /* StatsMainTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD78032B1CC130F500B412E3 /* StatsMainTableViewCell.m */; };
 		CD9093571CC1B4C400A1D1B3 /* StatsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD9093561CC1B4C400A1D1B3 /* StatsTableViewController.m */; };
 		CDA19A171CB58A28001E1872 /* MoodCircleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CDA19A161CB58A28001E1872 /* MoodCircleButton.m */; };
@@ -115,8 +114,6 @@
 		AB92E7E11CB5708200199034 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		AB92E7E31CB71A1A00199034 /* JournalEntryTableViewCell2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JournalEntryTableViewCell2.xib; sourceTree = "<group>"; };
 		CD4CCAC41CB6EA0C00805B1F /* StatsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatsTableViewCell.xib; sourceTree = "<group>"; };
-		CD7801F71CC0622C00B412E3 /* DidYou-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DidYou-Bridging-Header.h"; sourceTree = "<group>"; };
-		CD7801F81CC0622C00B412E3 /* Stuffff.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stuffff.swift; sourceTree = "<group>"; };
 		CD78032A1CC130F500B412E3 /* StatsMainTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatsMainTableViewCell.h; sourceTree = "<group>"; };
 		CD78032B1CC130F500B412E3 /* StatsMainTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatsMainTableViewCell.m; sourceTree = "<group>"; };
 		CD9093551CC1B4C400A1D1B3 /* StatsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatsTableViewController.h; sourceTree = "<group>"; };
@@ -199,8 +196,6 @@
 				AB92E7261CAB01F200199034 /* LaunchScreen.storyboard */,
 				AB92E7291CAB01F200199034 /* Info.plist */,
 				AB92E7181CAB01F200199034 /* Supporting Files */,
-				CD7801F81CC0622C00B412E3 /* Stuffff.swift */,
-				CD7801F71CC0622C00B412E3 /* DidYou-Bridging-Header.h */,
 			);
 			path = DidYou;
 			sourceTree = "<group>";
@@ -442,7 +437,6 @@
 				AB92E7D71CB4063A00199034 /* JournalEntryTableViewCellView.m in Sources */,
 				AB69AF531CBFF01200CC9F9B /* EmptyTableView.m in Sources */,
 				AB92E7951CAD9CB400199034 /* NewJournalEntryBlurView.m in Sources */,
-				CD7801F91CC0622C00B412E3 /* Stuffff.swift in Sources */,
 				31FF28311CAD7398008051C0 /* JournalAndPictureView.m in Sources */,
 				31FF282B1CAD736E008051C0 /* CategoryFeelingView.m in Sources */,
 				779BD9041CB736560027DC91 /* DYUtility.m in Sources */,
