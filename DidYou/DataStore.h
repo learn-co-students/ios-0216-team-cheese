@@ -10,6 +10,7 @@
 #import <Firebase/Firebase.h>
 #import "DYJournalEntry.h"
 #import "DYUser.h"
+#import <CoreLocation/CoreLocation.h>
 
 @interface DataStore : NSObject
 
@@ -19,6 +20,7 @@
 @property (strong, nonatomic) DYUser *currentUser;
 @property (strong, nonatomic) Firebase *myRootRef;
 @property (nonatomic) BOOL isFirstTime;
+@property (strong, nonatomic) UIImage *userImage;
 
 + (instancetype)sharedDataStore;
 
@@ -30,10 +32,12 @@
 -(void)addJournalToFirebase:(DYUser *)user :(DYJournalEntry *)journalEntry;
 -(void)pushLastJournal;
 
+-(void)deleteAllCurrentUserEntries;
+
 -(NSArray *)generateQuestions;
 + (BOOL)isNetworkAvailable;
 
-
+-(void)addPlacemark: (CLPlacemark*)placeMark;
 
 
 

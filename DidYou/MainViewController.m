@@ -20,7 +20,7 @@
 #import "NoInternetView.h"
 
 
-@interface MainViewController () <NewJournalEntryBlurViewDelegate, UITableViewDataSource, UITableViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, CustomTabBarDelegate, LoadingFirstPageViewDelegate, NoInternetDelegate>
+@interface MainViewController () <NewJournalEntryBlurViewDelegate, UITableViewDataSource, UITableViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, CustomTabBarDelegate, LoadingFirstPageViewDelegate, NoInternetDelegate, CLLocationManagerDelegate>
 
 @property (strong, nonatomic) IBOutlet AddJournalEntryView *addEntryTopView;
 @property (strong, nonatomic) IBOutlet UITableView *journalEntryTableView;
@@ -56,16 +56,12 @@
     
     [super viewDidLoad];
     
-    
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userExists) name:@"connectedAndUserExists" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userIsNew) name:@"connectedAndUserIsNew" object:nil];
     
     self.journalEntryTableView.userInteractionEnabled = NO;
-   
     
     [self setUpDelegates];
-    
     [self createCustomTabBar];
     
     self.connected = [DataStore isNetworkAvailable];
@@ -93,10 +89,7 @@
         
     }
     
-   
     [self.journalEntryTableView reloadData];
-    
-
     
 }
 
@@ -215,8 +208,6 @@
 
 -(void)receiveFirebaseNotification
 {
-    
-  
         [self.journalEntryTableView reloadData];
         [self.journalEntryTableView reloadData];
         [self.spinView.activityIndicator stopAnimating];
@@ -228,9 +219,25 @@
         [self launchFirstTimeScreen];
     }
     
+    [self startLocationManager];
+    
     self.journalEntryTableView.userInteractionEnabled = YES;
 }
 
+-(void)startLocationManager
+{
+    self.locationManager = [[CLLocationManager alloc]init];
+    self.locationManager.delegate = self;
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    [self.locationManager requestWhenInUseAuthorization];
+    
+    if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+        [self.locationManager requestWhenInUseAuthorization];
+    }
+    [self.locationManager startUpdatingLocation];
+    
+    self.geocoder = [[CLGeocoder alloc]init];
+}
 
 
 -(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
@@ -248,7 +255,7 @@
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
     
-    
+    NSLog(@"LOCATION");
     CLLocation *currentLocation = locations[0];
     
     if (currentLocation != nil) {
@@ -266,7 +273,7 @@
             
             if (error == nil && [placemarks count] > 0) {
                 self.placemark = [placemarks lastObject];
-                
+                [self.dataStore addPlacemark: self.placemark];
                 
             } else {
                 
@@ -433,8 +440,6 @@
     
     cell.cellView.journalEntry = journalAtRow;
     
-    
-    //NSLog(@"%@",cell.cellView.journalEntry.date);
     
     return cell;
 }

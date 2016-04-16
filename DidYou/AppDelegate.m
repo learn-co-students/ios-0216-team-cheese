@@ -7,7 +7,11 @@
 //
 
 #import "AppDelegate.h"
+<<<<<<< HEAD
 #import "DidYou-Bridging-Header.h"
+=======
+//#import <CoreLocation/CoreLocation.h>
+>>>>>>> master
 
 @interface AppDelegate ()
 
@@ -18,6 +22,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+//    CLLocationManager *locationManager = [[CLLocationManager alloc]init];
+//    [locationManager requestWhenInUseAuthorization];
+//    if ([locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+//        [locationManager requestWhenInUseAuthorization];
+//    }
     
     return YES;
 }
