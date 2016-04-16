@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
+
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
@@ -164,11 +167,13 @@
                                         <rect key="frame" x="0.0" y="28" width="600" height="122"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6ZW-Yv-chO" id="EBN-J3-Fhe">
+
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="121.5"/>
+
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mey-ff-0UV" customClass="JournalEntryTableViewCellView">
-                                                    <rect key="frame" x="0.0" y="0.0" width="567" height="122"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mey-ff-0UV" customClass="JournalEntryTableViewCellView">
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="121"/>
                                                     <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 </view>
                                             </subviews>
@@ -205,7 +210,7 @@
                         <outlet property="journalEntryTableView" destination="Xo5-jG-068" id="dDO-55-CUs"/>
                         <segue destination="6RC-5d-0Ds" kind="show" identifier="segueMainToStats" animates="NO" id="8Ks-0k-YCc"/>
                         <segue destination="lhL-yJ-LM7" kind="show" identifier="segueMainToUser" animates="NO" id="Wm1-gx-EGU"/>
-                        <segue destination="sXp-Bh-XSW" kind="show" identifier="journalDetail" id="wDP-bp-As5"/>
+                        <segue destination="sXp-Bh-XSW" kind="show" identifier="journalDetailVC" id="wDP-bp-As5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

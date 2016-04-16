@@ -7,6 +7,8 @@
 //
 
 #import "DYJournalEntry.h"
+#import "DYUtility.h"
+#import "DYQuestion.h"
 
 @implementation DYJournalEntry
 
@@ -14,12 +16,12 @@
 -(instancetype)init
 {
     
-    self = [self initWithDate:[NSDate date] mainEmotion:@"" journalEntry:@"" picture1Address:@""];
+    self = [self initWithDate:[NSDate date] mainEmotion:@"" journalEntry:@"" picture1Address:@"" userImage:nil];
     return self;
 }
 
 
--(instancetype)initWithDate:(NSDate *)date mainEmotion:(NSString *)mainEmotion journalEntry:(NSString *)journalEntry picture1Address:(NSString *)picture1Address
+-(instancetype)initWithDate:(NSDate *)date mainEmotion:(NSString *)mainEmotion journalEntry:(NSString *)journalEntry picture1Address:(NSString *)picture1Address userImage:(UIImage *)userImage
 {
     self = [super init];
     
@@ -29,6 +31,7 @@
         _mainEmotion = mainEmotion;
         _journalEntry = journalEntry;
         _picture1Address = picture1Address;
+        _userImage = userImage;
         _questions = [self generateQuestions];
    
     }
@@ -53,6 +56,12 @@
         _mainEmotion = data[@"emotion"];
         _journalEntry = data[@"journalEntry"];
         _picture1Address = data[@"picture1Address"];
+        if (!data[@"userImage"]) {
+            _userImage = nil;
+        } else
+        {
+            _userImage = [util decodeBase64ToImage: data[@"userImage"]];
+        }
         _questions = q;
     }
     return self;
@@ -64,6 +73,8 @@
     NSMutableDictionary *data = [[NSMutableDictionary alloc] init];
     
     NSMutableArray *questions = [[NSMutableArray alloc] init];
+
+    //UIImage *userImage = [util decodeBase64ToImage: _picture1Address];
     
     for (DYQuestion *question in _questions)
     {
@@ -73,7 +84,15 @@
     data[@"emotion"] = _mainEmotion;
     data[@"journalEntry"] = _journalEntry;
     data[@"picture1address"] = _picture1Address;
+    if (!_userImage)
+    {
+        data[@"userImage"] = @"nil";
+    } else
+    {
+        data[@"userImage"] = [util encodeToBase64String:[util compressForUpload:_userImage scale:0.5]];
+    }
     data[@"questions"] = questions;
+    
     return data;
 }
 

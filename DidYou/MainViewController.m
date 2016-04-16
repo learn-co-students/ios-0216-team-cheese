@@ -20,7 +20,7 @@
 #import "NoInternetView.h"
 
 
-@interface MainViewController () <NewJournalEntryBlurViewDelegate, UITableViewDataSource, UITableViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, CustomTabBarDelegate, LoadingFirstPageViewDelegate, NoInternetDelegate>
+@interface MainViewController () <NewJournalEntryBlurViewDelegate, UITableViewDataSource, UITableViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, CustomTabBarDelegate, LoadingFirstPageViewDelegate, NoInternetDelegate, CLLocationManagerDelegate>
 
 @property (strong, nonatomic) IBOutlet AddJournalEntryView *addEntryTopView;
 @property (strong, nonatomic) IBOutlet UITableView *journalEntryTableView;
@@ -60,30 +60,30 @@
     
     [super viewDidLoad];
     
-    
-    _isAlive = YES;
-    
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userExists) name:@"connectedAndUserExists" object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userIsNew) name:@"connectedAndUserIsNew" object:nil];
-    
-   // self.journalEntryTableView.userInteractionEnabled = NO;
-   
+
     self.isAlive = YES;
+
     
     [self setUpDelegates];
-    
     [self createCustomTabBar];
     
+    [self launchScreenLogic];
+    
+
+}
+
+-(void)launchScreenLogic
+{
     self.connected = [DataStore isNetworkAvailable];
     
     self.UUID = [self userUUID];
     
-  
+    
     if (!self.connected)
     {
-       
+        
         [self launchNoInternetView];
-     
+        
         self.journalEntryTableView.userInteractionEnabled = NO;
         self.tabBar.userInteractionEnabled = NO;
         
@@ -99,9 +99,9 @@
     {
         if (self.dataStore == nil)
         {
-             [self launchSpinView];
+            [self launchSpinView];
         }
-    
+        
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveFirebaseNotification) name:@"FirebaseNotification" object:nil];
         
@@ -111,20 +111,20 @@
         
     }
     
-   
     [self.journalEntryTableView reloadData];
-    
-    
-
-    
 }
-- (BOOL)canIAnimate {
-    NSLog(@"canIAnimate is getting called from the VC.");   
-    return _isAlive;
+
+
+- (BOOL)canIAnimate
+{
+    
+    return self.isAlive;
+    
 }
 
 -(NSString *)userUUID
 {
+    
     NSDictionary *userDefaultsDictionary = [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
     
     NSArray *userDefaultsKeys = [[[NSUserDefaults standardUserDefaults] dictionaryRepresentation] allKeys];
@@ -141,9 +141,6 @@
     }
 
 }
-
-
-
 
 
 -(void)refreshTapped
@@ -274,8 +271,6 @@
 
 -(void)receiveFirebaseNotification
 {
-    
-  
         [self.journalEntryTableView reloadData];
         [self.journalEntryTableView reloadData];
         [self.spinView.activityIndicator stopAnimating];
@@ -287,12 +282,28 @@
         [self launchFirstTimeScreen];
     }
     
+    [self startLocationManager];
+    
     self.journalEntryTableView.userInteractionEnabled = YES;
     self.tabBar.userInteractionEnabled = YES;
     
     
 }
 
+-(void)startLocationManager
+{
+    self.locationManager = [[CLLocationManager alloc]init];
+    self.locationManager.delegate = self;
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    [self.locationManager requestWhenInUseAuthorization];
+    
+    if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+        [self.locationManager requestWhenInUseAuthorization];
+    }
+    [self.locationManager startUpdatingLocation];
+    
+    self.geocoder = [[CLGeocoder alloc]init];
+}
 
 
 -(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
@@ -311,7 +322,7 @@
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
     
-    
+    NSLog(@"LOCATION");
     CLLocation *currentLocation = locations[0];
     
     if (currentLocation != nil) {
@@ -329,8 +340,10 @@
         [self.geocoder reverseGeocodeLocation:currentLocation completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
             
             if (error == nil && [placemarks count] > 0) {
-                tmpself.placemark = [placemarks lastObject];
-                
+
+                self.placemark = [placemarks lastObject];
+                [self.dataStore addPlacemark: self.placemark];
+
                 
             } else {
                 
@@ -500,8 +513,6 @@
     
     cell.cellView.journalEntry = journalAtRow;
     
-    
-    //NSLog(@"%@",cell.cellView.journalEntry.date);
     
     return cell;
 }

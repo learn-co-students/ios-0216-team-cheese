@@ -16,7 +16,6 @@
 
 @end
 
-
 @interface AddJournalEntryView : UIView
 
 @property (weak, nonatomic) id <AddJournalEntryViewDelegate> delegate;
