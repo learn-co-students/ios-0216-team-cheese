@@ -247,6 +247,10 @@
 
 -(void)launchSpinView
 {
+    
+    self.journalEntryTableView.userInteractionEnabled = NO;
+    self.tabBar.userInteractionEnabled = NO;
+    
     self.spinView = [[LoadingFirstPageView alloc]initWithFrame:CGRectZero];
     
     [self.view addSubview:self.spinView];
