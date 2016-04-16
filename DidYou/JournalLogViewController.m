@@ -68,7 +68,25 @@
 }
 
 
+-(void)setUpScrollView
+{
+    UIScrollView *scrollView  = [UIScrollView new];
+    //scrollView.contentSize = CGSizeMake(300, 800);
+    scrollView.showsVerticalScrollIndicator = YES;
+    
+    scrollView.backgroundColor = [UIColor greenColor];
+    
+    [scrollView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.view addSubview:scrollView];
+    
+    [scrollView.centerYAnchor constraintEqualToAnchor:self.view.centerYAnchor].active = YES;
+    [scrollView.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor].active = YES;
+    [scrollView.heightAnchor constraintEqualToConstant:100].active = YES;
+    [scrollView.widthAnchor  constraintEqualToConstant:100].active = YES;
+    
 
+
+}
 
 - (IBAction)whenBackButtonPressed:(id)sender {
     

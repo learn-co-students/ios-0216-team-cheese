@@ -10,6 +10,7 @@
 #import <Firebase/Firebase.h>
 #import "DYJournalEntry.h"
 #import "DYUser.h"
+#import <CoreLocation/CoreLocation.h>
 
 @interface DataStore : NSObject
 
@@ -19,6 +20,11 @@
 @property (strong, nonatomic) DYUser *currentUser;
 @property (strong, nonatomic) Firebase *myRootRef;
 @property (nonatomic) BOOL isFirstTime;
+
+@property (nonatomic) BOOL gotCreated;
+
+@property (strong, nonatomic) UIImage *userImage;
+
 
 + (instancetype)sharedDataStore;
 
@@ -35,6 +41,12 @@
 -(NSArray *)generateQuestions;
 + (BOOL)isNetworkAvailable;
 
+
+-(void)createNewCurrentUserFromFirebase:(NSString *)userUUID;
+
+
+
+-(void)addPlacemark: (CLPlacemark*)placeMark;
 
 
 

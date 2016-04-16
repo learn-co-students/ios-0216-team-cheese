@@ -10,6 +10,8 @@
 #import "DYUser.h"
 #import "DYJournalEntry.h"
 #import "DYUtility.h"
+
+
 #import <SystemConfiguration/SystemConfiguration.h>
 
 
@@ -18,13 +20,17 @@
 + (instancetype)sharedDataStore;
 {
     
-  
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"singletonBeingCreated" object:nil];
+
     static DataStore *_sharedDataStore = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
+        
+        NSLog(@"about to send notification");
+//        [[NSNotificationCenter defaultCenter] postNotificationName:@"singletonBeingCreated" object:nil];
+
         _sharedDataStore = [[DataStore alloc] init];
         
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"singletonBeingCreated" object:nil];
 
         
     });
@@ -42,6 +48,11 @@
         _users = [[NSMutableArray alloc] init];
         _emotions = [self emotionsDictionary];
         _userUUID = [self userUUID];
+
+        _gotCreated = YES;
+
+        _userImage = [self userImage];
+
 
         
         [self setupFirebase];
@@ -100,6 +111,7 @@
                             @"country": user.country,
                             @"signUpDate": [util getUTCFormatDate: user.signUpDate],
                             @"journals": @{}
+                           
                             };
       [userRef setValue: myUser];
 }
@@ -114,9 +126,11 @@
 }
 
 -(void)pushLastJournal
+
 {
     // Journal was updated so push entry to firebase
     
+
     [self addJournalToFirebase:self.currentUser :[self.currentUser.journals lastObject]];
 }
 
@@ -160,7 +174,6 @@
 
 -(void)createNewCurrentUserWithUUID:(NSString *)userUUID
 {
-    
     DYUser *newUser = [[DYUser alloc] initWithUserUUID:userUUID signUpDate:[NSDate date]];
     
     self.currentUser = newUser;
@@ -172,6 +185,7 @@
 
 -(void)createNewCurrentUserFromFirebase:(NSString *)userUUID
 {
+
 
     
     NSLog(@"in the firebase method");
@@ -251,6 +265,7 @@
     BOOL canReach = success
     && !(flags & kSCNetworkReachabilityFlagsConnectionRequired)
     && (flags & kSCNetworkReachabilityFlagsReachable);
+
     
     return canReach;
 
@@ -282,6 +297,18 @@
     
 }
 
+
+-(void)addPlacemark: (CLPlacemark*)placeMark
+{
+    //sending city info to firebase
+  Firebase *cityRef = [[[self.myRootRef childByAppendingPath: @"cities"] childByAppendingPath: placeMark.locality] childByAppendingPath:self.currentUser.userUUID];
+    [cityRef setValue: @""];
+    
+    Firebase *countryRef = [[[self.myRootRef childByAppendingPath: @"countries"] childByAppendingPath: placeMark.country] childByAppendingPath:self.currentUser.userUUID];
+    [countryRef setValue: @""];
+    
+}
+
 -(void)deleteAllCurrentUserEntries
 {
     
@@ -306,7 +333,9 @@
 
 
 
+
 #pragma test user data
+
 
 
 
@@ -362,7 +391,7 @@
     
     testEntry5.date = [[NSDate date] dateByAddingTimeInterval:-60*60*24];
     testEntry5.mainEmotion = @"Mad";
-    testEntry5.journalEntry = @"I am so fucking pissed my boyfriend has been texting with this other girl and I want to smack him in the face.";
+    testEntry5.journalEntry = @"I am so pissed my boyfriend has been texting with this other girl and I want to smack him in the face.";
     testEntry5.picture1Address = @"testImage5";
     
     testEntry6.date = [[NSDate date] dateByAddingTimeInterval:-60*60*24*2];

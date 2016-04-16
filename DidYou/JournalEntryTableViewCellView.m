@@ -7,6 +7,7 @@
 //
 
 #import "JournalEntryTableViewCellView.h"
+#import "DYQuestion.h"
 
 @interface JournalEntryTableViewCellView ()
 
