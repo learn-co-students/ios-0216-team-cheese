@@ -412,6 +412,10 @@
     
     [currentUserJournals removeAllObjects];
     
+    Firebase *journalsRef = [[self getUserRef:self.currentUser] childByAppendingPath:@"journals"];
+    
+    [journalsRef removeValue];
+    
     
 }
 
