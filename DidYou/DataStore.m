@@ -10,14 +10,12 @@
 #import "DYUser.h"
 #import "DYJournalEntry.h"
 #import "DYUtility.h"
-
-
 #import <SystemConfiguration/SystemConfiguration.h>
 
 
 @implementation DataStore
 
-+ (instancetype)sharedDataStore;
++ (instancetype)sharedDataStore
 {
     
     NSLog(@"shared data store called");
@@ -48,22 +46,28 @@
         _users = [[NSMutableArray alloc] init];
         _emotions = [self emotionsDictionary];
         _userUUID = @"";
+        
+        _currentUser = [[DYUser alloc] init];
+    
 
         _gotCreated = YES;
 
         _userImage = [self userImage];
 
 
-        [self setUpLocationManager];
+       
         
         
         [self setupFirebase];
         [self userUUIDToUser];
+        
+    
 
     }
     
     return self;
 }
+
 
 -(void)setUpLocationManager
 {
@@ -150,7 +154,9 @@
     {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"connectedAndUserExists" object:nil];
         
-        [self pullCurrentUserFromFirebase:userDefaultsDictionary[@"userUUID"]];
+        self.currentUser.userUUID = userDefaultsDictionary[@"userUUID"];
+        
+        [self pullCurrentUserFromFirebase:self.currentUser.userUUID];
     }
     
     else
@@ -160,7 +166,7 @@
         
         _isFirstTime = true;
         NSString *newUUID = [self createNewUserUUID];
-        [self pullCurrentUserFromFirebase:newUUID:newUUID];
+        [self createNewCurrentUserWithUUID:newUUID];
         
     }
     
@@ -182,11 +188,13 @@
       [userRef setValue: myUser];
 }
 
--(void)addJournalToFirebase:(DYUser *)user :(DYJournalEntry *)journalEntry;
-
+-(void)addJournalToFirebase:(DYUser *)user :(DYJournalEntry *)journalEntry
 {
+    
+    NSLog(@"in add journal to firebase");
     // get the user reference and serialize the journal
     // use childByAutoId to assign random key to journal entry, in firebase, have an array, don't want to push array in its entirty every time, JS has a push method, randomly put in there, sort later
+    NSLog(@"%@\n\n\n\n\n", self.currentUser.userUUID);
     
     Firebase *journalRef = [[self getUserRef: user] childByAppendingPath:@"journals"];
     [[journalRef childByAutoId] setValue:[journalEntry serialize]];
@@ -198,6 +206,8 @@
 
 {
     // Journal was updated so push entry to firebase
+    
+    NSLog(@"in add journal in datastore");
 
     [self addJournalToFirebase:self.currentUser :[self.currentUser.journals lastObject]];
 }
@@ -251,63 +261,55 @@
 -(void)pullCurrentUserFromFirebase:(NSString *)userUUID
 {
 
-    
     NSLog(@"in the firebase method trying with UUID: %@", userUUID);
     
     Firebase *userRef = [[self.myRootRef childByAppendingPath:@"users"] childByAppendingPath:userUUID];
     
-    _currentUser = [[DYUser alloc] init];
     
-//    self.currentUser.name = [userRef valueForKey:@"name"];
-//    self.currentUser.city = [userRef valueForKey:@"city"];
-//    self.currentUser.country = [userRef valueForKey:@"country"];
-//    self.currentUser.journals = [[NSMutableArray alloc] init];
-//    self.currentUser.signUpDate = [NSDate date];
-    
- 
-    
-    //[self updateCurrentUserCityAndCountry];
     
     [userRef observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
 
-            
-                     NSLog(@"in the firebase completion");
-            
-                     DYUtility *util = [DYUtility sharedUtility];
-                     NSMutableArray *journals = [[NSMutableArray alloc] init];
-                     NSDictionary *result = [snapshot value];
-            
-                    self.currentUser.signUpDate = [util fromUTCFormatDate: result[@"signUpDate"]];
-                    self.currentUser.name = result[@"name"];
-                    self.currentUser.city = result[@"city"];
-                    self.currentUser.country = result[@"country"];
-        
-                     // Deserialize each journal entry
-                     NSMutableDictionary *journalDict = result[@"journals"];
-            
-                     for (NSString *key in [journalDict allKeys])
-            
-                     {   // this is how you deserializing the object in firebase
-                         [journals addObject:[[DYJournalEntry alloc] initWithDeserialize: journalDict[key]]];
-                     }
-    
+        NSLog(@"in the firebase completion");
 
-                     self.currentUser.journals = [util sortEntriesFromArray:journals];
-            
-                     //[self.users addObject:self.currentUser];
-                     
-                     // Notify the main controller that the firebase data
-                     // has arrived
+        NSLog(@"%@", [snapshot value]);
+
+        DYUtility *util = [DYUtility sharedUtility];
+        NSMutableArray *journals = [[NSMutableArray alloc] init];
+        NSDictionary *result = [snapshot value];
+
+        self.currentUser.signUpDate = [util fromUTCFormatDate: result[@"signUpDate"]];
+        self.currentUser.name = result[@"name"];
+        self.currentUser.city = result[@"city"];
+        self.currentUser.country = result[@"country"];
+
+         // Deserialize each journal entry
+         NSMutableDictionary *journalDict = result[@"journals"];
+
+         for (NSString *key in [journalDict allKeys])
+
+         {   // this is how you deserializing the object in firebase
+             [journals addObject:[[DYJournalEntry alloc] initWithDeserialize: journalDict[key]]];
+         }
+
+
+         self.currentUser.journals = [util sortEntriesFromArray:journals];
+
+         //[self.users addObject:self.currentUser];
+         
+         // Notify the main controller that the firebase data
+         // has arrived
+
+         NSLog(@"about to post firebase notification");
+
+
+         [[NSNotificationCenter defaultCenter]
+          postNotificationName:@"FirebaseNotification"
+          object:self];
+
         
-                     NSLog(@"about to post firebase notification");
-        
-        
-                     [[NSNotificationCenter defaultCenter]
-                      postNotificationName:@"FirebaseNotification"
-                      object:self];
-        
-        
-                      //this block doesn't get executed until the snapshot is delivered
+        [self setUpLocationManager];
+
+          //this block doesn't get executed until the snapshot is delivered
         
     } ];
     
@@ -380,18 +382,26 @@
 -(void)addPlacemark: (CLPlacemark*)placeMark
 {
     
-   
-    //sending city info to firebase
-  Firebase *cityRef = [[[self.myRootRef childByAppendingPath: @"cities"] childByAppendingPath: placeMark.locality] childByAppendingPath:self.currentUser.userUUID];
-    [cityRef setValue: self.currentUser.city];
-    
-    Firebase *countryRef = [[[self.myRootRef childByAppendingPath: @"countries"] childByAppendingPath: placeMark.country] childByAppendingPath:self.currentUser.userUUID];
-    [countryRef setValue: self.currentUser.country];
-    
     self.currentUser.city = placeMark.locality;
     self.currentUser.country = placeMark.country;
     
-    NSLog(@"city: %@, country: %@", self.currentUser.city, self.currentUser.country);
+    Firebase *cityRef = [[self getUserRef:self.currentUser] childByAppendingPath:@"city"];
+    
+    [cityRef setValue:self.currentUser.city];
+    
+    
+    Firebase *countryRef = [[self getUserRef:self.currentUser] childByAppendingPath:@"country"];
+    
+    [countryRef setValue:self.currentUser.country];
+    
+    
+    //sending city info to firebase
+   // Firebase *cityRef = [[[self.myRootRef childByAppendingPath: self.currentUser.userUUID] childByAppendingPath: placeMark.locality] childByAppendingPath:self.currentUser.userUUID];
+    //[cityRef setValue: self.currentUser.city];
+    
+    //Firebase *countryRef = [[[self.myRootRef childByAppendingPath: @"countries"] childByAppendingPath: placeMark.country] childByAppendingPath:self.currentUser.userUUID];
+    //[countryRef setValue: self.currentUser.country];
+
     
 }
 

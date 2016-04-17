@@ -78,7 +78,7 @@
     
     //[self addTitle];
     
-    self.dataStore = [DataStore sharedDataStore];
+    //self.dataStore = [DataStore sharedDataStore];
     
     
 }

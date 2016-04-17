@@ -42,14 +42,12 @@
 
 -(void)deleteAllCurrentUserEntries;
 
--(NSArray *)generateQuestions;
+//-(NSArray *)generateQuestions;
 + (BOOL)isNetworkAvailable;
 -(void)requestLocationPermission;
 -(void)setUpLocationManager;
 
-
-
--(void)createNewCurrentUserFromFirebase:(NSString *)userUUID;
+//-(void)createNewCurrentUserFromFirebase:(NSString *)userUUID;
 
 
 

@@ -43,10 +43,10 @@
 
 @property (strong, nonatomic) NSString *UUID;
 
+@property (nonatomic) BOOL singletonBeingCreatedHit;
+
 @property (nonatomic) BOOL connected;
 @property(nonatomic) BOOL firstTimeScreenDisplayed;
-
-
 
 @property (nonatomic) BOOL isAlive;
 
@@ -57,20 +57,14 @@
 
 - (void)viewDidLoad {
     
-    NSLog(@"vc before super view did load");
-    
+
     [super viewDidLoad];
-    NSLog(@"VC 1");
-
+ 
     self.isAlive = YES;
-    
-     NSLog(@"VC 2");
-
+    self.singletonBeingCreatedHit = NO;
     
     [self setUpDelegates];
     [self createCustomTabBar];
-    
-     NSLog(@"VC 3");
     
     [self launchScreenLogic];
     
@@ -105,6 +99,8 @@
         NSLog(@"in the else if on main VC");
         
         [self launchFirstTimeScreen];
+        
+        self.dataStore = [DataStore sharedDataStore];
     }
     
     
@@ -112,10 +108,19 @@
     {
         NSLog(@"in the else on main VC");
         
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(singletonBeingCreated) name:@"singltonBeingCreated" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(singletonBeingCreated) name:@"singletonBeingCreated" object:nil];
 
         self.dataStore = [DataStore sharedDataStore];
         
+        if (self.dataStore.currentUser.journals.count == 0 && !self.singletonBeingCreatedHit)
+        {
+            NSLog(@"getting in here");
+            [self launchFirstTimeScreen];
+        }
+        
+        
+        
+     
     }
     
     [self.journalEntryTableView reloadData];
@@ -124,7 +129,13 @@
 -(void)singletonBeingCreated
 {
     
+    self.singletonBeingCreatedHit = YES;
+    
+    NSLog(@"singleton being created VC");
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveFirebaseNotification) name:@"FirebaseNotification" object:nil];
+    
+    
     
     [self launchSpinView];
     
@@ -183,7 +194,7 @@
         
         self.dataStore = [DataStore sharedDataStore];
         
-        [self.dataStore createNewCurrentUserFromFirebase:self.UUID];
+        //[self.dataStore createNewCurrentUserFromFirebase:self.UUID];
     }
 
     
@@ -223,6 +234,8 @@
 -(void)launchSpinView
 {
     
+    NSLog(@"in launch spin view");
+    
     self.journalEntryTableView.userInteractionEnabled = NO;
     self.tabBar.userInteractionEnabled = NO;
     
@@ -249,14 +262,21 @@
 
 -(void)receiveFirebaseNotification
 {
+    
+    NSLog(@"in recieved firebase notification");
+    
         [self.journalEntryTableView reloadData];
         [self.journalEntryTableView reloadData];
         [self.spinView.activityIndicator stopAnimating];
     
         [self.spinView removeFromSuperview];
     
+    [self dismissFirstTimeScreen];
+    
     if (self.dataStore.currentUser.journals.count == 0)
     {
+        
+        NSLog(@"in first time after notification");
         [self launchFirstTimeScreen];
     }
     
@@ -267,68 +287,6 @@
     
 }
 
-//-(void)startLocationManager
-//{
-//    
-//    NSLog(@"location manager getting called");
-//    
-//    self.locationManager = [[CLLocationManager alloc]init];
-//    self.locationManager.delegate = self;
-//    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-//    [self.locationManager requestWhenInUseAuthorization];
-//    
-//    if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
-//        [self.locationManager requestWhenInUseAuthorization];
-//    }
-//    [self.locationManager startUpdatingLocation];
-//    
-//    self.geocoder = [[CLGeocoder alloc]init];
-//}
-//
-//
-//-(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
-//    
-//    NSLog(@"didFailWithError, %@", error);
-//    
-//    UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"Error" message:@"Failed to get where you are" preferredStyle:UIAlertControllerStyleAlert];
-//    UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-//    }];
-//    [errorAlert addAction:defaultAction];
-//    
-//    [self presentViewController:errorAlert animated:YES completion:nil];
-//    
-//}
-//
-//
-//-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
-//    
-//    NSLog(@"LOCATION");
-//    CLLocation *currentLocation = locations[0];
-//    
-//    if (currentLocation != nil) {
-//        
-//        //stop location manager
-//        
-//        [self.locationManager stopUpdatingLocation];
-//    
-//        //translate the locate data into a human-readable address
-//        
-//        [self.geocoder reverseGeocodeLocation:currentLocation completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
-//            
-//            if (error == nil && [placemarks count] > 0) {
-//
-//                self.placemark = [placemarks lastObject];
-//                [self.dataStore addPlacemark: self.placemark];
-//
-//                
-//            } else {
-//                
-//                NSLog(@"@%@", error.debugDescription);
-//            }
-//        }];
-//    }
-//    
-//}
 
 
 
@@ -375,6 +333,14 @@
     
 }
 
+-(void)dismissFirstTimeScreen
+{
+    NSLog(@"in dismiss first time screen");
+    
+    [self.firstTimeScreen removeFromSuperview];
+    
+    
+}
 
 
 -(void)launchAddJournalFullScreenView
@@ -438,7 +404,7 @@
     }
     
     // Signal firebase push
-    [[DataStore sharedDataStore] pushLastJournal];
+    [self.dataStore pushLastJournal];
     [self.journalEntryTableView reloadData];
     
     
