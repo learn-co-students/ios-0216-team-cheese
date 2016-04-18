@@ -20,6 +20,8 @@
 @property (weak, nonatomic) IBOutlet UIView *termsView;
 @property (weak, nonatomic) IBOutlet UIView *deleteView;
 
+@property (nonatomic) CLAuthorizationStatus *status;
+
 
 @property (strong, nonatomic) DataStore *dataStore;
 
@@ -36,7 +38,11 @@
     
     self.dataStore = [DataStore sharedDataStore];
     
-    // set switch to location services boolean
+
+    
+    NSLog(@"%@, %@, in the settings VC, this is city and state", self.dataStore.currentUser.city, self.dataStore.currentUser.country);
+    
+    self.status = [CLLocationManager authorizationStatus];
     
     self.termsView.layer.borderColor = [[UIColor lightGrayColor] CGColor];
     
@@ -44,11 +50,27 @@
     
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    
+    
+    if (self.status == 4)
+    {
+        self.locationSwitch.on = YES;
+    }
+    else
+    {
+        self.locationSwitch.on = NO;
+    }
+}
+
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return 3;
 }
+
+
 
 
 
@@ -161,7 +183,25 @@
     
 }
 
-- (IBAction)locationSwitchFlipped:(id)sender {
+- (IBAction)locationSwitchFlipped:(id)sender
+{
+    
+    if (self.locationSwitch.on == YES)
+    {
+      
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+        
+    [self.dataStore setUpLocationManager];
+        
+    }
+    else
+    {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+    }
+    
+  
+    
+    
 }
 
 

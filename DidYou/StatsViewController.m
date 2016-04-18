@@ -10,12 +10,14 @@
 #import "CustomTabBarView.h"
 #import "StatsMainTableViewCell.h"
 #import "StatsMenuView.h"
+#import "DataStore.h"
 
 @interface StatsViewController () <CustomTabBarDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) CustomTabBarView *tabBar;
 @property (weak, nonatomic) IBOutlet StatsMenuView *statsMenuView;
 @property (weak, nonatomic) IBOutlet UITableView *statsTableView;
+@property (strong, nonatomic) DataStore *datastore;
 
 @end
 
@@ -39,8 +41,10 @@
     
     [self createCustomTabBar];
     [self.view addSubview:self.statsMenuView];
-
-
+    
+    self.datastore = [DataStore sharedDataStore];
+    
+    NSLog(@"in the stats screen, city is: %@ and country is %@", self.datastore.currentUser.city, self.datastore.currentUser.country);
 }
 
 - (void)didReceiveMemoryWarning {
