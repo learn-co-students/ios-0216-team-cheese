@@ -188,10 +188,9 @@
         [self performSelectorOnMainThread:@selector(leaveQuestionView) withObject:nil waitUntilDone:NO];
         [self performSelectorOnMainThread:@selector(setUpJournalAndPictureView) withObject:nil waitUntilDone:NO];
         
-<<<<<<< HEAD
-=======
+
         [self launchJournalAndPictureView];
->>>>>>> master
+
     }
     else
     {
@@ -270,16 +269,16 @@
     
 
     
-<<<<<<< HEAD
-    [self.journalAndPictureView.leftAnchor constraintEqualToAnchor:self.leftAnchor].active = YES;
-    [self.journalAndPictureView.rightAnchor constraintEqualToAnchor:self.rightAnchor].active = YES;
-    [self.journalAndPictureView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor].active = YES;
-    [self.journalAndPictureView.topAnchor constraintEqualToAnchor:self.topAnchor constant:70].active = YES;
-    [self.journalAndPictureView.textView becomeFirstResponder];
-    [self.journalAndPictureView.contentView becomeFirstResponder];
-=======
+//<<<<<<< HEAD
+//    [self.journalAndPictureView.leftAnchor constraintEqualToAnchor:self.leftAnchor].active = YES;
+//    [self.journalAndPictureView.rightAnchor constraintEqualToAnchor:self.rightAnchor].active = YES;
+//    [self.journalAndPictureView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor].active = YES;
+//    [self.journalAndPictureView.topAnchor constraintEqualToAnchor:self.topAnchor constant:70].active = YES;
+//    [self.journalAndPictureView.textView becomeFirstResponder];
+//    [self.journalAndPictureView.contentView becomeFirstResponder];
+
 }
->>>>>>> master
+
 
 -(void)keyboardWillShow:(NSNotification *)notification
 {
@@ -363,27 +362,27 @@
     [self.delegate buttonTappedFromJournalandPictureView:sender];
 }
 
-<<<<<<< HEAD
--(void)whenDeleteButtonIsTapped:(id)sender
-{
-    self.journalAndPictureView.deletePhotoButton.hidden = YES;
-    self.journalAndPictureView.imageView.image = nil;
-    self.journalAndPictureView.imageView.layer.borderWidth = 0;
 
-}
-
--(void)recieveImageFromMainViewController:(UIImage *)imageRecieved
-{
-    [self.journalAndPictureView.textView becomeFirstResponder];
-    self.currentEntry.userImage = imageRecieved;
-    self.journalAndPictureView.deletePhotoButton.hidden = NO;
-    self.journalAndPictureView.imageView.image = imageRecieved;
-    self.journalAndPictureView.imageView.layer.cornerRadius = self.journalAndPictureView.imageView.frame.size.width / 2;
-    self.journalAndPictureView.imageView.contentMode = UIViewContentModeScaleAspectFill;
-    self.journalAndPictureView.imageView.clipsToBounds = YES;
-    self.journalAndPictureView.imageView.layer.borderColor = [UIColor darkGrayColor].CGColor;
-}
-=======
+//-(void)whenDeleteButtonIsTapped:(id)sender
+//{
+//    self.journalAndPictureView.deletePhotoButton.hidden = YES;
+//    self.journalAndPictureView.imageView.image = nil;
+//    self.journalAndPictureView.imageView.layer.borderWidth = 0;
+//
+//}
+//
+//-(void)recieveImageFromMainViewController:(UIImage *)imageRecieved
+//{
+//    [self.journalAndPictureView.textView becomeFirstResponder];
+//    self.currentEntry.userImage = imageRecieved;
+//    self.journalAndPictureView.deletePhotoButton.hidden = NO;
+//    self.journalAndPictureView.imageView.image = imageRecieved;
+//    self.journalAndPictureView.imageView.layer.cornerRadius = self.journalAndPictureView.imageView.frame.size.width / 2;
+//    self.journalAndPictureView.imageView.contentMode = UIViewContentModeScaleAspectFill;
+//    self.journalAndPictureView.imageView.clipsToBounds = YES;
+//    self.journalAndPictureView.imageView.layer.borderColor = [UIColor darkGrayColor].CGColor;
+//}
+//=======
 //-(void)whenDeleteButtonIsTapped:(id)sender
 //{
 //    self.journalAndPictureView.deletePhotoButton.hidden = YES;
@@ -402,6 +401,6 @@
 //    self.journalAndPictureView.imageView.clipsToBounds = YES;
 //    self.journalAndPictureView.imageView.layer.borderColor = [UIColor darkGrayColor].CGColor;
 //}
->>>>>>> master
+
 
 @end

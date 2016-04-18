@@ -14,7 +14,7 @@
 
 
 
-@property (strong, nonatomic) IBOutlet UIView *contentView;
+
 @property (strong, nonatomic) UIButton *doneEditingButton;
 
 @property (strong, nonatomic) DataStore *dataStore;
@@ -184,7 +184,7 @@
         
     }
 
-    self.tapOutKeyboard.enabled = NO;
+    
     self.doneEditingButton.enabled = NO;
     self.doneEditingButton.hidden = YES;
 }
