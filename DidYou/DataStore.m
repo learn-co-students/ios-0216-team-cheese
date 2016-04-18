@@ -188,7 +188,7 @@
       [userRef setValue: myUser];
 }
 
--(void)addJournalToFirebase:(DYUser *)user :(DYJournalEntry *)journalEntry
+-(void)addJournalToFirebase:(DYUser *)user withJournalEntry:(DYJournalEntry *)journalEntry
 {
     
     NSLog(@"in add journal to firebase");
@@ -198,8 +198,6 @@
     
     Firebase *journalRef = [[self getUserRef: user] childByAppendingPath:@"journals"];
     [[journalRef childByAutoId] setValue:[journalEntry serialize]];
-    [journalEntry.foreignID setValue:[journalRef childByAutoId] forKey:@"key"];
-    
 }
 
 
@@ -210,8 +208,12 @@
     // Journal was updated so push entry to firebase
     
     NSLog(@"in add journal in datastore");
+    [self addJournalToFirebase:self.currentUser
+              withJournalEntry:self.currentUser.journals.lastObject];
 
-    [self addJournalToFirebase:self.currentUser :[self.currentUser.journals lastObject]];
+    DYJournalEntry *journal = self.currentUser.journals.lastObject;
+    NSLog(@"Journal is %@", journal.journalEntry);
+
 }
 
 -(void)updateCurrentUserCityAndCountry
@@ -290,8 +292,7 @@
          for (NSString *key in [journalDict allKeys])
 
          {   // this is how you deserializing the object in firebase
-             [journalDict[key] setObject:key forKey:@"foreignID"];
-             
+            
              [journals addObject:[[DYJournalEntry alloc] initWithDeserialize: journalDict[key]]];
          }
 

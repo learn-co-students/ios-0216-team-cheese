@@ -206,6 +206,12 @@
 }
 - (IBAction)doneButtonTapped:(id)sender
 {
+    DYJournalEntry *journal = self.dataStore.currentUser.journals.lastObject;
+    NSLog(@"TextView's text is %@", self.textView.text);
+    NSString *text = self.textView.text;
+    journal.journalEntry = text;
+
+    
     [self.delegate journalComplete:sender];
 }
 
