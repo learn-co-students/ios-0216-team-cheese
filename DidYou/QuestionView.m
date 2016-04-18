@@ -215,17 +215,17 @@
     {
         self.iconName = @"breakfastDark";
     }
-    else if ([self.currentQuestion.question isEqualToString:@"workout in any way?"])
+    else if ([self.currentQuestion.question isEqualToString:@"workout today?"])
     {
         self.iconName = @"workoutDark";
     }
-    else if ([self.currentQuestion.question isEqualToString:@"do something nice for someone?"])
+    else if ([self.currentQuestion.question isEqualToString:@"do something nice for someone today?"])
     {
         self.iconName = @"niceDark";
     }
     else
     {
-        self.iconName = @"sexDark";
+        self.iconName = @"hugDark";
     }
     
 }

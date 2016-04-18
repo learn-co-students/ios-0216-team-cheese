@@ -13,9 +13,14 @@
 @interface JournalAndPictureView () <UITextViewDelegate>
 
 
+
+@property (strong, nonatomic) IBOutlet UIView *contentView;
+@property (strong, nonatomic) UIButton *doneEditingButton;
+
 @property (strong, nonatomic) DataStore *dataStore;
 @property (strong, nonatomic) NSString *emotion;
 @property (strong, nonatomic) IBOutlet UIButton *postButton;
+
 
 
 
@@ -178,6 +183,30 @@
         self.textView.textColor = [UIColor lightGrayColor];
         
     }
+
+    self.tapOutKeyboard.enabled = NO;
+    self.doneEditingButton.enabled = NO;
+    self.doneEditingButton.hidden = YES;
+}
+
+-(void)textViewDidChange:(UITextView *)textView
+{
+ 
+    self.doneEditingButton.enabled = YES;
+    
+    
+
+}
+
+-(IBAction)whenTapGestureIsRecognized:(id)sender
+{
+    [self.contentView endEditing:YES];
+    self.doneEditingButton.hidden = YES;
+}
+
+-(IBAction)whenDoneEditingButtonIsTapped:(id)sender
+{
+
     
 }
 -(IBAction)whenAddPhotoButtonIsTapped:(id)sender
@@ -195,7 +224,9 @@
 }
 - (IBAction)doneButtonTapped:(id)sender
 {
-   [self.delegate journalComplete:sender];
+
+    [self.delegate journalComplete:sender];
+
 }
 
 @end

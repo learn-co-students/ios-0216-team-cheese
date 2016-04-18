@@ -21,6 +21,10 @@
 @property (strong, nonatomic) Firebase *myRootRef;
 @property (nonatomic) BOOL isFirstTime;
 
+@property (strong, nonatomic) CLLocationManager *locationManager;
+@property (strong, nonatomic) CLGeocoder *geocoder;
+@property (strong, nonatomic) CLPlacemark *placemark;
+
 @property (nonatomic) BOOL gotCreated;
 
 @property (strong, nonatomic) UIImage *userImage;
@@ -38,11 +42,12 @@
 
 -(void)deleteAllCurrentUserEntries;
 
--(NSArray *)generateQuestions;
+//-(NSArray *)generateQuestions;
 + (BOOL)isNetworkAvailable;
+-(void)requestLocationPermission;
+-(void)setUpLocationManager;
 
-
--(void)createNewCurrentUserFromFirebase:(NSString *)userUUID;
+//-(void)createNewCurrentUserFromFirebase:(NSString *)userUUID;
 
 
 

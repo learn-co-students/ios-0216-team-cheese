@@ -22,6 +22,7 @@
 
 @property (weak, nonatomic) id <JournalAndPictureViewDelegate> delegate;
 @property (nonatomic,strong) IBOutlet UIImageView   *imageView;
+
 @property (nonatomic,strong) UITextView             *textView;
 @property (nonatomic,strong) UIButton               *deletePhotoButton;
 @property (nonatomic,strong) UIImage                *imageInImageView;
@@ -31,6 +32,7 @@
 @property (strong, nonatomic) IBOutlet UIView *contentView;
 @property (strong, nonatomic) UILabel *labelOverKeyboard;
 @property (strong, nonatomic) UIButton *addPhotoButton;
+
 
 
 @end
