@@ -12,13 +12,15 @@
 @protocol AddJournalEntryViewDelegate <NSObject>
 
 - (void)addButtonTapped:(UIButton *)sender;
+- (BOOL)canIAnimate;
 
 @end
 
 @interface AddJournalEntryView : UIView
 
-@property (strong, nonatomic) id <AddJournalEntryViewDelegate> delegate;
+@property (weak, nonatomic) id <AddJournalEntryViewDelegate> delegate;
 @property (strong, nonatomic) DYJournalEntry *journalEntry;
+//@property (nonatomic) BOOL shouldAnimate;
 
 
 

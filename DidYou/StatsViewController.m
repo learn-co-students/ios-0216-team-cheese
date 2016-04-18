@@ -8,10 +8,12 @@
 
 #import "StatsViewController.h"
 #import "CustomTabBarView.h"
+#import "DataStore.h"
 
 @interface StatsViewController () <CustomTabBarDelegate>
 
 @property (strong, nonatomic) CustomTabBarView *tabBar;
+@property (strong, nonatomic) DataStore *datastore;
 
 @end
 
@@ -23,6 +25,12 @@
     [super viewDidLoad];
     
     [self createCustomTabBar];
+    
+    self.datastore = [DataStore sharedDataStore];
+    
+    NSLog(@"in the stats screen, city is: %@ and country is %@", self.datastore.currentUser.city, self.datastore.currentUser.country);
+    
+    
     
 }
 
