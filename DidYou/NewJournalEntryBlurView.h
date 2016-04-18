@@ -7,6 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "JournalAndPictureAlternateView.h"
+
+
 @class JournalAndPictureView;
 @class DYJournalEntry;
 
@@ -20,7 +23,7 @@
 @interface NewJournalEntryBlurView : UIVisualEffectView
 
 @property (strong, nonatomic) DYJournalEntry *currentEntry;
-@property (strong, nonatomic) JournalAndPictureView *journalAndPictureView;
+@property (strong, nonatomic) JournalAndPictureAlternateView *journalAndPictureView;
 @property (strong, nonatomic) id <NewJournalEntryBlurViewDelegate> delegate;
 
 
