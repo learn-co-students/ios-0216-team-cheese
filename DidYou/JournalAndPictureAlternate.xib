@@ -31,7 +31,7 @@
                     <rect key="frame" x="20" y="97" width="556" height="339"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Why are you feeling angry?  " textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="H9j-1Q-ZNQ">
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Record your thoughts and feelings here.  It will be very helpful and therapuetic to come back and read this later on. " textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="H9j-1Q-ZNQ">
                     <rect key="frame" x="20" y="97" width="556" height="339"/>
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>

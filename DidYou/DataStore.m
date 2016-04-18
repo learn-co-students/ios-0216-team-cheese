@@ -291,7 +291,6 @@
              [journals addObject:[[DYJournalEntry alloc] initWithDeserialize: journalDict[key]]];
          }
 
-
          self.currentUser.journals = [util sortEntriesFromArray:journals];
 
          //[self.users addObject:self.currentUser];

@@ -7,14 +7,18 @@
 //
 
 #import "JournalAndPictureAlternateView.h"
+#import "DataStore.h"
+#import "DYJournalEntry.h"
 
-@interface JournalAndPictureAlternateView ()
+@interface JournalAndPictureAlternateView () <UITextViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UIView *contentView;
 @property (weak, nonatomic) IBOutlet UILabel *topLabel;
 @property (weak, nonatomic) IBOutlet UIView *textFieldBackground;
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (weak, nonatomic) IBOutlet UIButton *doneButton;
+@property (strong, nonatomic) DataStore *datastore;
+@property (strong, nonatomic) DYJournalEntry *currentEntry;
 
 @end
 
@@ -54,12 +58,28 @@
     
     self.contentView.frame = self.bounds;
     
+    self.datastore = [DataStore sharedDataStore];
+    
+    self.currentEntry = [self.datastore.currentUser.journals lastObject];
+    
+    self.textView.delegate = self;
+    
+    
+    
 }
 
 - (IBAction)doneButtonTapped:(id)sender
 {
   
     [self.delegate doneButtonTapped];
+    
+    self.currentEntry.journalEntry = self.textView.text;
+    
+}
+
+-(void)textViewDidBeginEditing:(UITextView *)textView
+{
+    self.textView.text = @"";
 }
 
 @end
