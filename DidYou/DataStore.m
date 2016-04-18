@@ -198,6 +198,8 @@
     
     Firebase *journalRef = [[self getUserRef: user] childByAppendingPath:@"journals"];
     [[journalRef childByAutoId] setValue:[journalEntry serialize]];
+    [journalEntry.foreignID setValue:[journalRef childByAutoId] forKey:@"key"];
+    
 }
 
 
@@ -288,6 +290,8 @@
          for (NSString *key in [journalDict allKeys])
 
          {   // this is how you deserializing the object in firebase
+             [journalDict[key] setObject:key forKey:@"foreignID"];
+             
              [journals addObject:[[DYJournalEntry alloc] initWithDeserialize: journalDict[key]]];
          }
 

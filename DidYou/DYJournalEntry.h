@@ -17,6 +17,7 @@
 @property (strong, nonatomic) NSArray *questions;
 @property (strong, nonatomic) NSString *picture1Address;
 @property (strong, nonatomic) UIImage *userImage;
+@property (strong, nonatomic) NSString *foreignID;
 
 -(instancetype)init;
 
