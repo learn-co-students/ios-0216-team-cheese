@@ -22,6 +22,7 @@
 
 @property (weak, nonatomic) id <JournalAndPictureViewDelegate> delegate;
 @property (nonatomic,strong) IBOutlet UIImageView   *imageView;
+
 @property (nonatomic,strong) UITextView             *textView;
 @property (nonatomic,strong) UITapGestureRecognizer *tapOutKeyboard;
 @property (nonatomic,strong) UIButton               *deletePhotoButton;
@@ -29,5 +30,6 @@
 @property (nonatomic,strong) NSLayoutConstraint     *imageHeightConstraint;
 @property (nonatomic,strong) NSLayoutConstraint     *imageWidthConstraint;
 @property (nonatomic,strong) UIButton               *buttonThatAppears;
+
 
 @end
