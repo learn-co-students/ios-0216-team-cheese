@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3140F9FA1CC3D1A3002CB503 /* noun_38278_cc.png in Resources */ = {isa = PBXBuildFile; fileRef = 3140F9F91CC3D1A3002CB503 /* noun_38278_cc.png */; };
 		31FF281D1CAD6BED008051C0 /* DYQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FF281C1CAD6BED008051C0 /* DYQuestion.m */; };
 		31FF28231CAD7303008051C0 /* Question.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31FF28221CAD7303008051C0 /* Question.xib */; };
 		31FF28251CAD731C008051C0 /* JournalAndPicture.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31FF28241CAD731C008051C0 /* JournalAndPicture.xib */; };
@@ -49,6 +50,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3140F9F91CC3D1A3002CB503 /* noun_38278_cc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = noun_38278_cc.png; path = ../../../../Downloads/noun_38278_cc.png; sourceTree = "<group>"; };
 		31FF281B1CAD6BED008051C0 /* DYQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYQuestion.h; sourceTree = "<group>"; };
 		31FF281C1CAD6BED008051C0 /* DYQuestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYQuestion.m; sourceTree = "<group>"; };
 		31FF28221CAD7303008051C0 /* Question.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Question.xib; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 				AB92E7641CAC524300199034 /* Xib Views */,
 				AB92E7691CAC528600199034 /* Singleton Data Store */,
 				AB92E7241CAB01F200199034 /* Assets.xcassets */,
+				3140F9F91CC3D1A3002CB503 /* noun_38278_cc.png */,
 				AB92E7261CAB01F200199034 /* LaunchScreen.storyboard */,
 				AB92E7291CAB01F200199034 /* Info.plist */,
 				AB92E7181CAB01F200199034 /* Supporting Files */,
@@ -346,6 +349,7 @@
 				31FF28251CAD731C008051C0 /* JournalAndPicture.xib in Resources */,
 				31FF28231CAD7303008051C0 /* Question.xib in Resources */,
 				AB92E7281CAB01F200199034 /* LaunchScreen.storyboard in Resources */,
+				3140F9FA1CC3D1A3002CB503 /* noun_38278_cc.png in Resources */,
 				AB92E7251CAB01F200199034 /* Assets.xcassets in Resources */,
 				CD4CCAC51CB6EA0C00805B1F /* Stats.xib in Resources */,
 				AB92E75F1CAC48DE00199034 /* AddJournalEntry.xib in Resources */,

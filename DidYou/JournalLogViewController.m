@@ -9,14 +9,12 @@
 #import "JournalLogViewController.h"
 
 @interface JournalLogViewController ()
-
-@property (strong, nonatomic) IBOutlet UIStackView *stackView;
+@property (strong, nonatomic) IBOutlet UIView *clearView;
+@property (strong, nonatomic) IBOutlet UITextView *textView;
+@property (strong, nonatomic) IBOutlet UIView *borderSurroundingButton;
 @property (strong, nonatomic) IBOutlet UIButton *closeButton;
 
-@property (strong, nonatomic) IBOutlet NSLayoutConstraint *leftToRightConstraintForStack;
-@property (strong, nonatomic) IBOutlet NSLayoutConstraint *topToBottomConstraintForStack;
-@property (strong, nonatomic) IBOutlet NSLayoutConstraint *topToBottomConstraintForScroll;
-@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
+
 
 @property (strong,nonatomic) UIColor *createdColor;
 @property (strong,nonatomic) UIColor *anotherColor;
@@ -28,16 +26,17 @@
     [super viewDidLoad];
     self.createdColor = [[UIColor alloc]initWithRed:0 green:.50 blue:1 alpha:1];
     self.anotherColor = [UIColor colorWithRed:34.0/255.0 green:164.0/255.0 blue:0 alpha:.5];
-    self.view.backgroundColor = [[UIColor alloc]initWithWhite:.80 alpha:1];
+    self.view.backgroundColor = [UIColor whiteColor];
+
+    //self.view.backgroundColor = [UIColor lightGrayColor];
     
-    self.topToBottomConstraintForScroll.constant = -1000;
-    self.scrollView.alpha = 0;
-    self.stackView.alpha = 0;
-    [self.view sendSubviewToBack:self.stackView];
-    [self.view sendSubviewToBack:self.scrollView];
     
-    self.closeButton.enabled = NO;
-    
+    self.borderSurroundingButton.layer.borderWidth = 1.5f;
+    self.borderSurroundingButton.layer.borderColor = [UIColor darkGrayColor].CGColor;
+    self.borderSurroundingButton.layer.cornerRadius = self.borderSurroundingButton.frame.size.height / 2;
+    self.clearView.layer.borderWidth = 1.0f;
+    self.clearView.layer.borderColor = [UIColor darkGrayColor].CGColor;
+    self.textView.textColor = [UIColor darkGrayColor];
 }
 
 -(BOOL)prefersStatusBarHidden{
@@ -48,45 +47,20 @@
 
 
 - (void)viewDidAppear:(BOOL)animated{
-    [UIView animateWithDuration:.5 animations:^{
+
+    [UIView animateWithDuration:1 animations:^{
         
-        self.topToBottomConstraintForStack.constant = 15;
-       
-        self.stackView.alpha = 1;
-        [self.view layoutIfNeeded];
-    }];
-    [UIView animateWithDuration:1.5 animations:^{
-        self.topToBottomConstraintForScroll.constant = 0;
-        self.scrollView.alpha = 1;
         
         [self.view layoutIfNeeded];
     } completion:^(BOOL finished) {
-        self.closeButton.enabled = YES;
+
+        
     }];
     
 
 }
 
 
--(void)setUpScrollView
-{
-    UIScrollView *scrollView  = [UIScrollView new];
-    //scrollView.contentSize = CGSizeMake(300, 800);
-    scrollView.showsVerticalScrollIndicator = YES;
-    
-    scrollView.backgroundColor = [UIColor greenColor];
-    
-    [scrollView setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [self.view addSubview:scrollView];
-    
-    [scrollView.centerYAnchor constraintEqualToAnchor:self.view.centerYAnchor].active = YES;
-    [scrollView.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor].active = YES;
-    [scrollView.heightAnchor constraintEqualToConstant:100].active = YES;
-    [scrollView.widthAnchor  constraintEqualToConstant:100].active = YES;
-    
-
-
-}
 
 - (IBAction)whenBackButtonPressed:(id)sender {
     

@@ -12,11 +12,12 @@
 
 @interface JournalAndPictureView () <UITextViewDelegate>
 
-@property (strong, nonatomic) UIButton *finishedButton;
+
 @property (strong, nonatomic) DataStore *dataStore;
 @property (strong, nonatomic) NSString *emotion;
-@property (strong, nonatomic) IBOutlet UIButton *doneButton;
-@property (strong, nonatomic) IBOutlet NSLayoutConstraint *doneButtonAppearFromBottom;
+@property (strong, nonatomic) IBOutlet UIButton *postButton;
+
+
 
 
 
@@ -68,17 +69,13 @@
 -(void)viewsAreSet
 
 {
-    self.doneButton.alpha = 0;
+    
     
     self.dataStore = [DataStore sharedDataStore];
     NSArray *journals = self.dataStore.currentUser.journals;
     DYJournalEntry *currentJournal = [journals lastObject];
     self.emotion = currentJournal.mainEmotion;
-    
-    self.tapOutKeyboard = [[UITapGestureRecognizer alloc] init];
-    [self.contentView addGestureRecognizer:self.tapOutKeyboard];
-    [self.tapOutKeyboard addTarget:self action:@selector(whenTapGestureIsRecognized:)];
-    self.tapOutKeyboard.enabled = NO;
+
     
     self.textView = [UITextView new];
     self.textView.backgroundColor = [UIColor clearColor]; // made the textView transparent
@@ -109,7 +106,6 @@
     
     UIButton *addPhotoButton = [UIButton buttonWithType:UIButtonTypeSystem];
     [addPhotoButton setImage:[UIImage imageNamed:@"cameraImage"] forState:UIControlStateNormal];
-    //[addPhotoButton setTintColor:[[UIColor alloc]initWithRed:0 green:.50 blue:1 alpha:1]];
     [addPhotoButton setTintColor:[UIColor darkGrayColor]];
     [[addPhotoButton imageView] setContentMode:UIViewContentModeScaleAspectFill];
     [addPhotoButton addTarget:self action:@selector(whenAddPhotoButtonIsTapped:) forControlEvents:UIControlEventTouchUpInside];
@@ -119,17 +115,6 @@
     [addPhotoButton.widthAnchor constraintEqualToConstant:30].active = YES;
     [addPhotoButton.rightAnchor constraintEqualToAnchor:self.imageView.leftAnchor constant:-40].active = YES;
     [addPhotoButton.bottomAnchor constraintEqualToAnchor:self.textView.topAnchor constant:-40].active = YES;
-    
-    self.finishedButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    [self.finishedButton setTitle:@"Finished!" forState:UIControlStateNormal];
-    [self.finishedButton addTarget:self action:@selector(whenDoneEditingButtonIsTapped:) forControlEvents:UIControlEventTouchUpInside];
-    [self.finishedButton.heightAnchor constraintEqualToConstant:40].active = YES;
-    [self.finishedButton.widthAnchor constraintEqualToConstant:80].active = YES;
-    [self.finishedButton setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [self.contentView addSubview:self.finishedButton];
-    [self.finishedButton.rightAnchor constraintEqualToAnchor:self.contentView.rightAnchor constant:-10].active = YES;
-    [self.finishedButton.topAnchor constraintEqualToAnchor:self.textView.bottomAnchor].active = YES;
-    self.finishedButton.hidden = YES;
     
     self.deletePhotoButton =[UIButton buttonWithType:UIButtonTypeSystem];
     [self.deletePhotoButton setTintColor:[UIColor redColor]];
@@ -155,8 +140,17 @@
     self.labelOverKeyboard.textColor = [UIColor whiteColor];
     self.labelOverKeyboard.backgroundColor = [UIColor colorWithRed:34.0/255.0 green:164.0/255.0 blue:0 alpha:.5];
     
+    [self.textView becomeFirstResponder];
     
-    
+    self.postButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    [self.postButton addTarget:self action:@selector(doneButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+    [self.postButton setTitle:@"Post" forState:UIControlStateNormal];
+    [self.postButton setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.contentView addSubview:self.postButton];
+    [self.postButton.widthAnchor constraintEqualToAnchor:self.contentView.widthAnchor multiplier:0.2].active = YES;
+    [self.postButton.heightAnchor constraintEqualToAnchor:self.contentView.heightAnchor multiplier:0.05].active = YES;
+    [self.postButton.rightAnchor constraintEqualToAnchor:self.contentView.rightAnchor constant:-10].active = YES;
+    [self.postButton.topAnchor constraintEqualToAnchor:self.textView.bottomAnchor].active = YES;
     
     self.deletePhotoButton.hidden = YES;
 }
@@ -169,13 +163,9 @@
         self.textView.textColor = [UIColor darkGrayColor];
         
     }
-    self.tapOutKeyboard.enabled = YES;
-    self.finishedButton.hidden = NO;
-  
-    
     [UIView animateWithDuration:0.2f animations:^{
         self.labelOverKeyboard.alpha = 1;
-        self.finishedButton.enabled = YES;
+        
     }];
 }
 
@@ -189,46 +179,7 @@
         
     }
     
-    self.tapOutKeyboard.enabled = NO;
-    self.finishedButton.enabled = NO;
-    self.finishedButton.hidden = YES;
-    
-    
 }
-
--(void)textViewDidChange:(UITextView *)textView
-{
-    
-    self.finishedButton.enabled = YES;
-    
-}
-
--(IBAction)whenTapGestureIsRecognized:(id)sender
-{
-    [self.contentView endEditing:YES];
-    self.finishedButton.hidden = YES;
-    
-    [UIView animateWithDuration:0.2f animations:^{
-        self.labelOverKeyboard.alpha = 0;
-        self.doneButton.alpha = 1;
-    }];
-    
-    
-}
-
--(IBAction)whenDoneEditingButtonIsTapped:(id)sender
-{
-    
-    [self.contentView endEditing:YES];
-    self.finishedButton.hidden = YES;
-    
-    [UIView animateWithDuration:0.2f animations:^{
-        self.labelOverKeyboard.alpha = 0;
-        self.doneButton.alpha = 1;
-        self.doneButtonAppearFromBottom.constant = 50;
-    }];
-}
-
 -(IBAction)whenAddPhotoButtonIsTapped:(id)sender
 {
     [UIView animateWithDuration:0.2f animations:^{
@@ -244,7 +195,7 @@
 }
 - (IBAction)doneButtonTapped:(id)sender
 {
-    [self.delegate journalComplete:sender];
+   [self.delegate journalComplete:sender];
 }
 
 @end

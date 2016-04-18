@@ -577,6 +577,7 @@
     [self.addJournalFullScreenBlurView recieveImageFromMainViewController:chosenImage];
     [picker dismissViewControllerAnimated:YES completion:nil];
     
+    
 }
 
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker

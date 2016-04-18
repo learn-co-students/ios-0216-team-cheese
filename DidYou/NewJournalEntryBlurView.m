@@ -284,6 +284,7 @@
 
 -(void)recieveImageFromMainViewController:(UIImage *)imageRecieved
 {
+    [self.journalAndPictureView.textView becomeFirstResponder];
     self.currentEntry.userImage = imageRecieved;
     self.journalAndPictureView.deletePhotoButton.hidden = NO;
     self.journalAndPictureView.imageView.image = imageRecieved;
