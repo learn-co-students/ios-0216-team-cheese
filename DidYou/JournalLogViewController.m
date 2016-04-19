@@ -155,7 +155,15 @@
 - (IBAction)backButtonTap:(id)sender
 {
     NSLog(@"getting tapped");
-    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+          [self dismissViewControllerAnimated:YES completion:nil];
+        
+    });
+
+  
 
 }
 
