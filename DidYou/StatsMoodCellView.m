@@ -11,7 +11,6 @@
 
 @interface StatsMoodCellView ()
 @property (strong, nonatomic) IBOutlet UIView *contentView;
-//@property (weak, nonatomic) DYStatsInfo *currentStats;
 @property (strong, nonatomic) DataStore *dataStore;
 @property (strong, nonatomic) NSMutableDictionary *moodStatsDictionary;
 @property (strong, nonatomic) NSMutableArray *statsCirclesArray;
@@ -71,8 +70,8 @@
     [super layoutSubviews];
     [self addStatisticsCircles];
     [self createMoodStatsTitles];
-//    [self addMoodLabels];
-
+    [self addMoodLabels];
+    
 }
 
 -(void)addStatisticsCircles {
@@ -126,14 +125,20 @@
     NSInteger i = 0;
     
     for (NSMutableArray *moodArray in currentStats.allMoodsArray) {
-        emotionPercentage = [currentStats calculateEmotionPercentage:moodArray ofEntries:self.dataStore.currentUser.journals];
-//        NSLog(@"%@ percentage: %f",moodName[i], emotionPercentage);
-        NSString *emotionPercentageString = [NSString stringWithFormat:@"%f", emotionPercentage];
         
+        emotionPercentage = [currentStats calculateEmotionPercentage:moodArray ofEntries:self.dataStore.currentUser.journals];
+        NSString *emotionPercentageString = [NSString stringWithFormat:@"%f", emotionPercentage];
+        if (emotionPercentage < 9) {
+        emotionPercentageString = [emotionPercentageString substringToIndex:1];
+        } else if (emotionPercentage < 100) {
+            emotionPercentageString = [emotionPercentageString substringToIndex:2];
+        } else {
+            emotionPercentageString = [emotionPercentageString substringToIndex:2];
+        }
         [self.moodStatsDictionary setObject:emotionPercentageString forKey:moodName[i]];
         i = i + 1;
     }
-        NSLog(@"%@", self.moodStatsDictionary);
+    NSLog(@"%@", self.moodStatsDictionary);
 }
 
 -(void)addMoodLabels {
@@ -143,12 +148,16 @@
     
     for (UIView *circle in self.statsCirclesArray) {
         UILabel *statsLabel = [[UILabel alloc]init];
+        statsLabel.numberOfLines = 2;
+        statsLabel.textAlignment = NSTextAlignmentCenter;
         NSString *keyString = moodKeysArray[i];
         NSString *percentString = @"%";
-        statsLabel.text = [NSString stringWithFormat:@"%@\n%@%@", moodKeysArray[i], self.moodStatsDictionary[keyString], percentString];
+        NSLog(@"%@", keyString);
+        NSString *numberString = self.moodStatsDictionary[keyString];
+        statsLabel.text = [NSString stringWithFormat:@"%@\n %@%@", moodKeysArray[i], numberString, percentString];
         NSLog(@"\n\n\n\nstats label: %@\n\n\n\n\n", statsLabel.text);
         statsLabel.textColor = [UIColor blackColor];
-        [statsLabel setFont:[UIFont fontWithName:@"Arial" size:25.0]];
+        [statsLabel setFont:[UIFont fontWithName:@"Arial" size:14.0]];
         [self addSubview:statsLabel];
         
         statsLabel.translatesAutoresizingMaskIntoConstraints = NO;
@@ -156,6 +165,7 @@
         
         [statsLabel.centerYAnchor constraintEqualToAnchor:circle.centerYAnchor].active = YES;
         [statsLabel.centerXAnchor constraintEqualToAnchor:circle.centerXAnchor].active = YES;
+        [statsLabel.heightAnchor constraintEqualToAnchor:circle.heightAnchor multiplier:.5].active = YES;
         i = i + 1;
     }
 }
@@ -166,5 +176,10 @@
     NSString *stringFromDate = [formatter stringFromDate:[NSDate date]];
     //    self.timePeriodLabel.text = stringFromDate;
 }
+
+//-(void)resizeCircles:(UIView *)circleView withPercentage:(CGFloat)percentage {
+//    NSInteger minimumCircleSize = 75;
+//    NSInteger calculatedCircleSize =
+//}
 
 @end

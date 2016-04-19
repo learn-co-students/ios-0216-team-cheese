@@ -20,8 +20,9 @@
 @property (strong, nonatomic) NSMutableArray *answerThreeArray;
 @property (strong, nonatomic) NSMutableArray *answerFourArray;
 @property (strong, nonatomic) NSMutableArray *answerFiveArray;
-@property (strong, nonatomic) NSArray *arrayOfQuestions;
+@property (strong, nonatomic) NSArray *arrayOfQuestionsArrays;
 @property (strong, nonatomic) NSMutableArray *statsCirclesArray;
+@property (strong, nonatomic) NSArray *questionsArray;
 
 @end
 
@@ -73,40 +74,28 @@
     _answerFiveArray = [[NSMutableArray alloc]init];
     _statsCirclesArray = [[NSMutableArray alloc]init];
     _statsInfo = [[DYStatsInfo alloc]init];
-    _arrayOfQuestions = @[self.answerOneArray, self.answerTwoArray, self.answerThreeArray, self.answerFourArray, self.answerFiveArray];
+    _arrayOfQuestionsArrays = @[self.answerOneArray, self.answerTwoArray, self.answerThreeArray, self.answerFourArray, self.answerFiveArray];
+    _questionsArray = @[@"Sleep", @"Breakfast", @"Exercise", @"Kindness", @"Intimate"];
+    /*
+     @"get a good night's sleep?"
+     @"eat a healthy breakfast?"
+     @"workout today?"
+     @"do something nice for someone today?"
+     @"share physical intimacy with another in the last 24 hours?"]];
+     */
     
     [self addQuestionsStats];
-}
-
--(void)addQuestionsStats {
-    for (DYJournalEntry *journalEntry in self.dataStore.currentUser.journals) {
-        NSArray *questionsArray = journalEntry.questions;
-        NSInteger i = 0;
-        for (DYQuestion *question in questionsArray) {
-            if (question.answer == 2) {
-                [self.arrayOfQuestions[i] addObject:question];
-                NSLog(@"\n\n\n\nquestion: %@ answer: %lu\n\n\n\n", question.question, question.answer);
-                NSLog(@"\n\n\n\n\nthis is %lu question %@\n\n\n\n\n", i, self.arrayOfQuestions[i]);
-            }
-            i = i +1;
-        }
-    }
-}
-
--(void)calculateQuestionPercentages: (NSMutableArray *)questionsArray {
-    [self addQuestionsStats];
-    [self.statsInfo calculateEmotionPercentage:questionsArray ofEntries:self.dataStore.currentUser.journals];
 }
 
 -(void)layoutSubviews{
     [super layoutSubviews];
     [self addStatisticsCircles];
+    [self addMoodLabels];
 }
 
 -(void)addStatisticsCircles {
-
-    UIColor *lavendarColor = [UIColor colorWithRed:211.0f/255.0f green:145.0f/255.0f blue:255.0f/255.0f alpha:0.7];
     
+    UIColor *lavendarColor = [UIColor colorWithRed:211.0f/255.0f green:145.0f/255.0f blue:255.0f/255.0f alpha:0.7];
     CGFloat circleDistances = (self.frame.size.width) / 3;
     CGFloat distanceFromCenterX = -circleDistances;
     CGFloat halfDistanceToCenterY = self.frame.size.height / 5;
@@ -146,8 +135,75 @@
         [circleView.centerYAnchor constraintEqualToAnchor:self.centerYAnchor constant:(halfDistanceToCenterY + 20)].active = YES;
         distanceFromCenterX = distanceFromCenterX + (circleDistances * 2);
     }
-//    [self addMoodLabels];
 }
+
+-(CGFloat)calculateQuestionPercentages: (NSMutableArray *)questionsArray {
+    for (NSMutableArray *questionArray in self.arrayOfQuestionsArrays) {
+        [questionArray removeAllObjects];
+    }
+    [self addQuestionsStats];
+    CGFloat percentageOfQuestions = [self.statsInfo calculateEmotionPercentage:questionsArray ofEntries:self.dataStore.currentUser.journals];
+    return percentageOfQuestions;
+}
+
+-(void)addQuestionsStats {
+    for (DYJournalEntry *journalEntry in self.dataStore.currentUser.journals) {
+        NSArray *entryQuestionsArray = journalEntry.questions;
+        NSInteger i = 0;
+        for (DYQuestion *question in entryQuestionsArray) {
+            if (question.answer == 2) {
+                [self.arrayOfQuestionsArrays[i] addObject:question];
+                NSLog(@"\n\n\n\nquestion: %@ answer: %lu\n\n\n\n", question.question, question.answer);
+                NSLog(@"\n\n\n\n\nthis is %lu question %@\n\n\n\n\n", i, self.arrayOfQuestionsArrays[i]);
+            }
+            i = i +1;
+        }
+    }
+}
+
+-(NSString *)percentageToString:(CGFloat)calculatedPercentage {
+    NSString *emotionPercentageString = [NSString stringWithFormat:@"%f", calculatedPercentage];
+    if (calculatedPercentage < 9) {
+        emotionPercentageString = [emotionPercentageString substringToIndex:1];
+    } else if (calculatedPercentage < 100) {
+        emotionPercentageString = [emotionPercentageString substringToIndex:2];
+    } else {
+        emotionPercentageString = [emotionPercentageString substringToIndex:2];
+    }
+    return emotionPercentageString;
+}
+
+-(void)addMoodLabels {
+    
+    NSInteger i = 0;
+    
+    for (UIView *circle in self.statsCirclesArray) {
+        UILabel *statsLabel = [[UILabel alloc]init];
+        statsLabel.numberOfLines = 2;
+        statsLabel.textAlignment = NSTextAlignmentCenter;
+        
+        CGFloat calculatedPercent = [self calculateQuestionPercentages:self.arrayOfQuestionsArrays[i]];
+        NSString *calculatedPercentString = [self percentageToString:calculatedPercent];
+        NSString *percentSymbolString = @"%";
+        
+        statsLabel.text = [NSString stringWithFormat:@"%@\n %@%@", self.questionsArray[i], calculatedPercentString, percentSymbolString];
+        NSLog(@"\n\n\n\nstats label: %@\n\n\n\n\n", statsLabel.text);
+        statsLabel.textColor = [UIColor blackColor];
+        [statsLabel setFont:[UIFont fontWithName:@"Arial" size:14.0]];
+        [self addSubview:statsLabel];
+        
+        statsLabel.translatesAutoresizingMaskIntoConstraints = NO;
+        NSLog(@"%lu", circle.subviews.count);
+        
+        [statsLabel.centerYAnchor constraintEqualToAnchor:circle.centerYAnchor].active = YES;
+        [statsLabel.centerXAnchor constraintEqualToAnchor:circle.centerXAnchor].active = YES;
+        [statsLabel.heightAnchor constraintEqualToAnchor:circle.heightAnchor multiplier:.5].active = YES;
+        i = i + 1;
+    }
+}
+
+
+
 
 //METHODS USED IN MOODCELLVIEWCLASS, SOME MAY BE NEEDED HERE
 

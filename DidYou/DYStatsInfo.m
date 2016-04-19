@@ -29,12 +29,10 @@
     return self;
 }
 
-//FOLLOWING TEST METHODS FOR ALL TIME BAR GRAPH
 
-
--(CGFloat)calculateEmotionPercentage:(NSArray *)emotionArray ofEntries:(NSArray *)moodArray {
+-(CGFloat)calculateEmotionPercentage:(NSArray *)emotionArray ofEntries:(NSArray *)entryArray {
     CGFloat emotionCount = [emotionArray count];
-    CGFloat entryCount = [moodArray count];
+    CGFloat entryCount = [entryArray count];
     CGFloat emotionPercentage = (emotionCount / entryCount) * 100;
     return emotionPercentage;
 }
