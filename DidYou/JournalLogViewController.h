@@ -12,11 +12,7 @@
 
 @interface JournalLogViewController : UIViewController
 
+@property (nonatomic, strong) DYJournalEntry *journalEntry;
 
-
-@property (nonatomic, strong) DYJournalEntry *jorunalEntry;
-@property (nonatomic, strong) UILabel *theLabelForTheDate;
-@property (nonatomic, strong) UIButton *backButton;
-@property (nonatomic, strong) NSDate *dateOfPost;
 
 @end
