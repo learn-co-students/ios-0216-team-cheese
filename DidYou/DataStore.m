@@ -394,8 +394,6 @@
     
     //Firebase *countryRef = [[[self.myRootRef childByAppendingPath: @"countries"] childByAppendingPath: placeMark.country] childByAppendingPath:self.currentUser.userUUID];
     //[countryRef setValue: self.currentUser.country];
-
-    
 }
 
 -(void)deleteAllCurrentUserEntries
@@ -411,39 +409,5 @@
     
     
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 @end

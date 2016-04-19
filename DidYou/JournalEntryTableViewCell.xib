@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<<<<<<< HEAD
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
-=======
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
-    <dependencies>
-
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
-
->>>>>>> master
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
@@ -46,13 +38,7 @@
                                     </constraints>
                                 </imageView>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cKY-rf-4ey">
-<<<<<<< HEAD
                                     <rect key="frame" x="58" y="0.0" width="53" height="53"/>
-=======
-
-                                    <rect key="frame" x="58" y="0.0" width="53" height="53"/>
-
->>>>>>> master
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="cKY-rf-4ey" secondAttribute="height" multiplier="1:1" id="ieF-dG-Ofp"/>
                                     </constraints>
@@ -64,25 +50,13 @@
                                     </constraints>
                                 </imageView>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DYN-nP-jnb">
-<<<<<<< HEAD
                                     <rect key="frame" x="173" y="0.0" width="53" height="53"/>
-=======
-
-                                    <rect key="frame" x="173" y="0.0" width="53" height="53"/>
-
->>>>>>> master
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="DYN-nP-jnb" secondAttribute="height" multiplier="1:1" id="7mS-WF-frZ"/>
                                     </constraints>
                                 </imageView>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VNI-DX-srV">
-<<<<<<< HEAD
                                     <rect key="frame" x="231" y="0.0" width="53" height="53"/>
-=======
-
-                                    <rect key="frame" x="231" y="0.0" width="53" height="53"/>
-
->>>>>>> master
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="VNI-DX-srV" secondAttribute="height" multiplier="1:1" id="lMk-Au-Jwl"/>
                                     </constraints>

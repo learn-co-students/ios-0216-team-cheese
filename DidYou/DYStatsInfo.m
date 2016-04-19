@@ -20,6 +20,7 @@
         _scaredArray = [NSMutableArray new];
         _angryArray = [NSMutableArray new];
         _sadArray = [NSMutableArray new];
+        _dataStore = [DataStore sharedDataStore];
         _journalEntry = [[DYJournalEntry alloc]init];
         _currentUser = [[DYUser alloc]init];
         _arrayOfCurrentMonthJournalDictionaries = [NSMutableArray new];
@@ -30,28 +31,23 @@
 
 //FOLLOWING TEST METHODS FOR ALL TIME BAR GRAPH
 
--(CGFloat)moodPercentageForBarGraph:(NSArray *)journalArray {
-    CGFloat entriesCount = [journalArray count];
-    CGFloat moodPercentage = 0;
-    [self addToMoodArrays:journalArray];
-    for (NSArray *mainMoodArray in self.allMoodsArray) {
-        moodPercentage = [self calculateEmotionPercentage:mainMoodArray ofEntries:entriesCount];
-    }
-    return moodPercentage;
-}
 
--(CGFloat)calculateEmotionPercentage:(NSArray *)emotionArray ofEntries:(CGFloat)entryCount {
+-(CGFloat)calculateEmotionPercentage:(NSArray *)emotionArray ofEntries:(NSArray *)moodArray {
     CGFloat emotionCount = [emotionArray count];
+    CGFloat entryCount = [moodArray count];
     CGFloat emotionPercentage = (emotionCount / entryCount) * 100;
     return emotionPercentage;
 }
 
 //edit mood arrays based on the provided array of journal dictionaries (such as current month dictionary or year dictionary)
--(void)addToMoodArrays: (NSArray *)givenJournalsArray {
-    for (DYJournalEntry *currentJournal in givenJournalsArray) {
+-(void)addToMoodArrays {
+    NSLog(@"\n\n\n\n\n\nabout to attempt to add to mood arrays\n\n\n\n\n\n");
+    for (DYJournalEntry *currentJournal in self.dataStore.currentUser.journals) {
+        NSLog(@"entering the for loop");
         NSString *mainEmotionKeyString = [self generateMainEmotion:currentJournal.mainEmotion];
         if ([mainEmotionKeyString isEqualToString:@"Happy"]) {
             [self.happyArray addObject:mainEmotionKeyString];
+            NSLog(@"\n\n\n\n\n\n the happy array is: %@\n\n\n\n\n\n\n", self.happyArray);
         } else if ([mainEmotionKeyString isEqualToString:@"Excited"]) {
             [self.excitedArray addObject:mainEmotionKeyString];
         } else if ([mainEmotionKeyString isEqualToString:@"Tender"]) {
@@ -91,10 +87,25 @@
             mainEmotionKey = emotion;
         }
     }
+    NSLog(@"stats info generateMainEmotionTest %@", mainEmotionKey);
     return mainEmotionKey;
 }
 
+-(void)test {
+    NSLog(@"\n\n\ntesting\n\n\n");
+}
 
+/*
+
+-(CGFloat)moodPercentageForBarGraph:(NSArray *)journalEntriesArray {
+    CGFloat moodPercentage = 0;
+    [self addToMoodArrays];
+    for (NSArray *mainMoodArray in self.allMoodsArray) {
+        moodPercentage = [self calculateEmotionPercentage:journalEntriesArray ofEntries:mainMoodArray];
+    }
+    return moodPercentage;
+}
+*/
 /*
  @"Happy"
  @"Excited"

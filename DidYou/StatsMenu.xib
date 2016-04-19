@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StatsMenuView">
@@ -18,18 +19,19 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4kc-Xg-iPX">
-                    <rect key="frame" x="0.0" y="0.0" width="791" height="131"/>
+                    <rect key="frame" x="158.5" y="0.0" width="474.5" height="131"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EEC-3t-nqX" userLabel="Week Stats Button">
-                            <rect key="frame" x="0.0" y="0.0" width="264" height="131"/>
+                            <rect key="frame" x="0.0" y="0.0" width="158" height="131"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                             <state key="normal" title="Week"/>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dJX-9A-eyr" userLabel="Month Stats Button">
-                            <rect key="frame" x="264" y="0.0" width="264" height="131"/>
+                            <rect key="frame" x="158" y="0.0" width="158" height="131"/>
                             <state key="normal" title="Month"/>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EJy-Em-wio" userLabel="All Time Stats Button">
-                            <rect key="frame" x="528" y="0.0" width="264" height="131"/>
+                            <rect key="frame" x="316" y="0.0" width="158.5" height="131"/>
                             <state key="normal" title="All Time"/>
                         </button>
                     </subviews>
@@ -47,7 +49,7 @@
                 <constraint firstItem="4kc-Xg-iPX" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="5oN-kq-UV6"/>
                 <constraint firstItem="4kc-Xg-iPX" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="DMj-av-yin"/>
                 <constraint firstItem="4kc-Xg-iPX" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" id="gF6-Qz-1gu"/>
-                <constraint firstItem="4kc-Xg-iPX" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="vdd-Qn-z0r"/>
+                <constraint firstItem="4kc-Xg-iPX" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.6" id="vdd-Qn-z0r"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="217.5" y="258.5"/>

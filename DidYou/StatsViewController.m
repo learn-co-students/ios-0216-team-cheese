@@ -8,15 +8,16 @@
 
 #import "StatsViewController.h"
 #import "CustomTabBarView.h"
-#import "StatsMainTableViewCell.h"
 #import "StatsMenuView.h"
 #import "DataStore.h"
+#import "StatsMoodCellView.h"
+#import "StatsQuestionViewCell.h"
+#import "DYJournalEntry.h"
 
-@interface StatsViewController () <CustomTabBarDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface StatsViewController () <CustomTabBarDelegate>
 
 @property (strong, nonatomic) CustomTabBarView *tabBar;
 @property (weak, nonatomic) IBOutlet StatsMenuView *statsMenuView;
-@property (weak, nonatomic) IBOutlet UITableView *statsTableView;
 @property (strong, nonatomic) DataStore *datastore;
 
 @end
@@ -27,7 +28,7 @@
     self = [super init];
     
     if (self) {
-        _statsInfo = [[DYStatsInfo alloc]init];
+//        _statsInfo = [[DYStatsInfo alloc]init];
         _personalStatsDataDictionary = @{};
         _cityStatsDataDictionary = @{};
         _worldStatsDataDictionary = @{};
@@ -38,13 +39,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     [self createCustomTabBar];
     [self.view addSubview:self.statsMenuView];
     
-    self.datastore = [DataStore sharedDataStore];
-    
-    NSLog(@"in the stats screen, city is: %@ and country is %@", self.datastore.currentUser.city, self.datastore.currentUser.country);
+//    NSLog(@"in the stats screen, city is: %@ and country is %@", self.datastore.currentUser.city, self.datastore.currentUser.country);
+//    
+//    [self.statsInfo addToMoodArrays];
+//    NSLog(@"test data store journal array contents %@", self.datastore.currentUser.journals);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -83,42 +84,6 @@
     }
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 3;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 2;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    StatsMainTableViewCell *cell = [[StatsMainTableViewCell alloc]init];
-    return cell;
-}
-
-
-/*
- 
- - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
- 
- // Row display. Implementers should *always* try to reuse cells by setting each cell's reuseIdentifier and querying for available reusable cells with dequeueReusableCellWithIdentifier:
- // Cell gets various attributes set automatically based on table (separators) and data source (accessory views, editing controls)
- 
-
- 
- @optional
- 
- - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView;              // Default is 1 if not implemented
- 
- - (nullable NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section;    // fixed font style. use custom view (UILabel) if you want something different
- - (nullable NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section;
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 
 

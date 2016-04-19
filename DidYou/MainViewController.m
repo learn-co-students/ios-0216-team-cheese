@@ -68,6 +68,13 @@
     
     [self launchScreenLogic];
     
+//    DataStore *dataStore = [[DataStore alloc]init];
+//    DYStatsInfo *currentStats = [[DYStatsInfo alloc]init];
+//    
+//    [currentStats getEntriesFromCurrentMonth];
+//    [currentStats addToMoodArrays];
+//    NSLog(@"test happy array contents %@",dataStore.currentUser.journals);
+    
 
 }
 
@@ -167,14 +174,8 @@
         return @"new";
     }
 
-<<<<<<< HEAD
-
     
     [self launchSpinView];
-    
-    
-=======
->>>>>>> master
 }
 
 
@@ -289,9 +290,9 @@
     }
     
     //[self startLocationManager];
+    self.tabBar.userInteractionEnabled = YES;
     
     self.journalEntryTableView.userInteractionEnabled = YES;
-<<<<<<< HEAD
 }
 
 -(void)startLocationManager
@@ -308,26 +309,6 @@
     
     self.geocoder = [[CLGeocoder alloc]init];
 }
-
-
--(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
-    
-    NSLog(@"didFailWithError, %@", error);
-    
-    UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"Error" message:@"Failed to get where you are" preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-    }];
-    [errorAlert addAction:defaultAction];
-    
-    [self presentViewController:errorAlert animated:YES completion:nil];
-=======
-    self.tabBar.userInteractionEnabled = YES;
-    
->>>>>>> master
-}
-
-
-
 
 - (void)addButtonTapped:(UIButton *)sender {
     

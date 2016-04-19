@@ -7,11 +7,7 @@
 //
 
 #import "AppDelegate.h"
-<<<<<<< HEAD
-#import "DidYou-Bridging-Header.h"
-=======
 //#import <CoreLocation/CoreLocation.h>
->>>>>>> master
 
 @interface AppDelegate ()
 
