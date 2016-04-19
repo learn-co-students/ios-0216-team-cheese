@@ -30,6 +30,7 @@
 @property (strong, nonatomic) UIImage *userImage;
 
 
+
 + (instancetype)sharedDataStore;
 
 -(NSArray *)usersWithSameCity;
@@ -52,6 +53,8 @@
 
 
 -(void)addPlacemark: (CLPlacemark*)placeMark;
+
+- (void)removeValue;
 
 
 

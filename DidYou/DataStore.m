@@ -188,14 +188,13 @@
       [userRef setValue: myUser];
 }
 
--(void)addJournalToFirebase:(DYUser *)user :(DYJournalEntry *)journalEntry
+-(void)addJournalToFirebase:(DYUser *)user withJournalEntry:(DYJournalEntry *)journalEntry
 {
     
     NSLog(@"in add journal to firebase");
     // get the user reference and serialize the journal
     // use childByAutoId to assign random key to journal entry, in firebase, have an array, don't want to push array in its entirty every time, JS has a push method, randomly put in there, sort later
-    NSLog(@"%@\n\n\n\n\n", self.currentUser.userUUID);
-    
+
     Firebase *journalRef = [[self getUserRef: user] childByAppendingPath:@"journals"];
     [[journalRef childByAutoId] setValue:[journalEntry serialize]];
 }
@@ -208,8 +207,12 @@
     // Journal was updated so push entry to firebase
     
     NSLog(@"in add journal in datastore");
+    [self addJournalToFirebase:self.currentUser
+              withJournalEntry:self.currentUser.journals.lastObject];
 
-    [self addJournalToFirebase:self.currentUser :[self.currentUser.journals lastObject]];
+    DYJournalEntry *journal = self.currentUser.journals.lastObject;
+    NSLog(@"Journal is %@", journal.journalEntry);
+
 }
 
 -(void)updateCurrentUserCityAndCountry
@@ -288,9 +291,9 @@
          for (NSString *key in [journalDict allKeys])
 
          {   // this is how you deserializing the object in firebase
+            
              [journals addObject:[[DYJournalEntry alloc] initWithDeserialize: journalDict[key]]];
          }
-
 
          self.currentUser.journals = [util sortEntriesFromArray:journals];
 

@@ -56,6 +56,7 @@
         _mainEmotion = data[@"emotion"];
         _journalEntry = data[@"journalEntry"];
         _picture1Address = data[@"picture1Address"];
+
         if (!data[@"userImage"]) {
             _userImage = nil;
         } else
@@ -76,13 +77,17 @@
 
     //UIImage *userImage = [util decodeBase64ToImage: _picture1Address];
     
+    
     for (DYQuestion *question in _questions)
     {
         [questions addObject:[question serialize]];
     }
     data[@"date"] = [util getUTCFormatDate:_date];
     data[@"emotion"] = _mainEmotion;
+    
+    NSLog(@"What are ou journal entry: %@", _journalEntry);
     data[@"journalEntry"] = _journalEntry;
+    NSLog(@"The journal entry is %@", _journalEntry);
     data[@"picture1address"] = _picture1Address;
     if (!_userImage)
     {
@@ -99,7 +104,7 @@
 -(NSArray *)generateQuestions
 {
     
-    return @[ [[DYQuestion alloc] initWithQuestion:@"get a good night's sleep?"] , [[DYQuestion alloc] initWithQuestion:@"eat a healthy breakfast?"] ,[[DYQuestion alloc] initWithQuestion:@"workout in any way?"] , [[DYQuestion alloc] initWithQuestion:@"do something nice for someone?"] , [[DYQuestion alloc] initWithQuestion:@"have sex?"]];
+    return @[ [[DYQuestion alloc] initWithQuestion:@"get a good night's sleep?"] , [[DYQuestion alloc] initWithQuestion:@"eat a healthy breakfast?"] ,[[DYQuestion alloc] initWithQuestion:@"workout today?"] , [[DYQuestion alloc] initWithQuestion:@"do something nice for someone today?"] , [[DYQuestion alloc] initWithQuestion:@"share physical intimacy with another in the last 24 hours?"]];
 }
 
 
