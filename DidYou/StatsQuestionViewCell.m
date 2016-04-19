@@ -119,14 +119,16 @@
 
 -(void)addStatisticsCircles {
 
+    UIColor *lavendarColor = [UIColor colorWithRed:211.0f/255.0f green:145.0f/255.0f blue:255.0f/255.0f alpha:0.7];
+    
+    CGFloat circleDistances = (self.frame.size.width) / 3;
+    CGFloat distanceFromCenterX = -circleDistances;
+    CGFloat halfDistanceToCenterY = self.frame.size.height / 4;
     [self.statsCirclesArray removeAllObjects];
     for (NSInteger i = 0; i < 3; i++) {
-        CGFloat circleDistances = (self.frame.size.width) / 3;
-        CGFloat distanceFromCenterX = -circleDistances;
-        CGFloat halfDistanceToCenterY = self.frame.size.height / 4;
         
         UIView *circleView = [[UIView alloc]init];
-        circleView.backgroundColor = [UIColor orangeColor];
+        circleView.backgroundColor = lavendarColor;
         [self addSubview:circleView];
         [self.statsCirclesArray addObject:circleView];
         circleView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -135,16 +137,19 @@
         [circleView.heightAnchor constraintEqualToConstant:100].active = YES;
         circleView.layer.cornerRadius = 100 / 2.0;
         [circleView.centerXAnchor constraintEqualToAnchor:self.centerXAnchor constant:distanceFromCenterX].active = YES;
-        [circleView.centerYAnchor constraintEqualToAnchor:self.centerYAnchor constant:-halfDistanceToCenterY].active = YES;
+        [circleView.centerYAnchor constraintEqualToAnchor:self.centerYAnchor constant:-(halfDistanceToCenterY - 75)].active = YES;
         distanceFromCenterX = distanceFromCenterX + circleDistances;
     }
+
+    
+    circleDistances = (self.frame.size.width) / 6;
+    distanceFromCenterX = -circleDistances;
+    halfDistanceToCenterY = self.frame.size.height / 4;
     
     for (NSInteger i = 0; i < 2; i++) {
-        CGFloat circleDistances = (self.frame.size.width) / 3;
-        CGFloat distanceFromCenterX = -circleDistances;
-        CGFloat halfDistanceToCenterY = self.frame.size.height / 4;
+        
         UIView *circleView = [[UIView alloc]init];
-        circleView.backgroundColor = [UIColor orangeColor];
+        circleView.backgroundColor = lavendarColor;
         [self addSubview:circleView];
         [self.statsCirclesArray addObject:circleView];
         circleView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -153,8 +158,8 @@
         [circleView.heightAnchor constraintEqualToConstant:100].active = YES;
         circleView.layer.cornerRadius = 100 / 2.0;
         [circleView.centerXAnchor constraintEqualToAnchor:self.centerXAnchor constant:distanceFromCenterX].active = YES;
-        [circleView.centerYAnchor constraintEqualToAnchor:self.centerYAnchor constant:halfDistanceToCenterY].active = YES;
-        distanceFromCenterX = distanceFromCenterX + circleDistances;
+        [circleView.centerYAnchor constraintEqualToAnchor:self.centerYAnchor constant:(halfDistanceToCenterY + 75)].active = YES;
+        distanceFromCenterX = distanceFromCenterX + (circleDistances * 2);
     }
 //    [self addMoodLabels];
 }

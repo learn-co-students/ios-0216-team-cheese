@@ -56,6 +56,8 @@
 
 - (void)removeValue;
 
+-(void)updateFirebaseJournals;
+
 
 
 

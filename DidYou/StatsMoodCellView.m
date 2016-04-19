@@ -111,7 +111,7 @@
         [circleView.heightAnchor constraintEqualToConstant:100].active = YES;
         circleView.layer.cornerRadius = 100 / 2.0;
         [circleView.centerXAnchor constraintEqualToAnchor:self.centerXAnchor constant:distanceFromCenterX].active = YES;
-        [circleView.centerYAnchor constraintEqualToAnchor:self.centerYAnchor constant:-halfDistanceToCenterY].active = YES;
+        [circleView.centerYAnchor constraintEqualToAnchor:self.centerYAnchor constant:-(halfDistanceToCenterY - 25)].active = YES;
         distanceFromCenterX = distanceFromCenterX + circleDistances;
     }
     
@@ -129,7 +129,7 @@
         [circleView.heightAnchor constraintEqualToConstant:100].active = YES;
         circleView.layer.cornerRadius = 100 / 2.0;
         [circleView.centerXAnchor constraintEqualToAnchor:self.centerXAnchor constant:distanceFromCenterX].active = YES;
-        [circleView.centerYAnchor constraintEqualToAnchor:self.centerYAnchor constant:halfDistanceToCenterY].active = YES;
+        [circleView.centerYAnchor constraintEqualToAnchor:self.centerYAnchor constant:(halfDistanceToCenterY + 25)].active = YES;
         distanceFromCenterX = distanceFromCenterX + circleDistances;
     }
     [self addMoodLabels];

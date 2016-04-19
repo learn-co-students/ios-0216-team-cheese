@@ -18,6 +18,7 @@
 		779BD9041CB736560027DC91 /* DYUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 779BD9031CB736560027DC91 /* DYUtility.m */; };
 		AB2A386C1CC449E1005DD03A /* JournalAndPictureAlternate.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB2A386B1CC449E1005DD03A /* JournalAndPictureAlternate.xib */; };
 		AB2A386F1CC52010005DD03A /* JournalAndPictureAlternateView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB2A386E1CC52010005DD03A /* JournalAndPictureAlternateView.m */; };
+		AB2A38721CC6764E005DD03A /* JournalEntryTableViewCellAlternate.m in Sources */ = {isa = PBXBuildFile; fileRef = AB2A38711CC6764E005DD03A /* JournalEntryTableViewCellAlternate.m */; };
 		AB69AF281CBD87F400CC9F9B /* EmptyTable.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB69AF271CBD87F400CC9F9B /* EmptyTable.xib */; };
 		AB69AF531CBFF01200CC9F9B /* EmptyTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB69AF521CBFF01200CC9F9B /* EmptyTableView.m */; };
 		AB69AF571CC03A7D00CC9F9B /* noInternet.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB69AF561CC03A7D00CC9F9B /* noInternet.xib */; };
@@ -78,6 +79,8 @@
 		AB2A386B1CC449E1005DD03A /* JournalAndPictureAlternate.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JournalAndPictureAlternate.xib; sourceTree = "<group>"; };
 		AB2A386D1CC52010005DD03A /* JournalAndPictureAlternateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JournalAndPictureAlternateView.h; sourceTree = "<group>"; };
 		AB2A386E1CC52010005DD03A /* JournalAndPictureAlternateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JournalAndPictureAlternateView.m; sourceTree = "<group>"; };
+		AB2A38701CC6764E005DD03A /* JournalEntryTableViewCellAlternate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JournalEntryTableViewCellAlternate.h; sourceTree = "<group>"; };
+		AB2A38711CC6764E005DD03A /* JournalEntryTableViewCellAlternate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JournalEntryTableViewCellAlternate.m; sourceTree = "<group>"; };
 		AB69AF271CBD87F400CC9F9B /* EmptyTable.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyTable.xib; sourceTree = "<group>"; };
 		AB69AF511CBFF01200CC9F9B /* EmptyTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyTableView.h; sourceTree = "<group>"; };
 		AB69AF521CBFF01200CC9F9B /* EmptyTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyTableView.m; sourceTree = "<group>"; };
@@ -292,6 +295,8 @@
 				AB92E7E11CB5708200199034 /* SettingsViewController.m */,
 				AB92E7D81CB40C6400199034 /* JournalEntryTableViewCell.h */,
 				AB92E7D91CB40C6400199034 /* JournalEntryTableViewCell.m */,
+				AB2A38701CC6764E005DD03A /* JournalEntryTableViewCellAlternate.h */,
+				AB2A38711CC6764E005DD03A /* JournalEntryTableViewCellAlternate.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -466,6 +471,7 @@
 				31FF282B1CAD736E008051C0 /* CategoryFeelingView.m in Sources */,
 				AB2A386F1CC52010005DD03A /* JournalAndPictureAlternateView.m in Sources */,
 				779BD9041CB736560027DC91 /* DYUtility.m in Sources */,
+				AB2A38721CC6764E005DD03A /* JournalEntryTableViewCellAlternate.m in Sources */,
 				AB92E7E21CB5708200199034 /* SettingsViewController.m in Sources */,
 				CD086FC11CC52D46007A996A /* StatsQuestionViewCell.m in Sources */,
 				AB92E7DA1CB40C6400199034 /* JournalEntryTableViewCell.m in Sources */,

@@ -18,6 +18,8 @@
 #import "JournalLogViewController.h"
 #import "EmptyTableView.h"
 #import "NoInternetView.h"
+#import "JournalEntryTableViewCellAlternate.h"
+#import "SWTableViewCell.h"
 
 
 @interface MainViewController () <NewJournalEntryBlurViewDelegate, UITableViewDataSource, UITableViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, CustomTabBarDelegate, LoadingFirstPageViewDelegate, NoInternetDelegate, CLLocationManagerDelegate>
@@ -221,6 +223,7 @@
     self.addEntryTopView.delegate = self;
     self.journalEntryTableView.delegate = self;
     self.journalEntryTableView.dataSource = self;
+   
 
 }
 
@@ -457,7 +460,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    JournalEntryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"basicCell"];
+    JournalEntryTableViewCellAlternate *cell = [tableView dequeueReusableCellWithIdentifier:@"basicCell"];
     
     NSArray *journalsLIFO = [self.dataStore.currentUser journalArrayLIFO];
     
@@ -466,6 +469,10 @@
     cell.cellView.journalEntry = journalAtRow;
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    cell.rightUtilityButtons = [self rightButtons];
+    
+    cell.delegate = self;
     
     
     return cell;
@@ -568,8 +575,54 @@
         
     });
     
+    NSLog(@"%lu",indexPath.row);
+    
    
 }
+
+- (NSArray *)rightButtons
+{
+    
+    NSMutableArray *rightUtilityButtons = [NSMutableArray new];
+    
+    [rightUtilityButtons sw_addUtilityButtonWithColor:
+     
+     [UIColor colorWithRed:1.0f green:0.231f blue:0.188 alpha:1.0f]
+                                                title:@"Delete"];
+    return rightUtilityButtons;
+}
+
+- (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerRightUtilityButtonWithIndex:(NSInteger)index
+{
+    
+    if (index == 0)
+    {
+        NSLog(@"tapped delete");
+        
+        NSLog(@"%lu",index);
+      
+        NSIndexPath *cellIndexPath = [self.journalEntryTableView indexPathForCell:cell];
+        
+        NSArray *journalsLIFO = [self.dataStore.currentUser journalArrayLIFO];
+        
+        DYJournalEntry *journalAtRow = journalsLIFO[cellIndexPath.row];
+        
+        [self.dataStore.currentUser.journals removeObject:journalAtRow];
+        
+        [self.dataStore updateFirebaseJournals];
+        
+        [self.journalEntryTableView reloadData];
+    }
+    
+    
+}
+
+- (BOOL)swipeableTableViewCellShouldHideUtilityButtonsOnSwipe:(SWTableViewCell *)cell
+{
+    
+    return YES;
+}
+
 
 
 

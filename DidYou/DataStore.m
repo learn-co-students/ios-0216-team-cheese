@@ -263,63 +263,58 @@
 
 -(void)pullCurrentUserFromFirebase:(NSString *)userUUID
 {
-
+    
     NSLog(@"in the firebase method trying with UUID: %@", userUUID);
     
     Firebase *userRef = [[self.myRootRef childByAppendingPath:@"users"] childByAppendingPath:userUUID];
     
     [userRef observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
-
+        
         NSLog(@"in the firebase completion");
-
+        
         NSLog(@"%@", [snapshot value]);
-
+        
         DYUtility *util = [DYUtility sharedUtility];
         NSMutableArray *journals = [[NSMutableArray alloc] init];
         NSDictionary *result = [snapshot value];
-
+        
         self.currentUser.signUpDate = [util fromUTCFormatDate: result[@"signUpDate"]];
         self.currentUser.name = result[@"name"];
         self.currentUser.city = result[@"city"];
         self.currentUser.country = result[@"country"];
-
-         // Deserialize each journal entry
-         NSMutableDictionary *journalDict = result[@"journals"];
-
-         for (NSString *key in [journalDict allKeys])
-
-         {   // this is how you deserializing the object in firebase
-            
-             [journals addObject:[[DYJournalEntry alloc] initWithDeserialize: journalDict[key]]];
-         }
-
-         self.currentUser.journals = [util sortEntriesFromArray:journals];
         
-        for (DYJournalEntry *entry in self.currentUser.journals) {
-            NSDictionary *journalQuestions = entry.questions;
-            NSArray *journalKeys = [journalQuestions allKeys];
-            NSString *firstJournalKey = journalKeys[0];
-            NSLog(@"sample journal questions: %@", journalQuestions[firstJournalKey]);
+        // Deserialize each journal entry
+        NSMutableDictionary *journalDict = result[@"journals"];
+        
+        for (NSString *key in [journalDict allKeys])
+            
+        {   // this is how you deserializing the object in firebase
+            
+            [journals addObject:[[DYJournalEntry alloc] initWithDeserialize: journalDict[key]]];
         }
-
-         //[self.users addObject:self.currentUser];
-         
-         // Notify the main controller that the firebase data
-         // has arrived
-
-         NSLog(@"about to post firebase notification");
-
-
-         [[NSNotificationCenter defaultCenter]
-          postNotificationName:@"FirebaseNotification"
-          object:self];
+        
+        self.currentUser.journals = [util sortEntriesFromArray:journals];
+        
+        //[self.users addObject:self.currentUser];
+        
+        // Notify the main controller that the firebase data
+        // has arrived
+        
+        NSLog(@"about to post firebase notification");
+        
+        
+        [[NSNotificationCenter defaultCenter]
+         postNotificationName:@"FirebaseNotification"
+         object:self];
+        
         
         [self setUpLocationManager];
-
-          //this block doesn't get executed until the snapshot is delivered
+        
+        //this block doesn't get executed until the snapshot is delivered
+        
     } ];
+    
 }
-
 
 
 -(NSDictionary *)emotionsDictionary
@@ -419,5 +414,51 @@
     
     
 }
+
+-(void)updateFirebaseJournals
+{
+   
+    Firebase *journalsRef = [[self getUserRef:self.currentUser] childByAppendingPath:@"journals"];
+    
+    [journalsRef removeValue];
+    
+    for (DYJournalEntry *entry in self.currentUser.journals)
+    {
+        [self addJournalToFirebase:self.currentUser withJournalEntry:entry];
+    }
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @end
