@@ -95,49 +95,7 @@
     NSLog(@"\n\n\ntesting\n\n\n");
 }
 
-/*
-
--(CGFloat)moodPercentageForBarGraph:(NSArray *)journalEntriesArray {
-    CGFloat moodPercentage = 0;
-    [self addToMoodArrays];
-    for (NSArray *mainMoodArray in self.allMoodsArray) {
-        moodPercentage = [self calculateEmotionPercentage:journalEntriesArray ofEntries:mainMoodArray];
-    }
-    return moodPercentage;
-}
-*/
-/*
- @"Happy"
- @"Excited"
- @"Tender"
- @"Scared"
- @"Angry"
- @"Sad"
- */
 
 //then another method that counts the number of total emotion values
 //then divides the number of total emotion values by the number of the count of each array to create the percentages required
-
-
-
-
-
-//or maybe scrap and use nspredicate
-////-(NSArray *)usersWithSameCountry
-//{
-//    NSString *usersCountry = self.currentUser.country;
-//
-//    NSPredicate *sameCountryPredictate = [NSPredicate predicateWithFormat:@"country = %@",usersCountry];
-//
-//    NSArray *usersWithSameCountry = [self.users filteredArrayUsingPredicate:sameCountryPredictate];
-//
-//    return usersWithSameCountry;
-//
-//}
-
-
-
-
-
-
 @end
