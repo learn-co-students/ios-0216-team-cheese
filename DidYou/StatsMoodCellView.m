@@ -135,6 +135,10 @@
         } else {
             emotionPercentageString = [emotionPercentageString substringToIndex:2];
         }
+        if ([self.dataStore.currentUser.journals count] == 0) {
+            emotionPercentageString = @"0";
+        }
+        
         [self.moodStatsDictionary setObject:emotionPercentageString forKey:moodName[i]];
         i = i + 1;
     }
