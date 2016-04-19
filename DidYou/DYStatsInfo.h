@@ -37,7 +37,7 @@
 //-(void)addToMoodArrays: (NSArray *)givenJournalsArray;
 -(void)getEntriesFromCurrentMonth;
 -(NSString *)generateMainEmotion:(NSString *)storedEmotion;
-
+-(void)resizeCircles:(UIView *)circleView withPercentage:(CGFloat)percentage;
 -(instancetype)init;
 
 /*

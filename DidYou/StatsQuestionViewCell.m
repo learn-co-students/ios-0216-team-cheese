@@ -108,9 +108,9 @@
         [self.statsCirclesArray addObject:circleView];
         circleView.translatesAutoresizingMaskIntoConstraints = NO;
         
-        [circleView.widthAnchor constraintEqualToConstant:100].active = YES;
-        [circleView.heightAnchor constraintEqualToConstant:100].active = YES;
-        circleView.layer.cornerRadius = 100 / 2.0;
+        CGFloat calculatedPercent = [self calculateQuestionPercentages:self.arrayOfQuestionsArrays[i]];
+        [self.statsInfo resizeCircles:circleView withPercentage:calculatedPercent];
+        
         [circleView.centerXAnchor constraintEqualToAnchor:self.centerXAnchor constant:distanceFromCenterX].active = YES;
         [circleView.centerYAnchor constraintEqualToAnchor:self.centerYAnchor constant:-(halfDistanceToCenterY - 20)].active = YES;
         distanceFromCenterX = distanceFromCenterX + circleDistances;
@@ -120,17 +120,21 @@
     circleDistances = (self.frame.size.width) / 6;
     distanceFromCenterX = -circleDistances;
     
-    for (NSInteger i = 0; i < 2; i++) {
+    for (NSInteger i = 3; i < 5; i++) {
         
         UIView *circleView = [[UIView alloc]init];
         circleView.backgroundColor = lavendarColor;
+        
         [self addSubview:circleView];
         [self.statsCirclesArray addObject:circleView];
         circleView.translatesAutoresizingMaskIntoConstraints = NO;
         
-        [circleView.widthAnchor constraintEqualToConstant:100].active = YES;
-        [circleView.heightAnchor constraintEqualToConstant:100].active = YES;
-        circleView.layer.cornerRadius = 100 / 2.0;
+        CGFloat calculatedPercent = [self calculateQuestionPercentages:self.arrayOfQuestionsArrays[i]];
+        [self.statsInfo resizeCircles:circleView withPercentage:calculatedPercent];
+        
+//        [circleView.widthAnchor constraintEqualToConstant:100].active = YES;
+//        [circleView.heightAnchor constraintEqualToConstant:100].active = YES;
+//        circleView.layer.cornerRadius = 100 / 2.0;
         [circleView.centerXAnchor constraintEqualToAnchor:self.centerXAnchor constant:distanceFromCenterX].active = YES;
         [circleView.centerYAnchor constraintEqualToAnchor:self.centerYAnchor constant:(halfDistanceToCenterY + 20)].active = YES;
         distanceFromCenterX = distanceFromCenterX + (circleDistances * 2);

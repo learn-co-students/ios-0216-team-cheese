@@ -49,7 +49,6 @@
 		CD086FBC1CC52736007A996A /* StatsMoodsViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD086FBB1CC52736007A996A /* StatsMoodsViewCell.xib */; };
 		CD086FBE1CC52CA7007A996A /* StatsQuestionsViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD086FBD1CC52CA7007A996A /* StatsQuestionsViewCell.xib */; };
 		CD086FC11CC52D46007A996A /* StatsQuestionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD086FC01CC52D46007A996A /* StatsQuestionViewCell.m */; };
-		CD9093571CC1B4C400A1D1B3 /* StatsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD9093561CC1B4C400A1D1B3 /* StatsTableViewController.m */; };
 		CDA19A171CB58A28001E1872 /* MoodCircleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CDA19A161CB58A28001E1872 /* MoodCircleButton.m */; };
 		CDA730891CBC4DE70014C12D /* DYStatsInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CDA730881CBC4DE70014C12D /* DYStatsInfo.m */; };
 		CDA7309A1CC047C00014C12D /* StatsMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDA730991CC047C00014C12D /* StatsMenu.xib */; };
@@ -129,8 +128,6 @@
 		CD086FBD1CC52CA7007A996A /* StatsQuestionsViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatsQuestionsViewCell.xib; sourceTree = "<group>"; };
 		CD086FBF1CC52D46007A996A /* StatsQuestionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatsQuestionViewCell.h; sourceTree = "<group>"; };
 		CD086FC01CC52D46007A996A /* StatsQuestionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatsQuestionViewCell.m; sourceTree = "<group>"; };
-		CD9093551CC1B4C400A1D1B3 /* StatsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatsTableViewController.h; sourceTree = "<group>"; };
-		CD9093561CC1B4C400A1D1B3 /* StatsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatsTableViewController.m; sourceTree = "<group>"; };
 		CDA19A151CB58A28001E1872 /* MoodCircleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoodCircleButton.h; sourceTree = "<group>"; };
 		CDA19A161CB58A28001E1872 /* MoodCircleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoodCircleButton.m; sourceTree = "<group>"; };
 		CDA730871CBC4DE70014C12D /* DYStatsInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYStatsInfo.h; sourceTree = "<group>"; };
@@ -248,14 +245,12 @@
 				CD086FB91CC526C6007A996A /* StatsMoodCellView.m */,
 				CD086FBF1CC52D46007A996A /* StatsQuestionViewCell.h */,
 				CD086FC01CC52D46007A996A /* StatsQuestionViewCell.m */,
-				31FF28261CAD7356008051C0 /* MainFeelingView.h */,
-				31FF28271CAD7356008051C0 /* MainFeelingView.m */,
 				CDA7309E1CC049B60014C12D /* StatsMenuView.h */,
 				CDA7309F1CC049B60014C12D /* StatsMenuView.m */,
+				31FF28261CAD7356008051C0 /* MainFeelingView.h */,
+				31FF28271CAD7356008051C0 /* MainFeelingView.m */,
 				AB92E7D51CB4063A00199034 /* JournalEntryTableViewCellView.h */,
 				AB92E7D61CB4063A00199034 /* JournalEntryTableViewCellView.m */,
-				CD9093551CC1B4C400A1D1B3 /* StatsTableViewController.h */,
-				CD9093561CC1B4C400A1D1B3 /* StatsTableViewController.m */,
 				AB92E7931CAD9CB400199034 /* NewJournalEntryBlurView.h */,
 				AB92E7941CAD9CB400199034 /* NewJournalEntryBlurView.m */,
 				AB69AF581CC03BFE00CC9F9B /* NoInternetView.h */,
@@ -486,7 +481,6 @@
 				AB92E7DF1CB55BE000199034 /* CustomTabBarView.m in Sources */,
 				AB92E76F1CAC697B00199034 /* StatsViewController.m in Sources */,
 				CDA730A01CC049B60014C12D /* StatsMenuView.m in Sources */,
-				CD9093571CC1B4C400A1D1B3 /* StatsTableViewController.m in Sources */,
 				D60655981CBC2F9A00709533 /* LoadingFirstPageView.m in Sources */,
 				AB92E71D1CAB01F200199034 /* AppDelegate.m in Sources */,
 				CDA730891CBC4DE70014C12D /* DYStatsInfo.m in Sources */,

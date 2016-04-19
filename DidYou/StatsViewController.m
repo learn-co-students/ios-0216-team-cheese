@@ -29,10 +29,10 @@
     
     if (self) {
 //        _statsInfo = [[DYStatsInfo alloc]init];
-        _personalStatsDataDictionary = @{};
-        _cityStatsDataDictionary = @{};
-        _worldStatsDataDictionary = @{};
-        _arrayOfStatsDataDictionaries = @[self.personalStatsDataDictionary, self.cityStatsDataDictionary, self.worldStatsDataDictionary];
+//        _personalStatsDataDictionary = @{};
+//        _cityStatsDataDictionary = @{};
+//        _worldStatsDataDictionary = @{};
+//        _arrayOfStatsDataDictionaries = @[self.personalStatsDataDictionary, self.cityStatsDataDictionary, self.worldStatsDataDictionary];
     }
     return self;
 }
@@ -40,7 +40,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self createCustomTabBar];
-    [self.view addSubview:self.statsMenuView];
+    //[self.view addSubview:self.statsMenuView];
     
 //    NSLog(@"in the stats screen, city is: %@ and country is %@", self.datastore.currentUser.city, self.datastore.currentUser.country);
 //    

@@ -62,12 +62,12 @@
 
 //changes sub emotion to a main emotion key (so switches something like blue to sad)
 -(NSString *)generateMainEmotion:(NSString *)storedEmotion {
-    DataStore *dataObject = [[DataStore alloc]init];
+
     NSString *mainEmotionKey = @"";
-    NSArray *emotionKeysArray = [dataObject.emotions allKeys];
+    NSArray *emotionKeysArray = [self.dataStore.emotions allKeys];
     
     for (NSString *emotion in emotionKeysArray) {
-        if ([dataObject.emotions[emotion] containsObject:storedEmotion]) {
+        if ([self.dataStore.emotions[emotion] containsObject:storedEmotion]) {
             mainEmotionKey = emotion;
         } else if ([emotion isEqualToString:storedEmotion]){
             mainEmotionKey = emotion;
@@ -87,6 +87,21 @@
             [self.arrayOfCurrentMonthJournalDictionaries addObject:currentJournalEntry];
         }
     }
+}
+
+-(void)resizeCircles:(UIView *)circleView withPercentage:(CGFloat)percentage {
+    CGFloat minimumCircleSize = 60;
+    CGFloat maximumCircleSize = 100;
+    CGFloat range = maximumCircleSize - minimumCircleSize;
+    //.25
+    CGFloat sizeIncrement = (range / maximumCircleSize);
+    //.0075
+    CGFloat calculatedCircleSize = minimumCircleSize + (percentage * sizeIncrement);
+    
+    
+    [circleView.widthAnchor constraintEqualToConstant:calculatedCircleSize].active = YES;
+    [circleView.heightAnchor constraintEqualToConstant:calculatedCircleSize].active = YES;
+    circleView.layer.cornerRadius = calculatedCircleSize / 2.0;
 }
 
 

@@ -151,6 +151,7 @@
     NSInteger i = 0;
     
     for (UIView *circle in self.statsCirclesArray) {
+        
         UILabel *statsLabel = [[UILabel alloc]init];
         statsLabel.numberOfLines = 2;
         statsLabel.textAlignment = NSTextAlignmentCenter;
@@ -180,10 +181,5 @@
     NSString *stringFromDate = [formatter stringFromDate:[NSDate date]];
     //    self.timePeriodLabel.text = stringFromDate;
 }
-
-//-(void)resizeCircles:(UIView *)circleView withPercentage:(CGFloat)percentage {
-//    NSInteger minimumCircleSize = 75;
-//    NSInteger calculatedCircleSize =
-//}
 
 @end
