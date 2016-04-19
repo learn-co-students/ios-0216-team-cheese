@@ -69,6 +69,30 @@
     
     [self generateEmotionLabel];
     
+    
+//    NSDateFormatter *dayFormatter = [[NSDateFormatter alloc] init];
+//    NSDateFormatter *monthFormatter = [[NSDateFormatter alloc] init];
+//    NSDateFormatter *weekDayFormatter = [[NSDateFormatter alloc] init];
+//    
+//    [dayFormatter setDateFormat:@"d"];
+//    [monthFormatter setDateFormat:@"MMMM"];
+//    [weekDayFormatter setDateFormat:@"eeee"];
+//    
+//    NSString *month = [monthFormatter stringFromDate:self.journalEntry.date];
+//    NSString *dayOfMonth = [dayFormatter stringFromDate:self.journalEntry.date];
+//    NSString *dayOfWeek = [weekDayFormatter stringFromDate:self.journalEntry.date];
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    
+    [formatter setDateFormat:@"eeee, MMMM dd"];
+    
+    NSString *dateString = [formatter stringFromDate:self.journalEntry.date];
+    
+    self.dateLabel.text = dateString;
+
+    
+    
+    
 
     
   
@@ -131,7 +155,15 @@
 - (IBAction)backButtonTap:(id)sender
 {
     NSLog(@"getting tapped");
-    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+          [self dismissViewControllerAnimated:YES completion:nil];
+        
+    });
+
+  
 
 }
 
