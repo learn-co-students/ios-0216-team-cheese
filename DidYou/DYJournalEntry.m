@@ -56,7 +56,7 @@
         _mainEmotion = data[@"emotion"];
         _journalEntry = data[@"journalEntry"];
         _picture1Address = data[@"picture1Address"];
-       
+
         if (!data[@"userImage"]) {
             _userImage = nil;
         } else

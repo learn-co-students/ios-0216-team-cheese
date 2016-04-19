@@ -15,9 +15,10 @@
 #import "DYJournalEntry.h"
 #import "DYUser.h"
 #import <JHChainableAnimations/JHChainableAnimations.h>
+#import "JournalAndPictureAlternateView.h"
 
 
-@interface NewJournalEntryBlurView () <MainFeelingViewDelegate, QuestionViewDelegate, JournalAndPictureViewDelegate, UIGestureRecognizerDelegate>
+@interface NewJournalEntryBlurView () <MainFeelingViewDelegate, QuestionViewDelegate, JournalAndPictureViewDelegate, UIGestureRecognizerDelegate, JournalAndPictureAlternateViewDelegate>
 
 @property (nonatomic) NSUInteger currentQuestionIndex;
 @property (strong, nonatomic) QuestionView *questionView;
@@ -25,6 +26,8 @@
 @property (strong, nonatomic) DataStore *dataStore;
 @property (strong, nonatomic) UIButton *cancelButton;
 @property (strong, nonatomic) UIImageView *cancelButtonImage;
+
+@property (strong, nonatomic) NSLayoutConstraint *journalAndPictureViewBottomConstraint;
 
 
 @property (nonatomic) NSUInteger questionIndex;
@@ -92,6 +95,12 @@
     self.mainFeelingView.delegate = self;
     self.questionView.delegate = self;
 
+}
+
+-(void)whenTapGestureIsRecognized:(UITapGestureRecognizer *)sender
+{
+    /// delegate for japv
+    
 }
 
 -(void)setUpInitialConstraintsForAllSubViews
@@ -176,7 +185,7 @@
     {
         [self leaveQuestionView];
         
-        [self setUpJournalAndPictureView];
+        [self launchJournalAndPictureView];
     }
     else
     {
@@ -199,10 +208,11 @@
     
     self.questionView.translatesAutoresizingMaskIntoConstraints = NO;
     
-    [self.questionView.leftAnchor constraintEqualToAnchor:self.leftAnchor].active = YES;
-    [self.questionView.rightAnchor constraintEqualToAnchor:self.rightAnchor].active = YES;
-    [self.questionView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor].active = YES;
-    [self.questionView.topAnchor constraintEqualToAnchor:self.topAnchor constant:70].active = YES;
+    [self.questionView.leftAnchor constraintEqualToAnchor:self.contentView.leftAnchor].active = YES;
+    [self.questionView.rightAnchor constraintEqualToAnchor:self.contentView.rightAnchor].active = YES;
+    [self.questionView.bottomAnchor constraintEqualToAnchor:self.contentView.bottomAnchor].active = YES;
+    [self.questionView.topAnchor constraintEqualToAnchor:self.contentView.topAnchor constant:70].active = YES;
+
     
 
 
@@ -217,20 +227,88 @@
 
 }
 
--(void)setUpJournalAndPictureView
+-(void)launchJournalAndPictureView
 {
-    self.journalAndPictureView = [[JournalAndPictureView alloc] init];
+//    self.journalAndPictureView = [[JournalAndPictureView alloc] init];
+//    [self.contentView addSubview:self.journalAndPictureView];
+//    self.journalAndPictureView.delegate = self;
+//    self.journalAndPictureView.translatesAutoresizingMaskIntoConstraints = NO;
+//
+//    
+//    [self.journalAndPictureView.leftAnchor constraintEqualToAnchor:self.leftAnchor].active = YES;
+//    [self.journalAndPictureView.rightAnchor constraintEqualToAnchor:self.rightAnchor].active = YES;
+//    [self.journalAndPictureView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor].active = YES;
+//    [self.journalAndPictureView.topAnchor constraintEqualToAnchor:self.topAnchor constant:70].active = YES;
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    
+    
+    
+    self.journalAndPictureView = [[JournalAndPictureAlternateView alloc] init];
+    
     [self.contentView addSubview:self.journalAndPictureView];
+    
     self.journalAndPictureView.delegate = self;
+    
     self.journalAndPictureView.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    [self.journalAndPictureView.leftAnchor constraintEqualToAnchor:self.contentView.leftAnchor].active = YES;
+    [self.journalAndPictureView.rightAnchor constraintEqualToAnchor:self.contentView.rightAnchor].active = YES;
+   
+    [self.journalAndPictureView.topAnchor constraintEqualToAnchor:self.contentView.topAnchor constant:70].active = YES;
+    
+    self.journalAndPictureViewBottomConstraint = [self.journalAndPictureView.bottomAnchor constraintEqualToAnchor:self.contentView.bottomAnchor];
+    
+    self.journalAndPictureViewBottomConstraint.active = YES;
+    
 
     
-    [self.journalAndPictureView.leftAnchor constraintEqualToAnchor:self.leftAnchor].active = YES;
-    [self.journalAndPictureView.rightAnchor constraintEqualToAnchor:self.rightAnchor].active = YES;
-    [self.journalAndPictureView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor].active = YES;
-    [self.journalAndPictureView.topAnchor constraintEqualToAnchor:self.topAnchor constant:70].active = YES;
+}
 
+-(void)keyboardWillShow:(NSNotification *)notification
+{
+    NSDictionary *userInfo = notification.userInfo;
+    
+    NSValue *keyboardFrameValue = userInfo[UIKeyboardFrameEndUserInfoKey];
+    
+    CGRect keyboardFrame = keyboardFrameValue.CGRectValue;
+    
+    CGFloat keyboardHeight = keyboardFrame.size.height;
+    
+    [UIView animateWithDuration:.25 animations:^{
+        
+        self.journalAndPictureViewBottomConstraint.active = NO;
+        
+        self.journalAndPictureViewBottomConstraint = [self.journalAndPictureView.bottomAnchor constraintEqualToAnchor:self.contentView.bottomAnchor constant:-keyboardHeight];
+        
+        self.journalAndPictureViewBottomConstraint.active = YES;
+        
+        [self layoutIfNeeded];
+        
+    }];
+    
+  
+    
+    
+    
+}
 
+-(void)doneButtonTapped
+{
+    [self.delegate totalJournalEntryComplete];
+    
+    [UIView animateWithDuration:.6 animations:^{
+        self.contentView.alpha = 0;
+    } completion:^(BOOL finished) {
+        [self removeFromSuperview];
+    }];
+    
+}
+
+-(void)moveJournalViewBackDownForKeyboard
+{
+    
     
 }
 
@@ -270,23 +348,23 @@
     [self.delegate buttonTappedFromJournalandPictureView:sender];
 }
 
--(void)whenDeleteButtonIsTapped:(id)sender
-{
-    self.journalAndPictureView.deletePhotoButton.hidden = YES;
-    self.journalAndPictureView.imageView.image = nil;
-    self.journalAndPictureView.imageView.layer.borderWidth = 0;
-
-}
-
--(void)recieveImageFromMainViewController:(UIImage *)imageRecieved
-{
-    self.currentEntry.userImage = imageRecieved;
-    self.journalAndPictureView.deletePhotoButton.hidden = NO;
-    self.journalAndPictureView.imageView.image = imageRecieved;
-    self.journalAndPictureView.imageView.layer.cornerRadius = self.journalAndPictureView.imageView.frame.size.width / 2;
-    self.journalAndPictureView.imageView.contentMode = UIViewContentModeScaleAspectFill;
-    self.journalAndPictureView.imageView.clipsToBounds = YES;
-    self.journalAndPictureView.imageView.layer.borderColor = [UIColor darkGrayColor].CGColor;
-}
+//-(void)whenDeleteButtonIsTapped:(id)sender
+//{
+//    self.journalAndPictureView.deletePhotoButton.hidden = YES;
+//    self.journalAndPictureView.imageView.image = nil;
+//    self.journalAndPictureView.imageView.layer.borderWidth = 0;
+//
+//}
+//
+//-(void)recieveImageFromMainViewController:(UIImage *)imageRecieved
+//{
+//    self.currentEntry.userImage = imageRecieved;
+//    self.journalAndPictureView.deletePhotoButton.hidden = NO;
+//    self.journalAndPictureView.imageView.image = imageRecieved;
+//    self.journalAndPictureView.imageView.layer.cornerRadius = self.journalAndPictureView.imageView.frame.size.width / 2;
+//    self.journalAndPictureView.imageView.contentMode = UIViewContentModeScaleAspectFill;
+//    self.journalAndPictureView.imageView.clipsToBounds = YES;
+//    self.journalAndPictureView.imageView.layer.borderColor = [UIColor darkGrayColor].CGColor;
+//}
 
 @end

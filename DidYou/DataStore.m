@@ -194,8 +194,7 @@
     NSLog(@"in add journal to firebase");
     // get the user reference and serialize the journal
     // use childByAutoId to assign random key to journal entry, in firebase, have an array, don't want to push array in its entirty every time, JS has a push method, randomly put in there, sort later
-    NSLog(@"%@\n\n\n\n\n", self.currentUser.userUUID);
-    
+
     Firebase *journalRef = [[self getUserRef: user] childByAppendingPath:@"journals"];
     [[journalRef childByAutoId] setValue:[journalEntry serialize]];
 }
@@ -295,7 +294,6 @@
             
              [journals addObject:[[DYJournalEntry alloc] initWithDeserialize: journalDict[key]]];
          }
-
 
          self.currentUser.journals = [util sortEntriesFromArray:journals];
 
