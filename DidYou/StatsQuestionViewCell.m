@@ -7,12 +7,21 @@
 //
 
 #import "StatsQuestionViewCell.h"
+#import "DYQuestion.h"
 
 @interface StatsQuestionViewCell ()
 
 @property (strong, nonatomic) IBOutlet UIView *contentView;
 @property (strong, nonatomic) DYJournalEntry *journalEntry;
 @property (strong, nonatomic) DataStore *dataStore;
+@property (strong, nonatomic) DYStatsInfo *statsInfo;
+@property (strong, nonatomic) NSMutableArray *answerOneArray;
+@property (strong, nonatomic) NSMutableArray *answerTwoArray;
+@property (strong, nonatomic) NSMutableArray *answerThreeArray;
+@property (strong, nonatomic) NSMutableArray *answerFourArray;
+@property (strong, nonatomic) NSMutableArray *answerFiveArray;
+@property (strong, nonatomic) NSArray *arrayOfQuestions;
+@property (strong, nonatomic) NSMutableArray *statsCirclesArray;
 
 @end
 
@@ -53,27 +62,35 @@
     [self.contentView.leftAnchor constraintEqualToAnchor:self.leftAnchor].active = YES;
     [self.contentView.rightAnchor constraintEqualToAnchor:self.rightAnchor].active = YES;
     [self.contentView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor].active = YES;
+    
+    _dataStore = [DataStore sharedDataStore];
+    _answerOneArray = [[NSMutableArray alloc]init];
+    _answerTwoArray = [[NSMutableArray alloc]init];
+    _answerThreeArray = [[NSMutableArray alloc]init];
+    _answerFourArray = [[NSMutableArray alloc]init];
+    _answerFiveArray = [[NSMutableArray alloc]init];
+    _statsCirclesArray = [[NSMutableArray alloc]init];
+    _statsInfo = [[DYStatsInfo alloc]init];
+    _arrayOfQuestions = @[self.answerOneArray, self.answerTwoArray, self.answerThreeArray, self.answerFourArray, self.answerFiveArray];
 }
 
-//for all journalentry objects in journals array
-//call method: -(NSMutableDictionary *)serialize
-//take return data object and check keys for journalentry[@"questions"];
-//create 5 cgfloats, one for each question
-//if 2, add to cgfloat, if 1, do nothing
-//take final cgfloats for each question and divide from total journal entries
+-(void)addQuestionsStats {
+    for (DYJournalEntry *journalEntry in self.dataStore.currentUser.journals) {
+        NSArray *questionsArray = journalEntry.questions;
+        NSInteger i = 0;
+        for (DYQuestion *question in questionsArray) {
+            if (question.answer == 1) {
+                [self.arrayOfQuestions[i] addObject:question];
+            }
+            i = i +1;
+        }
+    }
+}
 
-
-
-
-
-//-(void)layoutSubviews{
-//    [super layoutSubviews];
-//    [self addStatisticsCircles];
-//    [self createMoodStatsTitles];
-//}
-
-
-
+-(void)calculateQuestionPercentages: (NSMutableArray *)questionsArray {
+    [self addQuestionsStats];
+    [self.statsInfo calculateEmotionPercentage:questionsArray ofEntries:self.dataStore.currentUser.journals];
+}
 /*
 -(void)createMoodStatsTitles {
     DYStatsInfo *currentStats = [[DYStatsInfo alloc]init];
@@ -92,7 +109,7 @@
         NSLog(@"%@", self.moodStatsDictionary);
     }
 }
-
+*/
 
 
 -(void)layoutSubviews{
@@ -101,11 +118,12 @@
 }
 
 -(void)addStatisticsCircles {
-    CGFloat circleDistances = (self.frame.size.width) / 3;
-    CGFloat distanceFromCenterX = -circleDistances;
-    CGFloat halfDistanceToCenterY = self.frame.size.height / 4;
+
     [self.statsCirclesArray removeAllObjects];
     for (NSInteger i = 0; i < 3; i++) {
+        CGFloat circleDistances = (self.frame.size.width) / 3;
+        CGFloat distanceFromCenterX = -circleDistances;
+        CGFloat halfDistanceToCenterY = self.frame.size.height / 4;
         
         UIView *circleView = [[UIView alloc]init];
         circleView.backgroundColor = [UIColor orangeColor];
@@ -121,10 +139,10 @@
         distanceFromCenterX = distanceFromCenterX + circleDistances;
     }
     
-    distanceFromCenterX = -circleDistances;
-    
-    for (NSInteger i = 0; i < 3; i++) {
-        
+    for (NSInteger i = 0; i < 2; i++) {
+        CGFloat circleDistances = (self.frame.size.width) / 3;
+        CGFloat distanceFromCenterX = -circleDistances;
+        CGFloat halfDistanceToCenterY = self.frame.size.height / 4;
         UIView *circleView = [[UIView alloc]init];
         circleView.backgroundColor = [UIColor orangeColor];
         [self addSubview:circleView];
@@ -138,16 +156,18 @@
         [circleView.centerYAnchor constraintEqualToAnchor:self.centerYAnchor constant:halfDistanceToCenterY].active = YES;
         distanceFromCenterX = distanceFromCenterX + circleDistances;
     }
-    [self addMoodLabels];
+//    [self addMoodLabels];
 }
 
+/*
 -(void)addMoodLabels {
     [self createMoodStatsTitles];
-    NSArray *moodKeysArray = [self.moodStatsDictionary allKeys];
+
     NSInteger i = 0;
     for (UIView *circle in self.statsCirclesArray) {
         UILabel *statsLabel = [[UILabel alloc]init];
-        NSString *keyString = moodKeysArray[i];
+        DYJournalEntry *currentEntry = self.dataStore.currentUser.journals
+        NSString *questionString = moodKeysArray[i];
         NSString *percentString = @"%";
         statsLabel.text = [NSString stringWithFormat:@"%@\n%@%@", moodKeysArray[i], self.moodStatsDictionary[keyString], percentString];
         NSLog(@"\n\n\n\nstats label: %@\n\n\n\n\n", statsLabel.text);
@@ -161,15 +181,36 @@
         i = i + 1;
     }
 }
-
 */
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
-
-@end
+    //for all journalentry objects in journals array
+    //call method: -(NSMutableDictionary *)serialize
+    //take return data object and check keys for journalentry[@"questions"];
+    //create 5 cgfloats, one for each question
+    //if 2, add to cgfloat, if 1, do nothing
+    //take final cgfloats for each question and divide from total journal entries
+    
+    
+    
+    
+    
+    //-(void)layoutSubviews{
+    //    [super layoutSubviews];
+    //    [self addStatisticsCircles];
+    //    [self createMoodStatsTitles];
+    //}
+    
+    
+    
+    /*
+     
+     */
+    
+    /*
+     // Only override drawRect: if you perform custom drawing.
+     // An empty implementation adversely affects performance during animation.
+     - (void)drawRect:(CGRect)rect {
+     // Drawing code
+     }
+     */
+    
+    @end

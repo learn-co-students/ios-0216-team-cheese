@@ -294,6 +294,13 @@
          }
 
          self.currentUser.journals = [util sortEntriesFromArray:journals];
+        
+        for (DYJournalEntry *entry in self.currentUser.journals) {
+            NSDictionary *journalQuestions = entry.questions;
+            NSArray *journalKeys = [journalQuestions allKeys];
+            NSString *firstJournalKey = journalKeys[0];
+            NSLog(@"sample journal questions: %@", journalQuestions[firstJournalKey]);
+        }
 
          //[self.users addObject:self.currentUser];
          

@@ -348,6 +348,7 @@
 				TargetAttributes = {
 					AB92E7141CAB01F200199034 = {
 						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = 4WHCWF2WQ4;
 						SystemCapabilities = {
 							com.apple.Maps.iOS = {
 								enabled = 0;
@@ -387,7 +388,6 @@
 				AB92E7281CAB01F200199034 /* LaunchScreen.storyboard in Resources */,
 				AB92E7251CAB01F200199034 /* Assets.xcassets in Resources */,
 				AB2A386C1CC449E1005DD03A /* JournalAndPictureAlternate.xib in Resources */,
-				CD4CCAC51CB6EA0C00805B1F /* Stats.xib in Resources */,
 				AB92E75F1CAC48DE00199034 /* AddJournalEntry.xib in Resources */,
 				AB92E7E41CB71A1A00199034 /* JournalEntryTableViewCell2.xib in Resources */,
 				AB69AF571CC03A7D00CC9F9B /* noInternet.xib in Resources */,

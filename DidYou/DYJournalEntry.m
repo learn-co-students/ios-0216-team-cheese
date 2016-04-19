@@ -102,8 +102,7 @@
 }
 
 -(NSArray *)generateQuestions
-{
-    
+{    
     return @[ [[DYQuestion alloc] initWithQuestion:@"get a good night's sleep?"] , [[DYQuestion alloc] initWithQuestion:@"eat a healthy breakfast?"] ,[[DYQuestion alloc] initWithQuestion:@"workout today?"] , [[DYQuestion alloc] initWithQuestion:@"do something nice for someone today?"] , [[DYQuestion alloc] initWithQuestion:@"share physical intimacy with another in the last 24 hours?"]];
 }
 
