@@ -77,12 +77,15 @@
 
     //UIImage *userImage = [util decodeBase64ToImage: _picture1Address];
     
+    
     for (DYQuestion *question in _questions)
     {
         [questions addObject:[question serialize]];
     }
     data[@"date"] = [util getUTCFormatDate:_date];
     data[@"emotion"] = _mainEmotion;
+    
+    NSLog(@"What are ou journal entry: %@", _journalEntry);
     data[@"journalEntry"] = _journalEntry;
     NSLog(@"The journal entry is %@", _journalEntry);
     data[@"picture1address"] = _picture1Address;

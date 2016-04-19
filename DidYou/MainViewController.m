@@ -406,6 +406,7 @@
         [self.firstTimeScreen removeFromSuperview];
     }
     
+    NSLog(@"about to push lastJournal.");
     // Signal firebase push
     [self.dataStore pushLastJournal];
     [self.journalEntryTableView reloadData];

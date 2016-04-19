@@ -70,10 +70,12 @@
 
 - (IBAction)doneButtonTapped:(id)sender
 {
-  
+    self.currentEntry.journalEntry = self.textView.text;
+
+    NSLog(@"Hey... done button (^_^) tapped in that method.");
     [self.delegate doneButtonTapped];
     
-    self.currentEntry.journalEntry = self.textView.text;
+    
     
 }
 
