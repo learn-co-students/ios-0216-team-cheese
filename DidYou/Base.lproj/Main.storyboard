@@ -415,21 +415,21 @@
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oDa-bP-van" customClass="StatsMoodCellView">
                                 <rect key="frame" x="0.0" y="85" width="600" height="240"/>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RLR-gG-Jdy" customClass="StatsQuestionViewCell">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RLR-gG-Jdy" customClass="StatsQuestionViewCell">
                                 <rect key="frame" x="0.0" y="360" width="600" height="240"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="RLR-gG-Jdy" firstAttribute="width" secondItem="oDa-bP-van" secondAttribute="width" id="1j1-Y6-Wul"/>
+                            <constraint firstItem="RLR-gG-Jdy" firstAttribute="top" secondItem="oDa-bP-van" secondAttribute="bottom" id="1jI-Uk-5a2"/>
                             <constraint firstItem="oDa-bP-van" firstAttribute="centerX" secondItem="7ij-5E-SI6" secondAttribute="centerX" id="2MI-tG-2oF"/>
-                            <constraint firstItem="RLR-gG-Jdy" firstAttribute="bottom" secondItem="dtr-Hj-KuL" secondAttribute="top" id="CPd-La-yvQ"/>
                             <constraint firstItem="RLR-gG-Jdy" firstAttribute="height" secondItem="oDa-bP-van" secondAttribute="height" id="GpS-Zg-VgM"/>
                             <constraint firstItem="D1V-sn-RsL" firstAttribute="centerX" secondItem="7ij-5E-SI6" secondAttribute="centerX" id="N8l-ZL-JF4"/>
                             <constraint firstItem="RLR-gG-Jdy" firstAttribute="centerX" secondItem="7ij-5E-SI6" secondAttribute="centerX" id="c7B-xK-Kc5"/>
                             <constraint firstItem="D1V-sn-RsL" firstAttribute="width" secondItem="7ij-5E-SI6" secondAttribute="width" id="cr1-6a-mpR"/>
                             <constraint firstItem="oDa-bP-van" firstAttribute="height" secondItem="7ij-5E-SI6" secondAttribute="height" multiplier="0.4" id="nOJ-aO-jf0"/>
-                            <constraint firstItem="D1V-sn-RsL" firstAttribute="height" secondItem="7ij-5E-SI6" secondAttribute="height" multiplier="0.1" id="qOM-WG-SrL"/>
+                            <constraint firstItem="D1V-sn-RsL" firstAttribute="height" secondItem="7ij-5E-SI6" secondAttribute="height" multiplier="0.07" id="qOM-WG-SrL"/>
                             <constraint firstItem="D1V-sn-RsL" firstAttribute="top" secondItem="Mjm-EE-slc" secondAttribute="bottom" id="sYj-AJ-mX8"/>
                             <constraint firstItem="oDa-bP-van" firstAttribute="top" secondItem="D1V-sn-RsL" secondAttribute="bottom" id="yRe-Mo-u0s"/>
                             <constraint firstItem="oDa-bP-van" firstAttribute="width" secondItem="7ij-5E-SI6" secondAttribute="width" id="zxo-lE-Lf3"/>

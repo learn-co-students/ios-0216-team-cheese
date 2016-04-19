@@ -39,7 +39,7 @@
 -(NSString *)generateMainEmotion:(NSString *)storedEmotion;
 
 -(instancetype)init;
--(void)test;
+
 /*
  @"Happy"
     @"Excited"

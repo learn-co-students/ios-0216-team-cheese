@@ -93,8 +93,6 @@
     // change background colors
     
     [self.delegate userNavigates:@"user"];
-    
-    NSLog(@"user is getting tapped");
 }
 
 - (IBAction)mainPageIconTapped:(id)sender

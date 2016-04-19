@@ -118,7 +118,7 @@
 -(NSString *)keyForValue:(NSString *)feeling
 {
     
-    NSLog(@"%@",feeling);
+//    NSLog(@"%@",feeling);
     
     self.dataStore = [DataStore sharedDataStore];
     

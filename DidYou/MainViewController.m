@@ -445,7 +445,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 
-    NSLog(@"in the tableview, the # of journals is %lu", self.dataStore.currentUser.journals.count);
+//    NSLog(@"in the tableview, the # of journals is %lu", self.dataStore.currentUser.journals.count);
     
     return self.dataStore.currentUser.journals.count;
 

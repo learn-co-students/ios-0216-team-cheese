@@ -226,9 +226,6 @@
 
 -(void)animateView: (UIView *)circleView withRadius:(CGFloat)radius
 {
-    
-
-    
         NSUInteger xPosition = arc4random_uniform(self.contentView.frame.size.width - 70);
         NSUInteger yPosition = arc4random_uniform(self.contentView.frame.size.height - 50);
         
@@ -236,12 +233,6 @@
         {
             xPosition = arc4random_uniform(305);
         }
-        
-//        NSLog(@"%f is the width", self.contentView.frame.size.width);
-//        NSLog(@"%f is the height", self.contentView.frame.size.height);
-//        
-//        NSLog(@"%lu", xPosition);
-//        NSLog(@"%lu", yPosition);
     
         NSUInteger time = arc4random_uniform(5);
         
@@ -271,8 +262,6 @@
 
 -(void)circleTapped
 {
-    
-    NSLog(@"circle tapped");
       [self.delegate addButtonTapped:nil];
 }
 

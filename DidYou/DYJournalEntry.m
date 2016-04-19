@@ -85,9 +85,9 @@
     data[@"date"] = [util getUTCFormatDate:_date];
     data[@"emotion"] = _mainEmotion;
     
-    NSLog(@"What are ou journal entry: %@", _journalEntry);
+//    NSLog(@"What are ou journal entry: %@", _journalEntry);
     data[@"journalEntry"] = _journalEntry;
-    NSLog(@"The journal entry is %@", _journalEntry);
+//    NSLog(@"The journal entry is %@", _journalEntry);
     data[@"picture1address"] = _picture1Address;
     if (!_userImage)
     {

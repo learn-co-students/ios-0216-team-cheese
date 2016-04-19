@@ -13,9 +13,20 @@
         <view contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="647" height="240"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Moods Averages" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r1C-qw-ufq">
+                    <rect key="frame" x="253.5" y="0.0" width="140" height="24"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <constraints>
+                <constraint firstItem="r1C-qw-ufq" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="frX-gE-VUH"/>
+                <constraint firstItem="r1C-qw-ufq" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="l3f-ZV-X99"/>
+            </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="464.5" y="93.5"/>
+            <point key="canvasLocation" x="488.5" y="92"/>
         </view>
     </objects>
 </document>

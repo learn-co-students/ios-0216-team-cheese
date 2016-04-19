@@ -17,9 +17,6 @@
 
 + (instancetype)sharedDataStore
 {
-    
-    NSLog(@"shared data store called");
-    
     static DataStore *_sharedDataStore = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -33,8 +30,6 @@
 
 -(instancetype)init
 {
-    
-    NSLog(@"init for singleton");
     
     self = [super init];
     
@@ -211,7 +206,6 @@
               withJournalEntry:self.currentUser.journals.lastObject];
 
     DYJournalEntry *journal = self.currentUser.journals.lastObject;
-    NSLog(@"Journal is %@", journal.journalEntry);
 
 }
 
@@ -272,7 +266,7 @@
         
         NSLog(@"in the firebase completion");
         
-        NSLog(@"%@", [snapshot value]);
+//        NSLog(@"%@", [snapshot value]);
         
         DYUtility *util = [DYUtility sharedUtility];
         NSMutableArray *journals = [[NSMutableArray alloc] init];

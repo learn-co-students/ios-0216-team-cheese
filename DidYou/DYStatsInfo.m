@@ -62,18 +62,6 @@
     }
 }
 
-//gets all entries from current month
--(void)getEntriesFromCurrentMonth {
-    DYUser *currentUser = [[DYUser alloc]init];
-    for (DYJournalEntry *currentJournalEntry in currentUser.journals) {
-        NSDateComponents *currentDateComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:[NSDate date]];
-        NSDateComponents *entryDateComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:currentJournalEntry.date];
-        if ([entryDateComponents month] == [currentDateComponents month]) {
-            [self.arrayOfCurrentMonthJournalDictionaries addObject:currentJournalEntry];
-        }
-    }
-}
-
 //changes sub emotion to a main emotion key (so switches something like blue to sad)
 -(NSString *)generateMainEmotion:(NSString *)storedEmotion {
     DataStore *dataObject = [[DataStore alloc]init];
@@ -91,8 +79,16 @@
     return mainEmotionKey;
 }
 
--(void)test {
-    NSLog(@"\n\n\ntesting\n\n\n");
+//gets all entries from current month
+-(void)getEntriesFromCurrentMonth {
+    DYUser *currentUser = [[DYUser alloc]init];
+    for (DYJournalEntry *currentJournalEntry in currentUser.journals) {
+        NSDateComponents *currentDateComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:[NSDate date]];
+        NSDateComponents *entryDateComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:currentJournalEntry.date];
+        if ([entryDateComponents month] == [currentDateComponents month]) {
+            [self.arrayOfCurrentMonthJournalDictionaries addObject:currentJournalEntry];
+        }
+    }
 }
 
 

@@ -67,28 +67,12 @@
     
 }
 
--(void)createMoodStatsTitles {
-    DYStatsInfo *currentStats = [[DYStatsInfo alloc]init];
-    CGFloat emotionPercentage = 0;
-    [currentStats addToMoodArrays];
-    NSArray *moodName = [self.dataStore.emotions allKeys];
-    NSInteger i = 0;
-    
-    for (NSMutableArray *moodArray in currentStats.allMoodsArray) {
-        emotionPercentage = [currentStats calculateEmotionPercentage:moodArray ofEntries:self.dataStore.currentUser.journals];
-        NSLog(@"%@ percentage: %f",moodName[i], emotionPercentage);
-        NSString *emotionPercentageString = [NSString stringWithFormat:@"%f", emotionPercentage];
-        
-        [self.moodStatsDictionary setObject:emotionPercentageString forKey:moodName[i]];
-        i = i + 1;
-        NSLog(@"%@", self.moodStatsDictionary);
-    }
-}
-
 -(void)layoutSubviews{
     [super layoutSubviews];
     [self addStatisticsCircles];
     [self createMoodStatsTitles];
+//    [self addMoodLabels];
+
 }
 
 -(void)addStatisticsCircles {
@@ -97,7 +81,7 @@
     
     CGFloat circleDistances = (self.frame.size.width) / 3;
     CGFloat distanceFromCenterX = -circleDistances;
-    CGFloat halfDistanceToCenterY = self.frame.size.height / 4;
+    CGFloat halfDistanceToCenterY = self.frame.size.height / 4.5;
     [self.statsCirclesArray removeAllObjects];
     for (NSInteger i = 0; i < 3; i++) {
         
@@ -111,7 +95,7 @@
         [circleView.heightAnchor constraintEqualToConstant:100].active = YES;
         circleView.layer.cornerRadius = 100 / 2.0;
         [circleView.centerXAnchor constraintEqualToAnchor:self.centerXAnchor constant:distanceFromCenterX].active = YES;
-        [circleView.centerYAnchor constraintEqualToAnchor:self.centerYAnchor constant:-(halfDistanceToCenterY - 25)].active = YES;
+        [circleView.centerYAnchor constraintEqualToAnchor:self.centerYAnchor constant:-(halfDistanceToCenterY - 15)].active = YES;
         distanceFromCenterX = distanceFromCenterX + circleDistances;
     }
     
@@ -129,16 +113,34 @@
         [circleView.heightAnchor constraintEqualToConstant:100].active = YES;
         circleView.layer.cornerRadius = 100 / 2.0;
         [circleView.centerXAnchor constraintEqualToAnchor:self.centerXAnchor constant:distanceFromCenterX].active = YES;
-        [circleView.centerYAnchor constraintEqualToAnchor:self.centerYAnchor constant:(halfDistanceToCenterY + 25)].active = YES;
+        [circleView.centerYAnchor constraintEqualToAnchor:self.centerYAnchor constant:(halfDistanceToCenterY + 15)].active = YES;
         distanceFromCenterX = distanceFromCenterX + circleDistances;
     }
-    [self addMoodLabels];
+}
+
+-(void)createMoodStatsTitles {
+    DYStatsInfo *currentStats = [[DYStatsInfo alloc]init];
+    CGFloat emotionPercentage = 0;
+    [currentStats addToMoodArrays];
+    NSArray *moodName = [self.dataStore.emotions allKeys];
+    NSInteger i = 0;
+    
+    for (NSMutableArray *moodArray in currentStats.allMoodsArray) {
+        emotionPercentage = [currentStats calculateEmotionPercentage:moodArray ofEntries:self.dataStore.currentUser.journals];
+//        NSLog(@"%@ percentage: %f",moodName[i], emotionPercentage);
+        NSString *emotionPercentageString = [NSString stringWithFormat:@"%f", emotionPercentage];
+        
+        [self.moodStatsDictionary setObject:emotionPercentageString forKey:moodName[i]];
+        i = i + 1;
+    }
+        NSLog(@"%@", self.moodStatsDictionary);
 }
 
 -(void)addMoodLabels {
     [self createMoodStatsTitles];
     NSArray *moodKeysArray = [self.moodStatsDictionary allKeys];
     NSInteger i = 0;
+    
     for (UIView *circle in self.statsCirclesArray) {
         UILabel *statsLabel = [[UILabel alloc]init];
         NSString *keyString = moodKeysArray[i];
@@ -147,7 +149,9 @@
         NSLog(@"\n\n\n\nstats label: %@\n\n\n\n\n", statsLabel.text);
         statsLabel.textColor = [UIColor blackColor];
         [statsLabel setFont:[UIFont fontWithName:@"Arial" size:25.0]];
-        [circle addSubview:statsLabel];
+        [self addSubview:statsLabel];
+        
+        statsLabel.translatesAutoresizingMaskIntoConstraints = NO;
         NSLog(@"%lu", circle.subviews.count);
         
         [statsLabel.centerYAnchor constraintEqualToAnchor:circle.centerYAnchor].active = YES;

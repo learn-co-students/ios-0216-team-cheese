@@ -53,6 +53,8 @@
 
 -(void)commonInit
 {
+    
+    
     [[NSBundle mainBundle] loadNibNamed:@"StatsQuestionsViewCell" owner:self options:nil];
     
     [self addSubview:self.contentView];
@@ -72,6 +74,8 @@
     _statsCirclesArray = [[NSMutableArray alloc]init];
     _statsInfo = [[DYStatsInfo alloc]init];
     _arrayOfQuestions = @[self.answerOneArray, self.answerTwoArray, self.answerThreeArray, self.answerFourArray, self.answerFiveArray];
+    
+    [self addQuestionsStats];
 }
 
 -(void)addQuestionsStats {
@@ -79,8 +83,10 @@
         NSArray *questionsArray = journalEntry.questions;
         NSInteger i = 0;
         for (DYQuestion *question in questionsArray) {
-            if (question.answer == 1) {
+            if (question.answer == 2) {
                 [self.arrayOfQuestions[i] addObject:question];
+                NSLog(@"\n\n\n\nquestion: %@ answer: %lu\n\n\n\n", question.question, question.answer);
+                NSLog(@"\n\n\n\n\nthis is %lu question %@\n\n\n\n\n", i, self.arrayOfQuestions[i]);
             }
             i = i +1;
         }
@@ -91,26 +97,6 @@
     [self addQuestionsStats];
     [self.statsInfo calculateEmotionPercentage:questionsArray ofEntries:self.dataStore.currentUser.journals];
 }
-/*
--(void)createMoodStatsTitles {
-    DYStatsInfo *currentStats = [[DYStatsInfo alloc]init];
-    CGFloat emotionPercentage = 0;
-    [currentStats addToMoodArrays];
-    NSArray *moodName = [self.dataStore.emotions allKeys];
-    NSInteger i = 0;
-    
-    for (NSMutableArray *moodArray in currentStats.allMoodsArray) {
-        emotionPercentage = [currentStats calculateEmotionPercentage:moodArray ofEntries:self.dataStore.currentUser.journals];
-        NSLog(@"%@ percentage: %f",moodName[i], emotionPercentage);
-        NSString *emotionPercentageString = [NSString stringWithFormat:@"%f", emotionPercentage];
-        
-        [self.moodStatsDictionary setObject:emotionPercentageString forKey:moodName[i]];
-        i = i + 1;
-        NSLog(@"%@", self.moodStatsDictionary);
-    }
-}
-*/
-
 
 -(void)layoutSubviews{
     [super layoutSubviews];
@@ -123,7 +109,7 @@
     
     CGFloat circleDistances = (self.frame.size.width) / 3;
     CGFloat distanceFromCenterX = -circleDistances;
-    CGFloat halfDistanceToCenterY = self.frame.size.height / 4;
+    CGFloat halfDistanceToCenterY = self.frame.size.height / 5;
     [self.statsCirclesArray removeAllObjects];
     for (NSInteger i = 0; i < 3; i++) {
         
@@ -137,14 +123,13 @@
         [circleView.heightAnchor constraintEqualToConstant:100].active = YES;
         circleView.layer.cornerRadius = 100 / 2.0;
         [circleView.centerXAnchor constraintEqualToAnchor:self.centerXAnchor constant:distanceFromCenterX].active = YES;
-        [circleView.centerYAnchor constraintEqualToAnchor:self.centerYAnchor constant:-(halfDistanceToCenterY - 75)].active = YES;
+        [circleView.centerYAnchor constraintEqualToAnchor:self.centerYAnchor constant:-(halfDistanceToCenterY - 20)].active = YES;
         distanceFromCenterX = distanceFromCenterX + circleDistances;
     }
 
     
     circleDistances = (self.frame.size.width) / 6;
     distanceFromCenterX = -circleDistances;
-    halfDistanceToCenterY = self.frame.size.height / 4;
     
     for (NSInteger i = 0; i < 2; i++) {
         
@@ -158,13 +143,34 @@
         [circleView.heightAnchor constraintEqualToConstant:100].active = YES;
         circleView.layer.cornerRadius = 100 / 2.0;
         [circleView.centerXAnchor constraintEqualToAnchor:self.centerXAnchor constant:distanceFromCenterX].active = YES;
-        [circleView.centerYAnchor constraintEqualToAnchor:self.centerYAnchor constant:(halfDistanceToCenterY + 75)].active = YES;
+        [circleView.centerYAnchor constraintEqualToAnchor:self.centerYAnchor constant:(halfDistanceToCenterY + 20)].active = YES;
         distanceFromCenterX = distanceFromCenterX + (circleDistances * 2);
     }
 //    [self addMoodLabels];
 }
 
+//METHODS USED IN MOODCELLVIEWCLASS, SOME MAY BE NEEDED HERE
+
+
 /*
+ -(void)createMoodStatsTitles {
+ DYStatsInfo *currentStats = [[DYStatsInfo alloc]init];
+ CGFloat emotionPercentage = 0;
+ [currentStats addToMoodArrays];
+ NSArray *moodName = [self.dataStore.emotions allKeys];
+ NSInteger i = 0;
+ 
+ for (NSMutableArray *moodArray in currentStats.allMoodsArray) {
+ emotionPercentage = [currentStats calculateEmotionPercentage:moodArray ofEntries:self.dataStore.currentUser.journals];
+ NSLog(@"%@ percentage: %f",moodName[i], emotionPercentage);
+ NSString *emotionPercentageString = [NSString stringWithFormat:@"%f", emotionPercentage];
+ 
+ [self.moodStatsDictionary setObject:emotionPercentageString forKey:moodName[i]];
+ i = i + 1;
+ NSLog(@"%@", self.moodStatsDictionary);
+ }
+ }
+
 -(void)addMoodLabels {
     [self createMoodStatsTitles];
 
