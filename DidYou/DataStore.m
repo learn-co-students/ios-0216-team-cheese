@@ -268,8 +268,6 @@
     
     Firebase *userRef = [[self.myRootRef childByAppendingPath:@"users"] childByAppendingPath:userUUID];
     
-    
-    
     [userRef observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
 
         NSLog(@"in the firebase completion");
@@ -422,7 +420,19 @@
     
 }
 
-
+-(void)updateFirebaseJournals
+{
+   
+    Firebase *journalsRef = [[self getUserRef:self.currentUser] childByAppendingPath:@"journals"];
+    
+    [journalsRef removeValue];
+    
+    for (DYJournalEntry *entry in self.currentUser.journals)
+    {
+        [self addJournalToFirebase:self.currentUser withJournalEntry:entry];
+    }
+    
+}
 
 
 
