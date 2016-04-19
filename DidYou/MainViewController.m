@@ -118,6 +118,7 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(singletonBeingCreated) name:@"singletonBeingCreated" object:nil];
 
         self.dataStore = [DataStore sharedDataStore];
+    
         
         if (self.dataStore.currentUser.journals.count == 0 && !self.singletonBeingCreatedHit)
         {
@@ -131,6 +132,9 @@
     }
     
     [self.journalEntryTableView reloadData];
+    
+    
+    NSLog(@"there are %lu journals in current user", self.dataStore.currentUser.journals.count);
 }
 
 -(void)singletonBeingCreated
@@ -147,7 +151,6 @@
     [self launchSpinView];
     
 }
-
 
 - (BOOL)canIAnimate
 {
@@ -423,6 +426,7 @@
         [self.firstTimeScreen removeFromSuperview];
     }
     
+    NSLog(@"about to push lastJournal.");
     // Signal firebase push
     [self.dataStore pushLastJournal];
     [self.journalEntryTableView reloadData];
@@ -438,6 +442,8 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 
+    NSLog(@"in the tableview, the # of journals is %lu", self.dataStore.currentUser.journals.count);
+    
     return self.dataStore.currentUser.journals.count;
 
 }
@@ -458,6 +464,8 @@
     DYJournalEntry *journalAtRow = journalsLIFO[indexPath.row];
     
     cell.cellView.journalEntry = journalAtRow;
+    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     
     return cell;
@@ -552,25 +560,38 @@
 }
 
 
-
-
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+         [self performSegueWithIdentifier:@"journalDetailVC" sender:self];
+        
+    });
     
+   
+}
 
-    self.isAlive = NO;
-    self.dataStore = nil;
-    self.addEntryTopView.delegate = nil;
-    
+
+
+
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
     
     if([segue.identifier isEqualToString:@"journalDetailVC"])
     {
+        
         JournalLogViewController *destVC = segue.destinationViewController;
-        NSArray *journals = self.dataStore.currentUser.journals;
-        DYJournalEntry *currentJournal = [journals lastObject];
-        destVC.jorunalEntry = currentJournal;
+        
+        NSIndexPath *selectedPath = self.journalEntryTableView.indexPathForSelectedRow;
+       
+        NSArray *journalsLIFO = [self.dataStore.currentUser journalArrayLIFO];
+        
+        DYJournalEntry *chosenEntry = journalsLIFO[selectedPath.row];
+        
+        destVC.journalEntry = chosenEntry;
     }
-    
-    
+        
 }
 
 @end

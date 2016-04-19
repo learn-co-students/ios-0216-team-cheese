@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="JournalAndPictureAlternateView">
+            <connections>
+                <outlet property="contentView" destination="iN0-l3-epB" id="nHN-Qs-8Iw"/>
+                <outlet property="doneButton" destination="JqI-Ka-DCj" id="0LX-um-ZfB"/>
+                <outlet property="textFieldBackground" destination="XSx-yk-kS7" id="zSQ-RY-4eV"/>
+                <outlet property="textView" destination="H9j-1Q-ZNQ" id="9MB-dF-olf"/>
+                <outlet property="topLabel" destination="ygg-wq-Bzy" id="Ycu-5F-6ud"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="596" height="496"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Journal" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ygg-wq-Bzy">
+                    <rect key="frame" x="0.0" y="35" width="596" height="42"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="596" id="8ul-kf-4M5"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                    <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view alpha="0.25" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XSx-yk-kS7">
+                    <rect key="frame" x="20" y="97" width="556" height="339"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Record your thoughts and feelings here.  It will be very helpful and therapuetic to come back and read this later on. " textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="H9j-1Q-ZNQ">
+                    <rect key="frame" x="20" y="97" width="556" height="339"/>
+                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JqI-Ka-DCj">
+                    <rect key="frame" x="0.0" y="456" width="596" height="40"/>
+                    <color key="backgroundColor" red="0.3255296432" green="0.64474971510000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="jdT-xj-DwX"/>
+                    </constraints>
+                    <state key="normal" title="Done">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="doneButtonTapped:" destination="-1" eventType="touchUpInside" id="gYU-We-Xnk"/>
+                    </connections>
+                </button>
+            </subviews>
+            <constraints>
+                <constraint firstItem="ygg-wq-Bzy" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="2Jr-L5-039"/>
+                <constraint firstItem="JqI-Ka-DCj" firstAttribute="width" secondItem="ygg-wq-Bzy" secondAttribute="width" id="2Ug-VU-At5"/>
+                <constraint firstItem="JqI-Ka-DCj" firstAttribute="top" secondItem="XSx-yk-kS7" secondAttribute="bottom" constant="20" id="2pg-Is-FPn"/>
+                <constraint firstItem="XSx-yk-kS7" firstAttribute="top" secondItem="ygg-wq-Bzy" secondAttribute="bottom" constant="20" id="D4u-xe-Eh9"/>
+                <constraint firstItem="H9j-1Q-ZNQ" firstAttribute="top" secondItem="ygg-wq-Bzy" secondAttribute="bottom" constant="20" id="DpD-nQ-5GO"/>
+                <constraint firstItem="H9j-1Q-ZNQ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="FC8-ah-l96"/>
+                <constraint firstItem="XSx-yk-kS7" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="GXZ-c3-NN5"/>
+                <constraint firstItem="ygg-wq-Bzy" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="NcO-rJ-iV6"/>
+                <constraint firstItem="JqI-Ka-DCj" firstAttribute="top" secondItem="H9j-1Q-ZNQ" secondAttribute="bottom" constant="20" id="PxP-xf-6nG"/>
+                <constraint firstAttribute="trailing" secondItem="H9j-1Q-ZNQ" secondAttribute="trailing" constant="20" id="Wj4-qW-iot"/>
+                <constraint firstAttribute="bottom" secondItem="JqI-Ka-DCj" secondAttribute="bottom" id="lKG-Sn-q5g"/>
+                <constraint firstItem="ygg-wq-Bzy" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="35" id="mfw-Vo-gl1"/>
+                <constraint firstItem="H9j-1Q-ZNQ" firstAttribute="top" secondItem="ygg-wq-Bzy" secondAttribute="bottom" constant="20" id="pBy-UH-ggO"/>
+                <constraint firstAttribute="trailing" secondItem="XSx-yk-kS7" secondAttribute="trailing" constant="20" id="q8a-Ov-1aB"/>
+                <constraint firstItem="JqI-Ka-DCj" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="wK0-GZ-BQQ"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="643" y="405"/>
+        </view>
+    </objects>
+</document>

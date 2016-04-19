@@ -176,8 +176,8 @@
         NSLog(@"no hit");
     }];
     
-    [alert addAction:yesAction];
     [alert addAction:noAction];
+    [alert addAction:yesAction];
     
     [self presentViewController:alert animated:YES completion:nil];
     

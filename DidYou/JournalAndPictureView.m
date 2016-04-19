@@ -11,10 +11,13 @@
 
 
 @interface JournalAndPictureView () <UITextViewDelegate>
+
+
 @property (strong, nonatomic) IBOutlet UIView *contentView;
 @property (strong, nonatomic) UIButton *doneEditingButton;
 @property (strong, nonatomic) DataStore *dataStore;
 @property (strong, nonatomic) NSString *emotion;
+
 
 
 @end
@@ -173,6 +176,8 @@
 {
  
     self.doneEditingButton.enabled = YES;
+    
+    
 
 }
 
@@ -201,7 +206,15 @@
 }
 - (IBAction)doneButtonTapped:(id)sender
 {
-[self.delegate journalComplete:sender];
+    
+    
+    DYJournalEntry *journal = self.dataStore.currentUser.journals.lastObject;
+    NSLog(@"TextView's text is %@", self.textView.text);
+    NSString *text = self.textView.text;
+    journal.journalEntry = text;
+
+    
+    [self.delegate journalComplete:sender];
 }
 
 @end
