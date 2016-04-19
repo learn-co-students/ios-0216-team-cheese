@@ -70,9 +70,21 @@
 
 - (IBAction)doneButtonTapped:(id)sender
 {
-    self.currentEntry.journalEntry = self.textView.text;
-
-    NSLog(@"Hey... done button (^_^) tapped in that method.");
+    
+    BOOL noJournal = [self.textView.text isEqualToString:@"Record your thoughts and feelings here.  It will be very helpful and therapuetic to come back and read this later on."];
+    
+    NSLog(@"%D", noJournal);
+    
+    if (noJournal)
+    {
+        self.currentEntry.journalEntry = @"";
+    }
+    
+    else
+    {
+          self.currentEntry.journalEntry = self.textView.text;
+    }
+    
     [self.delegate doneButtonTapped];
     
     
