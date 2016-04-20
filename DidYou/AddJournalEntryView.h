@@ -20,7 +20,7 @@
 
 @property (weak, nonatomic) id <AddJournalEntryViewDelegate> delegate;
 @property (strong, nonatomic) DYJournalEntry *journalEntry;
-//@property (nonatomic) BOOL shouldAnimate;
+@property (nonatomic) BOOL shouldAnimate;
 
 
 
