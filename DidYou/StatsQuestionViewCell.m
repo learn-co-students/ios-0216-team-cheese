@@ -23,6 +23,7 @@
 @property (strong, nonatomic) NSArray *arrayOfQuestionsArrays;
 @property (strong, nonatomic) NSMutableArray *statsCirclesArray;
 @property (strong, nonatomic) NSArray *questionsArray;
+@property (weak, nonatomic) IBOutlet UILabel *questionsAverageLabel;
 
 @end
 
@@ -88,9 +89,14 @@
 }
 
 -(void)layoutSubviews{
-    [super layoutSubviews];
-    [self addStatisticsCircles];
-    [self addMoodLabels];
+    if (self.dataStore.currentUser.journals.count == 0) {
+        self.questionsAverageLabel.alpha = 0;
+        return;
+    } else {
+        [super layoutSubviews];
+        [self addStatisticsCircles];
+        [self addMoodLabels];
+    }
 }
 
 -(void)addStatisticsCircles {
@@ -110,7 +116,6 @@
         
         CGFloat calculatedPercent = [self calculateQuestionPercentages:self.arrayOfQuestionsArrays[i]];
         [self.statsInfo resizeCircles:circleView withPercentage:calculatedPercent];
-        
         [circleView.centerXAnchor constraintEqualToAnchor:self.centerXAnchor constant:distanceFromCenterX].active = YES;
         [circleView.centerYAnchor constraintEqualToAnchor:self.centerYAnchor constant:-(halfDistanceToCenterY - 20)].active = YES;
         distanceFromCenterX = distanceFromCenterX + circleDistances;
@@ -131,10 +136,6 @@
         
         CGFloat calculatedPercent = [self calculateQuestionPercentages:self.arrayOfQuestionsArrays[i]];
         [self.statsInfo resizeCircles:circleView withPercentage:calculatedPercent];
-        
-        //        [circleView.widthAnchor constraintEqualToConstant:100].active = YES;
-        //        [circleView.heightAnchor constraintEqualToConstant:100].active = YES;
-        //        circleView.layer.cornerRadius = 100 / 2.0;
         [circleView.centerXAnchor constraintEqualToAnchor:self.centerXAnchor constant:distanceFromCenterX].active = YES;
         [circleView.centerYAnchor constraintEqualToAnchor:self.centerYAnchor constant:(halfDistanceToCenterY + 20)].active = YES;
         distanceFromCenterX = distanceFromCenterX + (circleDistances * 2);
@@ -158,8 +159,8 @@
             NSLog(@"in addQuestionStats for loop in statsquestionviewcell class");
             if (question.answer == 2) {
                 [self.arrayOfQuestionsArrays[i] addObject:question];
-//                NSLog(@"\n\n\n\nquestion: %@ answer: %lu\n\n\n\n", question.question, question.answer);
-//                NSLog(@"\n\n\n\n\nthis is %lu question %@\n\n\n\n\n", i, self.arrayOfQuestionsArrays[i]);
+                //                NSLog(@"\n\n\n\nquestion: %@ answer: %lu\n\n\n\n", question.question, question.answer);
+                //                NSLog(@"\n\n\n\n\nthis is %lu question %@\n\n\n\n\n", i, self.arrayOfQuestionsArrays[i]);
             }
             i = i +1;
         }
@@ -210,80 +211,4 @@
         i = i + 1;
     }
 }
-
-
-
-
-//METHODS USED IN MOODCELLVIEWCLASS, SOME MAY BE NEEDED HERE
-
-
-/*
- -(void)createMoodStatsTitles {
- DYStatsInfo *currentStats = [[DYStatsInfo alloc]init];
- CGFloat emotionPercentage = 0;
- [currentStats addToMoodArrays];
- NSArray *moodName = [self.dataStore.emotions allKeys];
- NSInteger i = 0;
- 
- for (NSMutableArray *moodArray in currentStats.allMoodsArray) {
- emotionPercentage = [currentStats calculateEmotionPercentage:moodArray ofEntries:self.dataStore.currentUser.journals];
- NSLog(@"%@ percentage: %f",moodName[i], emotionPercentage);
- NSString *emotionPercentageString = [NSString stringWithFormat:@"%f", emotionPercentage];
- 
- [self.moodStatsDictionary setObject:emotionPercentageString forKey:moodName[i]];
- i = i + 1;
- NSLog(@"%@", self.moodStatsDictionary);
- }
- }
- -(void)addMoodLabels {
- [self createMoodStatsTitles];
- NSInteger i = 0;
- for (UIView *circle in self.statsCirclesArray) {
- UILabel *statsLabel = [[UILabel alloc]init];
- DYJournalEntry *currentEntry = self.dataStore.currentUser.journals
- NSString *questionString = moodKeysArray[i];
- NSString *percentString = @"%";
- statsLabel.text = [NSString stringWithFormat:@"%@\n%@%@", moodKeysArray[i], self.moodStatsDictionary[keyString], percentString];
- NSLog(@"\n\n\n\nstats label: %@\n\n\n\n\n", statsLabel.text);
- statsLabel.textColor = [UIColor blackColor];
- [statsLabel setFont:[UIFont fontWithName:@"Arial" size:25.0]];
- [circle addSubview:statsLabel];
- NSLog(@"%lu", circle.subviews.count);
- 
- [statsLabel.centerYAnchor constraintEqualToAnchor:circle.centerYAnchor].active = YES;
- [statsLabel.centerXAnchor constraintEqualToAnchor:circle.centerXAnchor].active = YES;
- i = i + 1;
- }
- }
- */
-//for all journalentry objects in journals array
-//call method: -(NSMutableDictionary *)serialize
-//take return data object and check keys for journalentry[@"questions"];
-//create 5 cgfloats, one for each question
-//if 2, add to cgfloat, if 1, do nothing
-//take final cgfloats for each question and divide from total journal entries
-
-
-
-
-
-//-(void)layoutSubviews{
-//    [super layoutSubviews];
-//    [self addStatisticsCircles];
-//    [self createMoodStatsTitles];
-//}
-
-
-
-/*
- 
- */
-
-/*
- // Only override drawRect: if you perform custom drawing.
- // An empty implementation adversely affects performance during animation.
- - (void)drawRect:(CGRect)rect {
- // Drawing code
- }
- */
 @end

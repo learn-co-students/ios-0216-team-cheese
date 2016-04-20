@@ -1,24 +1,22 @@
 //
-//  StatsMenuView.m
+//  NoStatsDataView.m
 //  DidYou
 //
-//  Created by Kayla Galway on 4/14/16.
+//  Created by Kayla Galway on 4/20/16.
 //  Copyright © 2016 Did You Nooglers. All rights reserved.
 //
 
-#import "StatsMenuView.h"
+#import "NoStatsDataView.h"
 #import "DataStore.h"
 
-@interface StatsMenuView ()
-@property (weak, nonatomic) IBOutlet UIButton *statsWeekButton;
-@property (weak, nonatomic) IBOutlet UIButton *statsMonthButton;
-@property (weak, nonatomic) IBOutlet UIButton *statsAllTimeButton;
+@interface NoStatsDataView ()
+
 @property (strong, nonatomic) IBOutlet UIView *contentView;
 @property (strong, nonatomic) DataStore *dataStore;
 
 @end
 
-@implementation StatsMenuView
+@implementation NoStatsDataView
 
 -(instancetype)initWithFrame:(CGRect)frame
 {
@@ -47,17 +45,28 @@
 
 -(void)commonInit
 {
-    [[NSBundle mainBundle] loadNibNamed:@"StatsMenu" owner:self options:nil];
-    
+    [[NSBundle mainBundle] loadNibNamed:@"NoStatsDataView" owner:self options:nil];
     
     [self addSubview:self.contentView];
+    _dataStore = [DataStore sharedDataStore];
+    self.contentView.frame = self.bounds;
+    
+}
+
+-(void)layoutSubviews{
+    [super layoutSubviews];
     if (self.dataStore.currentUser.journals.count == 0) {
+        self.alpha = 1;
+    } else {
         self.alpha = 0;
     }
-    
-    
-    
-    self.contentView.frame = self.bounds;
 }
+/*
+ // Only override drawRect: if you perform custom drawing.
+ // An empty implementation adversely affects performance during animation.
+ - (void)drawRect:(CGRect)rect {
+ // Drawing code
+ }
+ */
 
 @end

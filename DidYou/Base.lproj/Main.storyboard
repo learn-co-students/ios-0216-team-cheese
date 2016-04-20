@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
@@ -45,13 +45,13 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="dLZ-gs-mNB">
                                         <rect key="frame" x="20" y="29" width="420" height="45"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location Permission" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e5k-qA-6zQ">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Location Permission" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e5k-qA-6zQ">
                                                 <rect key="frame" x="0.0" y="0.0" width="420" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I3s-gg-r0I">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I3s-gg-r0I">
                                                 <rect key="frame" x="0.0" y="21" width="420" height="24"/>
                                                 <string key="text">DidYou uses your location to anonymously compare your feelings and emotions to others in your same city and country.  View these results on the stats page.</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
@@ -415,22 +415,37 @@
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oDa-bP-van" customClass="StatsMoodCellView">
                                 <rect key="frame" x="0.0" y="85" width="600" height="240"/>
                             </view>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RLR-gG-Jdy" customClass="StatsQuestionViewCell">
-                                <rect key="frame" x="0.0" y="360" width="600" height="240"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RLR-gG-Jdy" customClass="StatsQuestionViewCell">
+                                <rect key="frame" x="0.0" y="282" width="600" height="240"/>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lUX-CN-d2J" userLabel="No Stats View" customClass="NoStatsDataView">
+                                <rect key="frame" x="0.0" y="150" width="600" height="300"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="statsicon" translatesAutoresizingMaskIntoConstraints="NO" id="ait-wf-5yf" userLabel="Stats Icon Image View">
+                                <rect key="frame" x="165" y="25" width="270" height="300"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="lUX-CN-d2J" firstAttribute="centerY" secondItem="7ij-5E-SI6" secondAttribute="centerY" id="0tc-Jj-P2m"/>
+                            <constraint firstItem="lUX-CN-d2J" firstAttribute="width" secondItem="7ij-5E-SI6" secondAttribute="width" id="17p-ay-oM3"/>
                             <constraint firstItem="RLR-gG-Jdy" firstAttribute="width" secondItem="oDa-bP-van" secondAttribute="width" id="1j1-Y6-Wul"/>
                             <constraint firstItem="RLR-gG-Jdy" firstAttribute="top" secondItem="oDa-bP-van" secondAttribute="bottom" id="1jI-Uk-5a2"/>
                             <constraint firstItem="oDa-bP-van" firstAttribute="centerX" secondItem="7ij-5E-SI6" secondAttribute="centerX" id="2MI-tG-2oF"/>
+                            <constraint firstItem="ait-wf-5yf" firstAttribute="centerY" secondItem="7ij-5E-SI6" secondAttribute="centerY" constant="-125" id="Aey-Jk-2ur"/>
                             <constraint firstItem="RLR-gG-Jdy" firstAttribute="height" secondItem="oDa-bP-van" secondAttribute="height" id="GpS-Zg-VgM"/>
+                            <constraint firstItem="ait-wf-5yf" firstAttribute="width" secondItem="7ij-5E-SI6" secondAttribute="width" multiplier="0.45" id="K6A-f6-zdS"/>
                             <constraint firstItem="D1V-sn-RsL" firstAttribute="centerX" secondItem="7ij-5E-SI6" secondAttribute="centerX" id="N8l-ZL-JF4"/>
+                            <constraint firstItem="lUX-CN-d2J" firstAttribute="centerX" secondItem="7ij-5E-SI6" secondAttribute="centerX" id="T0K-wC-iKX"/>
                             <constraint firstItem="RLR-gG-Jdy" firstAttribute="centerX" secondItem="7ij-5E-SI6" secondAttribute="centerX" id="c7B-xK-Kc5"/>
                             <constraint firstItem="D1V-sn-RsL" firstAttribute="width" secondItem="7ij-5E-SI6" secondAttribute="width" id="cr1-6a-mpR"/>
+                            <constraint firstItem="ait-wf-5yf" firstAttribute="centerX" secondItem="7ij-5E-SI6" secondAttribute="centerX" id="mLU-XF-IfE"/>
                             <constraint firstItem="oDa-bP-van" firstAttribute="height" secondItem="7ij-5E-SI6" secondAttribute="height" multiplier="0.4" id="nOJ-aO-jf0"/>
                             <constraint firstItem="D1V-sn-RsL" firstAttribute="height" secondItem="7ij-5E-SI6" secondAttribute="height" multiplier="0.07" id="qOM-WG-SrL"/>
+                            <constraint firstItem="ait-wf-5yf" firstAttribute="height" secondItem="7ij-5E-SI6" secondAttribute="height" multiplier="0.5" id="rgY-yf-aYl"/>
                             <constraint firstItem="D1V-sn-RsL" firstAttribute="top" secondItem="Mjm-EE-slc" secondAttribute="bottom" id="sYj-AJ-mX8"/>
+                            <constraint firstItem="lUX-CN-d2J" firstAttribute="height" secondItem="7ij-5E-SI6" secondAttribute="height" multiplier="0.5" id="xx4-3q-4BO"/>
                             <constraint firstItem="oDa-bP-van" firstAttribute="top" secondItem="D1V-sn-RsL" secondAttribute="bottom" id="yRe-Mo-u0s"/>
                             <constraint firstItem="oDa-bP-van" firstAttribute="width" secondItem="7ij-5E-SI6" secondAttribute="width" id="zxo-lE-Lf3"/>
                         </constraints>
@@ -439,6 +454,8 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="600"/>
                     <connections>
+                        <outlet property="noStatsDataView" destination="lUX-CN-d2J" id="6Hs-ee-FQb"/>
+                        <outlet property="statsIconImageView" destination="ait-wf-5yf" id="Sdu-VO-KDk"/>
                         <outlet property="statsMenuView" destination="D1V-sn-RsL" id="AT4-o9-vJz"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="segueStatsToMain" animates="NO" id="O8z-72-piC"/>
                         <segue destination="lhL-yJ-LM7" kind="show" identifier="segueStatsToUser" animates="NO" id="hqO-i4-hvB"/>
@@ -456,6 +473,7 @@
         <image name="nice" width="520" height="525"/>
         <image name="sex" width="600" height="575"/>
         <image name="sleep2" width="200" height="134"/>
+        <image name="statsicon" width="512" height="512"/>
         <image name="userWhite" width="72" height="72"/>
         <image name="workout2" width="200" height="200"/>
     </resources>

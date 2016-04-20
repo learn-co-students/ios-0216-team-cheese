@@ -49,6 +49,8 @@
 		CD086FBC1CC52736007A996A /* StatsMoodsViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD086FBB1CC52736007A996A /* StatsMoodsViewCell.xib */; };
 		CD086FBE1CC52CA7007A996A /* StatsQuestionsViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD086FBD1CC52CA7007A996A /* StatsQuestionsViewCell.xib */; };
 		CD086FC11CC52D46007A996A /* StatsQuestionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD086FC01CC52D46007A996A /* StatsQuestionViewCell.m */; };
+		CD50A3E81CC7CCFD006D4231 /* NoStatsDataView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD50A3E71CC7CCFD006D4231 /* NoStatsDataView.xib */; };
+		CD50A3EB1CC7CD14006D4231 /* NoStatsDataView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD50A3EA1CC7CD14006D4231 /* NoStatsDataView.m */; };
 		CDA19A171CB58A28001E1872 /* MoodCircleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CDA19A161CB58A28001E1872 /* MoodCircleButton.m */; };
 		CDA730891CBC4DE70014C12D /* DYStatsInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CDA730881CBC4DE70014C12D /* DYStatsInfo.m */; };
 		CDA7309A1CC047C00014C12D /* StatsMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDA730991CC047C00014C12D /* StatsMenu.xib */; };
@@ -128,6 +130,9 @@
 		CD086FBD1CC52CA7007A996A /* StatsQuestionsViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatsQuestionsViewCell.xib; sourceTree = "<group>"; };
 		CD086FBF1CC52D46007A996A /* StatsQuestionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatsQuestionViewCell.h; sourceTree = "<group>"; };
 		CD086FC01CC52D46007A996A /* StatsQuestionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatsQuestionViewCell.m; sourceTree = "<group>"; };
+		CD50A3E71CC7CCFD006D4231 /* NoStatsDataView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoStatsDataView.xib; sourceTree = "<group>"; };
+		CD50A3E91CC7CD14006D4231 /* NoStatsDataView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoStatsDataView.h; sourceTree = "<group>"; };
+		CD50A3EA1CC7CD14006D4231 /* NoStatsDataView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoStatsDataView.m; sourceTree = "<group>"; };
 		CDA19A151CB58A28001E1872 /* MoodCircleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoodCircleButton.h; sourceTree = "<group>"; };
 		CDA19A161CB58A28001E1872 /* MoodCircleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoodCircleButton.m; sourceTree = "<group>"; };
 		CDA730871CBC4DE70014C12D /* DYStatsInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYStatsInfo.h; sourceTree = "<group>"; };
@@ -225,6 +230,7 @@
 				CDA730991CC047C00014C12D /* StatsMenu.xib */,
 				CD086FBB1CC52736007A996A /* StatsMoodsViewCell.xib */,
 				CD086FBD1CC52CA7007A996A /* StatsQuestionsViewCell.xib */,
+				CD50A3E71CC7CCFD006D4231 /* NoStatsDataView.xib */,
 				AB92E75E1CAC48DE00199034 /* AddJournalEntry.xib */,
 				AB92E7DB1CB5585D00199034 /* CustomTabBar.xib */,
 				AB2A386B1CC449E1005DD03A /* JournalAndPictureAlternate.xib */,
@@ -241,6 +247,8 @@
 		AB92E7641CAC524300199034 /* Xib Views */ = {
 			isa = PBXGroup;
 			children = (
+				CD50A3E91CC7CD14006D4231 /* NoStatsDataView.h */,
+				CD50A3EA1CC7CD14006D4231 /* NoStatsDataView.m */,
 				CD086FB81CC526C6007A996A /* StatsMoodCellView.h */,
 				CD086FB91CC526C6007A996A /* StatsMoodCellView.m */,
 				CD086FBF1CC52D46007A996A /* StatsQuestionViewCell.h */,
@@ -392,6 +400,7 @@
 				AB92E7E41CB71A1A00199034 /* JournalEntryTableViewCell2.xib in Resources */,
 				AB69AF571CC03A7D00CC9F9B /* noInternet.xib in Resources */,
 				AB92E7D41CB400B600199034 /* JournalEntryTableViewCell.xib in Resources */,
+				CD50A3E81CC7CCFD006D4231 /* NoStatsDataView.xib in Resources */,
 				D60655921CBC27E800709533 /* loadingView.xib in Resources */,
 				AB69AF281CBD87F400CC9F9B /* EmptyTable.xib in Resources */,
 				AB92E7231CAB01F200199034 /* Main.storyboard in Resources */,
@@ -467,6 +476,7 @@
 				AB2A386F1CC52010005DD03A /* JournalAndPictureAlternateView.m in Sources */,
 				779BD9041CB736560027DC91 /* DYUtility.m in Sources */,
 				AB2A38721CC6764E005DD03A /* JournalEntryTableViewCellAlternate.m in Sources */,
+				CD50A3EB1CC7CD14006D4231 /* NoStatsDataView.m in Sources */,
 				AB92E7E21CB5708200199034 /* SettingsViewController.m in Sources */,
 				CD086FC11CC52D46007A996A /* StatsQuestionViewCell.m in Sources */,
 				AB92E7DA1CB40C6400199034 /* JournalEntryTableViewCell.m in Sources */,
@@ -601,7 +611,7 @@
 				INFOPLIST_FILE = DidYou/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.flatironSchool.DidYou.DidYou;
+				PRODUCT_BUNDLE_IDENTIFIER = com.flatironSchool.DidYou.DidYou2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "DidYou/DidYou-Bridging-Header.h";
@@ -620,7 +630,7 @@
 				INFOPLIST_FILE = DidYou/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.flatironSchool.DidYou.DidYou;
+				PRODUCT_BUNDLE_IDENTIFIER = com.flatironSchool.DidYou.DidYou2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "DidYou/DidYou-Bridging-Header.h";

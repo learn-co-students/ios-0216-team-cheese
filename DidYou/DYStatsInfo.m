@@ -46,7 +46,6 @@
         NSString *mainEmotionKeyString = [self generateMainEmotion:currentJournal.mainEmotion];
         if ([mainEmotionKeyString isEqualToString:@"Happy"]) {
             [self.happyArray addObject:mainEmotionKeyString];
-            NSLog(@"\n\n\n\n\n\n the happy array is: %@\n\n\n\n\n\n\n", self.happyArray);
         } else if ([mainEmotionKeyString isEqualToString:@"Excited"]) {
             [self.excitedArray addObject:mainEmotionKeyString];
         } else if ([mainEmotionKeyString isEqualToString:@"Tender"]) {
