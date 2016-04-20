@@ -17,7 +17,6 @@
 -(instancetype)init
 {
     self = [self initWithUserUUID:@"" signUpDate:[NSDate date] name:@"" city:@"" country:@"" journals:[[NSMutableArray alloc] init]];
-    
     return self;
 }
 
@@ -26,7 +25,6 @@
     self = [self initWithUserUUID:userUUID signUpDate:signUpDate name:@"" city:@"" country:@"" journals:[[NSMutableArray alloc] init]];
     
     return self;
-    
 }
 
 -(instancetype)initWithUserUUID:(NSString *)userUUID signUpDate:(NSDate *)signUpDate name:(NSString *)name city:(NSString *)city country:(NSString *)country journals:(NSMutableArray *)journals

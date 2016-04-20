@@ -40,7 +40,6 @@
     {
         [self commonInit];
     }
-    
     return self;
 }
 
@@ -52,39 +51,25 @@
     {
         [self commonInit];
     }
-    
     return self;
 }
 
 -(void)commonInit
 {
-    
     [[NSBundle mainBundle] loadNibNamed:@"JournalEntryTableViewCell2" owner:self options:nil];
-    
     [self addSubview:self.contentView];
-    
     self.contentView.frame = self.bounds;
-
-    
-    
 }
 
 -(void)setJournalEntry:(DYJournalEntry *)journalEntry
 {
     _journalEntry = journalEntry;
     
-    
     DYQuestion *question1 = self.journalEntry.questions[0];
     DYQuestion *question2 = self.journalEntry.questions[1];
     DYQuestion *question3 = self.journalEntry.questions[2];
     DYQuestion *question4 = self.journalEntry.questions[3];
     DYQuestion *question5 = self.journalEntry.questions[4];
-    
-//    self.question1Image.image = [UIImage imageNamed:@"sleep"];
-//    self.question2Image.image = [UIImage imageNamed:@"breakfast_480"];
-//    self.question3Image.image = [UIImage imageNamed:@"workout"];
-//    self.question4Image.image = [UIImage imageNamed:@"nice"];
-//    self.question5Image.image = [UIImage imageNamed:@"sex"];
     
     self.sleepView.layer.cornerRadius = 16;
     self.breakfastView.layer.cornerRadius = 16;
@@ -112,7 +97,7 @@
     NSString *month = [monthFormatter stringFromDate:self.journalEntry.date];
     NSString *dayOfMonth = [dayFormatter stringFromDate:self.journalEntry.date];
     NSString *dayOfWeek = [weekDayFormatter stringFromDate:self.journalEntry.date];
-
+    
     self.monthLabel.text = month;
     self.dayOfMonthLabel.text = dayOfMonth;
     self.dayOfWeekLabel.text = dayOfWeek;

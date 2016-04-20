@@ -15,7 +15,6 @@
 
 -(instancetype)init
 {
-    
     self = [self initWithDate:[NSDate date] mainEmotion:@"" journalEntry:@"" picture1Address:@"" userImage:nil];
     return self;
 }
@@ -24,7 +23,6 @@
 -(instancetype)initWithDate:(NSDate *)date mainEmotion:(NSString *)mainEmotion journalEntry:(NSString *)journalEntry picture1Address:(NSString *)picture1Address userImage:(UIImage *)userImage
 {
     self = [super init];
-    
     if (self)
     {
         _date = date;
@@ -33,12 +31,8 @@
         _picture1Address = picture1Address;
         _userImage = userImage;
         _questions = [self generateQuestions];
-   
     }
-    
     return self;
-    
-    
 }
 
 -(instancetype)initWithDeserialize: (NSMutableDictionary*)data
@@ -72,11 +66,7 @@
 {
     DYUtility *util = [DYUtility sharedUtility];
     NSMutableDictionary *data = [[NSMutableDictionary alloc] init];
-    
     NSMutableArray *questions = [[NSMutableArray alloc] init];
-
-    //UIImage *userImage = [util decodeBase64ToImage: _picture1Address];
-    
     
     for (DYQuestion *question in _questions)
     {
@@ -84,11 +74,9 @@
     }
     data[@"date"] = [util getUTCFormatDate:_date];
     data[@"emotion"] = _mainEmotion;
-    
-//    NSLog(@"What are ou journal entry: %@", _journalEntry);
     data[@"journalEntry"] = _journalEntry;
-//    NSLog(@"The journal entry is %@", _journalEntry);
     data[@"picture1address"] = _picture1Address;
+    
     if (!_userImage)
     {
         data[@"userImage"] = @"nil";

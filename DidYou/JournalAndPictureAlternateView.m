@@ -39,56 +39,36 @@
 -(instancetype)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super initWithCoder:aDecoder];
-    
     if (self)
     {
         [self commonInit];
     }
-    
     return self;
 }
 
-
 -(void)commonInit
 {
-    
     [[NSBundle mainBundle] loadNibNamed:@"JournalAndPictureAlternate" owner:self options:nil];
-    
     [self addSubview:self.contentView];
-    
     self.contentView.frame = self.bounds;
-    
     self.datastore = [DataStore sharedDataStore];
-    
     self.currentEntry = [self.datastore.currentUser.journals lastObject];
-    
     self.textView.delegate = self;
-    
-    
-    
 }
 
 - (IBAction)doneButtonTapped:(id)sender
 {
-    
     BOOL noJournal = [self.textView.text isEqualToString:@"Record your thoughts and feelings here.  It will be very helpful and therapuetic to come back and read this later on. "];
-    
-//    NSLog(@"%D", noJournal);
     
     if (noJournal)
     {
         self.currentEntry.journalEntry = @"";
     }
-    
     else
     {
-          self.currentEntry.journalEntry = self.textView.text;
+        self.currentEntry.journalEntry = self.textView.text;
     }
-    
     [self.delegate doneButtonTapped];
-    
-    
-    
 }
 
 -(void)textViewDidBeginEditing:(UITextView *)textView

@@ -23,7 +23,7 @@
                 </label>
             </subviews>
             <constraints>
-                <constraint firstItem="wHh-Hq-9ND" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="Gkm-p7-n1t"/>
+                <constraint firstItem="wHh-Hq-9ND" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Gkm-p7-n1t"/>
                 <constraint firstItem="wHh-Hq-9ND" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Jag-Uw-Dvt"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

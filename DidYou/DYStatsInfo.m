@@ -31,7 +31,8 @@
 }
 
 
--(CGFloat)calculateEmotionPercentage:(NSArray *)emotionArray ofEntries:(NSArray *)entryArray {
+-(CGFloat)calculateEmotionPercentage:(NSArray *)emotionArray ofEntries:(NSArray *)entryArray
+{
     CGFloat emotionCount = [emotionArray count];
     CGFloat entryCount = [entryArray count];
     CGFloat emotionPercentage = (emotionCount / entryCount) * 100;
@@ -39,8 +40,8 @@
 }
 
 //edit mood arrays based on the provided array of journal dictionaries (such as current month dictionary or year dictionary)
--(void)addToMoodArrays {
-    NSLog(@"\n\n\n\n\n\nabout to attempt to add to mood arrays\n\n\n\n\n\n");
+-(void)addToMoodArrays
+{
     for (DYJournalEntry *currentJournal in self.dataStore.currentUser.journals) {
         NSLog(@"entering the for loop");
         NSString *mainEmotionKeyString = [self generateMainEmotion:currentJournal.mainEmotion];
@@ -61,8 +62,8 @@
 }
 
 //changes sub emotion to a main emotion key (so switches something like blue to sad)
--(NSString *)generateMainEmotion:(NSString *)storedEmotion {
-    
+-(NSString *)generateMainEmotion:(NSString *)storedEmotion
+{
     NSString *mainEmotionKey = @"";
     NSArray *emotionKeysArray = [self.dataStore.emotions allKeys];
     
@@ -73,12 +74,12 @@
             mainEmotionKey = emotion;
         }
     }
-    NSLog(@"stats info generateMainEmotionTest %@", mainEmotionKey);
     return mainEmotionKey;
 }
 
 //gets all entries from current month
--(void)getEntriesFromCurrentMonth {
+-(void)getEntriesFromCurrentMonth
+{
     DYUser *currentUser = [[DYUser alloc]init];
     for (DYJournalEntry *currentJournalEntry in currentUser.journals) {
         NSDateComponents *currentDateComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:[NSDate date]];
@@ -89,14 +90,12 @@
     }
 }
 
--(void)resizeCircles:(UIView *)circleView withPercentage:(CGFloat)percentage {
+-(void)resizeCircles:(UIView *)circleView withPercentage:(CGFloat)percentage
+{
     CGFloat minimumCircleSize = 70;
     CGFloat maximumCircleSize = 110;
     CGFloat range = maximumCircleSize - minimumCircleSize;
-    //40
     CGFloat sizeIncrement = (range / maximumCircleSize);
-    //.4
-    
     CGFloat calculatedCircleSize = minimumCircleSize + (percentage * sizeIncrement);
     
     [circleView.widthAnchor constraintEqualToConstant:calculatedCircleSize].active = YES;
@@ -104,8 +103,5 @@
     circleView.layer.cornerRadius = calculatedCircleSize / 2.0;
 }
 
-
-//then another method that counts the number of total emotion values
-//then divides the number of total emotion values by the number of the count of each array to create the percentages required
 
 @end

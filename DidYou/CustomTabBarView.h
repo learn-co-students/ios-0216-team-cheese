@@ -14,7 +14,6 @@
 
 @end
 
-
 @interface CustomTabBarView : UIView
 
 @property (strong, nonatomic) id <CustomTabBarDelegate> delegate;

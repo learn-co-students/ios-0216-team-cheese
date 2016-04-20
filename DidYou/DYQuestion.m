@@ -12,36 +12,21 @@
 
 
 
--(instancetype) init{
-    
-    
+-(instancetype) init
+{
     self = [self initWithQuestion:@""];
-    
-    
     return self;
-    
 }
 
 
 -(instancetype)initWithQuestion:(NSString *)question 
 {
-    
-    
     self = [super init];
-    
     if(self){
-        
-        
         _question = question;
         _answer = 0;
-      
-        
-        
     }
-    
     return self;
-    
-    
 }
 
 -(instancetype)initWithDeserialize:(NSMutableDictionary *)data

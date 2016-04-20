@@ -19,44 +19,34 @@
 -(instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
-    
     if (self)
     {
         [self commonInit];
     }
-    
     return self;
 }
 
 -(instancetype)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super initWithCoder:aDecoder];
-    
     if (self)
     {
         [self commonInit];
     }
-    
     return self;
 }
 
 
 -(void)commonInit
 {
-    
     [[NSBundle mainBundle] loadNibNamed:@"noInternet" owner:self options:nil];
-    
     [self addSubview:self.contentView];
-    
     self.contentView.frame = self.bounds;
-    
 }
 
 - (IBAction)refreshButtonTapped:(id)sender
 {
-    
     [self.delegate refreshTapped]; 
-    
 }
 
 

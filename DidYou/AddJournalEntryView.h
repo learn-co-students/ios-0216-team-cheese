@@ -22,7 +22,4 @@
 @property (strong, nonatomic) DYJournalEntry *journalEntry;
 @property (nonatomic) BOOL shouldAnimate;
 
-
-
-
 @end

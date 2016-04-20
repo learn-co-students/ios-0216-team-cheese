@@ -20,12 +20,6 @@
 @interface MainFeelingView : UIView
 
 @property (weak, nonatomic) id <MainFeelingViewDelegate> delegate;
-
 @property (strong, nonatomic) IBOutlet UIView *circleMenuView;
-
-//-(void)addCircles;
-//-(void)addInitialCirclesWithAnimation;
-
-
 
 @end

@@ -10,6 +10,7 @@
 #import "DataStore.h"
 
 @interface StatsMenuView ()
+
 @property (weak, nonatomic) IBOutlet UIButton *statsWeekButton;
 @property (weak, nonatomic) IBOutlet UIButton *statsMonthButton;
 @property (weak, nonatomic) IBOutlet UIButton *statsAllTimeButton;
@@ -23,24 +24,20 @@
 -(instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
-    
     if (self)
     {
         [self commonInit];
     }
-    
     return self;
 }
 
 -(instancetype)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super initWithCoder:aDecoder];
-    
     if (self)
     {
         [self commonInit];
     }
-    
     return self;
 }
 
@@ -49,14 +46,10 @@
 {
     [[NSBundle mainBundle] loadNibNamed:@"StatsMenu" owner:self options:nil];
     
-    
     [self addSubview:self.contentView];
     if (self.dataStore.currentUser.journals.count == 0) {
         self.alpha = 0;
     }
-    
-    
-    
     self.contentView.frame = self.bounds;
 }
 

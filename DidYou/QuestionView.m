@@ -148,6 +148,8 @@
     self.iconCenterXConstraintLeft.active = NO;
     self.iconCenterXConstraintCenter.active = YES;
     
+    
+    
     [self layoutIfNeeded];
     
     NSLog(@"Done with set up image small");

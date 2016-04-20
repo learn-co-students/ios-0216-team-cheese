@@ -10,16 +10,11 @@
 
 @interface DYQuestion : NSObject
 
-
 @property (nonatomic, strong) NSString *question;
 @property (nonatomic) NSUInteger answer;
 
-
-
 -(instancetype)init;
-
 -(instancetype)initWithQuestion:(NSString *)question;
-
 -(instancetype)initWithDeserialize:(NSMutableDictionary *)data;
 -(NSMutableDictionary *)serialize;
 

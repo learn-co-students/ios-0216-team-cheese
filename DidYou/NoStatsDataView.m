@@ -21,27 +21,22 @@
 -(instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
-    
     if (self)
     {
         [self commonInit];
     }
-    
     return self;
 }
 
 -(instancetype)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super initWithCoder:aDecoder];
-    
     if (self)
     {
         [self commonInit];
     }
-    
     return self;
 }
-
 
 -(void)commonInit
 {
@@ -53,7 +48,8 @@
     
 }
 
--(void)layoutSubviews{
+-(void)layoutSubviews
+{
     [super layoutSubviews];
     if (self.dataStore.currentUser.journals.count == 0) {
         self.alpha = 1;

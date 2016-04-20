@@ -13,9 +13,7 @@
 -(void)layoutSubviews
 {
     [super layoutSubviews];
-    
     CGFloat maxDimension = MAX(self.frame.size.width, self.frame.size.height);
-    
     self.layer.cornerRadius = maxDimension / 2.0;
 }
 

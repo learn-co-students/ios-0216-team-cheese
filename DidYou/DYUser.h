@@ -14,15 +14,11 @@
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *city;
 @property (strong, nonatomic) NSString *country;
-//@property (strong, nonatomic) UIImage *image;
 @property (strong, nonatomic) NSDate *signUpDate;
-
 @property (strong, nonatomic) NSMutableArray *journals;
 
 -(instancetype)init;
-
 -(instancetype)initWithUserUUID:(NSString *)userUUID signUpDate:(NSDate *)signUpDate;
-
 -(instancetype)initWithUserUUID:(NSString *)userUUID signUpDate:(NSDate *)signUpDate name:(NSString *)name city:(NSString *)city country:(NSString *)country journals:(NSMutableArray *)journals;
 
 -(NSArray *)journalArrayLIFO;

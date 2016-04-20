@@ -15,7 +15,6 @@
 
 @interface DYStatsInfo : NSObject
 
-//once logic is set, remove these properties and reference malleable keys
 @property (strong, nonatomic) DYUser *currentUser;
 @property (strong, nonatomic) DataStore *dataStore;
 @property (strong, nonatomic) DYJournalEntry *journalEntry;
@@ -26,28 +25,17 @@
 @property (strong, nonatomic) NSMutableArray *angryArray;
 @property (strong, nonatomic) NSMutableArray *sadArray;
 @property (strong, nonatomic) NSArray *allMoodsArray;
-
-//@property (strong, nonatomic) NSDictionary *journalsDict; -- don't need? replaced with arrayOfJournalDictionaries to reduce lines of code
 @property (strong, nonatomic) NSMutableArray *arrayOfCurrentMonthJournalDictionaries;
 @property (nonatomic) NSInteger countOfAllEntries;
 @property (nonatomic) NSInteger countOfCurrentMonthEntries;
 
 -(CGFloat)calculateEmotionPercentage:(NSArray *)emotionArray ofEntries:(NSArray *)moodArray;
 -(void)addToMoodArrays;
-//-(void)addToMoodArrays: (NSArray *)givenJournalsArray;
 -(void)getEntriesFromCurrentMonth;
 -(NSString *)generateMainEmotion:(NSString *)storedEmotion;
 -(void)resizeCircles:(UIView *)circleView withPercentage:(CGFloat)percentage;
 -(instancetype)init;
 
-/*
- @"Happy"
-    @"Excited"
-    @"Tender"
-    @"Scared"
-    @"Angry"
-    @"Sad"
- */
 
 
 @end

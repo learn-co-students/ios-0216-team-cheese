@@ -98,8 +98,6 @@
 
 -(void)addCircleView
 {
-
-    
     UIColor *lavendarColor = [UIColor colorWithRed:211.0f/255.0f green:145.0f/255.0f blue:255.0f/255.0f alpha:0.4];
     UIColor *blueColor = [UIColor colorWithRed:104.0f/255.0f green:183.0f/255.0f blue:255.0f/255.0f alpha:0.4];
     UIColor *redColor = [UIColor colorWithRed:255.0f/255.0f green:59.0f/255.0f blue:59.0f/255.0f alpha:0.4];
@@ -143,7 +141,6 @@
     orangeCircleTap.delaysTouchesEnded = NO;
     orangeCircleTap.delaysTouchesBegan = NO;
     
-    
     UITapGestureRecognizer *purpleCircleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(circleTapped)];
     purpleCircleTap.numberOfTapsRequired = 1;
     //purpleCircleTap.numberOfTouchesRequired = 1;
@@ -181,16 +178,12 @@
     self.purpleCircle.userInteractionEnabled = YES;
     self.grayCircle.userInteractionEnabled = YES;
     
-
-    
-    
     [self animateView:self.blueCircle withRadius:50];
     [self animateView:self.yellowCircle withRadius:30];
     [self animateView:self.redCircle withRadius:60];
     [self animateView:self.orangeCircle withRadius:20];
     [self animateView:self.purpleCircle withRadius:50];
     [self animateView:self.grayCircle withRadius:35];
-    
 }
 
 - (UIView*)createCircleViewWithRadius:(int)radius originX:(CGFloat)originX originY:(CGFloat)originY color:(UIColor *)color
@@ -199,10 +192,6 @@
     UIView *circle = [[UIView alloc] initWithFrame:CGRectMake(originX, originY, 2 * radius, 2 * radius)];
     circle.layer.cornerRadius = radius;
     circle.layer.masksToBounds = YES;
-    
-    // border
-//    circle.layer.borderColor = [UIColor whiteColor].CGColor;
-//    circle.layer.borderWidth = 1;
     
     // gradient background color
     CAGradientLayer *gradientBg = [CAGradientLayer layer];
@@ -229,13 +218,8 @@
 
 -(void)animateView: (UIView *)circleView withRadius:(CGFloat)radius
 {
-
-    
     if (self.shouldAnimate)
     {
-    
-        NSLog(@"animating");
-        
             NSUInteger xPosition = arc4random_uniform(self.contentView.frame.size.width - 70);
             NSUInteger yPosition = arc4random_uniform(self.contentView.frame.size.height - 50);
             
@@ -243,31 +227,23 @@
             {
                 xPosition = arc4random_uniform(305);
             }
-
         
             NSUInteger time = arc4random_uniform(5);
-            
+        
             [UIView animateWithDuration:time + 13 delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
                 circleView.frame = CGRectMake(xPosition, yPosition, radius*2.0, radius*2.0);
             } completion:^(BOOL finished) {
                 
                 if ([self.delegate canIAnimate]) {
-                    
                     [self animateView:circleView withRadius:radius];
-
                 }
-                
             }];
-    
- 
     }
-
 }
 
 
 - (IBAction)menuTapped:(id)sender
 {
-    
     [self.delegate addButtonTapped:sender];
 }
 
@@ -275,9 +251,6 @@
 {
       [self.delegate addButtonTapped:nil];
 }
-
-
-
 
 
 @end
