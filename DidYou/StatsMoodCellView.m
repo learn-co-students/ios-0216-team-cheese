@@ -53,6 +53,7 @@
     [[NSBundle mainBundle] loadNibNamed:@"StatsMoodsViewCell" owner:self options:nil];
     
     _dataStore = [DataStore sharedDataStore];
+    _timePeriod = 3;
     _moodStatsDictionary = [[NSMutableDictionary alloc]init];
     _statsCirclesArray = [[NSMutableArray alloc]init];
     
@@ -118,7 +119,7 @@
 }
 
 -(void)createMoodStatsTitles {
-    DYStatsInfo *currentStats = [[DYStatsInfo alloc]init];
+    DYStatsInfo *currentStats = [[DYStatsInfo alloc]initWithTimePeriod:_timePeriod];
     CGFloat emotionPercentage = 0;
     [currentStats addToMoodArrays];
     NSArray *moodName = [self.dataStore.emotions allKeys];
@@ -126,7 +127,7 @@
     
     for (NSMutableArray *moodArray in currentStats.allMoodsArray) {
         
-        emotionPercentage = [currentStats calculateEmotionPercentage:moodArray ofEntries:self.dataStore.currentUser.journals];
+        emotionPercentage = [currentStats calculateEmotionPercentage:moodArray ofEntries:[currentStats filterByTimePeriod]];
         NSString *emotionPercentageString = [NSString stringWithFormat:@"%f", emotionPercentage];
         if (emotionPercentage < 9) {
         emotionPercentageString = [emotionPercentageString substringToIndex:1];

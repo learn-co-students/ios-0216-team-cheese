@@ -10,4 +10,6 @@
 
 @interface StatsMoodCellView : UIView
 
+@property(nonatomic) NSInteger timePeriod;
+
 @end

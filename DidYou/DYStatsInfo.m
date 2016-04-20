@@ -14,6 +14,7 @@
 -(instancetype)init {
     self = [super init];
     if (self) {
+        _timePeriod = 3;
         _happyArray = [NSMutableArray new];
         _excitedArray = [NSMutableArray new];
         _tenderArray = [NSMutableArray new];
@@ -21,10 +22,15 @@
         _angryArray = [NSMutableArray new];
         _sadArray = [NSMutableArray new];
         _dataStore = [DataStore sharedDataStore];
-        _journalEntry = [[DYJournalEntry alloc]init];
-        _currentUser = [[DYUser alloc]init];
-        _arrayOfCurrentMonthJournalDictionaries = [NSMutableArray new];
         _allMoodsArray = @[self.happyArray, self.excitedArray, self.tenderArray, self.scaredArray, self.angryArray, self.sadArray];
+    }
+    return self;
+}
+
+-(instancetype)initWithTimePeriod: (NSInteger) TimePeriod {
+    self = [self init];
+    if (self) {
+        _timePeriod = TimePeriod;
     }
     return self;
 }
@@ -40,7 +46,7 @@
 //edit mood arrays based on the provided array of journal dictionaries (such as current month dictionary or year dictionary)
 -(void)addToMoodArrays {
     NSLog(@"\n\n\n\n\n\nabout to attempt to add to mood arrays\n\n\n\n\n\n");
-    for (DYJournalEntry *currentJournal in self.dataStore.currentUser.journals) {
+    for (DYJournalEntry *currentJournal in [self filterByTimePeriod]) {
         NSLog(@"entering the for loop");
         NSString *mainEmotionKeyString = [self generateMainEmotion:currentJournal.mainEmotion];
         if ([mainEmotionKeyString isEqualToString:@"Happy"]) {
@@ -77,16 +83,67 @@
     return mainEmotionKey;
 }
 
-//gets all entries from current month
--(void)getEntriesFromCurrentMonth {
-    for (DYJournalEntry *currentJournalEntry in self.dataStore.currentUser.journals) {
-        NSDateComponents *currentDateComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:[NSDate date]];
-        NSDateComponents *entryDateComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:currentJournalEntry.date];
-        if ([entryDateComponents month] == [currentDateComponents month]) {
-            [self.arrayOfCurrentMonthJournalDictionaries addObject:currentJournalEntry];
-        }
+-(NSMutableArray *)filterByTimePeriod
+{
+    switch (_timePeriod)
+    {
+        case 1:
+            return [self filterByMonth];
+        case 2:
+            return [self filterByWeek];
+        case 3:
+            return [self getAllJournals];
+        default:
+            NSLog (@"Unknown time period");
+            return [@[] mutableCopy];
     }
+    
 }
+
+-(NSMutableArray *)filterByMonth
+{
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    
+    for (DYJournalEntry *currentJournalEntry in [self getAllJournals])
+    {
+        NSDateComponents *currentDateComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitWeekOfYear | NSCalendarUnitDay fromDate:[NSDate date]];
+        
+        NSDateComponents *entryDateComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitWeekOfYear | NSCalendarUnitDay fromDate:currentJournalEntry.date];
+        
+        if ([entryDateComponents month] == [currentDateComponents month])
+        {
+            [array addObject:currentJournalEntry];
+        }
+        
+    }
+    return array;
+}
+
+-(NSMutableArray *)filterByWeek
+{
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    
+ for (DYJournalEntry *currentJournalEntry in [self getAllJournals])
+ {
+     NSDateComponents *currentDateComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitWeekOfYear | NSCalendarUnitDay fromDate:[NSDate date]];
+     
+     NSDateComponents *entryDateComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitWeekOfYear | NSCalendarUnitDay fromDate:currentJournalEntry.date];
+     
+     if (([entryDateComponents year] == [currentDateComponents year]) &&
+         ([entryDateComponents weekOfYear] == [currentDateComponents weekOfYear]))
+     {
+         [array addObject:currentJournalEntry];
+     }
+     
+ }
+    return array;
+}
+
+-(NSMutableArray *)getAllJournals
+{
+    return self.dataStore.currentUser.journals;
+}
+
 
 -(void)resizeCircles:(UIView *)circleView withPercentage:(CGFloat)percentage {
     CGFloat minimumCircleSize = 60;

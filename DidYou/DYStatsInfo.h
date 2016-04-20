@@ -26,6 +26,7 @@
 @property (strong, nonatomic) NSMutableArray *angryArray;
 @property (strong, nonatomic) NSMutableArray *sadArray;
 @property (strong, nonatomic) NSArray *allMoodsArray;
+@property (nonatomic) NSInteger timePeriod;
 
 //@property (strong, nonatomic) NSDictionary *journalsDict; -- don't need? replaced with arrayOfJournalDictionaries to reduce lines of code
 @property (strong, nonatomic) NSMutableArray *arrayOfCurrentMonthJournalDictionaries;
@@ -39,6 +40,11 @@
 -(NSString *)generateMainEmotion:(NSString *)storedEmotion;
 -(void)resizeCircles:(UIView *)circleView withPercentage:(CGFloat)percentage;
 -(instancetype)init;
+-(instancetype)initWithTimePeriod: (NSInteger)TimePeriod;
+-(NSMutableArray *) filterByTimePeriod;
+-(NSMutableArray *) filterByMonth;
+-(NSMutableArray *) filterByWeek;
+-(NSMutableArray *) getAllJournals;
 
 /*
  @"Happy"
