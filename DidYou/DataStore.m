@@ -17,9 +17,6 @@
 
 + (instancetype)sharedDataStore
 {
-    
-    NSLog(@"shared data store called");
-    
     static DataStore *_sharedDataStore = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -33,8 +30,6 @@
 
 -(instancetype)init
 {
-    
-    NSLog(@"init for singleton");
     
     self = [super init];
     
@@ -194,8 +189,7 @@
     NSLog(@"in add journal to firebase");
     // get the user reference and serialize the journal
     // use childByAutoId to assign random key to journal entry, in firebase, have an array, don't want to push array in its entirty every time, JS has a push method, randomly put in there, sort later
-    NSLog(@"%@\n\n\n\n\n", self.currentUser.userUUID);
-    
+
     Firebase *journalRef = [[self getUserRef: user] childByAppendingPath:@"journals"];
     [[journalRef childByAutoId] setValue:[journalEntry serialize]];
 }
@@ -212,7 +206,6 @@
               withJournalEntry:self.currentUser.journals.lastObject];
 
     DYJournalEntry *journal = self.currentUser.journals.lastObject;
-    NSLog(@"Journal is %@", journal.journalEntry);
 
 }
 
@@ -264,61 +257,58 @@
 
 -(void)pullCurrentUserFromFirebase:(NSString *)userUUID
 {
-
+    
     NSLog(@"in the firebase method trying with UUID: %@", userUUID);
     
     Firebase *userRef = [[self.myRootRef childByAppendingPath:@"users"] childByAppendingPath:userUUID];
     
-    
-    
     [userRef observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
-
+        
         NSLog(@"in the firebase completion");
-
-        NSLog(@"%@", [snapshot value]);
-
+        
+//        NSLog(@"%@", [snapshot value]);
+        
         DYUtility *util = [DYUtility sharedUtility];
         NSMutableArray *journals = [[NSMutableArray alloc] init];
         NSDictionary *result = [snapshot value];
-
+        
         self.currentUser.signUpDate = [util fromUTCFormatDate: result[@"signUpDate"]];
         self.currentUser.name = result[@"name"];
         self.currentUser.city = result[@"city"];
         self.currentUser.country = result[@"country"];
-
-         // Deserialize each journal entry
-         NSMutableDictionary *journalDict = result[@"journals"];
-
-         for (NSString *key in [journalDict allKeys])
-
-         {   // this is how you deserializing the object in firebase
+        
+        // Deserialize each journal entry
+        NSMutableDictionary *journalDict = result[@"journals"];
+        
+        for (NSString *key in [journalDict allKeys])
             
-             [journals addObject:[[DYJournalEntry alloc] initWithDeserialize: journalDict[key]]];
-         }
-
-         self.currentUser.journals = [util sortEntriesFromArray:journals];
-
-         //[self.users addObject:self.currentUser];
-         
-         // Notify the main controller that the firebase data
-         // has arrived
-
-         NSLog(@"about to post firebase notification");
-
-
-         [[NSNotificationCenter defaultCenter]
-          postNotificationName:@"FirebaseNotification"
-          object:self];
-
+        {   // this is how you deserializing the object in firebase
+            
+            [journals addObject:[[DYJournalEntry alloc] initWithDeserialize: journalDict[key]]];
+        }
+        
+        self.currentUser.journals = [util sortEntriesFromArray:journals];
+        
+        //[self.users addObject:self.currentUser];
+        
+        // Notify the main controller that the firebase data
+        // has arrived
+        
+        NSLog(@"about to post firebase notification");
+        
+        
+        [[NSNotificationCenter defaultCenter]
+         postNotificationName:@"FirebaseNotification"
+         object:self];
+        
         
         [self setUpLocationManager];
-
-          //this block doesn't get executed until the snapshot is delivered
+        
+        //this block doesn't get executed until the snapshot is delivered
         
     } ];
     
 }
-
 
 
 -(NSDictionary *)emotionsDictionary
@@ -331,8 +321,6 @@
                                 @"Scared"  :  @[ @"Tense",@"Nervous",@"Anxious",@"Frightened",@"Terrified",@"Apprehensive"],
                                 @"Angry"  :  @[ @"Irritated",@"Resentful",@"Upset",@"Furious",@"Raging",@"Annoyed"],
                                 @"Sad"  :  @[ @"Blue",@"Mopey",@"Dejected",@"Depressed",@"Heartbroken",@"Remorseful"]};
-    
-    
     return emotions;
 }
 
@@ -405,8 +393,6 @@
     
     //Firebase *countryRef = [[[self.myRootRef childByAppendingPath: @"countries"] childByAppendingPath: placeMark.country] childByAppendingPath:self.currentUser.userUUID];
     //[countryRef setValue: self.currentUser.country];
-
-    
 }
 
 -(void)deleteAllCurrentUserEntries
@@ -423,7 +409,19 @@
     
 }
 
-
+-(void)updateFirebaseJournals
+{
+   
+    Firebase *journalsRef = [[self getUserRef:self.currentUser] childByAppendingPath:@"journals"];
+    
+    [journalsRef removeValue];
+    
+    for (DYJournalEntry *entry in self.currentUser.journals)
+    {
+        [self addJournalToFirebase:self.currentUser withJournalEntry:entry];
+    }
+    
+}
 
 
 

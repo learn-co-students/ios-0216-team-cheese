@@ -22,6 +22,7 @@
 @property (strong, nonatomic) UIView *grayCircle;
 @property (strong, nonatomic) DataStore *dataStore;
 
+
 @property (weak, nonatomic) IBOutlet UIView *addButtonView;
 
 
@@ -71,10 +72,12 @@
     
     [self addSubview:self.contentView];
     
+    _shouldAnimate = YES;
+
+    
     self.contentView.frame = self.bounds;
     [self addCircleView];
     
-    //_shouldAnimate = YES;
     
     //[self addTitle];
     
@@ -226,39 +229,38 @@
 
 -(void)animateView: (UIView *)circleView withRadius:(CGFloat)radius
 {
-    
 
     
-        NSUInteger xPosition = arc4random_uniform(self.contentView.frame.size.width - 70);
-        NSUInteger yPosition = arc4random_uniform(self.contentView.frame.size.height - 50);
-        
-        if (xPosition > 375)
-        {
-            xPosition = arc4random_uniform(305);
-        }
-        
-//        NSLog(@"%f is the width", self.contentView.frame.size.width);
-//        NSLog(@"%f is the height", self.contentView.frame.size.height);
-//        
-//        NSLog(@"%lu", xPosition);
-//        NSLog(@"%lu", yPosition);
+    if (self.shouldAnimate)
+    {
     
-        NSUInteger time = arc4random_uniform(5);
+        NSLog(@"animating");
         
-        [UIView animateWithDuration:time + 13 delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
-            circleView.frame = CGRectMake(xPosition, yPosition, radius*2.0, radius*2.0);
-        } completion:^(BOOL finished) {
+            NSUInteger xPosition = arc4random_uniform(self.contentView.frame.size.width - 70);
+            NSUInteger yPosition = arc4random_uniform(self.contentView.frame.size.height - 50);
             
-            if ([self.delegate canIAnimate]) {
-                
-                [self animateView:circleView withRadius:radius];
-
+            if (xPosition > 375)
+            {
+                xPosition = arc4random_uniform(305);
             }
+
+        
+            NSUInteger time = arc4random_uniform(5);
             
-        }];
+            [UIView animateWithDuration:time + 13 delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
+                circleView.frame = CGRectMake(xPosition, yPosition, radius*2.0, radius*2.0);
+            } completion:^(BOOL finished) {
+                
+                if ([self.delegate canIAnimate]) {
+                    
+                    [self animateView:circleView withRadius:radius];
+
+                }
+                
+            }];
     
  
-    
+    }
 
 }
 
@@ -271,8 +273,6 @@
 
 -(void)circleTapped
 {
-    
-    NSLog(@"circle tapped");
       [self.delegate addButtonTapped:nil];
 }
 

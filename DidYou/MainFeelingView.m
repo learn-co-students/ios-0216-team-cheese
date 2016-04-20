@@ -59,20 +59,20 @@
     
     NSArray *journals = self.dataStore.currentUser.journals;
     
-  //  NSLog(@"in the common init for main feeling, the number or journals is: %lu", self.dataStore.currentUser.journals.count);
+    //  NSLog(@"in the common init for main feeling, the number or journals is: %lu", self.dataStore.currentUser.journals.count);
     
     self.currentEntry = [journals lastObject];
     self.circleButtons = [[NSMutableArray alloc] init];
     
     [self addInitialCirclesWithAnimation];
-  
+    
     
 }
 
 -(IBAction)firstCircleMenuButtonTapped:(id)sender
 {
     
-
+    
     UIButton *firstTappedButton = sender;
     
     firstTappedButton.enabled = NO;
@@ -84,7 +84,7 @@
     NSString *chosenEmotion = firstTappedButton.titleLabel.text;
     
     self.topLabel.text = [NSString stringWithFormat:@"Just %@, or", [chosenEmotion lowercaseString]];
-
+    
     
 }
 
@@ -180,7 +180,7 @@
 
 -(void)addInitialCirclesWithAnimation
 {
-   
+    
     
     
     [UIButton animateWithDuration:.2
@@ -265,7 +265,7 @@
         //                         buttons.layer.borderWidth = 2.0;
         
     } completion:^(BOOL finished) {
-      
+        
         
         
     }];
@@ -307,8 +307,8 @@
                            for (NSInteger i = 0; i < self.subviews.count; i++) {
                                
                                CGFloat totalduration = 1;
-                                   
-                                   CGFloat duration = (i * totalduration / self.circleButtons.count);
+                               
+                               CGFloat duration = (i * totalduration / self.circleButtons.count);
                                
                                [self buttonsAppearWithAnimation:self.subviews[i]
                                                    withDuration:duration];

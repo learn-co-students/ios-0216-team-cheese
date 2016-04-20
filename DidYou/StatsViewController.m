@@ -8,32 +8,36 @@
 
 #import "StatsViewController.h"
 #import "CustomTabBarView.h"
+#import "StatsMenuView.h"
 #import "DataStore.h"
+#import "StatsMoodCellView.h"
+#import "StatsQuestionViewCell.h"
+#import "DYJournalEntry.h"
+#import "NoStatsDataView.h"
 
 @interface StatsViewController () <CustomTabBarDelegate>
 
 @property (strong, nonatomic) CustomTabBarView *tabBar;
-@property (strong, nonatomic) DataStore *datastore;
+@property (weak, nonatomic) IBOutlet StatsMenuView *statsMenuView;
+//@property (strong, nonatomic) DataStore *dataStore;
+@property (weak, nonatomic) IBOutlet NoStatsDataView *noStatsDataView;
+@property (weak, nonatomic) IBOutlet UIImageView *statsIconImageView;
 
 @end
 
 @implementation StatsViewController
 
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     [self createCustomTabBar];
+    DataStore *dataStore = [DataStore sharedDataStore];
     
-    self.datastore = [DataStore sharedDataStore];
-    
-    NSLog(@"in the stats screen, city is: %@ and country is %@", self.datastore.currentUser.city, self.datastore.currentUser.country);
-    
-    
-    
+    if (dataStore.currentUser.journals.count == 0) {
+        self.statsIconImageView.alpha = 1;
+    } else {
+        self.statsIconImageView.alpha = 0;
+    }
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -44,20 +48,16 @@
 {
     
     self.tabBar = [[CustomTabBarView alloc] init];
-    
     self.tabBar.currentScreen = @"stats";
     
     [self.view addSubview:self.tabBar];
     
     self.tabBar.translatesAutoresizingMaskIntoConstraints = NO;
-    
     [self.tabBar.widthAnchor constraintEqualToAnchor:self.view.widthAnchor].active = YES;
     [self.tabBar.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor].active = YES;
     [self.tabBar.heightAnchor constraintEqualToConstant:40].active = YES;
     [self.tabBar.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor].active = YES;
-    
     self.tabBar.delegate = self;
-    
 }
 
 -(void)userNavigates:(NSString *)viewChosen
@@ -72,15 +72,6 @@
     }
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 
 

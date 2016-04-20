@@ -10,27 +10,6 @@
 
 @implementation DYStatsInfo
 
-//first graph
-//y axis, number of days, or percentage?
-//x axis, list of options, happy etc
-
-//orrrr
-//brian hates, but pie graph option
-//all percentages, by mood
-
-//need to pull from firebase and do the following:
-//count number of days with each main mood
-
-//create methods to calculate percentages
-
-//take information of each mood, check questions
-//check how many days of each mood correlate with each boolean
-
-//track by week and by all time
-
-//below are concepts of possible methods
-
-
 
 -(instancetype)init {
     self = [super init];
@@ -41,172 +20,92 @@
         _scaredArray = [NSMutableArray new];
         _angryArray = [NSMutableArray new];
         _sadArray = [NSMutableArray new];
+        _dataStore = [DataStore sharedDataStore];
+        _journalEntry = [[DYJournalEntry alloc]init];
+        _currentUser = [[DYUser alloc]init];
+        _arrayOfCurrentMonthJournalDictionaries = [NSMutableArray new];
+        _allMoodsArray = @[self.sadArray, self.happyArray, self.scaredArray, self.angryArray, self.tenderArray, self.excitedArray];
+
     }
     return self;
 }
 
--(void)getJournalsDictionary:(void(^)(BOOL))completion{
-    
-    DataStore *dataStore = [[DataStore alloc]init];
-    //can't run this with childByAppendingPath saying datastore.myRootRef for some reason...(possibly no UUID for comp without phone?)
-    
-    [[[dataStore.myRootRef childByAppendingPath:@"users"] childByAppendingPath:@"D9F755A7-92DB-4DF4-A4E9-143FA2FCFDD9"]
-     observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
-         
-         if (snapshot.value == [NSNull null]) {
-             NSLog(@"firebase returned null value for path");
-             completion(NO);
-             return;
-         }
-         NSDictionary *resultDictionary = [snapshot value];
-         self.journalsDict = resultDictionary[@"journals"];
-         completion(YES);
-     }];
+
+-(CGFloat)calculateEmotionPercentage:(NSArray *)emotionArray ofEntries:(NSArray *)entryArray {
+    CGFloat emotionCount = [emotionArray count];
+    CGFloat entryCount = [entryArray count];
+    CGFloat emotionPercentage = (emotionCount / entryCount) * 100;
+    return emotionPercentage;
 }
 
--(NSMutableArray *)arrayOfAllUserMoods:(NSDictionary*)userJournalsDict {
-    NSDictionary *journalEmotionsDictionary = userJournalsDict[@"emotions"];
-    NSMutableArray *moodsArray = [[NSMutableArray alloc]init];
-    
-    for (NSDictionary *entry in journalEmotionsDictionary) {
-        NSLog(@"journalEntriesArray: %@ entry:%@", userJournalsDict, entry);
-        NSString *currentMood = entry[@"emotion"];
-        //the emotions listed are sub-emotions
-        //do we want to make it so that when we upload to firebase, we add a string with the main emotion and sub emotion?
-        //or do we just want to sort this array to find the key's associated with each sub emotion value
-        [moodsArray addObject:currentMood];
+//edit mood arrays based on the provided array of journal dictionaries (such as current month dictionary or year dictionary)
+-(void)addToMoodArrays {
+    NSLog(@"\n\n\n\n\n\nabout to attempt to add to mood arrays\n\n\n\n\n\n");
+    for (DYJournalEntry *currentJournal in self.dataStore.currentUser.journals) {
+        NSLog(@"entering the for loop");
+        NSString *mainEmotionKeyString = [self generateMainEmotion:currentJournal.mainEmotion];
+        if ([mainEmotionKeyString isEqualToString:@"Happy"]) {
+            [self.happyArray addObject:mainEmotionKeyString];
+        } else if ([mainEmotionKeyString isEqualToString:@"Excited"]) {
+            [self.excitedArray addObject:mainEmotionKeyString];
+        } else if ([mainEmotionKeyString isEqualToString:@"Tender"]) {
+            [self.tenderArray addObject:mainEmotionKeyString];
+        } else if ([mainEmotionKeyString isEqualToString:@"Scared"]) {
+            [self.scaredArray addObject:mainEmotionKeyString];
+        } else if ([mainEmotionKeyString isEqualToString:@"Angry"]) {
+            [self.angryArray addObject:mainEmotionKeyString];
+        } else if ([mainEmotionKeyString isEqualToString:@"Sad"]) {
+            [self.sadArray addObject:mainEmotionKeyString];
+        }
     }
-    NSLog(@"moods: %@", moodsArray);
-    return moodsArray;
 }
 
+//changes sub emotion to a main emotion key (so switches something like blue to sad)
 -(NSString *)generateMainEmotion:(NSString *)storedEmotion {
-    DataStore *dataObject = [[DataStore alloc]init];
+    
     NSString *mainEmotionKey = @"";
-    NSArray *emotionKeysArray = [dataObject.emotions allKeys];
+    NSArray *emotionKeysArray = [self.dataStore.emotions allKeys];
     
     for (NSString *emotion in emotionKeysArray) {
-        if ([dataObject.emotions[emotion] containsObject:storedEmotion]) {
+        if ([self.dataStore.emotions[emotion] containsObject:storedEmotion]) {
             mainEmotionKey = emotion;
         } else if ([emotion isEqualToString:storedEmotion]){
             mainEmotionKey = emotion;
         }
     }
+    NSLog(@"stats info generateMainEmotionTest %@", mainEmotionKey);
     return mainEmotionKey;
 }
 
--(void)addToMoodArrays:(void(^)(BOOL))completion {
-    [self getJournalsDictionary:^(BOOL success) {
-        if (success) {
-            for (NSString *journalEntryString in [self.journalsDict allKeys]) {
-                NSDictionary *journalEntryDetails = self.journalsDict[journalEntryString];
-                NSString *emotionString = journalEntryDetails[@"emotion"];
-                NSString *mainEmotion = [self generateMainEmotion:emotionString];
-                if ([mainEmotion isEqualToString:@"Happy"]) {
-                    [self.happyArray addObject:mainEmotion];
-                } else if ([mainEmotion isEqualToString:@"Excited"]) {
-                    [self.excitedArray addObject:mainEmotion];
-                } else if ([mainEmotion isEqualToString:@"Tender"]) {
-                    [self.tenderArray addObject:mainEmotion];
-                } else if ([mainEmotion isEqualToString:@"Scared"]) {
-                    [self.scaredArray addObject:mainEmotion];
-                } else if ([mainEmotion isEqualToString:@"Angry"]) {
-                    [self.angryArray addObject:mainEmotion];
-                } else if ([mainEmotion isEqualToString:@"Sad"]) {
-                    [self.sadArray addObject:mainEmotion];
-                }
-            }
-            completion(YES);
+//gets all entries from current month
+-(void)getEntriesFromCurrentMonth {
+    DYUser *currentUser = [[DYUser alloc]init];
+    for (DYJournalEntry *currentJournalEntry in currentUser.journals) {
+        NSDateComponents *currentDateComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:[NSDate date]];
+        NSDateComponents *entryDateComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:currentJournalEntry.date];
+        if ([entryDateComponents month] == [currentDateComponents month]) {
+            [self.arrayOfCurrentMonthJournalDictionaries addObject:currentJournalEntry];
         }
-        else {
-            NSLog(@"error comparing user submoods to main mood");
-            completion(NO);
-        }
-    }];
+    }
 }
 
--(NSUInteger)numberOfEntriesOverAllTime:(void(^)(BOOL))completion {
-    [self getJournalsDictionary:^(BOOL success) {
-        if (success) {
-            completion(YES);
-        } else {
-            completion(NO);
-        }
-    }];
-    NSUInteger entriesCount = [[self.journalsDict allKeys] count];
-    return entriesCount;
+-(void)resizeCircles:(UIView *)circleView withPercentage:(CGFloat)percentage {
+    CGFloat minimumCircleSize = 70;
+    CGFloat maximumCircleSize = 110;
+    CGFloat range = maximumCircleSize - minimumCircleSize;
+    //40
+    CGFloat sizeIncrement = (range / maximumCircleSize);
+    //.4
+    
+    CGFloat calculatedCircleSize = minimumCircleSize + (percentage * sizeIncrement);
+    
+    [circleView.widthAnchor constraintEqualToConstant:calculatedCircleSize].active = YES;
+    [circleView.heightAnchor constraintEqualToConstant:calculatedCircleSize].active = YES;
+    circleView.layer.cornerRadius = calculatedCircleSize / 2.0;
 }
 
-//-(NSUInteger)numberOfEntriesOverCurrentMonth:(void(^)(BOOL))completion {
-//    
-//}
-
--(NSUInteger)calculateEmotionPercentage:(NSArray *)emotionArray ofEntries:(NSUInteger)entryCount {
-    NSUInteger emotionCount = [emotionArray count];
-    NSUInteger emotionPercentage = (emotionCount / entryCount) * 100;
-    return emotionPercentage;
-}
-
-
-
-/*
- @"Happy"
- @"Excited"
- @"Tender"
- @"Scared"
- @"Angry"
- @"Sad"
- */
 
 //then another method that counts the number of total emotion values
 //then divides the number of total emotion values by the number of the count of each array to create the percentages required
-
-
-
-
-
-//or maybe scrap and use nspredicate
-////-(NSArray *)usersWithSameCountry
-//{
-//    NSString *usersCountry = self.currentUser.country;
-//
-//    NSPredicate *sameCountryPredictate = [NSPredicate predicateWithFormat:@"country = %@",usersCountry];
-//
-//    NSArray *usersWithSameCountry = [self.users filteredArrayUsingPredicate:sameCountryPredictate];
-//
-//    return usersWithSameCountry;
-//
-//}
-
-/*
- // retrieve the user information from Firebase
- //Firebase *usersRef = [self.myRootRef childByAppendingPath: @"users"];
- //Firebase *userRef = [usersRef childByAppendingPath: userUUID];
- [[[self.myRootRef childByAppendingPath:@"users"] childByAppendingPath:userUUID]
- // Take the snapshot of the entire tree under users/userUUID
- observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
- if (snapshot.value == [NSNull null]) {
- NSLog(@"firebase returned null value for path");
- return;
- }
- DYUtility *util = [DYUtility sharedUtility];
- NSMutableArray *journals = [[NSMutableArray alloc] init];
- NSDictionary *result = [snapshot value];
- DYUser *newUser = [[DYUser alloc] initWithUserUUID:userUUID signUpDate: [util fromUTCFormatDate: result[@"signUpDate"]]];
- newUser.name = result[@"name"];
- newUser.city = result[@"city"];
- newUser.country = result[@"country"];
- // Deserialize each journal entry
- NSMutableDictionary *journalDict = result[@"journals"];
- for (NSString *key in [journalDict allKeys])
- {
- [journals addObject:[[DYJournalEntry alloc] initWithDeserialize: journalDict[key]]];
- }
- newUser.journals = journals;
- */
-
-
-
-
 
 @end

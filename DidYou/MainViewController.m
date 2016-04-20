@@ -18,6 +18,8 @@
 #import "JournalLogViewController.h"
 #import "EmptyTableView.h"
 #import "NoInternetView.h"
+#import "JournalEntryTableViewCellAlternate.h"
+#import "SWTableViewCell.h"
 
 
 @interface MainViewController () <NewJournalEntryBlurViewDelegate, UITableViewDataSource, UITableViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, CustomTabBarDelegate, LoadingFirstPageViewDelegate, NoInternetDelegate, CLLocationManagerDelegate>
@@ -68,16 +70,20 @@
     
     [self launchScreenLogic];
     
+//    DataStore *dataStore = [[DataStore alloc]init];
+//    DYStatsInfo *currentStats = [[DYStatsInfo alloc]init];
+//    
+//    [currentStats getEntriesFromCurrentMonth];
+//    [currentStats addToMoodArrays];
+//    NSLog(@"test happy array contents %@",dataStore.currentUser.journals);
+    
 
 }
 
 -(void)launchScreenLogic
 {
-     NSLog(@"VC 4");
     
     self.connected = [DataStore isNetworkAvailable];
-    
-     NSLog(@"VC 5");
     
     self.UUID = [self userUUID];
     
@@ -170,6 +176,8 @@
         return @"new";
     }
 
+    
+    [self launchSpinView];
 }
 
 
@@ -212,6 +220,7 @@
     self.addEntryTopView.delegate = self;
     self.journalEntryTableView.delegate = self;
     self.journalEntryTableView.dataSource = self;
+   
 
 }
 
@@ -284,14 +293,25 @@
     }
     
     //[self startLocationManager];
-    
-    self.journalEntryTableView.userInteractionEnabled = YES;
     self.tabBar.userInteractionEnabled = YES;
     
+    self.journalEntryTableView.userInteractionEnabled = YES;
 }
 
-
-
+-(void)startLocationManager
+{
+    self.locationManager = [[CLLocationManager alloc]init];
+    self.locationManager.delegate = self;
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    [self.locationManager requestWhenInUseAuthorization];
+    
+    if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+        [self.locationManager requestWhenInUseAuthorization];
+    }
+    [self.locationManager startUpdatingLocation];
+    
+    self.geocoder = [[CLGeocoder alloc]init];
+}
 
 - (void)addButtonTapped:(UIButton *)sender {
     
@@ -406,6 +426,7 @@
         [self.firstTimeScreen removeFromSuperview];
     }
     
+    NSLog(@"about to push lastJournal.");
     // Signal firebase push
     [self.dataStore pushLastJournal];
     [self.journalEntryTableView reloadData];
@@ -421,7 +442,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 
-    NSLog(@"in the tableview, the # of journals is %lu", self.dataStore.currentUser.journals.count);
+//    NSLog(@"in the tableview, the # of journals is %lu", self.dataStore.currentUser.journals.count);
     
     return self.dataStore.currentUser.journals.count;
 
@@ -436,7 +457,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    JournalEntryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"basicCell"];
+    JournalEntryTableViewCellAlternate *cell = [tableView dequeueReusableCellWithIdentifier:@"basicCell"];
     
     NSArray *journalsLIFO = [self.dataStore.currentUser journalArrayLIFO];
     
@@ -445,6 +466,10 @@
     cell.cellView.journalEntry = journalAtRow;
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    cell.rightUtilityButtons = [self rightButtons];
+    
+    cell.delegate = self;
     
     
     return cell;
@@ -547,8 +572,54 @@
         
     });
     
+    NSLog(@"%lu",indexPath.row);
+    
    
 }
+
+- (NSArray *)rightButtons
+{
+    
+    NSMutableArray *rightUtilityButtons = [NSMutableArray new];
+    
+    [rightUtilityButtons sw_addUtilityButtonWithColor:
+     
+     [UIColor colorWithRed:1.0f green:0.231f blue:0.188 alpha:1.0f]
+                                                title:@"Delete"];
+    return rightUtilityButtons;
+}
+
+- (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerRightUtilityButtonWithIndex:(NSInteger)index
+{
+    
+    if (index == 0)
+    {
+        NSLog(@"tapped delete");
+        
+        NSLog(@"%lu",index);
+      
+        NSIndexPath *cellIndexPath = [self.journalEntryTableView indexPathForCell:cell];
+        
+        NSArray *journalsLIFO = [self.dataStore.currentUser journalArrayLIFO];
+        
+        DYJournalEntry *journalAtRow = journalsLIFO[cellIndexPath.row];
+        
+        [self.dataStore.currentUser.journals removeObject:journalAtRow];
+        
+        [self.dataStore updateFirebaseJournals];
+        
+        [self.journalEntryTableView reloadData];
+    }
+    
+    
+}
+
+- (BOOL)swipeableTableViewCellShouldHideUtilityButtonsOnSwipe:(SWTableViewCell *)cell
+{
+    
+    return YES;
+}
+
 
 
 
@@ -556,6 +627,8 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    
+    self.addEntryTopView.shouldAnimate = NO;
     
     if([segue.identifier isEqualToString:@"journalDetailVC"])
     {
