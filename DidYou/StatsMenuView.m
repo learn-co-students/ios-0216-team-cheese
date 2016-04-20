@@ -17,7 +17,7 @@
 @end
 
 @implementation StatsMenuView
-git add
+
 -(instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
