@@ -18,6 +18,6 @@
 @property (strong, nonatomic) NSDictionary *worldStatsDataDictionary;
 
 
--(instancetype)init;
+//-(instancetype)init;
 
 @end

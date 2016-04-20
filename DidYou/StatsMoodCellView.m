@@ -14,6 +14,7 @@
 @property (strong, nonatomic) DataStore *dataStore;
 @property (strong, nonatomic) NSMutableDictionary *moodStatsDictionary;
 @property (strong, nonatomic) NSMutableArray *statsCirclesArray;
+@property (weak, nonatomic) IBOutlet UILabel *moodsAverageLabel;
 
 @end
 
@@ -67,11 +68,24 @@
 }
 
 -(void)layoutSubviews{
-    [super layoutSubviews];
-    [self addStatisticsCircles];
-    [self createMoodStatsTitles];
-    [self addMoodLabels];
+    if (self.dataStore.currentUser.journals.count == 0) {
+        self.moodsAverageLabel.alpha = 0;
+        return;
+    } else {
+        [super layoutSubviews];
+        //if datastore journals entry is 0
+        //load nib
+        [self addStatisticsCircles];
+        [self createMoodStatsTitles];
+        [self addMoodLabels];
+    }
     
+}
+
+-(void)checkForJournalEntries {
+    if (self.dataStore.currentUser.journals.count == 0) {
+        
+    }
 }
 
 -(void)addStatisticsCircles {
@@ -94,9 +108,6 @@
         
         CGFloat emotionPercentage = [statsInfo calculateEmotionPercentage:statsInfo.allMoodsArray[i] ofEntries:self.dataStore.currentUser.journals];
         [statsInfo resizeCircles:circleView withPercentage:emotionPercentage];
-//        [circleView.widthAnchor constraintEqualToConstant:100].active = YES;
-//        [circleView.heightAnchor constraintEqualToConstant:100].active = YES;
-//        circleView.layer.cornerRadius = 100 / 2.0;
         [circleView.centerXAnchor constraintEqualToAnchor:self.centerXAnchor constant:distanceFromCenterX].active = YES;
         [circleView.centerYAnchor constraintEqualToAnchor:self.centerYAnchor constant:-(halfDistanceToCenterY - 15)].active = YES;
         distanceFromCenterX = distanceFromCenterX + circleDistances;
@@ -115,14 +126,21 @@
         CGFloat emotionPercentage = [statsInfo calculateEmotionPercentage:statsInfo.allMoodsArray[i] ofEntries:self.dataStore.currentUser.journals];
         [statsInfo resizeCircles:circleView withPercentage:emotionPercentage * 2];
         
-//        [circleView.widthAnchor constraintEqualToConstant:100].active = YES;
-//        [circleView.heightAnchor constraintEqualToConstant:100].active = YES;
-//        circleView.layer.cornerRadius = 100 / 2.0;
         [circleView.centerXAnchor constraintEqualToAnchor:self.centerXAnchor constant:distanceFromCenterX].active = YES;
         [circleView.centerYAnchor constraintEqualToAnchor:self.centerYAnchor constant:(halfDistanceToCenterY + 15)].active = YES;
         distanceFromCenterX = distanceFromCenterX + circleDistances;
     }
 }
+
+/*
+ tender is grey
+ excited is green
+ sad is purple
+ happy is red
+ scared is blue
+ angry is yellow
+ tender
+ */
 
 -(void)createMoodStatsTitles {
     DYStatsInfo *statsInfo = [[DYStatsInfo alloc]init];
@@ -141,7 +159,7 @@
         } else if (emotionPercentage < 100) {
             emotionPercentageString = [emotionPercentageString substringToIndex:2];
         } else {
-            emotionPercentageString = [emotionPercentageString substringToIndex:2];
+            emotionPercentageString = [emotionPercentageString substringToIndex:3];
         }
         if ([self.dataStore.currentUser.journals count] == 0) {
             emotionPercentageString = @"0";
