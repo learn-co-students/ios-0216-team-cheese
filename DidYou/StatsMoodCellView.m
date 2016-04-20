@@ -15,6 +15,7 @@
 @property (strong, nonatomic) NSMutableDictionary *moodStatsDictionary;
 @property (strong, nonatomic) NSMutableArray *statsCirclesArray;
 @property (weak, nonatomic) IBOutlet UILabel *moodsAverageLabel;
+@property (strong, nonatomic) NSArray *moodColorsArray;
 
 @end
 
@@ -56,6 +57,7 @@
     _dataStore = [DataStore sharedDataStore];
     _moodStatsDictionary = [[NSMutableDictionary alloc]init];
     _statsCirclesArray = [[NSMutableArray alloc]init];
+    _moodColorsArray = @[];
     
     [self addSubview:self.contentView];
     
@@ -91,8 +93,9 @@
 -(void)addStatisticsCircles {
     DYStatsInfo *statsInfo = [[DYStatsInfo alloc]init];
     [statsInfo addToMoodArrays];
+    [self addMoodColorsToArray];
+    NSLog(@"mood colors array: %@", self.moodColorsArray);
     
-    UIColor *lavendarColor = [UIColor colorWithRed:211.0f/255.0f green:145.0f/255.0f blue:255.0f/255.0f alpha:0.7];
     
     CGFloat circleDistances = (self.frame.size.width) / 3;
     CGFloat distanceFromCenterX = -circleDistances;
@@ -101,7 +104,7 @@
     for (NSInteger i = 0; i < 3; i++) {
         
         UIView *circleView = [[UIView alloc]init];
-        circleView.backgroundColor = lavendarColor;
+        circleView.backgroundColor = self.moodColorsArray[i];
         [self addSubview:circleView];
         [self.statsCirclesArray addObject:circleView];
         circleView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -118,7 +121,7 @@
     for (NSInteger i = 3; i < 6; i++) {
         
         UIView *circleView = [[UIView alloc]init];
-        circleView.backgroundColor = lavendarColor;
+        circleView.backgroundColor = self.moodColorsArray[i];
         [self addSubview:circleView];
         [self.statsCirclesArray addObject:circleView];
         circleView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -187,7 +190,7 @@
         NSString *numberString = self.moodStatsDictionary[keyString];
         statsLabel.text = [NSString stringWithFormat:@"%@\n %@%@", moodKeysArray[i], numberString, percentString];
         NSLog(@"\n\n\n\nstats label: %@\n\n\n\n\n", statsLabel.text);
-        statsLabel.textColor = [UIColor blackColor];
+        statsLabel.textColor = [UIColor whiteColor];
         [statsLabel setFont:[UIFont fontWithName:@"Arial" size:14.0]];
         [self addSubview:statsLabel];
         
@@ -199,6 +202,16 @@
         [statsLabel.heightAnchor constraintEqualToAnchor:circle.heightAnchor multiplier:.5].active = YES;
         i = i + 1;
     }
+}
+
+-(void)addMoodColorsToArray {
+    UIColor *lavendarColor = [UIColor colorWithRed:211.0f/255.0f green:145.0f/255.0f blue:255.0f/255.0f alpha:0.4];
+    UIColor *blueColor = [UIColor colorWithRed:104.0f/255.0f green:183.0f/255.0f blue:255.0f/255.0f alpha:0.4];
+    UIColor *redColor = [UIColor colorWithRed:255.0f/255.0f green:59.0f/255.0f blue:59.0f/255.0f alpha:0.3];
+    UIColor *orangeColor = [UIColor colorWithRed:253.0f/255.0f green:174.0f/255.0f blue:55.0f/255.0f alpha:0.4];
+    UIColor *greenColor = [UIColor colorWithRed:65.0f/255.0f green:194.0f/255.0f blue:65.0f/255.0f alpha:0.4];
+    UIColor *grayColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:0.4];
+    self.moodColorsArray = @[lavendarColor, redColor, blueColor, orangeColor, grayColor, greenColor];
 }
 
 -(void)createCurrentDate {

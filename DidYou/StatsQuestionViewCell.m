@@ -101,7 +101,7 @@
 
 -(void)addStatisticsCircles {
     
-    UIColor *lavendarColor = [UIColor colorWithRed:211.0f/255.0f green:145.0f/255.0f blue:255.0f/255.0f alpha:0.7];
+//    UIColor *lavendarColor = [UIColor colorWithRed:211.0f/255.0f green:145.0f/255.0f blue:255.0f/255.0f alpha:0.7];
     CGFloat circleDistances = (self.frame.size.width) / 3;
     CGFloat distanceFromCenterX = -circleDistances;
     CGFloat halfDistanceToCenterY = self.frame.size.height / 5;
@@ -109,13 +109,13 @@
     for (NSInteger i = 0; i < 3; i++) {
         
         UIView *circleView = [[UIView alloc]init];
-        circleView.backgroundColor = lavendarColor;
         [self addSubview:circleView];
         [self.statsCirclesArray addObject:circleView];
         circleView.translatesAutoresizingMaskIntoConstraints = NO;
         
         CGFloat calculatedPercent = [self calculateQuestionPercentages:self.arrayOfQuestionsArrays[i]];
         [self.statsInfo resizeCircles:circleView withPercentage:calculatedPercent];
+        [self calculateColorAlpha:circleView forPercentage:calculatedPercent];
         [circleView.centerXAnchor constraintEqualToAnchor:self.centerXAnchor constant:distanceFromCenterX].active = YES;
         [circleView.centerYAnchor constraintEqualToAnchor:self.centerYAnchor constant:-(halfDistanceToCenterY - 20)].active = YES;
         distanceFromCenterX = distanceFromCenterX + circleDistances;
@@ -128,7 +128,6 @@
     for (NSInteger i = 3; i < 5; i++) {
         
         UIView *circleView = [[UIView alloc]init];
-        circleView.backgroundColor = lavendarColor;
         
         [self addSubview:circleView];
         [self.statsCirclesArray addObject:circleView];
@@ -136,6 +135,7 @@
         
         CGFloat calculatedPercent = [self calculateQuestionPercentages:self.arrayOfQuestionsArrays[i]];
         [self.statsInfo resizeCircles:circleView withPercentage:calculatedPercent];
+        [self calculateColorAlpha:circleView forPercentage:calculatedPercent];
         [circleView.centerXAnchor constraintEqualToAnchor:self.centerXAnchor constant:distanceFromCenterX].active = YES;
         [circleView.centerYAnchor constraintEqualToAnchor:self.centerYAnchor constant:(halfDistanceToCenterY + 20)].active = YES;
         distanceFromCenterX = distanceFromCenterX + (circleDistances * 2);
@@ -159,8 +159,6 @@
             NSLog(@"in addQuestionStats for loop in statsquestionviewcell class");
             if (question.answer == 2) {
                 [self.arrayOfQuestionsArrays[i] addObject:question];
-                //                NSLog(@"\n\n\n\nquestion: %@ answer: %lu\n\n\n\n", question.question, question.answer);
-                //                NSLog(@"\n\n\n\n\nthis is %lu question %@\n\n\n\n\n", i, self.arrayOfQuestionsArrays[i]);
             }
             i = i +1;
         }
@@ -181,6 +179,24 @@
     }
     
     return emotionPercentageString;
+}
+
+-(void)calculateColorAlpha:(UIView *)circleView forPercentage:(CGFloat)percentage {
+    CGFloat maximumAlpha = 0.7;
+    CGFloat minimumAlpha = 0.1;
+    CGFloat range = maximumAlpha - minimumAlpha;
+    CGFloat alphaIncrement = (range / maximumAlpha);
+    
+    if (percentage <50) {
+        CGFloat calculatedRedAlpha = minimumAlpha + (percentage / 100 * alphaIncrement);
+        UIColor *redAlphaColor = [UIColor colorWithRed:255.0f/255.0f green:59.0f/255.0f blue:59.0f/255.0f alpha:calculatedRedAlpha];
+        circleView.backgroundColor = redAlphaColor;
+        
+    } else if (percentage >=50) {
+        CGFloat calculatedGreenAlpha = minimumAlpha + (percentage / 100 * alphaIncrement);
+        UIColor *greenAlphaColor = [UIColor colorWithRed:65.0f/255.0f green:194.0f/255.0f blue:65.0f/255.0f alpha:calculatedGreenAlpha];
+        circleView.backgroundColor = greenAlphaColor;
+    }
 }
 
 -(void)addMoodLabels {
