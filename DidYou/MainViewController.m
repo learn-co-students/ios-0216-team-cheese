@@ -82,11 +82,8 @@
 
 -(void)launchScreenLogic
 {
-     NSLog(@"VC 4");
     
     self.connected = [DataStore isNetworkAvailable];
-    
-     NSLog(@"VC 5");
     
     self.UUID = [self userUUID];
     
@@ -630,6 +627,8 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    
+    self.addEntryTopView.shouldAnimate = NO;
     
     if([segue.identifier isEqualToString:@"journalDetailVC"])
     {
