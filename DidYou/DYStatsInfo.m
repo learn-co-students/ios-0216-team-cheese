@@ -24,8 +24,8 @@
         _journalEntry = [[DYJournalEntry alloc]init];
         _currentUser = [[DYUser alloc]init];
         _arrayOfCurrentMonthJournalDictionaries = [NSMutableArray new];
-        _allMoodsArray = @[self.happyArray, self.excitedArray, self.tenderArray, self.scaredArray, self.angryArray, self.sadArray];
-        NSLog(@"why am I initializing dystatsinfo again?!");
+        _allMoodsArray = @[self.sadArray, self.happyArray, self.scaredArray, self.angryArray, self.tenderArray, self.excitedArray];
+
     }
     return self;
 }
@@ -42,7 +42,7 @@
 -(void)addToMoodArrays {
     NSLog(@"\n\n\n\n\n\nabout to attempt to add to mood arrays\n\n\n\n\n\n");
     for (DYJournalEntry *currentJournal in self.dataStore.currentUser.journals) {
-        NSLog(@"entered statsinfo addToMoodArrays for loop");
+        NSLog(@"entering the for loop");
         NSString *mainEmotionKeyString = [self generateMainEmotion:currentJournal.mainEmotion];
         if ([mainEmotionKeyString isEqualToString:@"Happy"]) {
             [self.happyArray addObject:mainEmotionKeyString];
@@ -63,7 +63,7 @@
 
 //changes sub emotion to a main emotion key (so switches something like blue to sad)
 -(NSString *)generateMainEmotion:(NSString *)storedEmotion {
-
+    
     NSString *mainEmotionKey = @"";
     NSArray *emotionKeysArray = [self.dataStore.emotions allKeys];
     
@@ -80,7 +80,8 @@
 
 //gets all entries from current month
 -(void)getEntriesFromCurrentMonth {
-    for (DYJournalEntry *currentJournalEntry in self.dataStore.currentUser.journals) {
+    DYUser *currentUser = [[DYUser alloc]init];
+    for (DYJournalEntry *currentJournalEntry in currentUser.journals) {
         NSDateComponents *currentDateComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:[NSDate date]];
         NSDateComponents *entryDateComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:currentJournalEntry.date];
         if ([entryDateComponents month] == [currentDateComponents month]) {
@@ -107,4 +108,5 @@
 
 //then another method that counts the number of total emotion values
 //then divides the number of total emotion values by the number of the count of each array to create the percentages required
+
 @end
