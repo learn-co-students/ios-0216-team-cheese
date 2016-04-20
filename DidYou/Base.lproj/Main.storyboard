@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -165,7 +164,7 @@
                                         <rect key="frame" x="0.0" y="28" width="600" height="122"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6ZW-Yv-chO" id="EBN-J3-Fhe">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="122"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="121.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mey-ff-0UV" customClass="JournalEntryTableViewCellView">
@@ -417,7 +416,7 @@
                                 <rect key="frame" x="0.0" y="85" width="600" height="240"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RLR-gG-Jdy" customClass="StatsQuestionViewCell">
-                                <rect key="frame" x="0.0" y="282" width="600" height="240"/>
+                                <rect key="frame" x="0.0" y="262" width="600" height="240"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lUX-CN-d2J" userLabel="No Stats View" customClass="NoStatsDataView">
                                 <rect key="frame" x="0.0" y="150" width="600" height="300"/>
@@ -447,7 +446,7 @@
                             <constraint firstItem="ait-wf-5yf" firstAttribute="height" secondItem="7ij-5E-SI6" secondAttribute="height" multiplier="0.5" id="rgY-yf-aYl"/>
                             <constraint firstItem="D1V-sn-RsL" firstAttribute="top" secondItem="Mjm-EE-slc" secondAttribute="bottom" id="sYj-AJ-mX8"/>
                             <constraint firstItem="lUX-CN-d2J" firstAttribute="height" secondItem="7ij-5E-SI6" secondAttribute="height" multiplier="0.5" id="xx4-3q-4BO"/>
-                            <constraint firstItem="oDa-bP-van" firstAttribute="top" secondItem="D1V-sn-RsL" secondAttribute="bottom" id="yRe-Mo-u0s"/>
+                            <constraint firstItem="oDa-bP-van" firstAttribute="top" secondItem="D1V-sn-RsL" secondAttribute="bottom" constant="-20" id="yRe-Mo-u0s"/>
                             <constraint firstItem="oDa-bP-van" firstAttribute="width" secondItem="7ij-5E-SI6" secondAttribute="width" id="zxo-lE-Lf3"/>
                         </constraints>
                     </view>
