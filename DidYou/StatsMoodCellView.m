@@ -75,6 +75,8 @@
 }
 
 -(void)addStatisticsCircles {
+    DYStatsInfo *statsInfo = [[DYStatsInfo alloc]init];
+    [statsInfo addToMoodArrays];
     
     UIColor *lavendarColor = [UIColor colorWithRed:211.0f/255.0f green:145.0f/255.0f blue:255.0f/255.0f alpha:0.7];
     
@@ -90,9 +92,11 @@
         [self.statsCirclesArray addObject:circleView];
         circleView.translatesAutoresizingMaskIntoConstraints = NO;
         
-        [circleView.widthAnchor constraintEqualToConstant:100].active = YES;
-        [circleView.heightAnchor constraintEqualToConstant:100].active = YES;
-        circleView.layer.cornerRadius = 100 / 2.0;
+        CGFloat emotionPercentage = [statsInfo calculateEmotionPercentage:statsInfo.allMoodsArray[i] ofEntries:self.dataStore.currentUser.journals];
+        [statsInfo resizeCircles:circleView withPercentage:emotionPercentage];
+//        [circleView.widthAnchor constraintEqualToConstant:100].active = YES;
+//        [circleView.heightAnchor constraintEqualToConstant:100].active = YES;
+//        circleView.layer.cornerRadius = 100 / 2.0;
         [circleView.centerXAnchor constraintEqualToAnchor:self.centerXAnchor constant:distanceFromCenterX].active = YES;
         [circleView.centerYAnchor constraintEqualToAnchor:self.centerYAnchor constant:-(halfDistanceToCenterY - 15)].active = YES;
         distanceFromCenterX = distanceFromCenterX + circleDistances;
@@ -100,7 +104,7 @@
     
     distanceFromCenterX = -circleDistances;
     
-    for (NSInteger i = 0; i < 3; i++) {
+    for (NSInteger i = 3; i < 6; i++) {
         
         UIView *circleView = [[UIView alloc]init];
         circleView.backgroundColor = lavendarColor;
@@ -108,9 +112,12 @@
         [self.statsCirclesArray addObject:circleView];
         circleView.translatesAutoresizingMaskIntoConstraints = NO;
         
-        [circleView.widthAnchor constraintEqualToConstant:100].active = YES;
-        [circleView.heightAnchor constraintEqualToConstant:100].active = YES;
-        circleView.layer.cornerRadius = 100 / 2.0;
+        CGFloat emotionPercentage = [statsInfo calculateEmotionPercentage:statsInfo.allMoodsArray[i] ofEntries:self.dataStore.currentUser.journals];
+        [statsInfo resizeCircles:circleView withPercentage:emotionPercentage * 2];
+        
+//        [circleView.widthAnchor constraintEqualToConstant:100].active = YES;
+//        [circleView.heightAnchor constraintEqualToConstant:100].active = YES;
+//        circleView.layer.cornerRadius = 100 / 2.0;
         [circleView.centerXAnchor constraintEqualToAnchor:self.centerXAnchor constant:distanceFromCenterX].active = YES;
         [circleView.centerYAnchor constraintEqualToAnchor:self.centerYAnchor constant:(halfDistanceToCenterY + 15)].active = YES;
         distanceFromCenterX = distanceFromCenterX + circleDistances;
@@ -118,15 +125,15 @@
 }
 
 -(void)createMoodStatsTitles {
-    DYStatsInfo *currentStats = [[DYStatsInfo alloc]init];
+    DYStatsInfo *statsInfo = [[DYStatsInfo alloc]init];
     CGFloat emotionPercentage = 0;
-    [currentStats addToMoodArrays];
+    [statsInfo addToMoodArrays];
     NSArray *moodName = [self.dataStore.emotions allKeys];
     NSInteger i = 0;
     
-    for (NSMutableArray *moodArray in currentStats.allMoodsArray) {
+    for (NSMutableArray *moodArray in statsInfo.allMoodsArray) {
         
-        emotionPercentage = [currentStats calculateEmotionPercentage:moodArray ofEntries:self.dataStore.currentUser.journals];
+        emotionPercentage = [statsInfo calculateEmotionPercentage:moodArray ofEntries:self.dataStore.currentUser.journals];
         NSString *emotionPercentageString = [NSString stringWithFormat:@"%f", emotionPercentage];
         NSLog(@"%@", emotionPercentageString);
         if (emotionPercentage < 9) {

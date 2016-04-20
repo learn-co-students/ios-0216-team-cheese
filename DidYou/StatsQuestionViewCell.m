@@ -155,10 +155,11 @@
         NSArray *entryQuestionsArray = journalEntry.questions;
         NSInteger i = 0;
         for (DYQuestion *question in entryQuestionsArray) {
+            NSLog(@"in addQuestionStats for loop in statsquestionviewcell class");
             if (question.answer == 2) {
                 [self.arrayOfQuestionsArrays[i] addObject:question];
-                NSLog(@"\n\n\n\nquestion: %@ answer: %lu\n\n\n\n", question.question, question.answer);
-                NSLog(@"\n\n\n\n\nthis is %lu question %@\n\n\n\n\n", i, self.arrayOfQuestionsArrays[i]);
+//                NSLog(@"\n\n\n\nquestion: %@ answer: %lu\n\n\n\n", question.question, question.answer);
+//                NSLog(@"\n\n\n\n\nthis is %lu question %@\n\n\n\n\n", i, self.arrayOfQuestionsArrays[i]);
             }
             i = i +1;
         }
