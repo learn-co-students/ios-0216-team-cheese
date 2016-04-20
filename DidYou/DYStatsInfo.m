@@ -25,6 +25,7 @@
         _currentUser = [[DYUser alloc]init];
         _arrayOfCurrentMonthJournalDictionaries = [NSMutableArray new];
         _allMoodsArray = @[self.happyArray, self.excitedArray, self.tenderArray, self.scaredArray, self.angryArray, self.sadArray];
+        NSLog(@"why am I initializing dystatsinfo again?!");
     }
     return self;
 }
@@ -41,7 +42,7 @@
 -(void)addToMoodArrays {
     NSLog(@"\n\n\n\n\n\nabout to attempt to add to mood arrays\n\n\n\n\n\n");
     for (DYJournalEntry *currentJournal in self.dataStore.currentUser.journals) {
-        NSLog(@"entering the for loop");
+        NSLog(@"entered statsinfo addToMoodArrays for loop");
         NSString *mainEmotionKeyString = [self generateMainEmotion:currentJournal.mainEmotion];
         if ([mainEmotionKeyString isEqualToString:@"Happy"]) {
             [self.happyArray addObject:mainEmotionKeyString];

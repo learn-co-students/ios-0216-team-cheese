@@ -54,8 +54,6 @@
 
 -(void)commonInit
 {
-    
-    
     [[NSBundle mainBundle] loadNibNamed:@"StatsQuestionsViewCell" owner:self options:nil];
     
     [self addSubview:self.contentView];
@@ -94,6 +92,7 @@
 }
 
 -(void)addStatisticsCircles {
+    DYStatsInfo *statsInfo = [DYStatsInfo alloc]init
     
     UIColor *lavendarColor = [UIColor colorWithRed:211.0f/255.0f green:145.0f/255.0f blue:255.0f/255.0f alpha:0.7];
     CGFloat circleDistances = (self.frame.size.width) / 3;
@@ -141,12 +140,12 @@
     }
 }
 
--(CGFloat)calculateQuestionPercentages: (NSMutableArray *)questionsArray {
+-(CGFloat)calculateQuestionPercentages: (NSMutableArray *)questionsArray withStatsInfo:(DYStatsInfo *)currentStats {
     for (NSMutableArray *questionArray in self.arrayOfQuestionsArrays) {
         [questionArray removeAllObjects];
     }
     [self addQuestionsStats];
-    CGFloat percentageOfQuestions = [self.statsInfo calculateEmotionPercentage:questionsArray ofEntries:self.dataStore.currentUser.journals];
+    CGFloat percentageOfQuestions = [currentStats calculateEmotionPercentage:questionsArray ofEntries:self.dataStore.currentUser.journals];
     return percentageOfQuestions;
 }
 
