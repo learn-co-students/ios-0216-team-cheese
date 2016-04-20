@@ -8,32 +8,46 @@
 
 #import "StatsViewController.h"
 #import "CustomTabBarView.h"
+#import "StatsMenuView.h"
 #import "DataStore.h"
+#import "StatsMoodCellView.h"
+#import "StatsQuestionViewCell.h"
+#import "DYJournalEntry.h"
 
 @interface StatsViewController () <CustomTabBarDelegate>
 
 @property (strong, nonatomic) CustomTabBarView *tabBar;
+@property (weak, nonatomic) IBOutlet StatsMenuView *statsMenuView;
 @property (strong, nonatomic) DataStore *datastore;
 
 @end
 
 @implementation StatsViewController
 
-
+-(instancetype)init {
+    self = [super init];
+    
+    if (self) {
+//        _statsInfo = [[DYStatsInfo alloc]init];
+//        _personalStatsDataDictionary = @{};
+//        _cityStatsDataDictionary = @{};
+//        _worldStatsDataDictionary = @{};
+//        _arrayOfStatsDataDictionaries = @[self.personalStatsDataDictionary, self.cityStatsDataDictionary, self.worldStatsDataDictionary];
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     [self createCustomTabBar];
     
-    self.datastore = [DataStore sharedDataStore];
+    //[self.view addSubview:self.statsMenuView];
     
-    NSLog(@"in the stats screen, city is: %@ and country is %@", self.datastore.currentUser.city, self.datastore.currentUser.country);
-    
-    
-    
+//    NSLog(@"in the stats screen, city is: %@ and country is %@", self.datastore.currentUser.city, self.datastore.currentUser.country);
+//    
+//    [self.statsInfo addToMoodArrays];
+//    NSLog(@"test data store journal array contents %@", self.datastore.currentUser.journals);
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -57,7 +71,6 @@
     [self.tabBar.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor].active = YES;
     
     self.tabBar.delegate = self;
-    
 }
 
 -(void)userNavigates:(NSString *)viewChosen
@@ -72,15 +85,6 @@
     }
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 
 

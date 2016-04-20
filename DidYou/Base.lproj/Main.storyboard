@@ -396,21 +396,50 @@
             </objects>
             <point key="canvasLocation" x="-19" y="1757"/>
         </scene>
-        <!--Item-->
+        <!--StatsViewController-->
         <scene sceneID="OZq-e7-CAp">
             <objects>
-                <viewController id="6RC-5d-0Ds" customClass="StatsViewController" sceneMemberID="viewController">
+                <viewController id="6RC-5d-0Ds" userLabel="StatsViewController" customClass="StatsViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="VTN-3Y-nUD"/>
-                        <viewControllerLayoutGuide type="bottom" id="FDf-nM-eCo"/>
+                        <viewControllerLayoutGuide type="top" id="Mjm-EE-slc"/>
+                        <viewControllerLayoutGuide type="bottom" id="dtr-Hj-KuL"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Eya-0h-62D">
+                    <view key="view" contentMode="scaleToFill" id="7ij-5E-SI6">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D1V-sn-RsL" customClass="StatsMenuView">
+                                <rect key="frame" x="0.0" y="25" width="600" height="60"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oDa-bP-van" customClass="StatsMoodCellView">
+                                <rect key="frame" x="0.0" y="85" width="600" height="240"/>
+                            </view>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RLR-gG-Jdy" customClass="StatsQuestionViewCell">
+                                <rect key="frame" x="0.0" y="360" width="600" height="240"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="RLR-gG-Jdy" firstAttribute="width" secondItem="oDa-bP-van" secondAttribute="width" id="1j1-Y6-Wul"/>
+                            <constraint firstItem="RLR-gG-Jdy" firstAttribute="top" secondItem="oDa-bP-van" secondAttribute="bottom" id="1jI-Uk-5a2"/>
+                            <constraint firstItem="oDa-bP-van" firstAttribute="centerX" secondItem="7ij-5E-SI6" secondAttribute="centerX" id="2MI-tG-2oF"/>
+                            <constraint firstItem="RLR-gG-Jdy" firstAttribute="height" secondItem="oDa-bP-van" secondAttribute="height" id="GpS-Zg-VgM"/>
+                            <constraint firstItem="D1V-sn-RsL" firstAttribute="centerX" secondItem="7ij-5E-SI6" secondAttribute="centerX" id="N8l-ZL-JF4"/>
+                            <constraint firstItem="RLR-gG-Jdy" firstAttribute="centerX" secondItem="7ij-5E-SI6" secondAttribute="centerX" id="c7B-xK-Kc5"/>
+                            <constraint firstItem="D1V-sn-RsL" firstAttribute="width" secondItem="7ij-5E-SI6" secondAttribute="width" id="cr1-6a-mpR"/>
+                            <constraint firstItem="oDa-bP-van" firstAttribute="height" secondItem="7ij-5E-SI6" secondAttribute="height" multiplier="0.4" id="nOJ-aO-jf0"/>
+                            <constraint firstItem="D1V-sn-RsL" firstAttribute="height" secondItem="7ij-5E-SI6" secondAttribute="height" multiplier="0.07" id="qOM-WG-SrL"/>
+                            <constraint firstItem="D1V-sn-RsL" firstAttribute="top" secondItem="Mjm-EE-slc" secondAttribute="bottom" id="sYj-AJ-mX8"/>
+                            <constraint firstItem="oDa-bP-van" firstAttribute="top" secondItem="D1V-sn-RsL" secondAttribute="bottom" id="yRe-Mo-u0s"/>
+                            <constraint firstItem="oDa-bP-van" firstAttribute="width" secondItem="7ij-5E-SI6" secondAttribute="width" id="zxo-lE-Lf3"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="HzY-n9-fHO"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="600" height="600"/>
                     <connections>
+                        <outlet property="statsMenuView" destination="D1V-sn-RsL" id="AT4-o9-vJz"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="segueStatsToMain" animates="NO" id="O8z-72-piC"/>
                         <segue destination="lhL-yJ-LM7" kind="show" identifier="segueStatsToUser" animates="NO" id="hqO-i4-hvB"/>
                     </connections>
@@ -433,6 +462,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="O8z-72-piC"/>
         <segue reference="8Ks-0k-YCc"/>
-        <segue reference="Wm1-gx-EGU"/>
+        <segue reference="hqO-i4-hvB"/>
     </inferredMetricsTieBreakers>
 </document>

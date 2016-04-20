@@ -70,6 +70,13 @@
     
     [self launchScreenLogic];
     
+//    DataStore *dataStore = [[DataStore alloc]init];
+//    DYStatsInfo *currentStats = [[DYStatsInfo alloc]init];
+//    
+//    [currentStats getEntriesFromCurrentMonth];
+//    [currentStats addToMoodArrays];
+//    NSLog(@"test happy array contents %@",dataStore.currentUser.journals);
+    
 
 }
 
@@ -169,6 +176,8 @@
         return @"new";
     }
 
+    
+    [self launchSpinView];
 }
 
 
@@ -284,14 +293,25 @@
     }
     
     //[self startLocationManager];
-    
-    self.journalEntryTableView.userInteractionEnabled = YES;
     self.tabBar.userInteractionEnabled = YES;
     
+    self.journalEntryTableView.userInteractionEnabled = YES;
 }
 
-
-
+-(void)startLocationManager
+{
+    self.locationManager = [[CLLocationManager alloc]init];
+    self.locationManager.delegate = self;
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    [self.locationManager requestWhenInUseAuthorization];
+    
+    if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+        [self.locationManager requestWhenInUseAuthorization];
+    }
+    [self.locationManager startUpdatingLocation];
+    
+    self.geocoder = [[CLGeocoder alloc]init];
+}
 
 - (void)addButtonTapped:(UIButton *)sender {
     
@@ -422,7 +442,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 
-    NSLog(@"in the tableview, the # of journals is %lu", self.dataStore.currentUser.journals.count);
+//    NSLog(@"in the tableview, the # of journals is %lu", self.dataStore.currentUser.journals.count);
     
     return self.dataStore.currentUser.journals.count;
 

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StatsMenuView">
+            <connections>
+                <outlet property="contentView" destination="iN0-l3-epB" id="OWj-BI-aCW"/>
+                <outlet property="statsAllTimeButton" destination="EJy-Em-wio" id="Pfm-kl-rJz"/>
+                <outlet property="statsMonthButton" destination="dJX-9A-eyr" id="tgj-VD-361"/>
+                <outlet property="statsWeekButton" destination="EEC-3t-nqX" id="Hhc-Cf-zMA"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" userLabel="ContentView">
+            <rect key="frame" x="0.0" y="0.0" width="791" height="131"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4kc-Xg-iPX">
+                    <rect key="frame" x="158.5" y="0.0" width="474.5" height="131"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EEC-3t-nqX" userLabel="Week Stats Button">
+                            <rect key="frame" x="0.0" y="0.0" width="158" height="131"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                            <state key="normal" title="Week"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dJX-9A-eyr" userLabel="Month Stats Button">
+                            <rect key="frame" x="158" y="0.0" width="158" height="131"/>
+                            <state key="normal" title="Month"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EJy-Em-wio" userLabel="All Time Stats Button">
+                            <rect key="frame" x="316" y="0.0" width="158.5" height="131"/>
+                            <state key="normal" title="All Time"/>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="EJy-Em-wio" firstAttribute="centerY" secondItem="4kc-Xg-iPX" secondAttribute="centerY" id="2a7-d9-Xrz"/>
+                        <constraint firstItem="dJX-9A-eyr" firstAttribute="centerY" secondItem="4kc-Xg-iPX" secondAttribute="centerY" id="7iO-yA-FOr"/>
+                        <constraint firstItem="EEC-3t-nqX" firstAttribute="centerY" secondItem="4kc-Xg-iPX" secondAttribute="centerY" id="HxQ-W5-g6m"/>
+                        <constraint firstItem="EEC-3t-nqX" firstAttribute="width" secondItem="dJX-9A-eyr" secondAttribute="width" id="wBN-Kf-Pm5"/>
+                        <constraint firstItem="dJX-9A-eyr" firstAttribute="width" secondItem="EJy-Em-wio" secondAttribute="width" id="zyi-Ab-gE8"/>
+                    </constraints>
+                </stackView>
+            </subviews>
+            <constraints>
+                <constraint firstItem="4kc-Xg-iPX" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="5oN-kq-UV6"/>
+                <constraint firstItem="4kc-Xg-iPX" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="DMj-av-yin"/>
+                <constraint firstItem="4kc-Xg-iPX" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" id="gF6-Qz-1gu"/>
+                <constraint firstItem="4kc-Xg-iPX" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.6" id="vdd-Qn-z0r"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="217.5" y="258.5"/>
+        </view>
+    </objects>
+</document>

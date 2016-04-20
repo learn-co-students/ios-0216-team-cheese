@@ -229,6 +229,7 @@
 
 -(void)animateView: (UIView *)circleView withRadius:(CGFloat)radius
 {
+
     
     if (self.shouldAnimate)
     {
@@ -242,6 +243,7 @@
             {
                 xPosition = arc4random_uniform(305);
             }
+
         
             NSUInteger time = arc4random_uniform(5);
             
@@ -271,8 +273,6 @@
 
 -(void)circleTapped
 {
-    
-    NSLog(@"circle tapped");
       [self.delegate addButtonTapped:nil];
 }
 

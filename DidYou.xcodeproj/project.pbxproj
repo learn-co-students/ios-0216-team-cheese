@@ -45,9 +45,14 @@
 		AB92E7E21CB5708200199034 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB92E7E11CB5708200199034 /* SettingsViewController.m */; };
 		AB92E7E41CB71A1A00199034 /* JournalEntryTableViewCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB92E7E31CB71A1A00199034 /* JournalEntryTableViewCell2.xib */; };
 		BF5BF979033B37544EC4DF92 /* Pods_DidYou.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFF7DDDE657B306A19BB7719 /* Pods_DidYou.framework */; };
-		CD4CCAC51CB6EA0C00805B1F /* Stats.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD4CCAC41CB6EA0C00805B1F /* Stats.xib */; };
+		CD086FBA1CC526C6007A996A /* StatsMoodCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD086FB91CC526C6007A996A /* StatsMoodCellView.m */; };
+		CD086FBC1CC52736007A996A /* StatsMoodsViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD086FBB1CC52736007A996A /* StatsMoodsViewCell.xib */; };
+		CD086FBE1CC52CA7007A996A /* StatsQuestionsViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD086FBD1CC52CA7007A996A /* StatsQuestionsViewCell.xib */; };
+		CD086FC11CC52D46007A996A /* StatsQuestionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD086FC01CC52D46007A996A /* StatsQuestionViewCell.m */; };
 		CDA19A171CB58A28001E1872 /* MoodCircleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CDA19A161CB58A28001E1872 /* MoodCircleButton.m */; };
 		CDA730891CBC4DE70014C12D /* DYStatsInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CDA730881CBC4DE70014C12D /* DYStatsInfo.m */; };
+		CDA7309A1CC047C00014C12D /* StatsMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDA730991CC047C00014C12D /* StatsMenu.xib */; };
+		CDA730A01CC049B60014C12D /* StatsMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = CDA7309F1CC049B60014C12D /* StatsMenuView.m */; };
 		D60655921CBC27E800709533 /* loadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D60655911CBC27E800709533 /* loadingView.xib */; };
 		D60655981CBC2F9A00709533 /* LoadingFirstPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = D60655971CBC2F9A00709533 /* LoadingFirstPageView.m */; };
 /* End PBXBuildFile section */
@@ -117,11 +122,19 @@
 		AB92E7E01CB5708200199034 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		AB92E7E11CB5708200199034 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		AB92E7E31CB71A1A00199034 /* JournalEntryTableViewCell2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JournalEntryTableViewCell2.xib; sourceTree = "<group>"; };
-		CD4CCAC41CB6EA0C00805B1F /* Stats.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Stats.xib; sourceTree = "<group>"; };
+		CD086FB81CC526C6007A996A /* StatsMoodCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatsMoodCellView.h; sourceTree = "<group>"; };
+		CD086FB91CC526C6007A996A /* StatsMoodCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatsMoodCellView.m; sourceTree = "<group>"; };
+		CD086FBB1CC52736007A996A /* StatsMoodsViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatsMoodsViewCell.xib; sourceTree = "<group>"; };
+		CD086FBD1CC52CA7007A996A /* StatsQuestionsViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatsQuestionsViewCell.xib; sourceTree = "<group>"; };
+		CD086FBF1CC52D46007A996A /* StatsQuestionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatsQuestionViewCell.h; sourceTree = "<group>"; };
+		CD086FC01CC52D46007A996A /* StatsQuestionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatsQuestionViewCell.m; sourceTree = "<group>"; };
 		CDA19A151CB58A28001E1872 /* MoodCircleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoodCircleButton.h; sourceTree = "<group>"; };
 		CDA19A161CB58A28001E1872 /* MoodCircleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoodCircleButton.m; sourceTree = "<group>"; };
 		CDA730871CBC4DE70014C12D /* DYStatsInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYStatsInfo.h; sourceTree = "<group>"; };
 		CDA730881CBC4DE70014C12D /* DYStatsInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYStatsInfo.m; sourceTree = "<group>"; };
+		CDA730991CC047C00014C12D /* StatsMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatsMenu.xib; sourceTree = "<group>"; };
+		CDA7309E1CC049B60014C12D /* StatsMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatsMenuView.h; sourceTree = "<group>"; };
+		CDA7309F1CC049B60014C12D /* StatsMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatsMenuView.m; sourceTree = "<group>"; };
 		D60655911CBC27E800709533 /* loadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = loadingView.xib; sourceTree = "<group>"; };
 		D60655961CBC2F9A00709533 /* LoadingFirstPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingFirstPageView.h; sourceTree = "<group>"; };
 		D60655971CBC2F9A00709533 /* LoadingFirstPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingFirstPageView.m; sourceTree = "<group>"; };
@@ -208,14 +221,16 @@
 		AB92E7631CAC522A00199034 /* Xibs */ = {
 			isa = PBXGroup;
 			children = (
-				CD4CCAC41CB6EA0C00805B1F /* Stats.xib */,
+				AB92E7D31CB400B600199034 /* JournalEntryTableViewCell.xib */,
+				CDA730991CC047C00014C12D /* StatsMenu.xib */,
+				CD086FBB1CC52736007A996A /* StatsMoodsViewCell.xib */,
+				CD086FBD1CC52CA7007A996A /* StatsQuestionsViewCell.xib */,
 				AB92E75E1CAC48DE00199034 /* AddJournalEntry.xib */,
 				AB92E7DB1CB5585D00199034 /* CustomTabBar.xib */,
 				AB2A386B1CC449E1005DD03A /* JournalAndPictureAlternate.xib */,
 				AB69AF271CBD87F400CC9F9B /* EmptyTable.xib */,
 				AB92E7E31CB71A1A00199034 /* JournalEntryTableViewCell2.xib */,
 				AB69AF561CC03A7D00CC9F9B /* noInternet.xib */,
-				AB92E7D31CB400B600199034 /* JournalEntryTableViewCell.xib */,
 				31FF28221CAD7303008051C0 /* Question.xib */,
 				31FF28241CAD731C008051C0 /* JournalAndPicture.xib */,
 				D60655911CBC27E800709533 /* loadingView.xib */,
@@ -226,10 +241,18 @@
 		AB92E7641CAC524300199034 /* Xib Views */ = {
 			isa = PBXGroup;
 			children = (
+				CD086FB81CC526C6007A996A /* StatsMoodCellView.h */,
+				CD086FB91CC526C6007A996A /* StatsMoodCellView.m */,
+				CD086FBF1CC52D46007A996A /* StatsQuestionViewCell.h */,
+				CD086FC01CC52D46007A996A /* StatsQuestionViewCell.m */,
+				CDA7309E1CC049B60014C12D /* StatsMenuView.h */,
+				CDA7309F1CC049B60014C12D /* StatsMenuView.m */,
+				31FF28261CAD7356008051C0 /* MainFeelingView.h */,
+				31FF28271CAD7356008051C0 /* MainFeelingView.m */,
+				AB92E7D51CB4063A00199034 /* JournalEntryTableViewCellView.h */,
+				AB92E7D61CB4063A00199034 /* JournalEntryTableViewCellView.m */,
 				AB92E7931CAD9CB400199034 /* NewJournalEntryBlurView.h */,
 				AB92E7941CAD9CB400199034 /* NewJournalEntryBlurView.m */,
-				31FF28271CAD7356008051C0 /* MainFeelingView.m */,
-				31FF28261CAD7356008051C0 /* MainFeelingView.h */,
 				AB69AF581CC03BFE00CC9F9B /* NoInternetView.h */,
 				AB69AF591CC03BFE00CC9F9B /* NoInternetView.m */,
 				AB2A386D1CC52010005DD03A /* JournalAndPictureAlternateView.h */,
@@ -242,8 +265,6 @@
 				AB69AF521CBFF01200CC9F9B /* EmptyTableView.m */,
 				31FF28291CAD736E008051C0 /* CategoryFeelingView.h */,
 				31FF282A1CAD736E008051C0 /* CategoryFeelingView.m */,
-				AB92E7D51CB4063A00199034 /* JournalEntryTableViewCellView.h */,
-				AB92E7D61CB4063A00199034 /* JournalEntryTableViewCellView.m */,
 				AB92E7981CADBD2800199034 /* IndividualFeelingView.h */,
 				AB92E7991CADBD2800199034 /* IndividualFeelingView.m */,
 				31FF282C1CAD7382008051C0 /* QuestionView.h */,
@@ -327,6 +348,7 @@
 				TargetAttributes = {
 					AB92E7141CAB01F200199034 = {
 						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = 4WHCWF2WQ4;
 						SystemCapabilities = {
 							com.apple.Maps.iOS = {
 								enabled = 0;
@@ -358,13 +380,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDA7309A1CC047C00014C12D /* StatsMenu.xib in Resources */,
 				AB92E7DC1CB5585D00199034 /* CustomTabBar.xib in Resources */,
+				CD086FBE1CC52CA7007A996A /* StatsQuestionsViewCell.xib in Resources */,
 				31FF28251CAD731C008051C0 /* JournalAndPicture.xib in Resources */,
 				31FF28231CAD7303008051C0 /* Question.xib in Resources */,
 				AB92E7281CAB01F200199034 /* LaunchScreen.storyboard in Resources */,
 				AB92E7251CAB01F200199034 /* Assets.xcassets in Resources */,
 				AB2A386C1CC449E1005DD03A /* JournalAndPictureAlternate.xib in Resources */,
-				CD4CCAC51CB6EA0C00805B1F /* Stats.xib in Resources */,
 				AB92E75F1CAC48DE00199034 /* AddJournalEntry.xib in Resources */,
 				AB92E7E41CB71A1A00199034 /* JournalEntryTableViewCell2.xib in Resources */,
 				AB69AF571CC03A7D00CC9F9B /* noInternet.xib in Resources */,
@@ -372,6 +395,7 @@
 				D60655921CBC27E800709533 /* loadingView.xib in Resources */,
 				AB69AF281CBD87F400CC9F9B /* EmptyTable.xib in Resources */,
 				AB92E7231CAB01F200199034 /* Main.storyboard in Resources */,
+				CD086FBC1CC52736007A996A /* StatsMoodsViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -436,6 +460,7 @@
 				CDA19A171CB58A28001E1872 /* MoodCircleButton.m in Sources */,
 				AB92E7D71CB4063A00199034 /* JournalEntryTableViewCellView.m in Sources */,
 				AB69AF531CBFF01200CC9F9B /* EmptyTableView.m in Sources */,
+				CD086FBA1CC526C6007A996A /* StatsMoodCellView.m in Sources */,
 				AB92E7951CAD9CB400199034 /* NewJournalEntryBlurView.m in Sources */,
 				31FF28311CAD7398008051C0 /* JournalAndPictureView.m in Sources */,
 				31FF282B1CAD736E008051C0 /* CategoryFeelingView.m in Sources */,
@@ -443,6 +468,7 @@
 				779BD9041CB736560027DC91 /* DYUtility.m in Sources */,
 				AB2A38721CC6764E005DD03A /* JournalEntryTableViewCellAlternate.m in Sources */,
 				AB92E7E21CB5708200199034 /* SettingsViewController.m in Sources */,
+				CD086FC11CC52D46007A996A /* StatsQuestionViewCell.m in Sources */,
 				AB92E7DA1CB40C6400199034 /* JournalEntryTableViewCell.m in Sources */,
 				AB92E7571CAB111100199034 /* DYJournalEntry.m in Sources */,
 				AB92E79A1CADBD2800199034 /* IndividualFeelingView.m in Sources */,
@@ -454,6 +480,7 @@
 				AB92E7201CAB01F200199034 /* MainViewController.m in Sources */,
 				AB92E7DF1CB55BE000199034 /* CustomTabBarView.m in Sources */,
 				AB92E76F1CAC697B00199034 /* StatsViewController.m in Sources */,
+				CDA730A01CC049B60014C12D /* StatsMenuView.m in Sources */,
 				D60655981CBC2F9A00709533 /* LoadingFirstPageView.m in Sources */,
 				AB92E71D1CAB01F200199034 /* AppDelegate.m in Sources */,
 				CDA730891CBC4DE70014C12D /* DYStatsInfo.m in Sources */,
@@ -568,6 +595,7 @@
 			baseConfigurationReference = A6F0F00FFE68D8283CB2E5C1 /* Pods-DidYou.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = DidYou/Info.plist;
@@ -576,6 +604,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.flatironSchool.DidYou.DidYou;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "DidYou/DidYou-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -584,6 +614,7 @@
 			baseConfigurationReference = DC83E05E9AD37E69EF195C64 /* Pods-DidYou.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = DidYou/Info.plist;
@@ -592,6 +623,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.flatironSchool.DidYou.DidYou;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "DidYou/DidYou-Bridging-Header.h";
 			};
 			name = Release;
 		};
