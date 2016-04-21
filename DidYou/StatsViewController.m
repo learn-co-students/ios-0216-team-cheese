@@ -19,7 +19,6 @@
 
 @property (strong, nonatomic) CustomTabBarView *tabBar;
 @property (weak, nonatomic) IBOutlet StatsMenuView *statsMenuView;
-//@property (strong, nonatomic) DataStore *dataStore;
 @property (weak, nonatomic) IBOutlet NoStatsDataView *noStatsDataView;
 @property (weak, nonatomic) IBOutlet UIImageView *statsIconImageView;
 

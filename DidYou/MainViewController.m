@@ -442,7 +442,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 
-//    NSLog(@"in the tableview, the # of journals is %lu", self.dataStore.currentUser.journals.count);
+
     
     return self.dataStore.currentUser.journals.count;
 
@@ -512,32 +512,6 @@
 }
 
 # pragma mark - JournalAndPictureView methods below
-
-- (void)buttonTappedFromJournalandPictureView:(id)sender {
-    
-    UIImagePickerController *picker = [UIImagePickerController new];
-    picker.delegate = self;
-    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    [self presentViewController:picker animated:YES completion:nil];
-}
--(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
-{
-    
-    UIImage *chosenImage = [info objectForKey:UIImagePickerControllerOriginalImage];
-    NSLog(@"Image value in imagePickerController : %@", chosenImage);
-    JournalAndPictureView *journalAndPictureV = [[JournalAndPictureView alloc] init] ;
-    UIImageView *imageViewInJournalView = journalAndPictureV.imageView;
-    [imageViewInJournalView setImage:chosenImage];
-    NSLog(@"%@", imageViewInJournalView.image);
-    [self.addJournalFullScreenBlurView recieveImageFromMainViewController:chosenImage];
-    [picker dismissViewControllerAnimated:YES completion:nil];
-    
-}
-
--(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
-{
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
 
 
 -(void)createBlurView

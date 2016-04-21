@@ -217,7 +217,7 @@
 -(void)createCurrentDate {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"MMMM"];
-    NSString *stringFromDate = [formatter stringFromDate:[NSDate date]];
+    //NSString *stringFromDate = [formatter stringFromDate:[NSDate date]];
     //    self.timePeriodLabel.text = stringFromDate;
 }
 @end

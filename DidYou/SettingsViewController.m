@@ -162,7 +162,7 @@
     
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Delete all Journal Entries" message:@"Are you sure?" preferredStyle:UIAlertControllerStyleAlert];
     
-    UIAlertAction *yesAction = [UIAlertAction actionWithTitle:@"Yes" style:UIAlertViewStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *yesAction = [UIAlertAction actionWithTitle:@"Yes" style:0 handler:^(UIAlertAction * _Nonnull action) {
         
        
         NSLog(@"yes hit");
@@ -171,7 +171,7 @@
         
     }];
     
-    UIAlertAction *noAction = [UIAlertAction actionWithTitle:@"No" style:UIAlertViewStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *noAction = [UIAlertAction actionWithTitle:@"No" style:0 handler:^(UIAlertAction * _Nonnull action) {
         
         NSLog(@"no hit");
     }];
@@ -205,14 +205,5 @@
 }
 
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

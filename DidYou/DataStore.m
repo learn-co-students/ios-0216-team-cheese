@@ -205,7 +205,7 @@
     [self addJournalToFirebase:self.currentUser
               withJournalEntry:self.currentUser.journals.lastObject];
 
-    DYJournalEntry *journal = self.currentUser.journals.lastObject;
+ //   DYJournalEntry *journal = self.currentUser.journals.lastObject;
 
 }
 
@@ -386,13 +386,6 @@
     
     [countryRef setValue:self.currentUser.country];
     
-    
-    //sending city info to firebase
-   // Firebase *cityRef = [[[self.myRootRef childByAppendingPath: self.currentUser.userUUID] childByAppendingPath: placeMark.locality] childByAppendingPath:self.currentUser.userUUID];
-    //[cityRef setValue: self.currentUser.city];
-    
-    //Firebase *countryRef = [[[self.myRootRef childByAppendingPath: @"countries"] childByAppendingPath: placeMark.country] childByAppendingPath:self.currentUser.userUUID];
-    //[countryRef setValue: self.currentUser.country];
 }
 
 -(void)deleteAllCurrentUserEntries

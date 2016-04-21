@@ -10,7 +10,6 @@
 #import "QuestionView.h"
 #import "MainFeelingView.h"
 #import "CategoryFeelingView.h"
-#import "JournalAndPictureView.h"
 #import "DataStore.h"
 #import "DYJournalEntry.h"
 #import "DYUser.h"
@@ -18,7 +17,7 @@
 #import "JournalAndPictureAlternateView.h"
 
 
-@interface NewJournalEntryBlurView () <MainFeelingViewDelegate, QuestionViewDelegate, JournalAndPictureViewDelegate, UIGestureRecognizerDelegate, JournalAndPictureAlternateViewDelegate>
+@interface NewJournalEntryBlurView () <MainFeelingViewDelegate, QuestionViewDelegate, UIGestureRecognizerDelegate, JournalAndPictureAlternateViewDelegate>
 
 @property (nonatomic) NSUInteger currentQuestionIndex;
 @property (strong, nonatomic) QuestionView *questionView;
@@ -342,29 +341,6 @@
     
 }
 
--(void)whenAddPhotoButtonIsTapped:(id)sender
-{
-    
-    [self.delegate buttonTappedFromJournalandPictureView:sender];
-}
 
-//-(void)whenDeleteButtonIsTapped:(id)sender
-//{
-//    self.journalAndPictureView.deletePhotoButton.hidden = YES;
-//    self.journalAndPictureView.imageView.image = nil;
-//    self.journalAndPictureView.imageView.layer.borderWidth = 0;
-//
-//}
-//
-//-(void)recieveImageFromMainViewController:(UIImage *)imageRecieved
-//{
-//    self.currentEntry.userImage = imageRecieved;
-//    self.journalAndPictureView.deletePhotoButton.hidden = NO;
-//    self.journalAndPictureView.imageView.image = imageRecieved;
-//    self.journalAndPictureView.imageView.layer.cornerRadius = self.journalAndPictureView.imageView.frame.size.width / 2;
-//    self.journalAndPictureView.imageView.contentMode = UIViewContentModeScaleAspectFill;
-//    self.journalAndPictureView.imageView.clipsToBounds = YES;
-//    self.journalAndPictureView.imageView.layer.borderColor = [UIColor darkGrayColor].CGColor;
-//}
 
 @end

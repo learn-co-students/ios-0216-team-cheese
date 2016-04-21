@@ -63,28 +63,5 @@
 
 }
 
--(NSString *)encodeToBase64String:(UIImage *)image {
-    return [UIImagePNGRepresentation(image) base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
-}
-
--(UIImage *)decodeBase64ToImage:(NSString *)strEncodeData {
-    NSData *data = [[NSData alloc]initWithBase64EncodedString:strEncodeData options:NSDataBase64DecodingIgnoreUnknownCharacters];
-    return [UIImage imageWithData:data];
-}
-
-- (UIImage *)compressForUpload:(UIImage *)original scale:(CGFloat)scale
-{
-    // Calculate new size given scale factor.
-    CGSize originalSize = original.size;
-    CGSize newSize = CGSizeMake(originalSize.width * scale, originalSize.height * scale);
-    
-    // Scale the original image to match the new size.
-    UIGraphicsBeginImageContext(newSize);
-    [original drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
-    UIImage* compressedImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    return compressedImage;
-}
 
 @end

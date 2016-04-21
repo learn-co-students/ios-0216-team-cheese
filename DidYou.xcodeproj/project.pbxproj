@@ -9,11 +9,9 @@
 /* Begin PBXBuildFile section */
 		31FF281D1CAD6BED008051C0 /* DYQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FF281C1CAD6BED008051C0 /* DYQuestion.m */; };
 		31FF28231CAD7303008051C0 /* Question.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31FF28221CAD7303008051C0 /* Question.xib */; };
-		31FF28251CAD731C008051C0 /* JournalAndPicture.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31FF28241CAD731C008051C0 /* JournalAndPicture.xib */; };
 		31FF28281CAD7356008051C0 /* MainFeelingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FF28271CAD7356008051C0 /* MainFeelingView.m */; };
 		31FF282B1CAD736E008051C0 /* CategoryFeelingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FF282A1CAD736E008051C0 /* CategoryFeelingView.m */; };
 		31FF282E1CAD7382008051C0 /* QuestionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FF282D1CAD7382008051C0 /* QuestionView.m */; };
-		31FF28311CAD7398008051C0 /* JournalAndPictureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FF28301CAD7398008051C0 /* JournalAndPictureView.m */; };
 		31FF28721CBC4691008051C0 /* JournalLogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FF28711CBC4691008051C0 /* JournalLogViewController.m */; };
 		779BD9041CB736560027DC91 /* DYUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 779BD9031CB736560027DC91 /* DYUtility.m */; };
 		AB2A386C1CC449E1005DD03A /* JournalAndPictureAlternate.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB2A386B1CC449E1005DD03A /* JournalAndPictureAlternate.xib */; };
@@ -63,15 +61,12 @@
 		31FF281B1CAD6BED008051C0 /* DYQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYQuestion.h; sourceTree = "<group>"; };
 		31FF281C1CAD6BED008051C0 /* DYQuestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYQuestion.m; sourceTree = "<group>"; };
 		31FF28221CAD7303008051C0 /* Question.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Question.xib; sourceTree = "<group>"; };
-		31FF28241CAD731C008051C0 /* JournalAndPicture.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JournalAndPicture.xib; sourceTree = "<group>"; };
 		31FF28261CAD7356008051C0 /* MainFeelingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainFeelingView.h; sourceTree = "<group>"; };
 		31FF28271CAD7356008051C0 /* MainFeelingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainFeelingView.m; sourceTree = "<group>"; };
 		31FF28291CAD736E008051C0 /* CategoryFeelingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryFeelingView.h; sourceTree = "<group>"; };
 		31FF282A1CAD736E008051C0 /* CategoryFeelingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryFeelingView.m; sourceTree = "<group>"; };
 		31FF282C1CAD7382008051C0 /* QuestionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionView.h; sourceTree = "<group>"; };
 		31FF282D1CAD7382008051C0 /* QuestionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionView.m; sourceTree = "<group>"; };
-		31FF282F1CAD7398008051C0 /* JournalAndPictureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JournalAndPictureView.h; sourceTree = "<group>"; };
-		31FF28301CAD7398008051C0 /* JournalAndPictureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JournalAndPictureView.m; sourceTree = "<group>"; };
 		31FF28701CBC4691008051C0 /* JournalLogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JournalLogViewController.h; sourceTree = "<group>"; };
 		31FF28711CBC4691008051C0 /* JournalLogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JournalLogViewController.m; sourceTree = "<group>"; };
 		779BD9021CB736560027DC91 /* DYUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYUtility.h; sourceTree = "<group>"; };
@@ -238,7 +233,6 @@
 				AB92E7E31CB71A1A00199034 /* JournalEntryTableViewCell2.xib */,
 				AB69AF561CC03A7D00CC9F9B /* noInternet.xib */,
 				31FF28221CAD7303008051C0 /* Question.xib */,
-				31FF28241CAD731C008051C0 /* JournalAndPicture.xib */,
 				D60655911CBC27E800709533 /* loadingView.xib */,
 			);
 			name = Xibs;
@@ -277,8 +271,6 @@
 				AB92E7991CADBD2800199034 /* IndividualFeelingView.m */,
 				31FF282C1CAD7382008051C0 /* QuestionView.h */,
 				31FF282D1CAD7382008051C0 /* QuestionView.m */,
-				31FF282F1CAD7398008051C0 /* JournalAndPictureView.h */,
-				31FF28301CAD7398008051C0 /* JournalAndPictureView.m */,
 				D60655961CBC2F9A00709533 /* LoadingFirstPageView.h */,
 				D60655971CBC2F9A00709533 /* LoadingFirstPageView.m */,
 			);
@@ -356,7 +348,7 @@
 				TargetAttributes = {
 					AB92E7141CAB01F200199034 = {
 						CreatedOnToolsVersion = 7.2.1;
-						DevelopmentTeam = 4WHCWF2WQ4;
+						DevelopmentTeam = N39KMN7QE9;
 						SystemCapabilities = {
 							com.apple.Maps.iOS = {
 								enabled = 0;
@@ -391,7 +383,6 @@
 				CDA7309A1CC047C00014C12D /* StatsMenu.xib in Resources */,
 				AB92E7DC1CB5585D00199034 /* CustomTabBar.xib in Resources */,
 				CD086FBE1CC52CA7007A996A /* StatsQuestionsViewCell.xib in Resources */,
-				31FF28251CAD731C008051C0 /* JournalAndPicture.xib in Resources */,
 				31FF28231CAD7303008051C0 /* Question.xib in Resources */,
 				AB92E7281CAB01F200199034 /* LaunchScreen.storyboard in Resources */,
 				AB92E7251CAB01F200199034 /* Assets.xcassets in Resources */,
@@ -471,7 +462,6 @@
 				AB69AF531CBFF01200CC9F9B /* EmptyTableView.m in Sources */,
 				CD086FBA1CC526C6007A996A /* StatsMoodCellView.m in Sources */,
 				AB92E7951CAD9CB400199034 /* NewJournalEntryBlurView.m in Sources */,
-				31FF28311CAD7398008051C0 /* JournalAndPictureView.m in Sources */,
 				31FF282B1CAD736E008051C0 /* CategoryFeelingView.m in Sources */,
 				AB2A386F1CC52010005DD03A /* JournalAndPictureAlternateView.m in Sources */,
 				779BD9041CB736560027DC91 /* DYUtility.m in Sources */,
@@ -611,11 +601,12 @@
 				INFOPLIST_FILE = DidYou/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.flatironSchool.DidYou.DidYou2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.flatironSchool.DidYou.DidYou;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "DidYou/DidYou-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -630,10 +621,11 @@
 				INFOPLIST_FILE = DidYou/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.flatironSchool.DidYou.DidYou2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.flatironSchool.DidYou.DidYou;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "DidYou/DidYou-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

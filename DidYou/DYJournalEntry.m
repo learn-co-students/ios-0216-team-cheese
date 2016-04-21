@@ -61,7 +61,7 @@
             _userImage = nil;
         } else
         {
-            _userImage = [util decodeBase64ToImage: data[@"userImage"]];
+          //  _userImage = [util decodeBase64ToImage: data[@"userImage"]];
         }
         _questions = q;
     }
@@ -94,7 +94,7 @@
         data[@"userImage"] = @"nil";
     } else
     {
-        data[@"userImage"] = [util encodeToBase64String:[util compressForUpload:_userImage scale:0.5]];
+       // data[@"userImage"] = [util encodeToBase64String:[util compressForUpload:_userImage scale:0.5]];
     }
     data[@"questions"] = questions;
     
