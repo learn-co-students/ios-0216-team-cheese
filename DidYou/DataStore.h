@@ -19,15 +19,14 @@
 @property (strong, nonatomic) NSString *userUUID;
 @property (strong, nonatomic) DYUser *currentUser;
 @property (strong, nonatomic) Firebase *myRootRef;
-@property (nonatomic) BOOL isFirstTime;
-
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) CLGeocoder *geocoder;
 @property (strong, nonatomic) CLPlacemark *placemark;
+@property (strong, nonatomic) UIImage *userImage;
 
+@property (nonatomic) BOOL isFirstTime;
 @property (nonatomic) BOOL gotCreated;
 
-@property (strong, nonatomic) UIImage *userImage;
 
 
 

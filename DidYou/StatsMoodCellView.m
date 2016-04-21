@@ -128,7 +128,7 @@
         circleView.translatesAutoresizingMaskIntoConstraints = NO;
         
         CGFloat emotionPercentage = [statsInfo calculateEmotionPercentage:statsInfo.allMoodsArray[i] ofEntries:self.dataStore.currentUser.journals];
-        [statsInfo resizeCircles:circleView withPercentage:emotionPercentage * 2];
+        [statsInfo resizeCircles:circleView withPercentage:emotionPercentage];
         
         [circleView.centerXAnchor constraintEqualToAnchor:self.centerXAnchor constant:distanceFromCenterX].active = YES;
         [circleView.centerYAnchor constraintEqualToAnchor:self.centerYAnchor constant:(halfDistanceToCenterY + 15)].active = YES;
