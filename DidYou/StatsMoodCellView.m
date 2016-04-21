@@ -128,7 +128,7 @@
         circleView.translatesAutoresizingMaskIntoConstraints = NO;
         
         CGFloat emotionPercentage = [statsInfo calculateEmotionPercentage:statsInfo.allMoodsArray[i] ofEntries:self.dataStore.currentUser.journals];
-        [statsInfo resizeCircles:circleView withPercentage:emotionPercentage * 2];
+        [statsInfo resizeCircles:circleView withPercentage:emotionPercentage];
         
         [circleView.centerXAnchor constraintEqualToAnchor:self.centerXAnchor constant:distanceFromCenterX].active = YES;
         [circleView.centerYAnchor constraintEqualToAnchor:self.centerYAnchor constant:(halfDistanceToCenterY + 15)].active = YES;
@@ -196,7 +196,7 @@
     UIColor *blueColor = [UIColor colorWithRed:104.0f/255.0f green:183.0f/255.0f blue:255.0f/255.0f alpha:0.45];
     UIColor *redColor = [UIColor colorWithRed:255.0f/255.0f green:59.0f/255.0f blue:59.0f/255.0f alpha:0.3];
     UIColor *orangeColor = [UIColor colorWithRed:253.0f/255.0f green:174.0f/255.0f blue:55.0f/255.0f alpha:0.45];
-    UIColor *greenColor = [UIColor colorWithRed:65.0f/255.0f green:194.0f/255.0f blue:65.0f/255.0f alpha:0.45];
+    UIColor *greenColor = [UIColor colorWithRed:65.0f/255.0f green:194.0f/255.0f blue:65.0f/255.0f alpha:0.35];
     UIColor *grayColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:0.4];
     self.moodColorsArray = @[lavendarColor, redColor, blueColor, orangeColor, grayColor, greenColor];
 }
