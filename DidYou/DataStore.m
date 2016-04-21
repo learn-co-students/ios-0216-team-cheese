@@ -205,7 +205,7 @@
     [self addJournalToFirebase:self.currentUser
               withJournalEntry:self.currentUser.journals.lastObject];
 
-    DYJournalEntry *journal = self.currentUser.journals.lastObject;
+//    DYJournalEntry *journal = self.currentUser.journals.lastObject;
 
 }
 

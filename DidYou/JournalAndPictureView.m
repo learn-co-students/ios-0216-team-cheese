@@ -128,6 +128,8 @@
     [self.doneEditingButton.topAnchor constraintEqualToAnchor:self.textView.bottomAnchor].active = YES;
     self.doneEditingButton.hidden = YES;
     
+//getting rid of all photo methods, no longer photo feature on journal
+/*
     self.deletePhotoButton =[UIButton buttonWithType:UIButtonTypeSystem];
     [self.deletePhotoButton setTintColor:[UIColor redColor]];
     [self.deletePhotoButton setImage:[UIImage imageNamed:@"delete"] forState:UIControlStateNormal];
@@ -141,6 +143,7 @@
     [self.deletePhotoButton.widthAnchor constraintEqualToConstant:20].active = YES;
     
     self.deletePhotoButton.hidden = YES;
+*/
 }
 
 
@@ -199,11 +202,14 @@
 [self.delegate whenAddPhotoButtonIsTapped:sender];    
 }
 
+//removing all methods for adding/deleting picure from journal- feature no longer being used
+/*
 -(IBAction)whenDeleteButtonIsTapped:(id)sender
 {
 [self.delegate whenDeleteButtonIsTapped:sender];
-        
 }
+*/
+
 - (IBAction)doneButtonTapped:(id)sender
 {
     

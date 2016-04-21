@@ -37,7 +37,7 @@
 
 -(void)setupFirebase;
 -(void)addUserToFirebase: (DYUser *)user;
--(void)addJournalToFirebase:(DYUser *)user :(DYJournalEntry *)journalEntry;
+-(void)addJournalToFirebase:(DYUser *)user withJournalEntry:(DYJournalEntry *)journalEntry;
 -(void)pushLastJournal;
 
 -(void)deleteAllCurrentUserEntries;
@@ -53,7 +53,7 @@
 
 -(void)addPlacemark: (CLPlacemark*)placeMark;
 
-- (void)removeValue;
+//- (void)removeValue;
 
 -(void)updateFirebaseJournals;
 

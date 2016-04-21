@@ -177,7 +177,7 @@
     }
 
     
-    [self launchSpinView];
+//    [self launchSpinView];
 }
 
 
@@ -520,6 +520,9 @@
     picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     [self presentViewController:picker animated:YES completion:nil];
 }
+
+//removing image methods, no longer adding image to journal
+/*
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     
@@ -533,7 +536,7 @@
     [picker dismissViewControllerAnimated:YES completion:nil];
     
 }
-
+*/
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
     [self dismissViewControllerAnimated:YES completion:nil];

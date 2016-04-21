@@ -27,6 +27,4 @@
 @property (strong, nonatomic) id <NewJournalEntryBlurViewDelegate> delegate;
 
 
--(void)recieveImageFromMainViewController:(UIImage *)imageRecieved;
-
 @end

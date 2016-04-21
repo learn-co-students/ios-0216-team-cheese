@@ -13,7 +13,6 @@
 
 -(void)journalComplete:(UIButton *)sender;
 -(void)whenAddPhotoButtonIsTapped:(id)sender;
--(void)whenDeleteButtonIsTapped:(id)sender;
 -(void)whenTapGestureIsRecognized:(UITapGestureRecognizer *)sender;
 
 @end
