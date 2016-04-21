@@ -93,7 +93,7 @@
 -(void)resizeCircles:(UIView *)circleView withPercentage:(CGFloat)percentage
 {
     CGFloat minimumCircleSize = 70;
-    CGFloat maximumCircleSize = 110;
+    CGFloat maximumCircleSize = 100;
     CGFloat range = maximumCircleSize - minimumCircleSize;
     CGFloat sizeIncrement = (range / maximumCircleSize);
     CGFloat calculatedCircleSize = minimumCircleSize + (percentage * sizeIncrement);

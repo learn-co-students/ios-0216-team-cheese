@@ -395,15 +395,15 @@
         [tmpself.addJournalFullScreenBlurView.heightAnchor constraintEqualToAnchor:self.view.heightAnchor].active = YES;
         [tmpself.addJournalFullScreenBlurView.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor].active = YES;
         [tmpself.addJournalFullScreenBlurView.centerYAnchor constraintEqualToAnchor:self.view.centerYAnchor].active = YES;
-        
-        tmpself.journalEntryTableView.alpha = 1;
-        tmpself.addEntryTopView.alpha = 1;
+
         
     } completion:^(BOOL finished) {
         
-        [UIView animateWithDuration:0 delay:0 options:0 animations:^{
+        [UIView animateWithDuration:0.15 delay:0 options:0 animations:^{
             
             [tmpself.view bringSubviewToFront:self.addJournalFullScreenBlurView];
+            tmpself.journalEntryTableView.alpha = 1;
+            tmpself.addEntryTopView.alpha = 1;
             
         } completion:^(BOOL finished) {
             

@@ -24,8 +24,8 @@
                     <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Question" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="lUu-3S-tJl">
-                    <rect key="frame" x="20" y="426" width="565" height="24"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Question" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="lUu-3S-tJl">
+                    <rect key="frame" x="20" y="446" width="565" height="24"/>
                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                     <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
@@ -69,7 +69,7 @@
                 <constraint firstAttribute="bottom" secondItem="FPs-Fp-k2G" secondAttribute="bottom" constant="35" id="Noi-di-b4y"/>
                 <constraint firstItem="i2z-uj-FZO" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="OVm-ut-FiJ"/>
                 <constraint firstAttribute="trailing" secondItem="lUu-3S-tJl" secondAttribute="trailing" constant="15" id="S62-Gq-IRT"/>
-                <constraint firstItem="WDb-rr-I0d" firstAttribute="top" secondItem="lUu-3S-tJl" secondAttribute="bottom" constant="35" id="VBR-O2-nc4"/>
+                <constraint firstItem="lUu-3S-tJl" firstAttribute="bottom" secondItem="WDb-rr-I0d" secondAttribute="top" constant="-15" id="VBR-O2-nc4"/>
                 <constraint firstItem="i2z-uj-FZO" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="vFs-jo-t5Y"/>
             </constraints>
         </view>

@@ -130,8 +130,8 @@
         outerCircleButton.translatesAutoresizingMaskIntoConstraints = NO;
         [outerCircleButton.centerXAnchor constraintEqualToAnchor:self.centerXAnchor constant:centerXOffset].active = YES;
         [outerCircleButton.centerYAnchor constraintEqualToAnchor:self.centerYAnchor constant:centerYOffset].active = YES;
-        [outerCircleButton.widthAnchor constraintEqualToConstant:100].active = YES;
-        [outerCircleButton.heightAnchor constraintEqualToConstant:100].active = YES;
+        [outerCircleButton.widthAnchor constraintEqualToConstant:90].active = YES;
+        [outerCircleButton.heightAnchor constraintEqualToConstant:90].active = YES;
         [outerCircleButton addTarget:self
                               action:@selector(firstCircleMenuButtonTapped:)
                     forControlEvents:UIControlEventTouchUpInside];
@@ -222,8 +222,8 @@
                            tappedButton.translatesAutoresizingMaskIntoConstraints = NO;
                            [tappedButton.centerXAnchor constraintEqualToAnchor:self.centerXAnchor].active = YES;
                            [tappedButton.centerYAnchor constraintEqualToAnchor:self.centerYAnchor].active = YES;
-                           [tappedButton.widthAnchor constraintEqualToConstant:100].active = YES;
-                           [tappedButton.heightAnchor constraintEqualToConstant:100].active = YES;
+                           [tappedButton.widthAnchor constraintEqualToConstant:90].active = YES;
+                           [tappedButton.heightAnchor constraintEqualToConstant:90].active = YES;
                            [self layoutIfNeeded];
                            
                        } completion:^(BOOL finished) {
@@ -292,8 +292,8 @@
         outerCircleButtons.translatesAutoresizingMaskIntoConstraints = NO;
         [outerCircleButtons.centerXAnchor constraintEqualToAnchor:self.centerXAnchor constant:centerXOffset].active = YES;
         [outerCircleButtons.centerYAnchor constraintEqualToAnchor:self.centerYAnchor constant:centerYOffset].active = YES;
-        [outerCircleButtons.widthAnchor constraintEqualToConstant:100].active = YES;
-        [outerCircleButtons.heightAnchor constraintEqualToConstant:100].active = YES;
+        [outerCircleButtons.widthAnchor constraintEqualToConstant:90].active = YES;
+        [outerCircleButtons.heightAnchor constraintEqualToConstant:90].active = YES;
         
         outerCircleButtons.alpha = 0.0;
         [outerCircleButtons addTarget:self
