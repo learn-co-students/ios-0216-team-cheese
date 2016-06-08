@@ -313,26 +313,6 @@
     self.geocoder = [[CLGeocoder alloc]init];
 }
 
-- (void)addButtonTapped:(UIButton *)sender {
-    
-    __weak typeof(self) tmpself = self;
-
-    [UIView animateWithDuration:0.2 delay:0 options:0 animations:^{
-        
-        tmpself.journalEntryTableView.alpha = 0;
-        tmpself.addEntryTopView.alpha = 0;
-        
-        
-        
-    } completion:^(BOOL finished) {
-        
-        [tmpself launchAddJournalFullScreenView];
-
-        
-    }];
-
-    
-}
 
 -(void)launchFirstTimeScreen
 {
@@ -361,6 +341,27 @@
     NSLog(@"in dismiss first time screen");
     
     [self.firstTimeScreen removeFromSuperview];
+    
+    
+}
+
+- (void)addButtonTapped:(UIButton *)sender {
+    
+    __weak typeof(self) tmpself = self;
+    
+    [UIView animateWithDuration:0.1 delay:0 options:0 animations:^{
+        
+        tmpself.journalEntryTableView.alpha = 0;
+        tmpself.addEntryTopView.alpha = 0;
+        
+        
+        
+    } completion:^(BOOL finished) {
+        
+        [tmpself launchAddJournalFullScreenView];
+        
+        
+    }];
     
     
 }

@@ -20,11 +20,12 @@
                     <fontDescription key="fontDescription" type="system" pointSize="24"/>
                     <color key="textColor" white="0.46607730260000002" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
+                    <color key="shadowColor" white="0.46607730260000002" alpha="1" colorSpace="calibratedWhite"/>
                 </label>
             </subviews>
             <constraints>
                 <constraint firstItem="r1C-qw-ufq" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="frX-gE-VUH"/>
-                <constraint firstItem="r1C-qw-ufq" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="l3f-ZV-X99"/>
+                <constraint firstItem="r1C-qw-ufq" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="kwq-9C-vjP"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="488.5" y="92"/>

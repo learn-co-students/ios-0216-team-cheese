@@ -316,7 +316,7 @@
     
     
     NSDictionary *emotions = @{ @"Happy"  :  @[ @"Fulfilled",@"Glad",@"Complete",@"Optimistic",@"Pleased",@"Serene"],
-                                @"Excited"  :  @[ @"Ecstatic",@"Engergetic",@"Aroused",@"Bouncy",@"Aroused",@"Joyful"],
+                                @"Excited"  :  @[ @"Ecstatic",@"Energetic",@"Aroused",@"Bouncy",@"Passionate",@"Joyful"],
                                 @"Tender"  :  @[ @"Intimate",@"Loving",@"Sympathetic",@"Touched",@"Soft",@"Trusting"],
                                 @"Scared"  :  @[ @"Tense",@"Nervous",@"Anxious",@"Frightened",@"Terrified",@"Apprehensive"],
                                 @"Angry"  :  @[ @"Irritated",@"Resentful",@"Upset",@"Furious",@"Raging",@"Annoyed"],
