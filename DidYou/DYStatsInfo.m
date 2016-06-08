@@ -43,7 +43,6 @@
 -(void)addToMoodArrays
 {
     for (DYJournalEntry *currentJournal in self.dataStore.currentUser.journals) {
-        NSLog(@"entering the for loop");
         NSString *mainEmotionKeyString = [self generateMainEmotion:currentJournal.mainEmotion];
         if ([mainEmotionKeyString isEqualToString:@"Happy"]) {
             [self.happyArray addObject:mainEmotionKeyString];

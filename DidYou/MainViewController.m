@@ -69,15 +69,6 @@
     [self createCustomTabBar];
     
     [self launchScreenLogic];
-    
-//    DataStore *dataStore = [[DataStore alloc]init];
-//    DYStatsInfo *currentStats = [[DYStatsInfo alloc]init];
-//    
-//    [currentStats getEntriesFromCurrentMonth];
-//    [currentStats addToMoodArrays];
-//    NSLog(@"test happy array contents %@",dataStore.currentUser.journals);
-    
-
 }
 
 -(void)launchScreenLogic
@@ -90,7 +81,6 @@
     
     if (!self.connected)
     {
-         NSLog(@"in the if on main VC");
         
         [self launchNoInternetView];
         
@@ -101,54 +91,31 @@
     
     else if ([self.UUID isEqualToString:@"new"])
     {
-        
-        NSLog(@"in the else if on main VC");
-        
         [self launchFirstTimeScreen];
         
         self.dataStore = [DataStore sharedDataStore];
     }
-    
-    
     else
     {
-        NSLog(@"in the else on main VC");
-        
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(singletonBeingCreated) name:@"singletonBeingCreated" object:nil];
-
         self.dataStore = [DataStore sharedDataStore];
     
         
         if (self.dataStore.currentUser.journals.count == 0 && !self.singletonBeingCreatedHit)
         {
-            NSLog(@"getting in here");
             [self launchFirstTimeScreen];
         }
-        
-        
-        
-     
+ 
     }
     
     [self.journalEntryTableView reloadData];
-    
-    
-    NSLog(@"there are %lu journals in current user", self.dataStore.currentUser.journals.count);
 }
 
 -(void)singletonBeingCreated
 {
-    
     self.singletonBeingCreatedHit = YES;
-    
-    NSLog(@"singleton being created VC");
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveFirebaseNotification) name:@"FirebaseNotification" object:nil];
-    
-    
-    
     [self launchSpinView];
-    
 }
 
 - (BOOL)canIAnimate
@@ -183,16 +150,10 @@
 
 -(void)refreshTapped
 {
-    
-    
-
-    NSLog(@"in refresh tapped");
-    
     self.connected = [DataStore isNetworkAvailable];
     
     if (self.connected)
     {
-        
         [self.noInternetScreen removeFromSuperview];
         
         if (self.dataStore == nil)
@@ -200,28 +161,17 @@
             [self launchSpinView];
         }
         
-        
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveFirebaseNotification) name:@"FirebaseNotification" object:nil];
         
         self.dataStore = [DataStore sharedDataStore];
-        
-        //[self.dataStore createNewCurrentUserFromFirebase:self.UUID];
     }
-
-    
-    
 }
-
-
 
 -(void)setUpDelegates
 {
-    
     self.addEntryTopView.delegate = self;
     self.journalEntryTableView.delegate = self;
     self.journalEntryTableView.dataSource = self;
-   
-
 }
 
 -(void)launchNoInternetView
@@ -245,9 +195,6 @@
 
 -(void)launchSpinView
 {
-    
-    NSLog(@"in launch spin view");
-    
     self.journalEntryTableView.userInteractionEnabled = NO;
     self.tabBar.userInteractionEnabled = NO;
     
@@ -274,9 +221,6 @@
 
 -(void)receiveFirebaseNotification
 {
-    
-    NSLog(@"in recieved firebase notification");
-    
         [self.journalEntryTableView reloadData];
         [self.journalEntryTableView reloadData];
         [self.spinView.activityIndicator stopAnimating];
@@ -287,8 +231,6 @@
     
     if (self.dataStore.currentUser.journals.count == 0)
     {
-        
-        NSLog(@"in first time after notification");
         [self launchFirstTimeScreen];
     }
     
@@ -316,9 +258,6 @@
 
 -(void)launchFirstTimeScreen
 {
-    
-    NSLog(@"in first time screen launch");
-    
     self.firstTimeScreen = [[EmptyTableView alloc] init];
     
     [self.view addSubview:self.firstTimeScreen];
@@ -338,34 +277,19 @@
 
 -(void)dismissFirstTimeScreen
 {
-    NSLog(@"in dismiss first time screen");
-    
     [self.firstTimeScreen removeFromSuperview];
-    
-    
 }
 
 - (void)addButtonTapped:(UIButton *)sender {
     
     __weak typeof(self) tmpself = self;
-    
     [UIView animateWithDuration:0.1 delay:0 options:0 animations:^{
-        
         tmpself.journalEntryTableView.alpha = 0;
         tmpself.addEntryTopView.alpha = 0;
-        
-        
-        
     } completion:^(BOOL finished) {
-        
         [tmpself launchAddJournalFullScreenView];
-        
-        
     }];
-    
-    
 }
-
 
 -(void)launchAddJournalFullScreenView
 {
@@ -419,20 +343,13 @@
 
 -(void)totalJournalEntryComplete
 {
-    
-    NSLog(@"this is getting called");
-    
     if (self.firstTimeScreenDisplayed)
     {
         [self.firstTimeScreen removeFromSuperview];
     }
-    
-    NSLog(@"about to push lastJournal.");
     // Signal firebase push
     [self.dataStore pushLastJournal];
     [self.journalEntryTableView reloadData];
-    
-    
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle
@@ -442,11 +359,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-
-//    NSLog(@"in the tableview, the # of journals is %lu", self.dataStore.currentUser.journals.count);
-    
     return self.dataStore.currentUser.journals.count;
-
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -499,9 +412,6 @@
 -(void)userNavigates:(NSString *)viewChosen
 {
     // segue to view
-    
-    NSLog(@"userNavigates getting called");
-    
     if ([viewChosen isEqualToString:@"stats"])
     {
         [self performSegueWithIdentifier:@"segueMainToStats" sender:nil];
@@ -598,10 +508,6 @@
     
     if (index == 0)
     {
-        NSLog(@"tapped delete");
-        
-        NSLog(@"%lu",index);
-      
         NSIndexPath *cellIndexPath = [self.journalEntryTableView indexPathForCell:cell];
         
         NSArray *journalsLIFO = [self.dataStore.currentUser journalArrayLIFO];

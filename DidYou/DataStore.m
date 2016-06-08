@@ -92,7 +92,6 @@
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
     
-    NSLog(@"LOCATION");
     CLLocation *currentLocation = locations[0];
     
     if (currentLocation != nil) {
@@ -122,7 +121,6 @@
 
 -(void)requestLocationPermission
 {
-    NSLog(@"getting here");
     
     [self setUpLocationManager];
     
@@ -185,8 +183,6 @@
 
 -(void)addJournalToFirebase:(DYUser *)user withJournalEntry:(DYJournalEntry *)journalEntry
 {
-    
-    NSLog(@"in add journal to firebase");
     // get the user reference and serialize the journal
     // use childByAutoId to assign random key to journal entry, in firebase, have an array, don't want to push array in its entirty every time, JS has a push method, randomly put in there, sort later
 
@@ -201,7 +197,6 @@
 {
     // Journal was updated so push entry to firebase
     
-    NSLog(@"in add journal in datastore");
     [self addJournalToFirebase:self.currentUser
               withJournalEntry:self.currentUser.journals.lastObject];
 
@@ -258,15 +253,9 @@
 -(void)pullCurrentUserFromFirebase:(NSString *)userUUID
 {
     
-    NSLog(@"in the firebase method trying with UUID: %@", userUUID);
-    
     Firebase *userRef = [[self.myRootRef childByAppendingPath:@"users"] childByAppendingPath:userUUID];
     
     [userRef observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
-        
-        NSLog(@"in the firebase completion");
-        
-//        NSLog(@"%@", [snapshot value]);
         
         DYUtility *util = [DYUtility sharedUtility];
         NSMutableArray *journals = [[NSMutableArray alloc] init];
@@ -293,8 +282,6 @@
         
         // Notify the main controller that the firebase data
         // has arrived
-        
-        NSLog(@"about to post firebase notification");
         
         
         [[NSNotificationCenter defaultCenter]

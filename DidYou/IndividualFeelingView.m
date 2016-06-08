@@ -118,8 +118,6 @@
 -(NSString *)keyForValue:(NSString *)feeling
 {
     
-//    NSLog(@"%@",feeling);
-    
     self.dataStore = [DataStore sharedDataStore];
     
     NSDictionary *emotions = self.dataStore.emotions;

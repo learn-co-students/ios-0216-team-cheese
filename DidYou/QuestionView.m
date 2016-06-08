@@ -67,8 +67,6 @@
 
 -(void)commonInit
 {
-    
-    
     [[NSBundle mainBundle] loadNibNamed:@"Question" owner:self options:nil];
 
     [self addSubview:self.contentView];
@@ -80,37 +78,22 @@
     [self.contentView.leftAnchor constraintEqualToAnchor:self.leftAnchor].active = YES;
     [self.contentView.rightAnchor constraintEqualToAnchor:self.rightAnchor].active = YES;
     
-    
     self.dataStore = [DataStore sharedDataStore];
-    
     self.currentEntry = [self.dataStore.currentUser.journals lastObject];
-    
     self.currentQuestion = self.currentEntry.questions[0];
-    
     [self setUpButtons];
-    
-    NSLog(@"done with initializer");
-    
-    
-    
-    
-    
 }
 
 -(void)setUpButtons
 {
     self.yesButton.layer.cornerRadius = 40;
     self.noButton.layer.cornerRadius = 40;
-    
     self.yesButton.backgroundColor = [UIColor colorWithRed:34.0/255.0 green:164.0/255.0 blue:0 alpha:.5];
     self.noButton.backgroundColor = [UIColor colorWithRed:255.0/255.0 green:0 blue:17.0/255.0 alpha:.5];
-    
     self.yesButton.enabled = NO;
     self.noButton.enabled = NO;
     
 //    [self layoutIfNeeded];
-    
-    
 }
 
 -(void)setUpImageSmall
@@ -127,7 +110,6 @@
     
     [self.imageIcon.centerYAnchor constraintEqualToAnchor:self.centerYAnchor].active = YES;
     
-    
     self.iconSmallHeight = [self.imageIcon.heightAnchor constraintEqualToConstant:1];
     self.iconSmallWidth = [self.imageIcon.widthAnchor constraintEqualToConstant:1];
     self.iconBigHeight = [self.imageIcon.heightAnchor constraintEqualToConstant:150];
@@ -137,8 +119,6 @@
     self.iconCenterXConstraintCenter = [self.imageIcon.centerXAnchor constraintEqualToAnchor:self.centerXAnchor];
     self.iconCenterXConstraintRight = [self.imageIcon.centerXAnchor constraintEqualToAnchor:self.centerXAnchor constant:400];
     
-    
-
     self.iconBigWidth.active = NO;
     self.iconBigHeight.active = NO;
     self.iconSmallHeight.active = YES;
@@ -147,13 +127,7 @@
     self.iconCenterXConstraintRight.active = NO;
     self.iconCenterXConstraintLeft.active = NO;
     self.iconCenterXConstraintCenter.active = YES;
-    
-    
-    
     [self layoutIfNeeded];
-    
-    NSLog(@"Done with set up image small");
-    
 }
 
 -(void)moveImageToCenter
@@ -161,28 +135,18 @@
     
     [self layoutIfNeeded];
     
-    
     [UIView animateWithDuration:.3 animations:^{
-        
         [self layoutIfNeeded];
-        
         self.iconSmallHeight.active = NO;
         self.iconSmallWidth.active = NO;
         self.iconBigWidth.active = YES;
         self.iconBigHeight.active = YES;
-        
         [self layoutIfNeeded];
         
     } completion:^(BOOL finished) {
-        
-        NSLog(@"done with move to center completion");
-        
         self.yesButton.enabled = YES;
         self.noButton.enabled = YES;
     }];
-    
-    
-    NSLog(@"done with move to center");
 }
 
 
@@ -200,10 +164,6 @@
     [self layoutIfNeeded];
     
     [self moveImageToCenter];
-    
-    NSLog(@"done with question setter");
-
-    
 }
 
 -(void)generateIconName
@@ -232,34 +192,22 @@
     
 }
 
-
-
-
 - (IBAction)yesButtonTapped:(id)sender
 {
     
     [UIView animateWithDuration:.3 animations:^{
-        
         self.yesButton.enabled = NO;
         self.noButton.enabled = NO;
-        
-        
         self.iconCenterXConstraintCenter.active = NO;
         self.iconCenterXConstraintRight.active = YES;
         [self layoutIfNeeded];
         
     } completion:^(BOOL finished) {
-        
         self.currentQuestion.answer = 2;
-        
         [self.delegate questionAnswered:2];
-        
     }];
-
- 
-    
-    
 }
+
 - (IBAction)noButtonTapped:(id)sender
 {
     
@@ -267,25 +215,15 @@
         
         self.yesButton.enabled = NO;
         self.noButton.enabled = NO;
-        
         self.iconCenterXConstraintCenter.active = NO;
         self.iconCenterXConstraintLeft.active = YES;
-        
         [self layoutIfNeeded];
         
     } completion:^(BOOL finished) {
         
         self.currentQuestion.answer = 1;
-        
         [self.delegate questionAnswered:1];
-        
     }];
-    
-    
-    
-    
-   
-    
 }
 
 @end

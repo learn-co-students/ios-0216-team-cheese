@@ -58,7 +58,6 @@
     
     NSArray *sortedEventArray = [nodeEventArray
                                  sortedArrayUsingDescriptors:sortDescriptors];
-//    NSLog(@"%@", sortedEventArray);
     return [sortedEventArray mutableCopy];
 
 }
