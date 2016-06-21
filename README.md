@@ -1,7 +1,13 @@
 Did You? is a mental health tracking iOS application. Every day you can enter your current mood and answer a series of questions such as, “Did you exercise today?”.  You can add a diary entry to give future perspective on the cause of those moods.  A statistics section lets you track your mood over time in relation to these factors, so that you can track the way your lifestyle affects your mental health. 
 
-![ios-0216-team-cheese](https://raw.github.com/kayla/ios-0216-team-cheese/master/mainpage.png)
 
+
+![ios-0216-team-cheese](https://raw.github.com/learn-co-students/ios-0216-team-cheese/kayla/mainpage.png)
+
+
+
+
+![ios-0216-team-cheese](https://raw.github.com/learn-co-students/ios-0216-team-cheese/kayla/mainfeelings.png)
 
 
 
