@@ -19,7 +19,7 @@
 #import "EmptyTableView.h"
 #import "NoInternetView.h"
 #import "JournalEntryTableViewCellAlternate.h"
-#import "SWTableViewCell.h"
+//#import "SWTableViewCell.h"
 
 
 @interface MainViewController () <NewJournalEntryBlurViewDelegate, UITableViewDataSource, UITableViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, CustomTabBarDelegate, LoadingFirstPageViewDelegate, NoInternetDelegate, CLLocationManagerDelegate>
